@@ -103,3 +103,173 @@ Expected URL once enabled:
 - No backend, no database, no login.
 - No build chain — vanilla HTML + CSS + JS, Mermaid loaded from CDN at runtime.
 - Stdlib-only Python scripts (works in any Python 3.10+).
+
+---
+
+## Runbook
+
+### Schedule
+
+- Hermes cron job: **`ai-education-weekly-watch`** (job id `452055bd607a`)
+- Schedule: `0 9 * * 1` (every Monday 09:00 Asia/Shanghai)
+- Next run: `hermes cron list 2>&1 | grep -A 6 452055bd607a`
+- Deliver: telegram (summary goes to home chat)
+
+The cron subprocess is clean — only `HOME`, `PATH`, `TERM` are inherited.
+That is by design: it matches what `env -i bash -lc` produces.
+
+### Manual commands
+
+Preview only (no files written):
+
+```
+python3 scripts/weekly_ai_education_watch.py \
+    --data-dir docs/data \
+    --reports-dir reports/weekly \
+    --dry-run
+```
+
+Light-touch real run (caps per-query results, recommended for spot-checks):
+
+```
+python3 scripts/weekly_ai_education_watch.py \
+    --data-dir docs/data \
+    --reports-dir reports/weekly \
+    --max-results 3
+```
+
+Full real run (matches cron defaults):
+
+```
+python3 scripts/weekly_ai_education_watch.py \
+    --data-dir docs/data \
+    --reports-dir reports/weekly
+```
+
+### Rebuild data from MVP report
+
+When you have a fresh `reports/seed/latest-report.md`:
+
+```
+python3 scripts/build_from_report.py \
+    --input reports/seed/latest-report.md \
+    --data-dir docs/data \
+    --weekly-dir
+```
+
+This re-parses the seed markdown tables into the 6 JSON files. It does NOT
+merge with existing weekly additions — it overwrites papers/systems/people.
+Re-run the weekly watcher afterwards to fold in any new items.
+
+### Outputs after a run
+
+| Path | What |
+|---|---|
+| `reports/weekly/YYYY-WW.md` | Per-week human-readable digest (append-only) |
+| `docs/data/weekly/latest.json` | Snapshot for the static site ("Weekly Watch" panel) |
+| `docs/data/weekly/manifest.json` | Run record: queries, candidates, after-dedup count |
+| `docs/data/papers.json` | Merged (deduped) paper list |
+
+`docs/data/systems.json` and `docs/data/people.json` are NOT mutated by the
+weekly watcher yet — systems/people updates need a fresh seed (TODO v1.2).
+
+### Logs
+
+| Path | Source |
+|---|---|
+| `logs/v1_1_cron_preflight_dry_run.log` | V1.1 preflight dry-run audit |
+| `logs/v1_1_manual_run.log`             | V1.1 preflight real-run audit |
+| `~/.hermes/cron/output/`               | Hermes cron delivery + agent stdout (managed by Hermes) |
+
+Local logs are gitignored. Hermes-managed cron logs persist on disk for ~30 days.
+
+### Deploy / Pages verification
+
+```
+# Trigger GitHub Pages rebuild status read
+gh api repos/conanxin/ai-education-system-map/pages
+
+# Wait ~30-60s after push, then:
+curl -sI https://conanxin.github.io/ai-education-system-map/
+curl -sI https://conanxin.github.io/ai-education-system-map/data/weekly/latest.json
+curl -sI https://conanxin.github.io/ai-education-system-map/data/papers.json
+```
+
+5-piece deployment check (HTTP 200 alone is not enough):
+1. `HTTP/2 200`
+2. `Cache-Control` header present
+3. Real asset size (e.g. `papers.json` > 5 KB, `index.html` > 3 KB) — not the 4 KB placeholder
+4. Second round T+~60s still 200
+5. `gh api .../pages` returns `html_url` + `source: {branch: main, path: /docs}` (this can lag 10+ min — HTTP behaviour is the truth)
+
+---
+
+## FAQ
+
+### 1. DDG rate-limit caused 0 new items — what now?
+
+DuckDuckGo HTML has no API key but throttles aggressively. If a run
+returns `0 candidates` even though nothing is broken, do this:
+
+- Check `docs/data/weekly/manifest.json` — `candidates: 0` means DDG either
+  blocked us or returned nothing in scope. Both are fine.
+- Re-run later (`--max-results 3` is gentler).
+- If you have a Parallel / Firecrawl / other search provider configured in
+  Hermes, `weekly_ai_education_watch.try_hermes_search()` will pick it up
+  automatically on the next run — no code change needed.
+
+The seed is fine; 0-item weeks just produce empty audit reports and that's
+correct behaviour.
+
+### 2. How do I rebuild from a fresh `latest-report.md`?
+
+```
+cp /path/to/new/latest-report.md reports/seed/latest-report.md
+python3 scripts/build_from_report.py \
+    --input reports/seed/latest-report.md \
+    --data-dir docs/data \
+    --weekly-dir
+git add docs/data reports/seed/latest-report.md
+git commit -m "Rebuild from MVP report $(date -u +%FT%TZ)"
+git push
+```
+
+After rebuild, re-run the weekly watcher to merge in any new items since the
+last run.
+
+### 3. How do I confirm GitHub Pages actually updated?
+
+`gh api .../pages` has a 10+ min API cache lag — DO NOT trust it alone.
+The 5-piece check above is the truth. The fastest signal is:
+
+```
+curl -sI https://conanxin.github.io/ai-education-system-map/data/weekly/latest.json | grep -i last-modified
+```
+
+If `Last-Modified` moved forward, Pages served your new content.
+
+If HTTP returns 404 right after a push, wait 30-120 s and retry — Pages CDN
+has a propagation window. If still 404 after 5 min, check `gh api .../pages`
+for build errors.
+
+### 4. How do I trigger the weekly watch manually?
+
+```
+cd /home/conanxin/projects/ai-education-system-map
+python3 scripts/weekly_ai_education_watch.py \
+    --data-dir docs/data \
+    --reports-dir reports/weekly \
+    --max-results 3
+```
+
+To commit + push the resulting JSON updates:
+
+```
+git add reports/weekly docs/data
+git commit -m "manual weekly run $(date -u +%FT%TZ)"
+git push
+```
+
+To trigger via Hermes scheduler with custom timing, use
+`hermes cron run 452055bd607a` (runs the job once immediately). The default
+schedule is preserved.

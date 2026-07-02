@@ -224,7 +224,7 @@ def is_relevant(item: dict[str, str]) -> bool:
 # Main pipeline
 # ---------------------------------------------------------------------------
 
-def fetch_new_hits() -> list[dict[str, Any]]:
+def fetch_new_hits(per_query_limit: int = 5) -> list[dict[str, Any]]:
     """Run the curated set of queries, return deduplicated candidate papers."""
     seen_url: dict[str, dict[str, Any]] = {}
     queries: list[str] = []
@@ -234,7 +234,7 @@ def fetch_new_hits() -> list[dict[str, Any]]:
         queries.append(f"{kw} 2026 paper")
 
     for q in queries:
-        for hit in run_query(q, limit=5):
+        for hit in run_query(q, limit=per_query_limit):
             if not is_relevant(hit):
                 continue
             u = url_canon(hit["url"])
@@ -342,6 +342,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--data-dir", type=Path, required=True)
     ap.add_argument("--reports-dir", type=Path, required=True)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--max-results", type=int, default=5,
+                    help="Per-query result cap. Lower = lighter touch. Default 5.")
     args = ap.parse_args(argv)
 
     papers_path = args.data_dir / "papers.json"
@@ -353,7 +355,7 @@ def main(argv: list[str]) -> int:
     existing_systems = load_json(systems_path)
     existing_people = load_json(people_path)
 
-    candidates = fetch_new_hits()
+    candidates = fetch_new_hits(per_query_limit=args.max_results)
     new_items = dedupe_against_existing(candidates, existing_papers)
 
     week_tag = iso_week_tag(datetime.now(timezone.utc))
