@@ -4,7 +4,7 @@
     "type": "Proactive single-agent SRL scaffold",
     "architecture": "Trigger-recognition engine → prompts group to self-regulate; does NOT act on group's behalf. Built on HASRL model.",
     "relation": "This IS the MAI reference system. Co-evolutionary partner, not controller.",
-    "last_seen": "2026-07-02T13:12:09.880042+00:00",
+    "last_seen": "2026-07-02T13:45:30.301838+00:00",
     "source_url": "https://arxiv.org/abs/2512.08296",
     "first_seen": "2026-07-02T10:05:41.625241+00:00"
   },
@@ -13,7 +13,7 @@
     "type": "LLM tutor + teacher-assistant + district analytics",
     "architecture": "Single-conversation LLM (GPT-4 class) with structured access to student skill history; Go services; Langfuse for observability; ~100 internal users across 7 product teams.",
     "relation": "Closest deployed commercial cousin of MAI at scale; differs in being one-to-one tutor rather than group-regulation agent. ~700K K-12 students in 2024–25.",
-    "last_seen": "2026-07-02T13:12:09.880042+00:00",
+    "last_seen": "2026-07-02T13:45:30.301838+00:00",
     "source_url": "https://www.khanmigo.ai/",
     "first_seen": "2026-07-02T10:05:41.625241+00:00"
   },
@@ -22,7 +22,7 @@
     "type": "Multi-agent orchestration SDK",
     "architecture": "Asynchronous, event-driven; Studio (no-code) + AgentChat (Python) + Core runtime; unified with Semantic Kernel Oct 2025. MCP + A2A protocol support.",
     "relation": "Generic substrate — not education-specific, but the orchestration layer a MAI-class system would run on.",
-    "last_seen": "2026-07-02T13:12:09.880042+00:00",
+    "last_seen": "2026-07-02T13:45:30.301838+00:00",
     "source_url": "https://arxiv.org/abs/2308.08155",
     "first_seen": "2026-07-02T10:05:41.625241+00:00"
   },
@@ -49,7 +49,7 @@
     "type": "Online course platform + learning analytics warehouse",
     "architecture": "OLI courses + EDM via DataShop; ~1-week Summer School trains next-gen practitioners.",
     "relation": "LA infrastructure layer MAI/MIRACLE-style systems plug into.",
-    "last_seen": "2026-07-02T13:12:09.880042+00:00",
+    "last_seen": "2026-07-02T13:45:30.301838+00:00",
     "source_url": "https://hai.stanford.edu/",
     "first_seen": "2026-07-02T10:05:41.625241+00:00"
   },
@@ -58,7 +58,7 @@
     "type": "AI-native classroom OS (commercial)",
     "architecture": "5-product suite anchored on SMART principles (Share / Measure / Adaptive / Reconstructive / Team); CocoClass orchestrator with PPT→HTML, PIN co-screen, real-time whole-class diagnosis, embedded agents/workflows (CocoFlow).",
     "relation": "Closest \"Multi-Agent Classroom OS\" reference deployment. Explicitly positions AI as team-partner for student thinking, not answer-vendor. MAI could be the metacognition layer on top of CocoClass; MIRACLE the simulator.",
-    "last_seen": "2026-07-02T13:12:09.880042+00:00",
+    "last_seen": "2026-07-02T13:45:30.301838+00:00",
     "source_url": "https://cocorobo.hk/research",
     "first_seen": "2026-07-02T10:05:41.625241+00:00"
   },
@@ -67,7 +67,7 @@
     "type": "AI note-taker / study-tool consumer app",
     "architecture": "Audio→notes→study-guide/quiz/flashcards pipeline.",
     "relation": "Consumer-side AI study tool; not multi-agent, but defines student expectation baseline.",
-    "last_seen": "2026-07-02T13:12:09.880042+00:00",
+    "last_seen": "2026-07-02T13:45:30.301838+00:00",
     "source_url": "https://arxiv.org/abs/2605.12923",
     "first_seen": "2026-07-02T10:05:41.625241+00:00"
   },

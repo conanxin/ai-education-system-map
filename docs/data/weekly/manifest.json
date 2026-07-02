@@ -1,5 +1,5 @@
 {
-  "ran_at": "2026-07-02T13:12:09.885567+00:00",
+  "ran_at": "2026-07-02T13:45:30.315705+00:00",
   "week_tag": "2026-W27",
   "registry_version": "1.2.0",
   "source_counts": {
@@ -102,6 +102,11 @@
   "weekly_report": "reports/weekly/2026-W27.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-07-02T13:12:09.944415+00:00",
-  "dashboard_summary_error": null
+  "dashboard_summary_updated_at": "2026-07-02T13:45:30.418917+00:00",
+  "dashboard_summary_error": null,
+  "publish_requested": false,
+  "publish_status": "skipped",
+  "publish_commit": null,
+  "publish_error": null,
+  "pages_expected_to_rebuild": false
 }
