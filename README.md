@@ -78,16 +78,37 @@ python3 scripts/build_from_report.py \
 Runs every Monday 09:00 Asia/Shanghai via the Hermes scheduler
 (`ai-education-weekly-watch`, job id stored in this repo's Hermes config).
 Reads existing `docs/data/*.json`, fetches new items, dedupes by URL / title,
-appends, writes `reports/weekly/YYYY-WW.md` + `docs/data/weekly/latest.json`.
+appends, writes `reports/weekly/YYYY-WW.md` + `docs/data/weekly/latest.json`,
+rebuilds `docs/data/dashboard-summary.json`, and — since **v1.3.2** —
+auto-commits + pushes the curated paths to `origin/main` so GitHub Pages
+rebuilds without any operator action.
 
-Manual run:
+The auto-publish path stages only these paths (logs / temp files never leak):
+
+- `docs/data`
+- `docs/reports`
+- `reports/weekly`
+- `README.md`
+
+When the curated paths are byte-identical to `HEAD`, no commit is made and
+the manifest records `publish_status: no_changes`.
+
+Manual run (no publish, safe for spot-checks):
 ```
 python3 scripts/weekly_ai_education_watch.py \
     --data-dir docs/data \
     --reports-dir reports/weekly
 ```
 
-Dry-run preview (no files written):
+Manual run with publish (matches cron behaviour):
+```
+python3 scripts/weekly_ai_education_watch.py \
+    --data-dir docs/data \
+    --reports-dir reports/weekly \
+    --publish
+```
+
+Dry-run preview (no files written, no publish):
 ```
 python3 scripts/weekly_ai_education_watch.py \
     --data-dir docs/data \
@@ -314,33 +335,52 @@ To trigger via Hermes scheduler with custom timing, use
 `hermes cron run 452055bd607a` (runs the job once immediately). The default
 schedule is preserved.
 
-### 5. How do I refresh the dashboard summary?
+### 5. How do I refresh the dashboard summary and publish?
 
 `docs/data/dashboard-summary.json` is the single file the v1.3 page reads.
 
-**Auto-refresh (since v1.3.1):** every weekly cron run automatically invokes
-`scripts/build_dashboard_summary.py` after writing the manifest. The
-manifest gets 4 new fields recording the outcome:
+**Auto-refresh + auto-publish (since v1.3.2):** every weekly cron run
+auto-invokes `scripts/build_dashboard_summary.py`, then commits + pushes the
+curated paths when they differ from `HEAD`. No operator action required.
+
+The manifest gets these dashboard-summary fields (v1.3.1+):
 
 - `dashboard_summary_rebuilt` — `true` / `false`
 - `dashboard_summary_path` — relative path inside the repo
 - `dashboard_summary_updated_at` — ISO timestamp of the regenerated file
 - `dashboard_summary_error` — `null` on success, error string on failure
 
-If `dashboard_summary_rebuilt: false`, the watcher exits 1 and the cron
-delivery tells you. Common causes: builder script moved, Python 3 missing,
+And these auto-publish fields (v1.3.2+):
+
+- `publish_requested` — `true` if `--publish` was passed (cron always true)
+- `publish_status` — `skipped` (no `--publish`), `pending`, `committed`,
+  `no_changes`, or `failed`
+- `publish_commit` — full SHA of the data commit, or `null`
+- `publish_error` — `null` on success, git stderr on failure
+- `pages_expected_to_rebuild` — `true` when a data commit landed
+
+If `dashboard_summary_rebuilt: false` OR `publish_status: failed`, the
+watcher exits 1 and the cron delivery tells you. Common causes: builder
+script moved, Python 3 missing, git push rejected (auth / non-fast-forward),
 or a parser error in one of the 6 source JSONs.
 
-**Manual refresh:** if you edited a JSON file by hand, force a refresh:
+**Manual refresh + publish (matches cron):**
+
+```
+python3 scripts/weekly_ai_education_watch.py \
+    --data-dir docs/data \
+    --reports-dir reports/weekly \
+    --publish
+```
+
+**Manual refresh only (no git):** if you edited a JSON file by hand:
 
 ```
 python3 scripts/build_dashboard_summary.py --data-dir docs/data
-git add docs/data/dashboard-summary.json
+git add docs/data
 git commit -m "refresh dashboard summary"
 git push
 ```
-
-The watcher does NOT auto-commit / push — that remains the operator's job.
 
 ### 6. How do I confirm the weekly report link is reachable from the site?
 

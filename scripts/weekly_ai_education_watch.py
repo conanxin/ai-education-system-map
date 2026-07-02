@@ -32,6 +32,7 @@ import argparse
 import json
 import re
 import shutil
+import subprocess
 import sys
 import urllib.error
 import urllib.parse
@@ -790,6 +791,13 @@ def write_manifest(manifest_path: Path, week_tag: str, items_added: list[dict[st
         "dashboard_summary_path": "docs/data/dashboard-summary.json",
         "dashboard_summary_updated_at": "",
         "dashboard_summary_error": None,
+        # Auto-publish fields are filled in by main() AFTER git_publish runs.
+        # Initial values here are placeholders.
+        "publish_requested": False,
+        "publish_status": "skipped",
+        "publish_commit": None,
+        "publish_error": None,
+        "pages_expected_to_rebuild": False,
     }
     save_json(manifest_path, manifest)
 
@@ -842,6 +850,25 @@ def patch_manifest_with_summary_result(manifest_path: Path, rebuilt: bool,
     save_json(manifest_path, m)
 
 
+def _patch_manifest_with_publish_result(manifest_path: Path, publish_requested: bool,
+                                        status: str, commit_sha: str | None,
+                                        error: str | None,
+                                        pages_expected: bool) -> None:
+    """Update the manifest in place with the auto-publish outcome."""
+    if not manifest_path.exists():
+        return
+    try:
+        m = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    m["publish_requested"] = publish_requested
+    m["publish_status"] = status
+    m["publish_commit"] = commit_sha
+    m["publish_error"] = error
+    m["pages_expected_to_rebuild"] = pages_expected
+    save_json(manifest_path, m)
+
+
 def mirror_report_into_pages(src: Path, docs_reports_dir: Path) -> Path | None:
     """Copy the weekly markdown into docs/reports/weekly/ so it's served
     by GitHub Pages alongside the rest of the site."""
@@ -854,6 +881,75 @@ def mirror_report_into_pages(src: Path, docs_reports_dir: Path) -> Path | None:
 
 
 # ---------------------------------------------------------------------------
+# Auto-publish helper (V1.3.2)
+# ---------------------------------------------------------------------------
+
+_PUBLISH_PATHS = [
+    "docs/data",
+    "docs/reports",
+    "reports/weekly",
+    "README.md",
+]
+
+
+def git_publish(project_root: Path, week_tag: str) -> tuple[str, str | None, str | None]:
+    """Stage a curated set of paths, commit if anything changed, push to origin/main.
+
+    Returns a tuple of (status, commit_sha, error_message) where status is one of:
+      - "no_changes" — working tree was already clean against HEAD
+      - "committed"  — a new commit was created and pushed
+      - "failed"     — git errored at any step; commit_sha is None
+    """
+    try:
+        # Short-circuit: any tracked-or-untracked edits at all?
+        porcelain = subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=project_root, capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        if not porcelain:
+            print("[publish] no changes to publish", flush=True)
+            return ("no_changes", None, None)
+
+        # Stage only the curated paths so logs/ and stray files never leak.
+        for rel in _PUBLISH_PATHS:
+            subprocess.run(
+                ["git", "add", "--", rel],
+                cwd=project_root, capture_output=True, text=True, check=True,
+            )
+
+        # If after staging the index is empty (e.g. edits were outside the
+        # curated paths), treat as no_changes rather than an empty commit.
+        staged = subprocess.run(
+            ["git", "diff", "--cached", "--name-only"],
+            cwd=project_root, capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        if not staged:
+            print("[publish] no curated-path changes to publish", flush=True)
+            return ("no_changes", None, None)
+
+        commit_msg = f"Update AI education weekly watch {week_tag}"
+        sha = subprocess.run(
+            ["git", "commit", "-m", commit_msg],
+            cwd=project_root, capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        # `git commit` doesn't print the SHA by default; derive from rev-parse.
+        sha = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=project_root, capture_output=True, text=True, check=True,
+        ).stdout.strip()
+
+        subprocess.run(
+            ["git", "push", "origin", "main"],
+            cwd=project_root, capture_output=True, text=True, check=True,
+        )
+        print(f"[publish] committed {sha[:7]}: {commit_msg}", flush=True)
+        return ("committed", sha, None)
+    except subprocess.CalledProcessError as exc:
+        stderr = (exc.stderr or "").strip() if hasattr(exc, "stderr") else ""
+        return ("failed", None, stderr or str(exc))
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -863,6 +959,9 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--reports-dir", type=Path, required=True)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--max-results", type=int, default=5)
+    ap.add_argument("--publish", action="store_true",
+                    help="Auto git add/commit/push changed docs/data and docs/reports "
+                         "after the weekly watch. Dry-run ignores this flag.")
     args = ap.parse_args(argv)
 
     papers_path = args.data_dir / "papers.json"
@@ -939,13 +1038,69 @@ def main(argv: list[str]) -> int:
     )
     patch_manifest_with_summary_result(manifest_path, rebuilt, summary_updated_at, summary_error)
 
+    # Auto-publish (V1.3.2): stage curated docs/data + reports paths, commit
+    # only if there's something new, and push to origin/main. Dry-run never
+    # publishes. Failure surfaces in the manifest and exits 1.
+    publish_status = "skipped"
+    publish_commit = None
+    publish_error = None
+    pages_expected = False
+    if args.dry_run:
+        print("[dry-run] real run with --publish will auto-commit and "
+              "git push origin main when curated paths change", flush=True)
+    elif args.publish:
+        # Pre-write the manifest with a "pending" sentinel so the upcoming
+        # commit carries it; we'll patch in the real SHA afterwards.
+        _patch_manifest_with_publish_result(
+            manifest_path, True, "pending", None, None, False,
+        )
+        publish_status, publish_commit, publish_error = git_publish(project_root, week_tag)
+        pages_expected = publish_status == "committed"
+        # Re-patch the manifest on disk with the actual outcome.
+        _patch_manifest_with_publish_result(
+            manifest_path, True, publish_status, publish_commit,
+            publish_error, pages_expected,
+        )
+        # If we got a real commit SHA AND the manifest now differs from the
+        # last-pushed version, do a tiny follow-up commit so the live record
+        # carries the real SHA. Avoids --amend + force-with-lease.
+        if publish_status == "committed" and publish_commit:
+            try:
+                subprocess.run(
+                    ["git", "add", "--", "docs/data/weekly/manifest.json"],
+                    cwd=project_root, capture_output=True, text=True, check=True,
+                )
+                staged_check = subprocess.run(
+                    ["git", "diff", "--cached", "--name-only"],
+                    cwd=project_root, capture_output=True, text=True, check=True,
+                ).stdout.strip()
+                if staged_check:
+                    amend_msg = (
+                        f"Record publish commit {publish_commit[:7]} in manifest "
+                        f"({week_tag})"
+                    )
+                    subprocess.run(
+                        ["git", "commit", "-m", amend_msg],
+                        cwd=project_root, capture_output=True, text=True, check=True,
+                    )
+                    subprocess.run(
+                        ["git", "push", "origin", "main"],
+                        cwd=project_root, capture_output=True, text=True, check=True,
+                    )
+            except subprocess.CalledProcessError as exc:
+                print(f"[publish] follow-up commit failed (non-fatal): {exc}", file=sys.stderr)
+
     print(f"weekly-watch complete: +{papers_added} papers, "
           f"~{systems_updated} systems, ~{people_updated} people, "
           f"~{tech_updated} tech-stack; "
           f"report={weekly_report_path}, manifest={manifest_path}, "
-          f"dashboard_summary={'rebuilt' if rebuilt else 'FAILED'}")
+          f"dashboard_summary={'rebuilt' if rebuilt else 'FAILED'}, "
+          f"publish={publish_status}")
     if not rebuilt:
         print(f"ERROR: dashboard summary build failed: {summary_error}", file=sys.stderr)
+        return 1
+    if publish_status == "failed":
+        print(f"ERROR: auto-publish failed: {publish_error}", file=sys.stderr)
         return 1
     return 0
 
