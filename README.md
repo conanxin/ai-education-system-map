@@ -33,7 +33,9 @@ aggregated JSON file (`docs/data/dashboard-summary.json`):
 
 ```
 docs/
-  index.html              Single-page site (Overview / Map / Papers / People / Tech / Weekly)
+  index.html              Single-page site (6 modules: This Week / Lineage /
+                          System Cards / Paper Network / People / Source Health)
+  .nojekyll               Tells GitHub Pages to skip Jekyll processing
   assets/style.css
   assets/app.js
   data/
@@ -113,12 +115,26 @@ Khanmigo evidence, AutoGen education, MASS multi-agent design.
 
 ## GitHub Pages deployment
 
-This repo publishes from `docs/` on the `main` branch. If Pages isn't enabled
-yet, go to **Settings → Pages → Build and deployment → Source: Deploy from a
-branch → Branch: `main` / `docs`**.
+This repo publishes from `docs/` on the `main` branch using GitHub Pages'
+legacy build mode. `docs/.nojekyll` disables Jekyll processing so plain JSON
+and Markdown files are served verbatim (without Jekyll trying to parse them
+as Liquid templates).
+
+If Pages isn't enabled yet, go to **Settings → Pages → Build and deployment →
+Source: Deploy from a branch → Branch: `main` / `docs`**.
 
 Expected URL once enabled:
 `https://conanxin.github.io/ai-education-system-map/`
+
+After a push, if new files 404 for more than 5 minutes, trigger a Pages
+rebuild:
+
+```
+gh api -X POST repos/conanxin/ai-education-system-map/pages/builds
+```
+
+Wait ~90 s, then re-check. If the build status is `"errored"` with duration 0,
+make sure `docs/.nojekyll` exists.
 
 ## Constraints honoured
 
