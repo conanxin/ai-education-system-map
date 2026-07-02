@@ -1,0 +1,810 @@
+{
+  "generated_at": "2026-07-02T12:43:20.036933+00:00",
+  "last_updated": "2026-07-02T10:05:41.629119+00:00",
+  "latest_week_tag": "2026-W27",
+  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W27.md",
+  "github_report_path": "reports/weekly/2026-W27.md",
+  "totals": {
+    "papers": 41,
+    "systems": 10,
+    "people": 16,
+    "timeline_events": 11,
+    "stable_sources": 51,
+    "active_sources": 31
+  },
+  "this_week": {
+    "new_papers": 31,
+    "new_systems": 8,
+    "new_people": 5,
+    "fallback_status": {
+      "ran": true,
+      "queries": 12,
+      "hits": 0,
+      "errors": []
+    }
+  },
+  "source_health": {
+    "stable_sources": 51,
+    "active_sources": 31,
+    "source_errors_count": 0,
+    "source_errors": {},
+    "fallback_status": {
+      "ran": true,
+      "queries": 12,
+      "hits": 0,
+      "errors": []
+    },
+    "candidates_by_source": {
+      "arxiv-abs-2308.08155": [
+        "https://arxiv.org/abs/2308.08155"
+      ],
+      "arxiv-abs-2502.02533": [
+        "https://arxiv.org/abs/2502.02533"
+      ],
+      "arxiv-abs-2512.08296": [
+        "https://arxiv.org/abs/2512.08296"
+      ],
+      "arxiv-abs-2605.12923": [
+        "https://arxiv.org/abs/2605.12923"
+      ],
+      "cocorobo-research": [
+        "https://cocorobo.hk/research"
+      ],
+      "cocorobo-smart": [
+        "https://cocorobo.hk/smart"
+      ],
+      "khanmigo": [
+        "https://www.khanmigo.ai/"
+      ],
+      "ka-blog": [
+        "https://blog.khanacademy.org/"
+      ],
+      "cmu-learnlab": [
+        "https://learnlab.org/"
+      ],
+      "stanford-ai-ed": [
+        "https://acceleratelearning.stanford.edu/overview/ai-learning"
+      ],
+      "stanford-hai": [
+        "https://hai.stanford.edu/"
+      ],
+      "ms-autogen": [
+        "https://www.microsoft.com/en-us/research/project/autogen/"
+      ],
+      "ms-agent-framework": [
+        "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/"
+      ]
+    },
+    "source_counts": {
+      "arxiv-abs-2308.08155": 1,
+      "arxiv-abs-2502.02533": 1,
+      "arxiv-abs-2512.08296": 1,
+      "arxiv-abs-2605.12923": 1,
+      "arxiv-search-multi-agent-edu": 0,
+      "arxiv-search-ai-education-agent": 0,
+      "arxiv-search-collab-learning-agent": 0,
+      "arxiv-search-learning-analytics-ai": 0,
+      "oulu-hi": 0,
+      "oulu-lead": 0,
+      "oulu-let": 0,
+      "cocorobo-research": 1,
+      "cocorobo-smart": 1,
+      "khanmigo": 1,
+      "ka-blog": 1,
+      "cmu-learnlab": 1,
+      "stanford-ai-ed": 1,
+      "stanford-hai": 1,
+      "ms-autogen": 1,
+      "ms-agent-framework": 1,
+      "google-mass": 0,
+      "p-jarvela": 1,
+      "p-nguyen": 1,
+      "p-edwards": 1,
+      "p-sobocinski": 1,
+      "p-tormanen": 1,
+      "p-koedinger": 1,
+      "p-khan": 1,
+      "p-chiwang": 1,
+      "p-shuangli": 1,
+      "p-haiyangxin": 1,
+      "p-chingsingchai": 1,
+      "p-harisubramonyam": 1,
+      "conf-aied": 1,
+      "conf-isls": 1,
+      "conf-lak": 1,
+      "conf-edm": 1,
+      "conf-cui": 1,
+      "conf-bjet": 1,
+      "search_fallback": 0
+    },
+    "last_run": "2026-07-02T10:05:41.629540+00:00",
+    "registry_version": "1.2.0"
+  },
+  "system_cards": [
+    {
+      "system": "MAI (Metacognitive AI agent)",
+      "institution": "",
+      "type": "Proactive single-agent SRL scaffold",
+      "relation_to_mai_miracle": "This IS the MAI reference system. Co-evolutionary partner, not controller.",
+      "agent_architecture": "Single agent, trigger-recognition",
+      "open_source_status": "Pending (paper-only)",
+      "source_url": "https://arxiv.org/abs/2512.08296",
+      "categories": [
+        "SSRL / HASRL",
+        "Research Prototype"
+      ]
+    },
+    {
+      "system": "Khanmigo",
+      "institution": "",
+      "type": "LLM tutor + teacher-assistant + district analytics",
+      "relation_to_mai_miracle": "Closest deployed commercial cousin of MAI at scale; differs in being one-to-one tutor rather than group-regulation agent. ~700K K-12 students in 2024–25.",
+      "agent_architecture": "Single-agent per student + admin agent",
+      "open_source_status": "Closed",
+      "source_url": "https://www.khanmigo.ai/",
+      "categories": [
+        "Tutor",
+        "Product"
+      ]
+    },
+    {
+      "system": "AutoGen v0.4 / Microsoft Agent Framework",
+      "institution": "",
+      "type": "Multi-agent orchestration SDK",
+      "relation_to_mai_miracle": "Generic substrate — not education-specific, but the orchestration layer a MAI-class system would run on.",
+      "agent_architecture": "Async, event-driven; group chat + manager",
+      "open_source_status": "Yes (MIT)",
+      "source_url": "https://arxiv.org/abs/2308.08155",
+      "categories": [
+        "Infrastructure",
+        "Multi-Agent"
+      ]
+    },
+    {
+      "system": "MASS (Google)",
+      "institution": "",
+      "type": "Automated MAS design framework",
+      "relation_to_mai_miracle": "Indirect: validates that prompt-then-topology optimisation matters; informs how a multi-agent classroom should be designed before deployment.",
+      "agent_architecture": "Prompt + topology co-optimisation",
+      "open_source_status": "Paper-only",
+      "source_url": "",
+      "categories": [
+        "Infrastructure"
+      ]
+    },
+    {
+      "system": "SimClass (Tsinghua MAIC)",
+      "institution": "",
+      "type": "Multi-agent classroom simulator",
+      "relation_to_mai_miracle": "Direct conceptual sibling of MIRACLE — multi-agent classroom simulation with student peers as agents.",
+      "agent_architecture": "Teacher + peers + manager + assistant",
+      "open_source_status": "Yes (GitHub THU-MAIC/SimClass)",
+      "source_url": "",
+      "categories": [
+        "Multi-Agent",
+        "Research Prototype"
+      ]
+    },
+    {
+      "system": "CTAT / Cognitive Tutor (LearnLab)",
+      "institution": "",
+      "type": "Authoring tools for Intelligent Tutoring Systems",
+      "relation_to_mai_miracle": "Oldest line (since 1990s) — what MAI's \"proactive\" model adds is metacognitive trigger recognition on top of step-level ITS feedback.",
+      "agent_architecture": "Example-tracing model-tracing tutors",
+      "open_source_status": "Yes (CTAT)",
+      "source_url": "",
+      "categories": [
+        "Tutor",
+        "Infrastructure"
+      ]
+    },
+    {
+      "system": "OLI / Torus + DataShop (CMU)",
+      "institution": "",
+      "type": "Online course platform + learning analytics warehouse",
+      "relation_to_mai_miracle": "LA infrastructure layer MAI/MIRACLE-style systems plug into.",
+      "agent_architecture": "Course delivery + analytics pipeline",
+      "open_source_status": "Mixed",
+      "source_url": "https://hai.stanford.edu/",
+      "categories": [
+        "Infrastructure"
+      ]
+    },
+    {
+      "system": "CocoRobo SMART Suite",
+      "institution": "",
+      "type": "AI-native classroom OS (commercial)",
+      "relation_to_mai_miracle": "Closest \"Multi-Agent Classroom OS\" reference deployment. Explicitly positions AI as team-partner for student thinking, not answer-vendor. MAI could be the metacognition layer on top of CocoClass; MIRACLE the simulator.",
+      "agent_architecture": "Multi-product suite with embedded agents/workflows",
+      "open_source_status": "Closed",
+      "source_url": "https://cocorobo.hk/research",
+      "categories": [
+        "Multi-Agent",
+        "Classroom OS",
+        "Product"
+      ]
+    },
+    {
+      "system": "Coconote (Quizlet)",
+      "institution": "",
+      "type": "AI note-taker / study-tool consumer app",
+      "relation_to_mai_miracle": "Consumer-side AI study tool; not multi-agent, but defines student expectation baseline.",
+      "agent_architecture": "Single LLM pipeline",
+      "open_source_status": "Closed",
+      "source_url": "https://arxiv.org/abs/2605.12923",
+      "categories": [
+        "Product"
+      ]
+    },
+    {
+      "system": "MAST (Berkeley, Multi-Agent System Traces)",
+      "institution": "",
+      "type": "Benchmark + failure taxonomy",
+      "relation_to_mai_miracle": "Diagnostic tool — tells you why a MAI/MIRACLE multi-agent system might fail in classroom deployment.",
+      "agent_architecture": "",
+      "open_source_status": "",
+      "source_url": "",
+      "categories": [
+        "Research Prototype"
+      ]
+    }
+  ],
+  "paper_groups": {
+    "MAI lineage papers": [
+      {
+        "title": "Hybrid Intelligence Research at the University of Oulu — Position Paper 2025",
+        "year": "2023",
+        "url": "https://oulurepo.oulu.fi/handle/10024/59855",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "Human and artificial intelligence collaboration for socially shared regulation in learning (Järvelä, Nguyen, Hadwin, 2023, BJET)",
+        "year": "",
+        "url": "https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13325",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "MAI: Supporting Regulation of Learning with a Proactive AI Agent in Collaborative Learning Contexts (Edwards et al., 2025)",
+        "year": "",
+        "url": "https://oulurepo.oulu.fi/bitstream/handle/10024/58874/nbnfioulu-202510216402.pdf",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "MIRACLE_Multi-Agent Intelligent Regulation to Advance Collaborative Learning Environment",
+        "year": "",
+        "url": "https://arxiv.org/abs/2605.12923",
+        "related_system": "arxiv",
+        "tags": [
+          "arxiv",
+          "MIRACLE"
+        ]
+      },
+      {
+        "title": "Sanna Järvelä",
+        "year": "",
+        "url": "https://scholar.google.com/citations?user=jarvela_sanna",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      }
+    ],
+    "Theory papers": [
+      {
+        "title": "Deliberative Interactions for Socially Shared Regulation in Collaborative Learning: An AI-Driven Learning Analytics Study (Dang, Nguyen, Järvelä, 2024, JLA 11(3))",
+        "year": "",
+        "url": "https://learning-analytics.info/index.php/JLA/article/view/8393",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "AI Agent for Education: Von Neumann Multi-Agent System Framework (Jiang et al., GCCCE 2024)",
+        "year": "",
+        "url": "https://arxiv.org/html/2501.00083",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "Leveraging a Multi-Agent LLM-Based System to Educate Teachers in Hate Incidents Management (ARISE) (Gajewska et al., 2025)",
+        "year": "",
+        "url": "https://arxiv.org/html/2506.23774v1",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "Towards a Science of Scaling Agent Systems",
+        "year": "",
+        "url": "https://arxiv.org/abs/2512.08296",
+        "related_system": "arxiv",
+        "tags": [
+          "arxiv",
+          "Scaling agent systems"
+        ]
+      },
+      {
+        "title": "Khan Academy Blog - Khan Academy Blog",
+        "year": "",
+        "url": "https://blog.khanacademy.org/",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      },
+      {
+        "title": "LearnLab &#8211; Part of the Simon Initiative",
+        "year": "",
+        "url": "https://learnlab.org/",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      },
+      {
+        "title": "The Accelerator and AI &#8226; Stanford Accelerator for Learning",
+        "year": "",
+        "url": "https://acceleratelearning.stanford.edu/overview/ai-learning",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      },
+      {
+        "title": "Andy Nguyen",
+        "year": "",
+        "url": "https://scholar.google.com/citations?user=nguyen_andy_oulu",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Justin Edwards",
+        "year": "",
+        "url": "https://www.oulu.fi/en/people/justin-edwards",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Márta Sobocinski",
+        "year": "",
+        "url": "https://www.oulu.fi/en/people/marta-sobocinski",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Tiina Törmänen",
+        "year": "",
+        "url": "https://www.oulu.fi/en/people/tiina-tormanen",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Ken Koedinger",
+        "year": "",
+        "url": "https://www.cmu.edu/dietrich/psychology/koedinger.html",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Sal Khan",
+        "year": "",
+        "url": "https://blog.khanacademy.org/author/sal-khan/",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Chi Wang",
+        "year": "",
+        "url": "https://www.microsoft.com/en-us/research/people/chiw/",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Shuang Li",
+        "year": "",
+        "url": "https://scholar.google.com/citations?user=shuang_li",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Haiyang Xin",
+        "year": "",
+        "url": "https://scholar.google.com/citations?user=haiyang_xin",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Ching Sing Chai",
+        "year": "",
+        "url": "https://scholar.google.com/citations?user=chingsing_chai",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "Hari Subramonyam",
+        "year": "",
+        "url": "https://ed.stanford.edu/faculty/harihars",
+        "related_system": "person-source",
+        "tags": [
+          "person-source"
+        ]
+      },
+      {
+        "title": "AIED",
+        "year": "",
+        "url": "https://www.aied-conference.org/",
+        "related_system": "conference-venue",
+        "tags": [
+          "conference-venue"
+        ]
+      },
+      {
+        "title": "ISLS / CSCL",
+        "year": "",
+        "url": "https://www.isls.org/",
+        "related_system": "conference-venue",
+        "tags": [
+          "conference-venue"
+        ]
+      },
+      {
+        "title": "LAK",
+        "year": "",
+        "url": "https://www.solaresearch.org/events/lak/",
+        "related_system": "conference-venue",
+        "tags": [
+          "conference-venue"
+        ]
+      },
+      {
+        "title": "EDM",
+        "year": "",
+        "url": "https://www.educationaldatamining.org/",
+        "related_system": "conference-venue",
+        "tags": [
+          "conference-venue"
+        ]
+      },
+      {
+        "title": "CUI",
+        "year": "",
+        "url": "https://cuicui.org/",
+        "related_system": "conference-venue",
+        "tags": [
+          "conference-venue"
+        ]
+      },
+      {
+        "title": "BJET",
+        "year": "",
+        "url": "https://bera-journals.onlinelibrary.wiley.com/journal/14678535",
+        "related_system": "conference-venue",
+        "tags": [
+          "conference-venue"
+        ]
+      }
+    ],
+    "Evidence / policy papers": [
+      {
+        "title": "RFI: Advancing AI in Education — Stanford HAI + Accelerator for Learning Response (Aug 2025)",
+        "year": "",
+        "url": "https://hai.stanford.edu/assets/files/hai-stanford-accelerator-for-learning-rfi-response-advancing-ai-in-education.pdf",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "A Data-Centered Approach to Education AI (Subramonyam, Tan, Lee, Wang, 2024)",
+        "year": "",
+        "url": "https://hai.stanford.edu/news/data-centered-approach-education-ai",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "Meet Khanmigo: Khan Academy&#x27;s AI-powered teaching assistant &amp; tutor",
+        "year": "",
+        "url": "https://www.khanmigo.ai/",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      },
+      {
+        "title": "Home | Stanford HAI",
+        "year": "",
+        "url": "https://hai.stanford.edu/",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      }
+    ],
+    "Agent infrastructure papers": [
+      {
+        "title": "Simulating Classroom Education with LLM-Empowered Agents (SimClass) (Zhang et al., NAACL 2025)",
+        "year": "2025",
+        "url": "https://aclanthology.org/2025.naacl-long.520.pdf",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "Agentic Orchestration for Adaptive Educational Recommendations (Chaturvedi & Gunawardena, WSDM 2026)",
+        "year": "",
+        "url": "https://genai-personalization.github.io/assets/papers/GenAIRecP2026/NainaChaturvedi_AgenticOrchestration.pdf",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies (MASS) (ICLR 2026, arXiv 2502.02533)",
+        "year": "",
+        "url": "https://arxiv.org/abs/2502.02533",
+        "related_system": "",
+        "tags": []
+      },
+      {
+        "title": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation",
+        "year": "",
+        "url": "https://arxiv.org/abs/2308.08155",
+        "related_system": "arxiv",
+        "tags": [
+          "arxiv",
+          "AutoGen (Wu et al., 2023)"
+        ]
+      },
+      {
+        "title": "AutoGen - Microsoft Research",
+        "year": "",
+        "url": "https://www.microsoft.com/en-us/research/project/autogen/",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      },
+      {
+        "title": "Introducing Microsoft Agent Framework: The Open-Source Engine for Agentic AI Apps | Microsoft Foundry Blog",
+        "year": "",
+        "url": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      }
+    ],
+    "MIRACLE / CocoNote papers": [
+      {
+        "title": "CocoRobo Research | AI-Native Learning Systems",
+        "year": "",
+        "url": "https://cocorobo.hk/research",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      },
+      {
+        "title": "CocoRobo SMART | AI-Native Learning Environment &amp; Product Suite",
+        "year": "",
+        "url": "https://cocorobo.hk/smart",
+        "related_system": "official-page",
+        "tags": [
+          "official-page"
+        ]
+      }
+    ]
+  },
+  "people_groups": {
+    "Oulu / LET / HI": [
+      {
+        "name": "Sanna Järvelä",
+        "institution": "University of Oulu (LET / HI Programme)",
+        "role": "PI of Hybrid Intelligence 2023–2028; HASRL originator; co-PI CELLA; PISA 2025 Learning in Digital World expert.",
+        "related_projects": [],
+        "source_url": "https://scholar.google.com/citations?user=jarvela_sanna"
+      },
+      {
+        "name": "Andy Nguyen",
+        "institution": "University of Oulu",
+        "role": "Co-author HASRL paper + SSRL learning-analytics follow-ups; bridges LA methodology with regulation theory.",
+        "related_projects": [],
+        "source_url": "https://scholar.google.com/citations?user=nguyen_andy_oulu"
+      },
+      {
+        "name": "Allyson Hadwin",
+        "institution": "University of Oulu (formerly Victoria)",
+        "role": "Co-author of HASRL; originator of SRL trigger framework underpinning MAI's design.",
+        "related_projects": [],
+        "source_url": ""
+      },
+      {
+        "name": "Belle Dang",
+        "institution": "University of Oulu",
+        "role": "First author on AI-Driven LA SSRL study (JLA 2024); emerging in regulation-of-learning analytics.",
+        "related_projects": [],
+        "source_url": ""
+      },
+      {
+        "name": "Justin Edwards",
+        "institution": "University of Oulu",
+        "role": "Lead developer of MAI proactive agent system.",
+        "related_projects": [],
+        "source_url": "https://www.oulu.fi/en/people/justin-edwards"
+      },
+      {
+        "name": "Marta Sobocinski",
+        "institution": "University of Oulu",
+        "role": "NRI 2025 grant for \"Metacognitive Agent in VR\" (Healthcare Education); connects MAI line to extended realities.",
+        "related_projects": [],
+        "source_url": ""
+      }
+    ],
+    "Stanford": [
+      {
+        "name": "Hariharan Subramonyam",
+        "institution": "Stanford GSE / HAI Faculty Fellow",
+        "role": "Participatory-AI for education; \"Is a Seat at the Table Enough?\" dataset-spec framework.",
+        "related_projects": [],
+        "source_url": ""
+      },
+      {
+        "name": "Candace Thille",
+        "institution": "Stanford Accelerator for Learning",
+        "role": "Faculty director, Adult & Workforce Learning; OLI lineage (formerly CMU OLI).",
+        "related_projects": [],
+        "source_url": ""
+      }
+    ],
+    "CMU LearnLab": [
+      {
+        "name": "Kenneth Koedinger",
+        "institution": "CMU HCII / LearnLab",
+        "role": "LearnLab co-founder; Cognitive Tutor / CTAT lineage; ITS-as-research-platform tradition.",
+        "related_projects": [],
+        "source_url": ""
+      },
+      {
+        "name": "John Stamper",
+        "institution": "CMU HCII / LearnLab",
+        "role": "DataShop / OLI Torus; LearnLab Summer School lead; AI-in-Education seminar series organiser.",
+        "related_projects": [],
+        "source_url": ""
+      }
+    ],
+    "Microsoft / Google": [
+      {
+        "name": "Chi Wang",
+        "institution": "Microsoft Research AI Frontiers",
+        "role": "AutoGen lead; multi-agent-as-conversation paradigm.",
+        "related_projects": [],
+        "source_url": "https://www.microsoft.com/en-us/research/people/chiw/"
+      }
+    ],
+    "Khan Academy": [
+      {
+        "name": "Sal Khan",
+        "institution": "Khan Academy",
+        "role": "Founder; Khanmigo public evangelist; \"5 graduate students per teacher\" framing.",
+        "related_projects": [],
+        "source_url": "https://blog.khanacademy.org/author/sal-khan/"
+      },
+      {
+        "name": "Walt Wells",
+        "institution": "Khan Academy",
+        "role": "Staff engineer; built Go-based Langfuse integration for Khanmigo observability.",
+        "related_projects": [],
+        "source_url": ""
+      }
+    ],
+    "Other research": [
+      {
+        "name": "Zheyuan Zhang / Jifan Yu / Juanzi Li",
+        "institution": "Tsinghua MAIC",
+        "role": "SimClass authors — multi-agent classroom simulation.",
+        "related_projects": [],
+        "source_url": ""
+      },
+      {
+        "name": "Naina Chaturvedi",
+        "institution": "Rutgers University",
+        "role": "Agentic Orchestration for Adaptive Educational Recommendations (WSDM 2026).",
+        "related_projects": [],
+        "source_url": ""
+      }
+    ],
+    "CocoRobo / MIRACLE": [
+      {
+        "name": "Bill Faruki",
+        "institution": "MindHYVE.ai",
+        "role": "Connected Miracle University (US, dropout-prevention nonprofit) to AI literacy work; adjacent ecosystem, not core research.",
+        "related_projects": [],
+        "source_url": ""
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "year": 1989,
+      "label": "Self-Regulated Learning (Zimmerman)",
+      "layer": "theory",
+      "note": "Origin of cyclical SRL model."
+    },
+    {
+      "year": 2018,
+      "label": "SSRL formalised (Järvelä et al.)",
+      "layer": "theory",
+      "note": "Socially Shared Regulation of Learning framework."
+    },
+    {
+      "year": 2023,
+      "label": "HASRL model (Järvelä, Nguyen, Hadwin, BJET)",
+      "layer": "theory",
+      "note": "Hybrid human-AI shared regulation + 'trigger' concept introduced."
+    },
+    {
+      "year": 2024,
+      "label": "MAI proactive agent (Edwards et al., demo paper)",
+      "layer": "agent",
+      "note": "Oulu demo: agent raises metacognitive awareness, does not regulate FOR group."
+    },
+    {
+      "year": 2024,
+      "label": "CocoNote (Quizlet consumer)",
+      "layer": "ecosystem",
+      "note": "Consumer AI study tool baseline (1M+ downloads)."
+    },
+    {
+      "year": 2024,
+      "label": "SimClass (Tsinghua MAIC, NAACL 2025)",
+      "layer": "ecosystem",
+      "note": "Multi-agent classroom simulator with emergent group behaviours."
+    },
+    {
+      "year": 2025,
+      "label": "Khanmigo at scale (~700K K-12 students)",
+      "layer": "deployment",
+      "note": "Commercial 1:1 LLM tutor; 40K -> 700K in one school year."
+    },
+    {
+      "year": 2025,
+      "label": "Microsoft Agent Framework (Oct 2025)",
+      "layer": "substrate",
+      "note": "AutoGen + Semantic Kernel unified; MCP + A2A protocol support."
+    },
+    {
+      "year": 2026,
+      "label": "MASS (Google, ICLR 2026)",
+      "layer": "design",
+      "note": "Prompt + topology co-optimisation; debunking naive agent-counting."
+    },
+    {
+      "year": 2026,
+      "label": "MIRACLE multi-agent classroom system",
+      "layer": "ecosystem",
+      "note": "Multi-agent orchestration layer on top of MAI; simulator-validated."
+    },
+    {
+      "year": 2026,
+      "label": "Multi-Agent Classroom OS (live deployments)",
+      "layer": "deployment",
+      "note": "CocoRobo SMART (1,400+ schools), Khanmigo (>700K), OLI Torus."
+    }
+  ]
+}

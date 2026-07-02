@@ -1,14 +1,9 @@
-// app.js — renders the AI Education System Map static page.
-// Pure ES2017+, no build step. Fetches 6 JSON files + 1 weekly snapshot.
+// app.js — renders the AI Education System Map static page (v1.3).
+// Pure ES2017+, no build step. Fetches ONE aggregated summary file
+// (dashboard-summary.json) and renders 6 modules.
 
 const DATA = {
-    papers: "data/papers.json",
-    systems: "data/systems.json",
-    people: "data/people.json",
-    tech: "data/tech-stack.json",
-    timeline: "data/timeline.json",
-    sources: "data/sources.json",
-    weekly: "data/weekly/latest.json",
+    summary: "data/dashboard-summary.json",
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -23,8 +18,10 @@ async function loadJson(path) {
 function el(tag, attrs = {}, children = []) {
     const node = document.createElement(tag);
     for (const [k, v] of Object.entries(attrs)) {
+        if (v == null) continue;
         if (k === "class") node.className = v;
         else if (k === "html") node.innerHTML = v;
+        else if (k === "text") node.textContent = v;
         else if (k.startsWith("data-")) node.setAttribute(k, v);
         else node[k] = v;
     }
@@ -55,81 +52,327 @@ function fmtDate(iso) {
     if (!iso) return "—";
     try {
         const d = new Date(iso);
+        if (isNaN(d.getTime())) return iso;
         return d.toISOString().replace("T", " ").replace(/\..+$/, " UTC");
     } catch (_) { return iso; }
 }
 
-// ---------------------------------------------------------------------------
-// Overview cards
-// ---------------------------------------------------------------------------
-const OVERVIEW_CARDS = [
-    { tag: "Theory", title: "HASRL → MAI is the theoretical main line",
-      body: "Järvelä et al.'s HASRL model (2023) + trigger framework + MAI proactive agent (Edwards et al., 2025) form a coherent three-layer lineage from SSRL theory to deployed system." },
-    { tag: "System", title: "MIRACLE is the multi-agent classroom regulator",
-      body: "On top of MAI's single-agent regulation primitives, MIRACLE adds teacher / peer / manager agents for emergent classroom orchestration (SimClass-style validation)." },
-    { tag: "Caution", title: "MASS: don't blindly add agents",
-      body: "Google's MASS (ICLR 2026) shows an optimised single agent beats a 9-agent ensemble with default prompts. Optimise agents individually first, then compose." },
-    { tag: "Substrate", title: "Microsoft Agent Framework is the substrate",
-      body: "AutoGen + Semantic Kernel unified Oct 2025 with MCP + A2A support. A MAI-class agent built today should target this runtime." },
-    { tag: "Evidence", title: "Khanmigo scale vs RCT gap",
-      body: "Khanmigo: 40K → 700K K-12 students in one school year. Stanford's RFI notes only 35 GenAI-in-ed RCTs exist worldwide. Deployment is racing ahead of evidence." },
-    { tag: "Deployment", title: "CocoRobo SMART = live Multi-Agent Classroom OS",
-      body: "CocoRobo SMART Suite deployed in 1,400+ schools across HK / Macau / GBA; 5-product orchestration (Teach / Learn / Assess / Manage + Cloud) is the closest live reference for a multi-agent classroom OS." },
-];
+function setText(sel, value) {
+    const node = $(sel);
+    if (node) node.textContent = value == null ? "—" : String(value);
+}
 
-function renderOverview() {
-    const host = $("#overview-cards");
-    host.innerHTML = "";
-    for (const c of OVERVIEW_CARDS) {
-        host.appendChild(el("div", { class: "card" }, [
-            el("span", { class: "tag" }, c.tag),
-            el("h3", {}, c.title),
-            el("p", {}, c.body),
-        ]));
+function showModuleError(sel, message) {
+    const node = $(sel);
+    if (!node) return;
+    const orig = node.querySelector("h2");
+    node.innerHTML = "";
+    if (orig) node.appendChild(orig);
+    node.appendChild(el("div", { class: "module-error", html: escapeHtml(message) }));
+}
+
+// ---------------------------------------------------------------------------
+// Badge mapping (system -> category badge labels)
+// ---------------------------------------------------------------------------
+const SYSTEM_BADGES = {
+    "MAI (Metacognitive AI agent)": ["SSRL / HASRL", "Research Prototype"],
+    "Khanmigo": ["Tutor", "Product"],
+    "AutoGen v0.4 / Microsoft Agent Framework": ["Infrastructure", "Multi-Agent"],
+    "MASS (Google)": ["Infrastructure"],
+    "SimClass (Tsinghua MAIC)": ["Multi-Agent", "Research Prototype"],
+    "CTAT / Cognitive Tutor (LearnLab)": ["Tutor", "Infrastructure"],
+    "OLI / Torus + DataShop (CMU)": ["Infrastructure"],
+    "CocoRobo SMART Suite": ["Multi-Agent", "Classroom OS", "Product"],
+    "Coconote (Quizlet)": ["Product"],
+    "MAST (Berkeley, Multi-Agent System Traces)": ["Research Prototype"],
+};
+
+function badgeNode(label) {
+    return el("span", { class: `badge badge-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` }, label);
+}
+
+// ---------------------------------------------------------------------------
+// Module 1: This Week
+// ---------------------------------------------------------------------------
+function renderThisWeek(s) {
+    setText("#this-week-tag", s.latest_week_tag || "—");
+    setText('[data-stat="new_papers"]', s.this_week.new_papers ?? "—");
+    setText('[data-stat="new_systems"]', s.this_week.new_systems ?? "—");
+    setText('[data-stat="new_people"]', s.this_week.new_people ?? "—");
+    setText('[data-stat="active_sources"]', s.totals.active_sources ?? "—");
+    setText('[data-stat="stable_sources"]', s.totals.stable_sources ?? "—");
+
+    // Fallback status
+    const fb = s.this_week.fallback_status || {};
+    const fbText = fb && Object.keys(fb).length
+        ? `ran=${fb.ran ?? "?"} · queries=${fb.queries ?? "?"} · hits=${fb.hits ?? "?"}` +
+          (Array.isArray(fb.errors) && fb.errors.length ? ` · errors=${fb.errors.length}` : "")
+        : "—";
+    setText("#this-week-fallback [data-fb]", fbText);
+
+    // Links
+    const links = $("#this-week-links");
+    links.innerHTML = "";
+    if (s.latest_report_url) {
+        links.appendChild(el("a", {
+            href: s.latest_report_url, target: "_blank", rel: "noopener noreferrer",
+            class: "weekly-link",
+        }, "View weekly report →"));
+    }
+    if (s.github_report_path) {
+        links.appendChild(el("a", {
+            href: s.github_report_path, target: "_blank", rel: "noopener noreferrer",
+            class: "weekly-link",
+        }, "View on GitHub →"));
     }
 }
 
 // ---------------------------------------------------------------------------
-// System Map (Mermaid)
+// Module 2: Research Lineage — Mermaid handled by initMermaid; nothing here.
 // ---------------------------------------------------------------------------
-function renderSystemMap() {
-    const host = $("#system-map");
-    host.innerHTML = "";
-    const def = `flowchart LR
-    classDef theory fill:#1d1147,stroke:#7c5cff,color:#e6edf7;
-    classDef agent fill:#0e2a4d,stroke:#4ea1ff,color:#e6edf7;
-    classDef eco fill:#0c3d2c,stroke:#4ade80,color:#e6edf7;
-    classDef sub fill:#3d2c0a,stroke:#facc15,color:#e6edf7;
-    classDef dep fill:#3a1a0a,stroke:#ff8c5a,color:#e6edf7;
 
-    SSRL["SSRL<br/>Socially Shared Regulation"]:::theory
-    HASRL["HASRL<br/>Hybrid Human-AI SRL<br/>+ trigger concept"]:::theory
-    MAI["MAI<br/>Proactive Metacognitive Agent"]:::agent
-    Coconote["CocoNote<br/>consumer study"]:::eco
-    MIRACLE["MIRACLE<br/>Multi-Agent Classroom"]:::eco
-    MACOS["Multi-Agent Classroom OS<br/>(deployed)"]:::dep
+// ---------------------------------------------------------------------------
+// Module 3: System Cards with filter chips
+// ---------------------------------------------------------------------------
+const SYSTEM_FILTERS = [
+    "All",
+    "Research Prototype",
+    "Product",
+    "Infrastructure",
+    "Tutor",
+    "Classroom OS",
+    "Multi-Agent",
+    "SSRL / HASRL",
+];
 
-    SSRL --> HASRL --> MAI --> MIRACLE --> MACOS
-    Coconote -. companion .-> MIRACLE
+function renderSystemCards(s) {
+    const cards = s.system_cards || [];
+    setText("#sys-count", `${cards.length} systems`);
 
-    CTAT["CMU LearnLab<br/>CTAT / Cognitive Tutor"]:::eco
-    Tutor["Khanmigo<br/>AI Tutor"]:::dep
-    AutoGen["AutoGen / MS<br/>Agent Framework"]:::sub
-    MASS["MASS<br/>multi-agent design"]:::sub
-    SimClass["SimClass<br/>multi-agent simulator"]:::eco
-    CocoRobo["CocoRobo SMART<br/>classroom OS"]:::dep
+    const chipsHost = $("#system-filter-chips");
+    chipsHost.innerHTML = "";
+    for (const f of SYSTEM_FILTERS) {
+        chipsHost.appendChild(el("button", {
+            class: "chip" + (f === "All" ? " chip-active" : ""),
+            "data-filter": f,
+            type: "button",
+        }, f));
+    }
+    chipsHost.addEventListener("click", (ev) => {
+        const target = ev.target;
+        if (!target.classList || !target.classList.contains("chip")) return;
+        $$(".chip").forEach(c => c.classList.remove("chip-active"));
+        target.classList.add("chip-active");
+        const f = target.getAttribute("data-filter");
+        applySystemFilter(f);
+    });
 
-    CTAT --> MACOS
-    Tutor --> MACOS
-    AutoGen --> MIRACLE
-    MASS --> MIRACLE
-    SimClass -. validates .-> MIRACLE
-    CocoRobo --> MACOS
-`;
-    host.innerHTML = def;
-    host.classList.add("mermaid");
+    const grid = $("#system-cards-grid");
+    grid.innerHTML = "";
+    for (const c of cards) {
+        grid.appendChild(buildSystemCard(c));
+    }
 }
 
+function applySystemFilter(filter) {
+    const cards = $$(".sys-card");
+    for (const card of cards) {
+        const cats = (card.getAttribute("data-cats") || "").split(",").filter(Boolean);
+        if (filter === "All" || cats.includes(filter)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    }
+}
+
+function buildSystemCard(c) {
+    const badges = (c.categories || []).map(badgeNode);
+    const card = el("article", {
+        class: "sys-card",
+        "data-cats": (c.categories || []).join(","),
+    }, [
+        el("header", { class: "sys-card-header" }, [
+            el("h3", { class: "sys-name" }, c.system || "(unnamed)"),
+            el("div", { class: "sys-badges" }, badges),
+        ]),
+        el("div", { class: "sys-row" }, [
+            el("span", { class: "sys-key" }, "Institution"),
+            el("span", { class: "sys-val" }, c.institution || "—"),
+        ]),
+        el("div", { class: "sys-row" }, [
+            el("span", { class: "sys-key" }, "Type"),
+            el("span", { class: "sys-val" }, c.type || "—"),
+        ]),
+        el("div", { class: "sys-row" }, [
+            el("span", { class: "sys-key" }, "Agent architecture"),
+            el("span", { class: "sys-val" }, c.agent_architecture || "—"),
+        ]),
+        el("div", { class: "sys-row" }, [
+            el("span", { class: "sys-key" }, "Open source"),
+            el("span", { class: "sys-val" }, c.open_source_status || "—"),
+        ]),
+        el("div", { class: "sys-row" }, [
+            el("span", { class: "sys-key" }, "Relation to MAI / MIRACLE"),
+            el("span", { class: "sys-val sys-rel" }, c.relation_to_mai_miracle || "—"),
+        ]),
+    ]);
+    if (c.source_url) {
+        card.appendChild(el("footer", { class: "sys-card-footer" }, [
+            el("a", {
+                href: c.source_url, target: "_blank", rel: "noopener noreferrer",
+                class: "sys-source-link",
+            }, "Source →"),
+        ]));
+    }
+    return card;
+}
+
+// ---------------------------------------------------------------------------
+// Module 4: Paper Network Summary
+// ---------------------------------------------------------------------------
+function renderPaperGroups(s) {
+    const groups = s.paper_groups || {};
+    const total = Object.values(groups).reduce((sum, arr) => sum + arr.length, 0);
+    setText("#paper-count", `${total} papers · ${Object.keys(groups).length} groups`);
+
+    const body = $("#paper-groups-body");
+    body.innerHTML = "";
+
+    // Stable display order
+    const order = [
+        "Theory papers",
+        "MAI lineage papers",
+        "MIRACLE / CocoNote papers",
+        "Agent infrastructure papers",
+        "Evidence / policy papers",
+    ];
+    const seen = new Set();
+    for (const g of order) {
+        if (groups[g]) {
+            body.appendChild(buildPaperGroup(g, groups[g]));
+            seen.add(g);
+        }
+    }
+    // Anything not in the canonical order
+    for (const g of Object.keys(groups)) {
+        if (!seen.has(g)) {
+            body.appendChild(buildPaperGroup(g, groups[g]));
+        }
+    }
+}
+
+function buildPaperGroup(groupName, papers) {
+    const wrap = el("section", { class: "paper-group" });
+    wrap.appendChild(el("h3", { class: "paper-group-title" }, `${groupName} (${papers.length})`));
+    const list = el("ul", { class: "paper-list" });
+    for (const p of papers) {
+        const li = el("li", { class: "paper-item" });
+        const titleNode = p.url
+            ? el("a", { href: p.url, target: "_blank", rel: "noopener noreferrer" }, p.title || "(untitled)")
+            : el("span", {}, p.title || "(untitled)");
+        li.appendChild(titleNode);
+        const meta = [];
+        if (p.year) meta.push(String(p.year));
+        if (p.related_system && p.related_system !== p.title) meta.push(p.related_system);
+        if (meta.length) {
+            li.appendChild(el("div", { class: "paper-meta", html: meta.map(escapeHtml).join(" · ") }));
+        }
+        list.appendChild(li);
+    }
+    wrap.appendChild(list);
+    return wrap;
+}
+
+// ---------------------------------------------------------------------------
+// Module 5: People & Institutions
+// ---------------------------------------------------------------------------
+function renderPeopleGroups(s) {
+    const groups = s.people_groups || {};
+    const total = Object.values(groups).reduce((sum, arr) => sum + arr.length, 0);
+    setText("#people-count", `${total} people · ${Object.keys(groups).length} institutions`);
+
+    const body = $("#people-groups-body");
+    body.innerHTML = "";
+    for (const [g, people] of Object.entries(groups)) {
+        body.appendChild(buildPeopleGroup(g, people));
+    }
+}
+
+function buildPeopleGroup(groupName, people) {
+    const wrap = el("section", { class: "people-group" });
+    wrap.appendChild(el("h3", { class: "people-group-title" }, `${groupName} (${people.length})`));
+    const grid = el("div", { class: "people-grid" });
+    if (!people.length) {
+        grid.appendChild(el("div", { class: "empty-note" }, "No people tracked in this group yet."));
+    }
+    for (const p of people) {
+        const card = el("article", { class: "person-card" });
+        const nameNode = p.source_url
+            ? el("a", { href: p.source_url, target: "_blank", rel: "noopener noreferrer", class: "person-name" }, p.name || "(unnamed)")
+            : el("span", { class: "person-name" }, p.name || "(unnamed)");
+        card.appendChild(nameNode);
+        if (p.institution) card.appendChild(el("div", { class: "person-inst" }, p.institution));
+        if (p.role) card.appendChild(el("div", { class: "person-role" }, p.role));
+        grid.appendChild(card);
+    }
+    wrap.appendChild(grid);
+    return wrap;
+}
+
+// ---------------------------------------------------------------------------
+// Module 6: Source Health
+// ---------------------------------------------------------------------------
+function renderSourceHealth(s) {
+    const h = s.source_health || {};
+    setText('[data-stat="stable_sources"]', h.stable_sources ?? "—");
+    setText('[data-stat="active_sources"]', h.active_sources ?? "—");
+    setText('[data-stat="source_errors_count"]', h.source_errors_count ?? "—");
+
+    const fb = h.fallback_status || {};
+    const fbText = fb && Object.keys(fb).length
+        ? `ran=${fb.ran ?? "?"} · queries=${fb.queries ?? "?"} · hits=${fb.hits ?? "?"}` +
+          (Array.isArray(fb.errors) && fb.errors.length ? ` · errors=${fb.errors.length}` : "")
+        : "—";
+    setText("#source-health-fallback [data-fb]", fbText);
+
+    // Candidates by source (top 20)
+    const cbs = h.candidates_by_source || {};
+    const cbsEntries = Object.entries(cbs).slice(0, 20);
+    const cbsText = cbsEntries.length
+        ? cbsEntries.map(([k, urls]) => `${k} (${urls.length})\n  ${urls.slice(0, 3).join("\n  ")}`).join("\n\n")
+        : "No source returned candidates this run.";
+    setText("#source-candidates-pre", cbsText);
+
+    const errs = h.source_errors || {};
+    const errsText = Object.keys(errs).length
+        ? Object.entries(errs).map(([k, v]) => `${k}: ${v}`).join("\n")
+        : "No source errors.";
+    setText("#source-errors-pre", errsText);
+}
+
+// ---------------------------------------------------------------------------
+// Footer (totals + last updated)
+// ---------------------------------------------------------------------------
+function renderFooter(s) {
+    setText("#meta-data-count",
+        `${s.totals.papers} papers · ${s.totals.systems} systems · ${s.totals.people} people · last update ${fmtDate(s.last_updated)}`);
+
+    const footer = $("#footer-sources");
+    if (footer) {
+        footer.innerHTML = "";
+        footer.appendChild(el("div", {
+            html: `<strong>Tracked keywords</strong>: ${(s.system_cards ? "" : "")}SSRL · HASRL · MAI · MIRACLE · multi-agent · learning analytics · Khanmigo · AutoGen · MASS · Cognitive Tutor · LearnLab · Khan Academy · CocoRobo · AI classroom OS`,
+        }));
+        footer.appendChild(el("div", {
+            html: `<strong>Last weekly run</strong>: ${escapeHtml(fmtDate(s.last_updated))}`,
+        }));
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Mermaid init
+// ---------------------------------------------------------------------------
 async function initMermaid() {
     if (window.mermaid) return window.mermaid;
     await new Promise((res, rej) => {
@@ -139,212 +382,42 @@ async function initMermaid() {
         s.onerror = rej;
         document.head.appendChild(s);
     });
-    window.mermaid.initialize({ startOnLoad: false, theme: "dark", securityLevel: "loose" });
+    window.mermaid.initialize({
+        startOnLoad: false,
+        theme: "dark",
+        securityLevel: "loose",
+        flowchart: { htmlLabels: true, curve: "basis" },
+    });
     return window.mermaid;
-}
-
-// ---------------------------------------------------------------------------
-// Paper network (textual graph + table)
-// ---------------------------------------------------------------------------
-function renderPapers(papers) {
-    const list = $("#papers-list");
-    list.innerHTML = "";
-    for (const p of papers) {
-        list.appendChild(el("div", { class: "paper" }, [
-            el("div", { class: "title" }, [
-                p.url
-                    ? el("a", { href: p.url, target: "_blank", rel: "noopener noreferrer" }, p.title)
-                    : document.createTextNode(p.title),
-            ]),
-            el("div", { class: "inst" }, p.institution || ""),
-            el("div", { class: "sum", html: linkify(p.summary || "") }),
-        ]));
-    }
-}
-
-// ---------------------------------------------------------------------------
-// People graph
-// ---------------------------------------------------------------------------
-function renderPeople(people) {
-    const grid = $("#people-grid");
-    grid.innerHTML = "";
-    for (const person of people) {
-        grid.appendChild(el("div", { class: "person" }, [
-            el("div", { class: "name" }, person.name),
-            el("div", { class: "inst" }, person.institution || ""),
-            el("div", { class: "role" }, person.role || ""),
-        ]));
-    }
-}
-
-// ---------------------------------------------------------------------------
-// Tech stack table
-// ---------------------------------------------------------------------------
-const TECH_COLS = [
-    { key: "system", label: "System" },
-    { key: "institution", label: "Institution" },
-    { key: "type", label: "Type" },
-    { key: "agent_architecture", label: "Agent architecture" },
-    { key: "data_inputs", label: "Data inputs" },
-    { key: "regulation_mechanism", label: "Regulation mechanism" },
-    { key: "multimodal_support", label: "Multimodal" },
-    { key: "open_source_status", label: "Open source" },
-    { key: "relation_to_mai_miracle", label: "Relation to MAI / MIRACLE" },
-];
-
-function renderTechStack(rows) {
-    const host = $("#tech-stack");
-    host.innerHTML = "";
-    const wrap = el("div", { class: "table-scroll" });
-    const tbl = el("table", { class: "data" });
-    const thead = el("thead");
-    const trh = el("tr");
-    for (const c of TECH_COLS) trh.appendChild(el("th", {}, c.label));
-    thead.appendChild(trh);
-    tbl.appendChild(thead);
-    const tbody = el("tbody");
-    for (const r of rows) {
-        const tr = el("tr");
-        for (const c of TECH_COLS) {
-            tr.appendChild(el("td", { class: c.key === "system" ? "mono" : "" }, r[c.key] || "—"));
-        }
-        tbody.appendChild(tr);
-    }
-    tbl.appendChild(tbody);
-    wrap.appendChild(tbl);
-    host.appendChild(wrap);
-}
-
-// ---------------------------------------------------------------------------
-// Timeline
-// ---------------------------------------------------------------------------
-function renderTimeline(items) {
-    const host = $("#timeline");
-    host.innerHTML = "";
-    items.sort((a, b) => a.year - b.year);
-    for (const it of items) {
-        host.appendChild(el("div", { class: "tl-item", "data-layer": it.layer || "theory" }, [
-            el("div", { class: "tl-year" }, String(it.year)),
-            el("div", { class: "tl-dot" }),
-            el("div", { class: "tl-label" }, it.label || ""),
-            el("div", { class: "tl-note" }, it.note || ""),
-        ]));
-    }
-}
-
-// ---------------------------------------------------------------------------
-// Weekly
-// ---------------------------------------------------------------------------
-function renderWeekly(weekly) {
-    const host = $("#weekly");
-    host.innerHTML = "";
-    host.appendChild(el("div", { class: "stats" }, [
-        el("div", { class: "stat" }, [el("strong", {}, "Updated:"), fmtDate(weekly.updated_at)]),
-        el("div", { class: "stat" }, [el("strong", {}, "Papers:"), String(weekly.new_papers ?? "—")]),
-        el("div", { class: "stat" }, [el("strong", {}, "Systems:"), String(weekly.new_systems ?? "—")]),
-        el("div", { class: "stat" }, [el("strong", {}, "People:"), String(weekly.new_people ?? "—")]),
-    ]));
-
-    // Links block — view the per-week markdown + manifest
-    const links = el("div", { class: "weekly-links" });
-    const reportHref = weekly.page_report_url
-        || (weekly.github_report_path ? `${DATA.weekly.replace("data/weekly/latest.json", "")}${weekly.github_report_path}` : null);
-    if (reportHref) {
-        links.appendChild(el("a", {
-            href: reportHref,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            class: "weekly-link",
-        }, "View weekly report →"));
-    }
-    links.appendChild(el("a", {
-        href: "data/weekly/manifest.json",
-        target: "_blank",
-        rel: "noopener noreferrer",
-        class: "weekly-link",
-    }, "View manifest (JSON)"));
-    host.appendChild(links);
-
-    // Fallback status (v1.2)
-    const fb = weekly.fallback_status || {};
-    if (fb && Object.keys(fb).length) {
-        const fbDiv = el("div", { class: "fallback-status" });
-        fbDiv.appendChild(el("strong", {}, "Fallback status: "));
-        const parts = [];
-        parts.push(`ran=${fb.ran ?? "?"}`);
-        parts.push(`queries=${fb.queries ?? "?"}`);
-        parts.push(`hits=${fb.hits ?? "?"}`);
-        if (Array.isArray(fb.errors) && fb.errors.length) parts.push(`errors=${fb.errors.length}`);
-        fbDiv.appendChild(document.createTextNode(parts.join(" · ")));
-        host.appendChild(fbDiv);
-    }
-
-    if (Array.isArray(weekly.highlights) && weekly.highlights.length) {
-        const h = el("div", {}, [el("h3", { html: "Highlights" })]);
-        const ul = el("ul");
-        for (const line of weekly.highlights) ul.appendChild(el("li", {}, line));
-        host.appendChild(h);
-        host.appendChild(ul);
-    }
-    if (Array.isArray(weekly.insights) && weekly.insights.length) {
-        const h = el("div", {}, [el("h3", { html: "Insights from seed report" })]);
-        const ul = el("ul");
-        for (const line of weekly.insights) ul.appendChild(el("li", {}, line));
-        host.appendChild(h);
-        host.appendChild(ul);
-    }
-}
-
-// ---------------------------------------------------------------------------
-// Source manifest footer
-// ---------------------------------------------------------------------------
-function renderFooterSources(sources, errors) {
-    const host = $("#footer-sources");
-    host.innerHTML = "";
-    host.appendChild(el("div", { html: `<strong>Tracked keywords</strong>: ${sources.keywords.map(escapeHtml).join(" · ")}` }));
-    host.appendChild(el("div", { html: `<strong>Institutions</strong>: ${sources.institutions.map(escapeHtml).join(" · ")}` }));
-    if (errors.length) {
-        host.appendChild(el("div", { html: `<strong style="color:var(--warn)">Data load warnings</strong>: ${errors.map(escapeHtml).join("; ")}` }));
-    }
 }
 
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 async function main() {
-    renderOverview();
-    renderSystemMap();
+    let summary;
+    try {
+        summary = await loadJson(DATA.summary);
+    } catch (e) {
+        showModuleError("#this-week", `Failed to load dashboard summary: ${e.message}. The site may still be rebuilding.`);
+        return;
+    }
 
-    const results = await Promise.allSettled([
-        loadJson(DATA.papers),
-        loadJson(DATA.systems),
-        loadJson(DATA.people),
-        loadJson(DATA.tech),
-        loadJson(DATA.timeline),
-        loadJson(DATA.sources),
-        loadJson(DATA.weekly),
-    ]);
-    const [papers, systems, people, tech, timeline, sources, weekly] = results.map(r =>
-        r.status === "fulfilled" ? r.value : null
-    );
-    const errors = results.map((r, i) =>
-        r.status === "rejected" ? `${Object.values(DATA)[i]} (${r.reason.message})` : null
-    ).filter(Boolean);
-
-    if (papers) renderPapers(papers);
-    if (people) renderPeople(people);
-    if (tech) renderTechStack(tech);
-    if (timeline) renderTimeline(timeline);
-    if (weekly) renderWeekly(weekly);
-    if (sources) renderFooterSources(sources, errors);
+    try { renderThisWeek(summary); } catch (e) { showModuleError("#this-week", e.message); }
+    // Module 2 (lineage) is Mermaid-only — handled in main.
+    try { renderSystemCards(summary); } catch (e) { showModuleError("#system-cards", e.message); }
+    try { renderPaperGroups(summary); } catch (e) { showModuleError("#paper-groups", e.message); }
+    try { renderPeopleGroups(summary); } catch (e) { showModuleError("#people-groups", e.message); }
+    try { renderSourceHealth(summary); } catch (e) { showModuleError("#source-health", e.message); }
+    try { renderFooter(summary); } catch (_) { /* non-critical */ }
 
     // Initialise Mermaid AFTER all data is on the page so theme is consistent.
     try {
         const m = await initMermaid();
         await m.run({ nodes: document.querySelectorAll(".mermaid") });
     } catch (e) {
-        const host = $("#system-map");
-        if (host) host.innerHTML = `<pre style="color:var(--warn)">Mermaid load failed: ${escapeHtml(e.message)}</pre>`;
+        const host = $("#lineage-mermaid");
+        if (host) host.innerHTML = `<pre class="module-error">Mermaid load failed: ${escapeHtml(e.message)}</pre>`;
     }
 }
 

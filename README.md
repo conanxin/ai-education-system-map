@@ -6,6 +6,29 @@ and a weekly auto-updated research snapshot.
 
 **Main lineage:** SSRL → HASRL → MAI → MIRACLE → Multi-Agent Classroom OS
 
+## Dashboard modules (v1.3)
+
+The single-page site is organised into six modules, all driven by one
+aggregated JSON file (`docs/data/dashboard-summary.json`):
+
+1. **This Week** — week tag, new paper/system/people counts, fallback
+   status, View weekly report / View on GitHub buttons.
+2. **Research Lineage** — horizontal Mermaid flowchart
+   (ITS → SRL/SSRL → HASRL → MAI → CocoNote → MIRACLE → Multi-Agent Classroom OS)
+   with side branches (Khanmigo, AutoGen, MASS, CocoRobo SMART).
+3. **System Cards** — all tracked systems as cards with badges
+   (SSRL/HASRL, Multi-Agent, Classroom OS, Tutor, Product, Research
+   Prototype, Infrastructure). Filter chips narrow the view client-side.
+4. **Paper Network Summary** — papers grouped by lineage role
+   (Theory / MAI / MIRACLE·CocoNote / Agent infrastructure /
+   Evidence·policy). Click a title to open the source URL.
+5. **People & Institutions** — researchers grouped by institution
+   (Oulu, Stanford, CMU LearnLab, Microsoft/Google, Khan Academy,
+   CocoRobo/MIRACLE, Other).
+6. **Source Health** — stable sources count, sources active this run,
+   source errors, fallback status, candidates-by-source dump, links to
+   the registry, manifest and summary JSON.
+
 ## Structure
 
 ```
@@ -25,8 +48,9 @@ reports/
   seed/latest-report.md   The MVP report this site is bootstrapped from
   weekly/YYYY-WW.md       Per-week digests (append-only)
 scripts/
-  build_from_report.py    Seed parser: MVP markdown -> 6 JSON files
-  weekly_ai_education_watch.py  Weekly incremental fetcher
+  build_from_report.py         Seed parser: MVP markdown -> 6 JSON files
+  build_dashboard_summary.py   Aggregator: 6 JSON files -> dashboard-summary.json
+  weekly_ai_education_watch.py Weekly incremental fetcher
 logs/                     Cron output (gitignored)
 ```
 
@@ -273,3 +297,45 @@ git push
 To trigger via Hermes scheduler with custom timing, use
 `hermes cron run 452055bd607a` (runs the job once immediately). The default
 schedule is preserved.
+
+### 5. How do I refresh the dashboard summary?
+
+`docs/data/dashboard-summary.json` is the single file the v1.3 page reads.
+Refresh it whenever the underlying data changes:
+
+```
+python3 scripts/build_dashboard_summary.py --data-dir docs/data
+```
+
+The watcher does NOT regenerate it on every cron run (intentional — keeps
+the cron run light). After a seed rebuild or after several weekly runs,
+re-run the summary script, then commit + push:
+
+```
+git add docs/data/dashboard-summary.json
+git commit -m "refresh dashboard summary"
+git push
+```
+
+### 6. How do I confirm the weekly report link is reachable from the site?
+
+The site links to `data/weekly/manifest.json` and to the latest weekly
+report via `page_report_url`. After a deploy:
+
+```
+# Local
+curl -sI http://127.0.0.1:8765/data/weekly/manifest.json
+curl -sI http://127.0.0.1:8765/reports/weekly/2026-W27.md
+
+# Live (replace week tag with the one from latest.json)
+curl -sI https://conanxin.github.io/ai-education-system-map/data/weekly/manifest.json
+curl -sI https://conanxin.github.io/ai-education-system-map/reports/weekly/2026-W27.md
+```
+
+If a new path 404s for >5 min after push, force a Pages rebuild:
+
+```
+gh api -X POST repos/conanxin/ai-education-system-map/pages/builds
+```
+
+Then wait ~90 s and re-check.
