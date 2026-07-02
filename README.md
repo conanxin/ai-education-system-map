@@ -317,21 +317,30 @@ schedule is preserved.
 ### 5. How do I refresh the dashboard summary?
 
 `docs/data/dashboard-summary.json` is the single file the v1.3 page reads.
-Refresh it whenever the underlying data changes:
+
+**Auto-refresh (since v1.3.1):** every weekly cron run automatically invokes
+`scripts/build_dashboard_summary.py` after writing the manifest. The
+manifest gets 4 new fields recording the outcome:
+
+- `dashboard_summary_rebuilt` — `true` / `false`
+- `dashboard_summary_path` — relative path inside the repo
+- `dashboard_summary_updated_at` — ISO timestamp of the regenerated file
+- `dashboard_summary_error` — `null` on success, error string on failure
+
+If `dashboard_summary_rebuilt: false`, the watcher exits 1 and the cron
+delivery tells you. Common causes: builder script moved, Python 3 missing,
+or a parser error in one of the 6 source JSONs.
+
+**Manual refresh:** if you edited a JSON file by hand, force a refresh:
 
 ```
 python3 scripts/build_dashboard_summary.py --data-dir docs/data
-```
-
-The watcher does NOT regenerate it on every cron run (intentional — keeps
-the cron run light). After a seed rebuild or after several weekly runs,
-re-run the summary script, then commit + push:
-
-```
 git add docs/data/dashboard-summary.json
 git commit -m "refresh dashboard summary"
 git push
 ```
+
+The watcher does NOT auto-commit / push — that remains the operator's job.
 
 ### 6. How do I confirm the weekly report link is reachable from the site?
 

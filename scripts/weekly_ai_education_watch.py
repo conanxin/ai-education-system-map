@@ -784,8 +784,62 @@ def write_manifest(manifest_path: Path, week_tag: str, items_added: list[dict[st
             "timeline_extended": totals.get("timeline_extended", 0),
         },
         "weekly_report": f"reports/weekly/{week_tag}.md",
+        # Dashboard summary rebuild fields are filled in by main() AFTER the
+        # rebuild runs. Initial values here are placeholders.
+        "dashboard_summary_rebuilt": False,
+        "dashboard_summary_path": "docs/data/dashboard-summary.json",
+        "dashboard_summary_updated_at": "",
+        "dashboard_summary_error": None,
     }
     save_json(manifest_path, manifest)
+
+
+def rebuild_dashboard_summary(project_root: Path, data_dir: Path) -> tuple[bool, str, str | None]:
+    """Run scripts/build_dashboard_summary.py against `data_dir` and capture
+    the resulting dashboard-summary.json's updated_at.
+
+    Returns: (rebuilt, updated_at_iso, error_message_or_None).
+
+    Built as a subprocess so the watcher's stdout stays clean and the
+    builder's CLI contract is unchanged.
+    """
+    import subprocess
+    builder = project_root / "scripts" / "build_dashboard_summary.py"
+    summary_path = data_dir / "dashboard-summary.json"
+    if not builder.exists():
+        return False, "", f"builder not found: {builder}"
+    try:
+        result = subprocess.run(
+            ["python3", str(builder), "--data-dir", str(data_dir)],
+            capture_output=True, text=True, timeout=60,
+        )
+    except subprocess.TimeoutExpired:
+        return False, "", "build_dashboard_summary timed out after 60s"
+    except Exception as e:
+        return False, "", f"subprocess failed: {e}"
+    if result.returncode != 0:
+        return False, "", f"exit {result.returncode}: {result.stderr.strip()[:400] or result.stdout.strip()[:400]}"
+    # Pull updated_at out of the freshly-written summary.
+    try:
+        s = json.loads(summary_path.read_text(encoding="utf-8"))
+        return True, str(s.get("generated_at", "")), None
+    except Exception as e:
+        return True, "", f"summary written but could not parse generated_at: {e}"
+
+
+def patch_manifest_with_summary_result(manifest_path: Path, rebuilt: bool,
+                                        updated_at: str, error: str | None) -> None:
+    """Update the manifest in place with the dashboard-summary rebuild outcome."""
+    if not manifest_path.exists():
+        return
+    try:
+        m = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    m["dashboard_summary_rebuilt"] = rebuilt
+    m["dashboard_summary_updated_at"] = updated_at
+    m["dashboard_summary_error"] = error
+    save_json(manifest_path, m)
 
 
 def mirror_report_into_pages(src: Path, docs_reports_dir: Path) -> Path | None:
@@ -857,6 +911,7 @@ def main(argv: list[str]) -> int:
               f"{systems_updated} systems updated; "
               f"{people_updated} people updated; "
               f"{tech_updated} tech-stack rows touched.")
+        print("[dry-run] (real run will rebuild dashboard-summary.json after this)")
         return 0
 
     # Persist
@@ -874,10 +929,24 @@ def main(argv: list[str]) -> int:
     docs_reports_weekly = args.data_dir.parent / "reports" / "weekly"
     mirror_report_into_pages(weekly_report_path, docs_reports_weekly)
 
+    # Auto-rebuild dashboard-summary.json so the static page sees fresh
+    # numbers on the next deploy. Runs even when entity_changes are all 0
+    # because latest.updated_at / source health can still shift.
+    # data_dir is e.g. docs/data; project root is one more level up.
+    project_root = args.data_dir.parent.parent
+    rebuilt, summary_updated_at, summary_error = rebuild_dashboard_summary(
+        project_root, args.data_dir
+    )
+    patch_manifest_with_summary_result(manifest_path, rebuilt, summary_updated_at, summary_error)
+
     print(f"weekly-watch complete: +{papers_added} papers, "
           f"~{systems_updated} systems, ~{people_updated} people, "
           f"~{tech_updated} tech-stack; "
-          f"report={weekly_report_path}, manifest={manifest_path}")
+          f"report={weekly_report_path}, manifest={manifest_path}, "
+          f"dashboard_summary={'rebuilt' if rebuilt else 'FAILED'}")
+    if not rebuilt:
+        print(f"ERROR: dashboard summary build failed: {summary_error}", file=sys.stderr)
+        return 1
     return 0
 
 
