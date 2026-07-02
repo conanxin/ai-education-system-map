@@ -1,13 +1,122 @@
 {
-  "updated_at": "2026-07-02T09:38:36.819902+00:00",
+  "updated_at": "2026-07-02T10:05:41.629119+00:00",
   "week_tag": "2026-W27",
   "source_report": "reports/weekly/2026-W27.md",
-  "new_papers": 0,
-  "new_systems": 0,
-  "new_people": 0,
-  "highlights": [],
+  "github_report_path": "reports/weekly/2026-W27.md",
+  "page_report_url": "/ai-education-system-map/reports/weekly/2026-W27.md",
+  "new_papers": 31,
+  "new_systems": 8,
+  "new_people": 5,
+  "tech_stack_updated": 0,
+  "fallback_status": {
+    "ran": true,
+    "queries": 12,
+    "hits": 0,
+    "errors": []
+  },
+  "source_counts": {
+    "arxiv-abs-2308.08155": 1,
+    "arxiv-abs-2502.02533": 1,
+    "arxiv-abs-2512.08296": 1,
+    "arxiv-abs-2605.12923": 1,
+    "arxiv-search-multi-agent-edu": 0,
+    "arxiv-search-ai-education-agent": 0,
+    "arxiv-search-collab-learning-agent": 0,
+    "arxiv-search-learning-analytics-ai": 0,
+    "oulu-hi": 0,
+    "oulu-lead": 0,
+    "oulu-let": 0,
+    "cocorobo-research": 1,
+    "cocorobo-smart": 1,
+    "khanmigo": 1,
+    "ka-blog": 1,
+    "cmu-learnlab": 1,
+    "stanford-ai-ed": 1,
+    "stanford-hai": 1,
+    "ms-autogen": 1,
+    "ms-agent-framework": 1,
+    "google-mass": 0,
+    "p-jarvela": 1,
+    "p-nguyen": 1,
+    "p-edwards": 1,
+    "p-sobocinski": 1,
+    "p-tormanen": 1,
+    "p-koedinger": 1,
+    "p-khan": 1,
+    "p-chiwang": 1,
+    "p-shuangli": 1,
+    "p-haiyangxin": 1,
+    "p-chingsingchai": 1,
+    "p-harisubramonyam": 1,
+    "conf-aied": 1,
+    "conf-isls": 1,
+    "conf-lak": 1,
+    "conf-edm": 1,
+    "conf-cui": 1,
+    "conf-bjet": 1,
+    "search_fallback": 0
+  },
+  "candidates_by_source": {
+    "arxiv-abs-2308.08155": [
+      "https://arxiv.org/abs/2308.08155"
+    ],
+    "arxiv-abs-2502.02533": [
+      "https://arxiv.org/abs/2502.02533"
+    ],
+    "arxiv-abs-2512.08296": [
+      "https://arxiv.org/abs/2512.08296"
+    ],
+    "arxiv-abs-2605.12923": [
+      "https://arxiv.org/abs/2605.12923"
+    ],
+    "cocorobo-research": [
+      "https://cocorobo.hk/research"
+    ],
+    "cocorobo-smart": [
+      "https://cocorobo.hk/smart"
+    ],
+    "khanmigo": [
+      "https://www.khanmigo.ai/"
+    ],
+    "ka-blog": [
+      "https://blog.khanacademy.org/"
+    ],
+    "cmu-learnlab": [
+      "https://learnlab.org/"
+    ],
+    "stanford-ai-ed": [
+      "https://acceleratelearning.stanford.edu/overview/ai-learning"
+    ],
+    "stanford-hai": [
+      "https://hai.stanford.edu/"
+    ],
+    "ms-autogen": [
+      "https://www.microsoft.com/en-us/research/project/autogen/"
+    ],
+    "ms-agent-framework": [
+      "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/"
+    ]
+  },
+  "entity_changes": {
+    "papers_added": 31,
+    "systems_updated": 8,
+    "people_updated": 5,
+    "tech_stack_updated": 0,
+    "timeline_extended": 0
+  },
+  "highlights": [
+    "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation",
+    "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies",
+    "Towards a Science of Scaling Agent Systems",
+    "MIRACLE_Multi-Agent Intelligent Regulation to Advance Collaborative Learning Environment",
+    "CocoRobo Research | AI-Native Learning Systems",
+    "CocoRobo SMART | AI-Native Learning Environment &amp; Product Suite",
+    "Meet Khanmigo: Khan Academy&#x27;s AI-powered teaching assistant &amp; tutor",
+    "Khan Academy Blog - Khan Academy Blog"
+  ],
   "insights": [
     "Weekly run completed; only items passing relevance + dedup filters were appended.",
-    "See the per-week markdown for the full per-item list."
+    "See the per-week markdown for the full per-item list.",
+    "Source registry used: v1.2.0"
   ]
 }

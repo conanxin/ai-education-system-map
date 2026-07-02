@@ -274,6 +274,36 @@ table.data td.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, mono
 }
 .weekly li { margin: 6px 0; color: var(--fg-dim); font-size: 14px; }
 
+.weekly-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 4px 0 12px;
+}
+.weekly-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--link);
+    font-size: 13px;
+    text-decoration: none;
+}
+.weekly-link:hover { background: rgba(78, 161, 255, 0.08); text-decoration: none; }
+.fallback-status {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--warn);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 13px;
+    color: var(--fg-dim);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+.fallback-status strong { color: var(--fg); }
+
 /* People graph */
 .people-grid {
     display: grid;

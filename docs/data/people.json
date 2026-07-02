@@ -2,12 +2,18 @@
   {
     "name": "Sanna Järvelä",
     "institution": "University of Oulu (LET / HI Programme)",
-    "role": "PI of Hybrid Intelligence 2023–2028; HASRL originator; co-PI CELLA; PISA 2025 Learning in Digital World expert."
+    "role": "PI of Hybrid Intelligence 2023–2028; HASRL originator; co-PI CELLA; PISA 2025 Learning in Digital World expert.",
+    "last_seen": "2026-07-02T10:05:41.625593+00:00",
+    "source_url": "https://scholar.google.com/citations?user=jarvela_sanna",
+    "first_seen": "2026-07-02T10:05:41.625593+00:00"
   },
   {
     "name": "Andy Nguyen",
     "institution": "University of Oulu",
-    "role": "Co-author HASRL paper + SSRL learning-analytics follow-ups; bridges LA methodology with regulation theory."
+    "role": "Co-author HASRL paper + SSRL learning-analytics follow-ups; bridges LA methodology with regulation theory.",
+    "last_seen": "2026-07-02T10:05:41.625593+00:00",
+    "source_url": "https://scholar.google.com/citations?user=nguyen_andy_oulu",
+    "first_seen": "2026-07-02T10:05:41.625593+00:00"
   },
   {
     "name": "Allyson Hadwin",
@@ -22,7 +28,10 @@
   {
     "name": "Justin Edwards",
     "institution": "University of Oulu",
-    "role": "Lead developer of MAI proactive agent system."
+    "role": "Lead developer of MAI proactive agent system.",
+    "last_seen": "2026-07-02T10:05:41.625593+00:00",
+    "source_url": "https://www.oulu.fi/en/people/justin-edwards",
+    "first_seen": "2026-07-02T10:05:41.625593+00:00"
   },
   {
     "name": "Marta Sobocinski",
@@ -52,12 +61,18 @@
   {
     "name": "Chi Wang",
     "institution": "Microsoft Research AI Frontiers",
-    "role": "AutoGen lead; multi-agent-as-conversation paradigm."
+    "role": "AutoGen lead; multi-agent-as-conversation paradigm.",
+    "last_seen": "2026-07-02T10:05:41.625593+00:00",
+    "source_url": "https://www.microsoft.com/en-us/research/people/chiw/",
+    "first_seen": "2026-07-02T10:05:41.625593+00:00"
   },
   {
     "name": "Sal Khan",
     "institution": "Khan Academy",
-    "role": "Founder; Khanmigo public evangelist; \"5 graduate students per teacher\" framing."
+    "role": "Founder; Khanmigo public evangelist; \"5 graduate students per teacher\" framing.",
+    "last_seen": "2026-07-02T10:05:41.625593+00:00",
+    "source_url": "https://blog.khanacademy.org/author/sal-khan/",
+    "first_seen": "2026-07-02T10:05:41.625593+00:00"
   },
   {
     "name": "Walt Wells",

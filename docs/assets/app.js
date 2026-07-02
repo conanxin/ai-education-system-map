@@ -245,6 +245,40 @@ function renderWeekly(weekly) {
         el("div", { class: "stat" }, [el("strong", {}, "People:"), String(weekly.new_people ?? "—")]),
     ]));
 
+    // Links block — view the per-week markdown + manifest
+    const links = el("div", { class: "weekly-links" });
+    const reportHref = weekly.page_report_url
+        || (weekly.github_report_path ? `${DATA.weekly.replace("data/weekly/latest.json", "")}${weekly.github_report_path}` : null);
+    if (reportHref) {
+        links.appendChild(el("a", {
+            href: reportHref,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            class: "weekly-link",
+        }, "View weekly report →"));
+    }
+    links.appendChild(el("a", {
+        href: "data/weekly/manifest.json",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        class: "weekly-link",
+    }, "View manifest (JSON)"));
+    host.appendChild(links);
+
+    // Fallback status (v1.2)
+    const fb = weekly.fallback_status || {};
+    if (fb && Object.keys(fb).length) {
+        const fbDiv = el("div", { class: "fallback-status" });
+        fbDiv.appendChild(el("strong", {}, "Fallback status: "));
+        const parts = [];
+        parts.push(`ran=${fb.ran ?? "?"}`);
+        parts.push(`queries=${fb.queries ?? "?"}`);
+        parts.push(`hits=${fb.hits ?? "?"}`);
+        if (Array.isArray(fb.errors) && fb.errors.length) parts.push(`errors=${fb.errors.length}`);
+        fbDiv.appendChild(document.createTextNode(parts.join(" · ")));
+        host.appendChild(fbDiv);
+    }
+
     if (Array.isArray(weekly.highlights) && weekly.highlights.length) {
         const h = el("div", {}, [el("h3", { html: "Highlights" })]);
         const ul = el("ul");

@@ -1,0 +1,93 @@
+{
+  "version": "1.2.0",
+  "generated_at": "2026-07-02",
+  "notes": [
+    "Sources are grouped by fetch strategy. The weekly watcher reads this file",
+    "and tries each strategy in priority order. Higher-priority sources fail",
+    "softly (logged in source_errors, never crash the run).",
+    "Add new sources by appending; do not remove existing ones without bumping version.",
+    "Strategy 1 = highest trust (arxiv abs / official RSS), Strategy 4 = fallback (DDG)."
+  ],
+  "arxiv_sources": {
+    "description": "arXiv abstract pages and category searches. Direct HTTP GET, RSS-friendly.",
+    "strategy": 1,
+    "items": [
+      {"id": "arxiv-abs-2308.08155", "url": "https://arxiv.org/abs/2308.08155", "type": "arxiv_abs", "label": "AutoGen (Wu et al., 2023)"},
+      {"id": "arxiv-abs-2502.02533", "url": "https://arxiv.org/abs/2502.02533", "type": "arxiv_abs", "label": "MASS (Zhang et al., ICLR 2026)"},
+      {"id": "arxiv-abs-2512.08296", "url": "https://arxiv.org/abs/2512.08296", "type": "arxiv_abs", "label": "Scaling agent systems"},
+      {"id": "arxiv-abs-2605.12923", "url": "https://arxiv.org/abs/2605.12923", "type": "arxiv_abs", "label": "MIRACLE"},
+      {"id": "arxiv-search-multi-agent-edu", "url": "https://arxiv.org/search/?query=multi-agent+education&searchtype=all", "type": "arxiv_search", "label": "arXiv search: multi-agent education"},
+      {"id": "arxiv-search-ai-education-agent", "url": "https://arxiv.org/search/?query=AI+education+agent&searchtype=all", "type": "arxiv_search", "label": "arXiv search: AI education agent"},
+      {"id": "arxiv-search-collab-learning-agent", "url": "https://arxiv.org/search/?query=collaborative+learning+agent&searchtype=all", "type": "arxiv_search", "label": "arXiv search: collaborative learning agent"},
+      {"id": "arxiv-search-learning-analytics-ai", "url": "https://arxiv.org/search/?query=learning+analytics+AI&searchtype=all", "type": "arxiv_search", "label": "arXiv search: learning analytics AI"}
+    ]
+  },
+  "official_project_sources": {
+    "description": "Official project pages, lab sites, blog RSS feeds.",
+    "strategy": 2,
+    "items": [
+      {"id": "oulu-hi", "url": "https://www.oulu.fi/en/university/faculties-and-units/hybrid-intelligence-research-programme", "type": "lab_page", "label": "University of Oulu HI"},
+      {"id": "oulu-lead", "url": "https://www.oulu.fi/en/projects/lead", "type": "lab_page", "label": "University of Oulu LEAD"},
+      {"id": "oulu-let", "url": "https://www.oulu.fi/en/research/research-groups/learning-and-educational-technology-research-lab-let", "type": "lab_page", "label": "Oulu LET Lab"},
+      {"id": "cocorobo-research", "url": "https://cocorobo.hk/research", "type": "lab_page", "label": "CocoRobo Research"},
+      {"id": "cocorobo-smart", "url": "https://cocorobo.hk/smart", "type": "lab_page", "label": "CocoRobo SMART"},
+      {"id": "khanmigo", "url": "https://www.khanmigo.ai/", "type": "product_page", "label": "Khanmigo"},
+      {"id": "ka-blog", "url": "https://blog.khanacademy.org/", "type": "blog", "label": "Khan Academy Blog"},
+      {"id": "cmu-learnlab", "url": "https://learnlab.org/", "type": "lab_page", "label": "CMU LearnLab"},
+      {"id": "stanford-ai-ed", "url": "https://acceleratelearning.stanford.edu/overview/ai-learning", "type": "lab_page", "label": "Stanford AI+Education"},
+      {"id": "stanford-hai", "url": "https://hai.stanford.edu/", "type": "lab_page", "label": "Stanford HAI"},
+      {"id": "ms-autogen", "url": "https://www.microsoft.com/en-us/research/project/autogen/", "type": "project_page", "label": "Microsoft AutoGen"},
+      {"id": "ms-agent-framework", "url": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/", "type": "blog", "label": "Microsoft Agent Framework"},
+      {"id": "google-mass", "url": "https://research.google/pubs/multi-agent-system-search-mass/", "type": "project_page", "label": "Google Research MASS"}
+    ]
+  },
+  "people_sources": {
+    "description": "Author pages, DBLP, ORCID, personal sites. Used to confirm a person's most recent AI-ed work.",
+    "strategy": 3,
+    "items": [
+      {"id": "p-jarvela", "name": "Sanna J\u00e4rvel\u00e4", "institution": "University of Oulu", "url": "https://scholar.google.com/citations?user=jarvela_sanna", "label": "Sanna J\u00e4rvel\u00e4"},
+      {"id": "p-nguyen", "name": "Andy Nguyen", "institution": "University of Oulu", "url": "https://scholar.google.com/citations?user=nguyen_andy_oulu", "label": "Andy Nguyen"},
+      {"id": "p-edwards", "name": "Justin Edwards", "institution": "University of Oulu", "url": "https://www.oulu.fi/en/people/justin-edwards", "label": "Justin Edwards"},
+      {"id": "p-sobocinski", "name": "M\u00e1rta Sobocinski", "institution": "University of Oulu", "url": "https://www.oulu.fi/en/people/marta-sobocinski", "label": "M\u00e1rta Sobocinski"},
+      {"id": "p-tormanen", "name": "Tiina T\u00f6rm\u00e4nen", "institution": "University of Oulu", "url": "https://www.oulu.fi/en/people/tiina-tormanen", "label": "Tiina T\u00f6rm\u00e4nen"},
+      {"id": "p-koedinger", "name": "Ken Koedinger", "institution": "Carnegie Mellon University", "url": "https://www.cmu.edu/dietrich/psychology/koedinger.html", "label": "Ken Koedinger"},
+      {"id": "p-khan", "name": "Sal Khan", "institution": "Khan Academy", "url": "https://blog.khanacademy.org/author/sal-khan/", "label": "Sal Khan"},
+      {"id": "p-chiwang", "name": "Chi Wang", "institution": "Microsoft Research", "url": "https://www.microsoft.com/en-us/research/people/chiw/", "label": "Chi Wang"},
+      {"id": "p-shuangli", "name": "Shuang Li", "institution": "Tsinghua University", "url": "https://scholar.google.com/citations?user=shuang_li", "label": "Shuang Li"},
+      {"id": "p-haiyangxin", "name": "Haiyang Xin", "institution": "East China Normal University", "url": "https://scholar.google.com/citations?user=haiyang_xin", "label": "Haiyang Xin"},
+      {"id": "p-chingsingchai", "name": "Ching Sing Chai", "institution": "Beijing Normal University", "url": "https://scholar.google.com/citations?user=chingsing_chai", "label": "Ching Sing Chai"},
+      {"id": "p-harisubramonyam", "name": "Hari Subramonyam", "institution": "Stanford University", "url": "https://ed.stanford.edu/faculty/harihars", "label": "Hari Subramonyam"}
+    ]
+  },
+  "conference_sources": {
+    "description": "Top venues for AI-in-education work. Conference homepages and latest proceedings.",
+    "strategy": 3,
+    "items": [
+      {"id": "conf-aied", "url": "https://www.aied-conference.org/", "type": "conference", "label": "AIED"},
+      {"id": "conf-isls", "url": "https://www.isls.org/", "type": "conference", "label": "ISLS / CSCL"},
+      {"id": "conf-lak", "url": "https://www.solaresearch.org/events/lak/", "type": "conference", "label": "LAK"},
+      {"id": "conf-edm", "url": "https://www.educationaldatamining.org/", "type": "conference", "label": "EDM"},
+      {"id": "conf-cui", "url": "https://cuicui.org/", "type": "conference", "label": "CUI"},
+      {"id": "conf-bjet", "url": "https://bera-journals.onlinelibrary.wiley.com/journal/14678535", "type": "journal", "label": "BJET"}
+    ]
+  },
+  "search_fallback": {
+    "description": "Last-resort search when higher strategies return nothing.",
+    "strategy": 4,
+    "provider": "duckduckgo_html",
+    "queries": [
+      "University of Oulu Hybrid Intelligence 2026 paper",
+      "MAI proactive agent Sanna Jarvela 2026",
+      "MIRACLE multi-agent classroom system 2026",
+      "Stanford HAI AI Education 2026 paper",
+      "CMU LearnLab cognitive tutor 2026",
+      "Microsoft AutoGen Agent Framework education 2026",
+      "Google Research MASS multi-agent design 2026",
+      "Khanmigo evidence randomised trial 2026",
+      "CocoRobo SMART classroom AI 2026",
+      "metacognitive AI agent SSRL HASRL 2026",
+      "multi-agent learning system collaborative 2026",
+      "AI classroom OS learning analytics 2026"
+    ]
+  }
+}
