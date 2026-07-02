@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Global AI Education System Map — MAI · MIRACLE · CocoNote · Khanmigo · LearnLab · AutoGen · MASS</title>
-    <meta name="description" content="Global AI Education System Map: papers, systems, people and weekly research watch across MAI, MIRACLE, CocoRobo, Khanmigo, LearnLab, AutoGen and MASS." />
+    <title>全球 AI 教育系统地图 — MAI · MIRACLE · CocoNote · Khanmigo · LearnLab · AutoGen · MASS</title>
+    <meta name="description" content="全球 AI 教育系统地图:论文、系统、人物与每周自动抓取的研究观察,覆盖 MAI、MIRACLE、CocoRobo、Khanmigo、LearnLab、AutoGen 与 MASS。" />
     <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
 <header class="site-header">
     <div class="wrap">
-        <h1>Global <span class="accent">AI Education</span> System Map</h1>
+        <h1>全球 <span class="accent">AI 教育</span> 系统地图</h1>
         <p class="subtitle">MAI · MIRACLE · CocoNote · Khanmigo · LearnLab · AutoGen · MASS</p>
         <div class="meta">
-            <span>Repo: <code>conanxin/ai-education-system-map</code></span>
-            <span>Source: <code>docs/data/dashboard-summary.json</code></span>
-            <span id="meta-data-count">— entries</span>
+            <span>仓库:<code>conanxin/ai-education-system-map</code></span>
+            <span>数据源:<code>docs/data/dashboard-summary.json</code></span>
+            <span id="meta-data-count">— 条记录</span>
         </div>
     </div>
 </header>
 
 <main>
 
-    <!-- 1. This Week -->
+    <!-- 1. 本周更新 -->
     <section class="module" id="this-week">
-        <h2>This Week <span class="pill" id="this-week-tag">—</span></h2>
-        <p class="lede">Latest weekly snapshot from the auto-updated research watch.</p>
+        <h2>本周更新 <span class="pill" id="this-week-tag">—</span></h2>
+        <p class="lede">自动抓取的最新一周研究快照,显示新增论文、系统、人物与活跃来源。</p>
         <div id="this-week-body">
             <div class="stats">
-                <div class="stat"><strong>New papers:</strong> <span data-stat="new_papers">—</span></div>
-                <div class="stat"><strong>New systems:</strong> <span data-stat="new_systems">—</span></div>
-                <div class="stat"><strong>New people:</strong> <span data-stat="new_people">—</span></div>
-                <div class="stat"><strong>Active sources:</strong> <span data-stat="active_sources">—</span></div>
-                <div class="stat"><strong>Stable sources:</strong> <span data-stat="stable_sources">—</span></div>
+                <div class="stat"><strong>本周新论文:</strong> <span data-stat="new_papers">—</span></div>
+                <div class="stat"><strong>本周新系统:</strong> <span data-stat="new_systems">—</span></div>
+                <div class="stat"><strong>本周新人物:</strong> <span data-stat="new_people">—</span></div>
+                <div class="stat"><strong>活跃来源:</strong> <span data-stat="active_sources">—</span></div>
+                <div class="stat"><strong>稳定来源:</strong> <span data-stat="stable_sources">—</span></div>
             </div>
             <div class="fallback-status" id="this-week-fallback">
-                <strong>Fallback status:</strong> <span data-fb>—</span>
+                <strong>备用搜索状态:</strong> <span data-fb>—</span>
             </div>
             <div class="weekly-links" id="this-week-links"></div>
         </div>
     </section>
 
-    <!-- 2. Research Lineage -->
+    <!-- 2. 研究脉络 -->
     <section class="module" id="research-lineage">
-        <h2>Research Lineage <span class="pill">1989 → 2026</span></h2>
-        <p class="lede">The horizontal main line: ITS → SRL/SSRL → HASRL → MAI → CocoNote → MIRACLE → Multi-Agent Classroom OS.</p>
+        <h2>研究脉络 <span class="pill">1989 → 2026</span></h2>
+        <p class="lede">水平主演化路径:智能教学系统 ITS → 自我调节 / 社会共享调节 SRL/SSRL → 人机共享调节 HASRL → 元认知 AI 智能体 MAI → 协作学习环境 CocoNote → 多智能体调节系统 MIRACLE → 多智能体课堂操作系统 Multi-Agent Classroom OS。</p>
         <div class="mermaid-host">
             <div class="mermaid" id="lineage-mermaid">
 flowchart LR
@@ -53,81 +53,81 @@ flowchart LR
     classDef agent fill:#0e2a4d,stroke:#4ea1ff,color:#e6edf7;
     classDef eco fill:#0c3d2c,stroke:#4ade80,color:#e6edf7;
     classDef dep fill:#3a1a0a,stroke:#ff8c5a,color:#e6edf7;
-    ITS["ITS /<br/>Cognitive Tutor"]:::theory
-    SRL["SRL / SSRL<br/>Shared Regulation"]:::theory
-    HASRL["HASRL<br/>Hybrid Human-AI SRL"]:::theory
-    MAI["MAI<br/>Proactive Agent"]:::agent
-    Coconote["CocoNote<br/>consumer study"]:::eco
-    MIRACLE["MIRACLE<br/>Multi-Agent Classroom"]:::eco
-    MACOS["Multi-Agent<br/>Classroom OS"]:::dep
+    ITS["智能教学系统 ITS<br/>Cognitive Tutor"]:::theory
+    SRL["自我调节 / 社会共享调节<br/>SRL / SSRL"]:::theory
+    HASRL["人机共享调节<br/>HASRL"]:::theory
+    MAI["元认知 AI 智能体<br/>MAI"]:::agent
+    Coconote["协作学习环境<br/>CocoNote"]:::eco
+    MIRACLE["多智能体调节系统<br/>MIRACLE"]:::eco
+    MACOS["多智能体课堂 OS<br/>Classroom OS"]:::dep
     ITS --> SRL --> HASRL --> MAI --> MIRACLE --> MACOS
     Coconote -. companion .-> MIRACLE
             </div>
         </div>
         <div class="lineage-side" id="lineage-side">
-            <p><strong>Side branches feeding the main line:</strong></p>
+            <p><strong>汇入主线的支线系统:</strong></p>
             <ul>
-                <li><strong>Khanmigo</strong> → deployed AI Tutor (scale reference)</li>
-                <li><strong>AutoGen / Microsoft Agent Framework</strong> → orchestration substrate</li>
-                <li><strong>MASS (Google)</strong> → design optimiser for multi-agent topologies</li>
-                <li><strong>CocoRobo SMART</strong> → live Multi-Agent Classroom OS (1,400+ schools)</li>
+                <li><strong>Khanmigo</strong> — 已规模化部署的 AI 导师</li>
+                <li><strong>AutoGen / Microsoft Agent Framework</strong> — 智能体编排底座</li>
+                <li><strong>MASS (Google)</strong> — 多智能体拓扑设计优化器</li>
+                <li><strong>CocoRobo SMART</strong> — 现役多智能体课堂 OS(1,400+ 学校)</li>
             </ul>
         </div>
     </section>
 
-    <!-- 3. System Cards -->
+    <!-- 3. 系统卡片 -->
     <section class="module" id="system-cards">
-        <h2>System Cards <span class="pill" id="sys-count">—</span></h2>
-        <p class="lede">All tracked systems with their institution, type, agent architecture, and relation to MAI / MIRACLE. Use the chips to filter.</p>
+        <h2>系统卡片 <span class="pill" id="sys-count">—</span></h2>
+        <p class="lede">所有追踪中的系统,显示所属机构、类型、智能体架构以及与 MAI / MIRACLE 的关系。使用筛选标签过滤。</p>
         <div class="chips" id="system-filter-chips"></div>
         <div class="cards-grid" id="system-cards-grid"></div>
     </section>
 
-    <!-- 4. Paper Network Summary -->
+    <!-- 4. 论文网络摘要 -->
     <section class="module" id="paper-groups">
-        <h2>Paper Network Summary <span class="pill" id="paper-count">—</span></h2>
-        <p class="lede">Tracked papers grouped by their role in the lineage. Click any title to open the source URL.</p>
+        <h2>论文网络摘要 <span class="pill" id="paper-count">—</span></h2>
+        <p class="lede">追踪中的论文按其在研究脉络中的角色分组。点击标题打开来源链接。</p>
         <div id="paper-groups-body"></div>
     </section>
 
-    <!-- 5. People & Institutions -->
+    <!-- 5. 关键人物与机构 -->
     <section class="module" id="people-groups">
-        <h2>People & Institutions <span class="pill" id="people-count">—</span></h2>
-        <p class="lede">Researchers grouped by where they work. Tap a name to see their public profile (if available).</p>
+        <h2>关键人物与机构 <span class="pill" id="people-count">—</span></h2>
+        <p class="lede">研究者按所属机构分组。点击姓名查看其公开主页(若有)。</p>
         <div id="people-groups-body"></div>
     </section>
 
-    <!-- 6. Source Health -->
+    <!-- 6. 信息源健康状态 -->
     <section class="module" id="source-health">
-        <h2>Source Health <span class="pill">live</span></h2>
-        <p class="lede">How the weekly watcher is doing — sources registered, sources that returned hits, fallback status, last run time.</p>
+        <h2>信息源健康状态 <span class="pill">实时</span></h2>
+        <p class="lede">每周观察器的运行状态 — 注册来源数、本次返回结果的来源数、备用搜索状态、上次运行时间。</p>
         <div class="stats">
-            <div class="stat"><strong>Stable sources:</strong> <span data-stat="stable_sources">—</span></div>
-            <div class="stat"><strong>Active this run:</strong> <span data-stat="active_sources">—</span></div>
-            <div class="stat"><strong>Source errors:</strong> <span data-stat="source_errors_count">—</span></div>
+            <div class="stat"><strong>稳定来源:</strong> <span data-stat="sh_stable_sources">—</span></div>
+            <div class="stat"><strong>本次活跃:</strong> <span data-stat="sh_active_sources">—</span></div>
+            <div class="stat"><strong>来源错误数:</strong> <span data-stat="sh_source_errors_count">—</span></div>
         </div>
         <div class="fallback-status" id="source-health-fallback">
-            <strong>Fallback status:</strong> <span data-fb>—</span>
+            <strong>备用搜索状态:</strong> <span data-fb>—</span>
         </div>
         <details class="source-details">
-            <summary>Candidates by source (top entries)</summary>
+            <summary>按来源统计的候选结果(前若干条)</summary>
             <pre id="source-candidates-pre">—</pre>
         </details>
         <details class="source-details">
-            <summary>Source errors (if any)</summary>
+            <summary>来源错误(若有)</summary>
             <pre id="source-errors-pre">—</pre>
         </details>
         <div class="weekly-links">
-            <a class="weekly-link" href="data/source-registry.json" target="_blank" rel="noopener noreferrer">View source registry (JSON)</a>
-            <a class="weekly-link" href="data/weekly/manifest.json" target="_blank" rel="noopener noreferrer">View manifest (JSON)</a>
-            <a class="weekly-link" href="data/dashboard-summary.json" target="_blank" rel="noopener noreferrer">View dashboard summary (JSON)</a>
+            <a class="weekly-link" href="data/source-registry.json" target="_blank" rel="noopener noreferrer">查看来源注册表(JSON)</a>
+            <a class="weekly-link" href="data/weekly/manifest.json" target="_blank" rel="noopener noreferrer">查看运行清单(JSON)</a>
+            <a class="weekly-link" href="data/dashboard-summary.json" target="_blank" rel="noopener noreferrer">查看仪表盘摘要(JSON)</a>
         </div>
     </section>
 
 </main>
 
 <footer class="site-footer">
-    <div>Generated from <code>docs/data/dashboard-summary.json</code>. No build step, no backend. Static HTML + CDN Mermaid.</div>
+    <div>由 <code>docs/data/dashboard-summary.json</code> 渲染。无构建步骤,无后端。静态 HTML + CDN 加载的 Mermaid。</div>
     <div id="footer-sources" style="margin-top:10px;"></div>
 </footer>
 
