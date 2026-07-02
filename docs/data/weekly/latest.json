@@ -1,0 +1,21 @@
+{
+  "updated_at": "2026-07-02T09:15:50.966665+00:00",
+  "source_report": "reports/seed/latest-report.md",
+  "new_papers": 11,
+  "new_systems": 10,
+  "new_people": 16,
+  "insights": [
+    "**SSRL → HASRL → MAI is now a coherent three-layer research lineage, not loose concepts.** Järvelä's HASRL model (2023) provided the theory, the trigger framework (Järvelä & Hadwin, 2024) operationalised *when* to intervene, and MAI (Edwards et al., 2025) is the first deployed agent following that specification. Anyone building in this space should cite all three.",
+    "**Multi-agent is winning the orchestration layer, but naive agent-counting is being actively debunked.** Google's MASS (ICLR 2026) shows an optimised single agent beats a 9-agent ensemble with default prompts. Berkeley's MAST shows ~200 real traces fail in three predictable ways (system design, task verification, inter-agent misalignment). The lesson for MIRACLE-class systems: **optimise agents individually first, then compose** — don't scale agent count.",
+    "**Microsoft consolidated the substrate (Oct 2025)**. AutoGen v0.4 and Microsoft Agent Framework now unify AutoGen + Semantic Kernel with MCP + A2A protocol support. A MAI-class agent built today should target this runtime rather than rolling custom orchestration.",
+    "**Commercial deployment is moving faster than RCT evidence.** Khanmigo went from 40K → 700K K-12 students in one school year; Stanford's RFI response notes only 35 GenAI-in-education RCTs exist worldwide. CocoRobo's SMART suite is already in 1,400+ schools across HK/Macau/GBA. The evidence-practice gap is the binding constraint on policy.",
+    "**CocoRobo's \"SMART\" framing is the most actionable architectural vocabulary for the Classroom OS layer.** Their decomposition (Share / Measure / Adaptive / Reconstructive / Team) explicitly rejects \"AI-as-answer-vendor\" in favour of \"AI-as-thinking-partner\" — which is precisely the philosophical stance MAI's trigger-prompting approach implies. MAI could plausibly be the metacognition layer sitting *on top of* a CocoClass-style orchestrator."
+  ],
+  "highlights": [
+    "HASRL -> MAI -> MIRACLE lineage is now self-contained",
+    "MASS shows optimised single agent > naive multi-agent",
+    "Microsoft Agent Framework (Oct 2025) is the orchestration substrate to target",
+    "Khanmigo scale (700K) vs 35 GenAI-in-ed RCTs = deployment-evidence gap",
+    "CocoRobo SMART suite is closest live Multi-Agent Classroom OS reference"
+  ]
+}

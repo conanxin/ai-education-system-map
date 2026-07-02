@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Sanna Järvelä",
+    "institution": "University of Oulu (LET / HI Programme)",
+    "role": "PI of Hybrid Intelligence 2023–2028; HASRL originator; co-PI CELLA; PISA 2025 Learning in Digital World expert."
+  },
+  {
+    "name": "Andy Nguyen",
+    "institution": "University of Oulu",
+    "role": "Co-author HASRL paper + SSRL learning-analytics follow-ups; bridges LA methodology with regulation theory."
+  },
+  {
+    "name": "Allyson Hadwin",
+    "institution": "University of Oulu (formerly Victoria)",
+    "role": "Co-author of HASRL; originator of SRL trigger framework underpinning MAI's design."
+  },
+  {
+    "name": "Belle Dang",
+    "institution": "University of Oulu",
+    "role": "First author on AI-Driven LA SSRL study (JLA 2024); emerging in regulation-of-learning analytics."
+  },
+  {
+    "name": "Justin Edwards",
+    "institution": "University of Oulu",
+    "role": "Lead developer of MAI proactive agent system."
+  },
+  {
+    "name": "Marta Sobocinski",
+    "institution": "University of Oulu",
+    "role": "NRI 2025 grant for \"Metacognitive Agent in VR\" (Healthcare Education); connects MAI line to extended realities."
+  },
+  {
+    "name": "Hariharan Subramonyam",
+    "institution": "Stanford GSE / HAI Faculty Fellow",
+    "role": "Participatory-AI for education; \"Is a Seat at the Table Enough?\" dataset-spec framework."
+  },
+  {
+    "name": "Candace Thille",
+    "institution": "Stanford Accelerator for Learning",
+    "role": "Faculty director, Adult & Workforce Learning; OLI lineage (formerly CMU OLI)."
+  },
+  {
+    "name": "Kenneth Koedinger",
+    "institution": "CMU HCII / LearnLab",
+    "role": "LearnLab co-founder; Cognitive Tutor / CTAT lineage; ITS-as-research-platform tradition."
+  },
+  {
+    "name": "John Stamper",
+    "institution": "CMU HCII / LearnLab",
+    "role": "DataShop / OLI Torus; LearnLab Summer School lead; AI-in-Education seminar series organiser."
+  },
+  {
+    "name": "Chi Wang",
+    "institution": "Microsoft Research AI Frontiers",
+    "role": "AutoGen lead; multi-agent-as-conversation paradigm."
+  },
+  {
+    "name": "Sal Khan",
+    "institution": "Khan Academy",
+    "role": "Founder; Khanmigo public evangelist; \"5 graduate students per teacher\" framing."
+  },
+  {
+    "name": "Walt Wells",
+    "institution": "Khan Academy",
+    "role": "Staff engineer; built Go-based Langfuse integration for Khanmigo observability."
+  },
+  {
+    "name": "Zheyuan Zhang / Jifan Yu / Juanzi Li",
+    "institution": "Tsinghua MAIC",
+    "role": "SimClass authors — multi-agent classroom simulation."
+  },
+  {
+    "name": "Naina Chaturvedi",
+    "institution": "Rutgers University",
+    "role": "Agentic Orchestration for Adaptive Educational Recommendations (WSDM 2026)."
+  },
+  {
+    "name": "Bill Faruki",
+    "institution": "MindHYVE.ai",
+    "role": "Connected Miracle University (US, dropout-prevention nonprofit) to AI literacy work; adjacent ecosystem, not core research."
+  }
+]

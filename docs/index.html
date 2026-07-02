@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global AI Education System Map — MAI · MIRACLE · CocoNote · Khanmigo · LearnLab · AutoGen · MASS</title>
+    <meta name="description" content="Global AI Education System Map: papers, systems, people and weekly research watch across MAI, MIRACLE, CocoRobo, Khanmigo, LearnLab, AutoGen and MASS." />
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+    <div class="wrap">
+        <h1>Global <span class="accent">AI Education</span> System Map</h1>
+        <p class="subtitle">MAI · MIRACLE · CocoNote · Khanmigo · LearnLab · AutoGen · MASS</p>
+        <div class="meta">
+            <span>Repo: <code>conanxin/ai-education-system-map</code></span>
+            <span>Source: <code>reports/seed/latest-report.md</code></span>
+            <span id="meta-data-count">— entries</span>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="module" id="overview">
+        <h2>Overview <span class="pill">6 cards</span></h2>
+        <p class="lede">The headline conclusions from the seed MVP report, kept here as the always-on TL;DR.</p>
+        <div class="cards" id="overview-cards"></div>
+    </section>
+
+    <section class="module" id="system-map-section">
+        <h2>Global System Map <span class="pill">Mermaid</span></h2>
+        <p class="lede">Main lineage (SSRL → HASRL → MAI → MIRACLE → Multi-Agent Classroom OS) with the side branches that feed it.</p>
+        <div class="mermaid-host" id="system-map-host">
+            <div class="mermaid" id="system-map"></div>
+        </div>
+    </section>
+
+    <section class="module" id="paper-network">
+        <h2>Paper Network <span class="pill">11 papers</span></h2>
+        <p class="lede">The seed papers with title, institution and a 3-line summary. Each title links to the source URL.</p>
+        <div class="papers" id="papers-list"></div>
+    </section>
+
+    <section class="module" id="people-graph">
+        <h2>People Graph <span class="pill">16 researchers</span></h2>
+        <p class="lede">Key researchers across the seven tracked institutions and their role in AI education.</p>
+        <div class="people-grid" id="people-grid"></div>
+    </section>
+
+    <section class="module" id="tech-stack-section">
+        <h2>Tech Stack Compare <span class="pill">table</span></h2>
+        <p class="lede">Side-by-side comparison of system, agent architecture, data inputs, regulation mechanism and relation to MAI / MIRACLE.</p>
+        <div id="tech-stack"></div>
+    </section>
+
+    <section class="module" id="timeline-section">
+        <h2>Timeline <span class="pill">1989 → 2026</span></h2>
+        <p class="lede">Evolution from SRL theory through HASRL, MAI, multi-agent classroom prototypes to deployed systems.</p>
+        <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="module" id="weekly-section">
+        <h2>Weekly Watch <span class="pill">auto-updated</span></h2>
+        <p class="lede">Latest weekly research snapshot. Updated every Monday by <code>scripts/weekly_ai_education_watch.py</code>.</p>
+        <div class="weekly" id="weekly"></div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div>Generated from <code>docs/data/*.json</code>. No build step, no backend. Static HTML + CDN Mermaid.</div>
+    <div id="footer-sources" style="margin-top:10px;"></div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

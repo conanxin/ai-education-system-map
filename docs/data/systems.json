@@ -1,0 +1,62 @@
+[
+  {
+    "name": "MAI (Metacognitive AI agent)",
+    "type": "Proactive single-agent SRL scaffold",
+    "architecture": "Trigger-recognition engine → prompts group to self-regulate; does NOT act on group's behalf. Built on HASRL model.",
+    "relation": "This IS the MAI reference system. Co-evolutionary partner, not controller."
+  },
+  {
+    "name": "Khanmigo",
+    "type": "LLM tutor + teacher-assistant + district analytics",
+    "architecture": "Single-conversation LLM (GPT-4 class) with structured access to student skill history; Go services; Langfuse for observability; ~100 internal users across 7 product teams.",
+    "relation": "Closest deployed commercial cousin of MAI at scale; differs in being one-to-one tutor rather than group-regulation agent. ~700K K-12 students in 2024–25."
+  },
+  {
+    "name": "AutoGen v0.4 / Microsoft Agent Framework",
+    "type": "Multi-agent orchestration SDK",
+    "architecture": "Asynchronous, event-driven; Studio (no-code) + AgentChat (Python) + Core runtime; unified with Semantic Kernel Oct 2025. MCP + A2A protocol support.",
+    "relation": "Generic substrate — not education-specific, but the orchestration layer a MAI-class system would run on."
+  },
+  {
+    "name": "MASS (Google)",
+    "type": "Automated MAS design framework",
+    "architecture": "Three-stage interleaved optimisation: local prompt → topology → global prompt. Meta-heuristic search over agent designs.",
+    "relation": "Indirect: validates that prompt-then-topology optimisation matters; informs how a multi-agent classroom should be designed before deployment."
+  },
+  {
+    "name": "SimClass (Tsinghua MAIC)",
+    "type": "Multi-agent classroom simulator",
+    "architecture": "Teacher + classmates + manager + assistant agents; emergent group behaviours; validated against Flanders Interactive Analysis.",
+    "relation": "Direct conceptual sibling of MIRACLE — multi-agent classroom simulation with student peers as agents."
+  },
+  {
+    "name": "CTAT / Cognitive Tutor (LearnLab)",
+    "type": "Authoring tools for Intelligent Tutoring Systems",
+    "architecture": "Example-tracing tutors; non-programmer authoring.",
+    "relation": "Oldest line (since 1990s) — what MAI's \"proactive\" model adds is metacognitive trigger recognition on top of step-level ITS feedback."
+  },
+  {
+    "name": "OLI / Torus + DataShop (CMU)",
+    "type": "Online course platform + learning analytics warehouse",
+    "architecture": "OLI courses + EDM via DataShop; ~1-week Summer School trains next-gen practitioners.",
+    "relation": "LA infrastructure layer MAI/MIRACLE-style systems plug into."
+  },
+  {
+    "name": "CocoRobo SMART Suite",
+    "type": "AI-native classroom OS (commercial)",
+    "architecture": "5-product suite anchored on SMART principles (Share / Measure / Adaptive / Reconstructive / Team); CocoClass orchestrator with PPT→HTML, PIN co-screen, real-time whole-class diagnosis, embedded agents/workflows (CocoFlow).",
+    "relation": "Closest \"Multi-Agent Classroom OS\" reference deployment. Explicitly positions AI as team-partner for student thinking, not answer-vendor. MAI could be the metacognition layer on top of CocoClass; MIRACLE the simulator."
+  },
+  {
+    "name": "Coconote (Quizlet)",
+    "type": "AI note-taker / study-tool consumer app",
+    "architecture": "Audio→notes→study-guide/quiz/flashcards pipeline.",
+    "relation": "Consumer-side AI study tool; not multi-agent, but defines student expectation baseline."
+  },
+  {
+    "name": "MAST (Berkeley, Multi-Agent System Traces)",
+    "type": "Benchmark + failure taxonomy",
+    "architecture": "~200 traces analysed → taxonomy of failure modes: system design, task verification, inter-agent misalignment.",
+    "relation": "Diagnostic tool — tells you why a MAI/MIRACLE multi-agent system might fail in classroom deployment."
+  }
+]

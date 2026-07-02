@@ -1,0 +1,68 @@
+[
+  {
+    "year": 1989,
+    "label": "Self-Regulated Learning (Zimmerman)",
+    "layer": "theory",
+    "note": "Origin of cyclical SRL model."
+  },
+  {
+    "year": 2018,
+    "label": "SSRL formalised (Järvelä et al.)",
+    "layer": "theory",
+    "note": "Socially Shared Regulation of Learning framework."
+  },
+  {
+    "year": 2023,
+    "label": "HASRL model (Järvelä, Nguyen, Hadwin, BJET)",
+    "layer": "theory",
+    "note": "Hybrid human-AI shared regulation + 'trigger' concept introduced."
+  },
+  {
+    "year": 2024,
+    "label": "MAI proactive agent (Edwards et al., demo paper)",
+    "layer": "agent",
+    "note": "Oulu demo: agent raises metacognitive awareness, does not regulate FOR group."
+  },
+  {
+    "year": 2024,
+    "label": "CocoNote (Quizlet consumer)",
+    "layer": "ecosystem",
+    "note": "Consumer AI study tool baseline (1M+ downloads)."
+  },
+  {
+    "year": 2024,
+    "label": "SimClass (Tsinghua MAIC, NAACL 2025)",
+    "layer": "ecosystem",
+    "note": "Multi-agent classroom simulator with emergent group behaviours."
+  },
+  {
+    "year": 2025,
+    "label": "Khanmigo at scale (~700K K-12 students)",
+    "layer": "deployment",
+    "note": "Commercial 1:1 LLM tutor; 40K -> 700K in one school year."
+  },
+  {
+    "year": 2025,
+    "label": "Microsoft Agent Framework (Oct 2025)",
+    "layer": "substrate",
+    "note": "AutoGen + Semantic Kernel unified; MCP + A2A protocol support."
+  },
+  {
+    "year": 2026,
+    "label": "MASS (Google, ICLR 2026)",
+    "layer": "design",
+    "note": "Prompt + topology co-optimisation; debunking naive agent-counting."
+  },
+  {
+    "year": 2026,
+    "label": "MIRACLE multi-agent classroom system",
+    "layer": "ecosystem",
+    "note": "Multi-agent orchestration layer on top of MAI; simulator-validated."
+  },
+  {
+    "year": 2026,
+    "label": "Multi-Agent Classroom OS (live deployments)",
+    "layer": "deployment",
+    "note": "CocoRobo SMART (1,400+ schools), Khanmigo (>700K), OLI Torus."
+  }
+]

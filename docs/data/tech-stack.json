@@ -1,0 +1,112 @@
+[
+  {
+    "system": "MAI (Metacognitive AI agent)",
+    "institution": "",
+    "type": "Proactive single-agent SRL scaffold",
+    "agent_architecture": "Single agent, trigger-recognition",
+    "data_inputs": "Group multimodal streams (talk, affect, log)",
+    "regulation_mechanism": "HASRL trigger prompts",
+    "multimodal_support": "Yes (Oulu pipeline)",
+    "open_source_status": "Pending (paper-only)",
+    "relation_to_mai_miracle": "This IS the MAI reference system. Co-evolutionary partner, not controller."
+  },
+  {
+    "system": "Khanmigo",
+    "institution": "",
+    "type": "LLM tutor + teacher-assistant + district analytics",
+    "agent_architecture": "Single-agent per student + admin agent",
+    "data_inputs": "KA skill history, conversation log",
+    "regulation_mechanism": "Socratic prompting + structured skill feedback",
+    "multimodal_support": "Text-first",
+    "open_source_status": "Closed",
+    "relation_to_mai_miracle": "Closest deployed commercial cousin of MAI at scale; differs in being one-to-one tutor rather than group-regulation agent. ~700K K-12 students in 2024–25."
+  },
+  {
+    "system": "AutoGen v0.4 / Microsoft Agent Framework",
+    "institution": "",
+    "type": "Multi-agent orchestration SDK",
+    "agent_architecture": "Async, event-driven; group chat + manager",
+    "data_inputs": "Tool calls, MCP servers, OpenAPI",
+    "regulation_mechanism": "Human-in-the-loop + termination policy",
+    "multimodal_support": "Pluggable via tools",
+    "open_source_status": "Yes (MIT)",
+    "relation_to_mai_miracle": "Generic substrate — not education-specific, but the orchestration layer a MAI-class system would run on."
+  },
+  {
+    "system": "MASS (Google)",
+    "institution": "",
+    "type": "Automated MAS design framework",
+    "agent_architecture": "Prompt + topology co-optimisation",
+    "data_inputs": "Task benchmarks",
+    "regulation_mechanism": "Search over agent prompts + topology",
+    "multimodal_support": "N/A (design-time)",
+    "open_source_status": "Paper-only",
+    "relation_to_mai_miracle": "Indirect: validates that prompt-then-topology optimisation matters; informs how a multi-agent classroom should be designed before deployment."
+  },
+  {
+    "system": "SimClass (Tsinghua MAIC)",
+    "institution": "",
+    "type": "Multi-agent classroom simulator",
+    "agent_architecture": "Teacher + peers + manager + assistant",
+    "data_inputs": "Course scripts, learner actions",
+    "regulation_mechanism": "Manager agent speaker selection",
+    "multimodal_support": "Text",
+    "open_source_status": "Yes (GitHub THU-MAIC/SimClass)",
+    "relation_to_mai_miracle": "Direct conceptual sibling of MIRACLE — multi-agent classroom simulation with student peers as agents."
+  },
+  {
+    "system": "CTAT / Cognitive Tutor (LearnLab)",
+    "institution": "",
+    "type": "Authoring tools for Intelligent Tutoring Systems",
+    "agent_architecture": "Example-tracing model-tracing tutors",
+    "data_inputs": "Step-level student actions",
+    "regulation_mechanism": "Step-by-step feedback hints",
+    "multimodal_support": "Domain-specific",
+    "open_source_status": "Yes (CTAT)",
+    "relation_to_mai_miracle": "Oldest line (since 1990s) — what MAI's \"proactive\" model adds is metacognitive trigger recognition on top of step-level ITS feedback."
+  },
+  {
+    "system": "OLI / Torus + DataShop (CMU)",
+    "institution": "",
+    "type": "Online course platform + learning analytics warehouse",
+    "agent_architecture": "Course delivery + analytics pipeline",
+    "data_inputs": "Interaction logs, clickstreams",
+    "regulation_mechanism": "Course-internal scaffolds",
+    "multimodal_support": "Video/text/code",
+    "open_source_status": "Mixed",
+    "relation_to_mai_miracle": "LA infrastructure layer MAI/MIRACLE-style systems plug into."
+  },
+  {
+    "system": "CocoRobo SMART Suite",
+    "institution": "",
+    "type": "AI-native classroom OS (commercial)",
+    "agent_architecture": "Multi-product suite with embedded agents/workflows",
+    "data_inputs": "PPT/HTML courseware, PIN co-screen, classroom streams",
+    "regulation_mechanism": "Just-enough scaffolding at crucial points",
+    "multimodal_support": "Yes (text, image, interactive H5)",
+    "open_source_status": "Closed",
+    "relation_to_mai_miracle": "Closest \"Multi-Agent Classroom OS\" reference deployment. Explicitly positions AI as team-partner for student thinking, not answer-vendor. MAI could be the metacognition layer on top of CocoClass; MIRACLE the simulator."
+  },
+  {
+    "system": "Coconote (Quizlet)",
+    "institution": "",
+    "type": "AI note-taker / study-tool consumer app",
+    "agent_architecture": "Single LLM pipeline",
+    "data_inputs": "Audio lecture",
+    "regulation_mechanism": "Generated quizzes + flashcards",
+    "multimodal_support": "Audio -> text",
+    "open_source_status": "Closed",
+    "relation_to_mai_miracle": "Consumer-side AI study tool; not multi-agent, but defines student expectation baseline."
+  },
+  {
+    "system": "MAST (Berkeley, Multi-Agent System Traces)",
+    "institution": "",
+    "type": "Benchmark + failure taxonomy",
+    "agent_architecture": "",
+    "data_inputs": "",
+    "regulation_mechanism": "",
+    "multimodal_support": "",
+    "open_source_status": "",
+    "relation_to_mai_miracle": "Diagnostic tool — tells you why a MAI/MIRACLE multi-agent system might fail in classroom deployment."
+  }
+]

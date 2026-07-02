@@ -1,0 +1,90 @@
+[
+  {
+    "id": "https://oulurepo.oulu.fi/handle/10024/59855",
+    "title": "Hybrid Intelligence Research at the University of Oulu — Position Paper 2025",
+    "url": "https://oulurepo.oulu.fi/handle/10024/59855",
+    "institution": "University of Oulu (HI Programme)",
+    "summary": "Position paper formalising HI as co-evolution paradigm; four research themes include \"Understanding humans in AI interaction.\" Anchors Oulu's 2023–2028 flagship. Directly feeds HASRL + MAI research streams.",
+    "tags": []
+  },
+  {
+    "id": "https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13325",
+    "title": "Human and artificial intelligence collaboration for socially shared regulation in learning (Järvelä, Nguyen, Hadwin, 2023, BJET)",
+    "url": "https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13325",
+    "institution": "University of Oulu",
+    "summary": "Introduces HASRL model + \"trigger\" concept. The seminal citation for hybrid human-AI regulation of learning — explicitly cited as foundation of MAI agent design.",
+    "tags": []
+  },
+  {
+    "id": "https://learning-analytics.info/index.php/JLA/article/view/8393",
+    "title": "Deliberative Interactions for Socially Shared Regulation in Collaborative Learning: An AI-Driven Learning Analytics Study (Dang, Nguyen, Järvelä, 2024, JLA 11(3))",
+    "url": "https://learning-analytics.info/index.php/JLA/article/view/8393",
+    "institution": "University of Oulu",
+    "summary": "Three-layer human-AI collaborative analysis on 2,125 utterances → identifies Plan-and-Implementation (adaptive) vs Trials-and-Failure (maladaptive) deliberation patterns. Empirical proof point that LA+AI can detect regulatory failure.",
+    "tags": []
+  },
+  {
+    "id": "https://oulurepo.oulu.fi/bitstream/handle/10024/58874/nbnfioulu-202510216402.pdf",
+    "title": "MAI: Supporting Regulation of Learning with a Proactive AI Agent in Collaborative Learning Contexts (Edwards et al., 2025)",
+    "url": "https://oulurepo.oulu.fi/bitstream/handle/10024/58874/nbnfioulu-202510216402.pdf",
+    "institution": "University of Oulu",
+    "summary": "System paper for MAI itself. Proactive agent recognises trigger contexts and prompts metacognitive awareness — agent does not regulate for the group, but raises awareness so they self-regulate. Direct implementation of HASRL.",
+    "tags": []
+  },
+  {
+    "id": "https://hai.stanford.edu/assets/files/hai-stanford-accelerator-for-learning-rfi-response-advancing-ai-in-education.pdf",
+    "title": "RFI: Advancing AI in Education — Stanford HAI + Accelerator for Learning Response (Aug 2025)",
+    "url": "https://hai.stanford.edu/assets/files/hai-stanford-accelerator-for-learning-rfi-response-advancing-ai-in-education.pdf",
+    "institution": "Stanford HAI / Accelerator for Learning",
+    "summary": "Federal policy response noting only 35 RCTs on GenAI-in-education exist worldwide. Calls for \"research-practice ecosystem\" and broadening vision beyond individualised remediation — policy framing, not technical contribution, but signals US Department of Education priorities.",
+    "tags": []
+  },
+  {
+    "id": "https://hai.stanford.edu/news/data-centered-approach-education-ai",
+    "title": "A Data-Centered Approach to Education AI (Subramonyam, Tan, Lee, Wang, 2024)",
+    "url": "https://hai.stanford.edu/news/data-centered-approach-education-ai",
+    "institution": "Stanford HAI / GSE",
+    "summary": "Participatory-AI framework with 10 stakeholder meetings; \"Is a Seat at the Table Enough?\" (arXiv 2311.05792) shows ML-for-ed tools need teacher/student co-design from data spec stage.",
+    "tags": []
+  },
+  {
+    "id": "https://aclanthology.org/2025.naacl-long.520.pdf",
+    "title": "Simulating Classroom Education with LLM-Empowered Agents (SimClass) (Zhang et al., NAACL 2025)",
+    "url": "https://aclanthology.org/2025.naacl-long.520.pdf",
+    "institution": "Tsinghua University (MAIC)",
+    "summary": "Multi-agent classroom: teacher / classmate / manager / assistant agents. Demonstrates emergent group behaviours and Flanders Interaction Analysis fit. Tsinghua MAIC, but matches \"AI classroom system\" keyword directly.",
+    "tags": []
+  },
+  {
+    "id": "https://genai-personalization.github.io/assets/papers/GenAIRecP2026/NainaChaturvedi_AgenticOrchestration.pdf",
+    "title": "Agentic Orchestration for Adaptive Educational Recommendations (Chaturvedi & Gunawardena, WSDM 2026)",
+    "url": "https://genai-personalization.github.io/assets/papers/GenAIRecP2026/NainaChaturvedi_AgenticOrchestration.pdf",
+    "institution": "Rutgers University",
+    "summary": "18+ coordinated agents in 4-tier hierarchy (perception / domain / coordination / strategy). Deployed on 6,000-user platform. Closest published blueprint to a \"multi-agent classroom OS.\"",
+    "tags": []
+  },
+  {
+    "id": "https://arxiv.org/html/2501.00083",
+    "title": "AI Agent for Education: Von Neumann Multi-Agent System Framework (Jiang et al., GCCCE 2024)",
+    "url": "https://arxiv.org/html/2501.00083",
+    "institution": "East China Normal University",
+    "summary": "Architectural framework decomposing each education agent into control / logic / storage / I/O units; distinguishes outer human-knowledge circulation vs inner agent-swarm intelligence circulation.",
+    "tags": []
+  },
+  {
+    "id": "https://arxiv.org/html/2506.23774v1",
+    "title": "Leveraging a Multi-Agent LLM-Based System to Educate Teachers in Hate Incidents Management (ARISE) (Gajewska et al., 2025)",
+    "url": "https://arxiv.org/html/2506.23774v1",
+    "institution": "Warsaw University of Technology",
+    "summary": "Multi-agent system for teacher training: persona-modelled students, retrieval-augmented prompting. Application example of multi-agent architecture for teacher PD rather than K-12 student learning.",
+    "tags": []
+  },
+  {
+    "id": "https://arxiv.org/abs/2502.02533",
+    "title": "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies (MASS) (ICLR 2026, arXiv 2502.02533)",
+    "url": "https://arxiv.org/abs/2502.02533",
+    "institution": "Google Research",
+    "summary": "Three-stage prompt+topology optimisation. Key finding: \"optimise individual agents before composition\"; an optimised single agent with Self-Consistency beats a 9-agent SC with default prompts. Direct evidence that naive agent-counting hurts.",
+    "tags": []
+  }
+]
