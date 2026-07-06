@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-02T13:54:00.989494+00:00",
-  "last_updated": "2026-07-02T13:54:00.939754+00:00",
-  "latest_week_tag": "2026-W27",
-  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W27.md",
-  "github_report_path": "reports/weekly/2026-W27.md",
+  "generated_at": "2026-07-06T01:04:39.620021+00:00",
+  "last_updated": "2026-07-06T01:04:38.604440+00:00",
+  "latest_week_tag": "2026-W28",
+  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W28.md",
+  "github_report_path": "reports/weekly/2026-W28.md",
   "totals": {
     "papers": 41,
     "systems": 10,
@@ -117,7 +117,7 @@
       "conf-bjet": 1,
       "search_fallback": 0
     },
-    "last_run": "2026-07-02T13:54:00.940577+00:00",
+    "last_run": "2026-07-06T01:04:38.617166+00:00",
     "registry_version": "1.2.0"
   },
   "system_cards": [

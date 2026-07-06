@@ -1,6 +1,6 @@
 {
-  "ran_at": "2026-07-02T13:54:00.940577+00:00",
-  "week_tag": "2026-W27",
+  "ran_at": "2026-07-06T01:04:38.617166+00:00",
+  "week_tag": "2026-W28",
   "registry_version": "1.2.0",
   "source_counts": {
     "arxiv-abs-2308.08155": 1,
@@ -99,14 +99,14 @@
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "weekly_report": "reports/weekly/2026-W27.md",
+  "weekly_report": "reports/weekly/2026-W28.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-07-02T13:54:00.989494+00:00",
+  "dashboard_summary_updated_at": "2026-07-06T01:04:39.620021+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "e514bd649e946a43af4aff5f4accf8744ca70677",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": false
 }
