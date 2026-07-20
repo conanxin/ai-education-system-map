@@ -1,6 +1,6 @@
 {
-  "ran_at": "2026-07-13T01:06:21.436992+00:00",
-  "week_tag": "2026-W29",
+  "ran_at": "2026-07-20T01:04:49.361362+00:00",
+  "week_tag": "2026-W30",
   "registry_version": "1.2.0",
   "source_counts": {
     "arxiv-abs-2308.08155": 1,
@@ -18,7 +18,7 @@
     "cocorobo-smart": 1,
     "khanmigo": 1,
     "ka-blog": 1,
-    "cmu-learnlab": 1,
+    "cmu-learnlab": 0,
     "stanford-ai-ed": 1,
     "stanford-hai": 1,
     "ms-autogen": 1,
@@ -76,9 +76,6 @@
     "ka-blog": [
       "https://blog.khanacademy.org/"
     ],
-    "cmu-learnlab": [
-      "https://learnlab.org/"
-    ],
     "stanford-ai-ed": [
       "https://acceleratelearning.stanford.edu/overview/ai-learning"
     ],
@@ -93,20 +90,20 @@
     ]
   },
   "entity_changes": {
-    "papers_added": 31,
+    "papers_added": 30,
     "systems_updated": 8,
     "people_updated": 5,
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "weekly_report": "reports/weekly/2026-W29.md",
+  "weekly_report": "reports/weekly/2026-W30.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-07-13T01:06:21.660886+00:00",
+  "dashboard_summary_updated_at": "2026-07-20T01:04:49.591328+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "c3489895b95559951a8f0df491ff901e52af6517",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": false
 }
