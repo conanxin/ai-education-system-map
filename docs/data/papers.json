@@ -86,7 +86,7 @@
     "institution": "Google Research",
     "summary": "Three-stage prompt+topology optimisation. Key finding: \"optimise individual agents before composition\"; an optimised single agent with Self-Consistency beats a 9-agent SC with default prompts. Direct evidence that naive agent-counting hurts.",
     "tags": [],
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2308.08155",
@@ -101,7 +101,7 @@
     "source_id": "arxiv-abs-2308.08155",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2512.08296",
@@ -116,7 +116,7 @@
     "source_id": "arxiv-abs-2512.08296",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2605.12923",
@@ -131,7 +131,7 @@
     "source_id": "arxiv-abs-2605.12923",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://cocorobo.hk/research",
@@ -145,7 +145,7 @@
     "source_id": "cocorobo-research",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://cocorobo.hk/smart",
@@ -159,7 +159,7 @@
     "source_id": "cocorobo-smart",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://www.khanmigo.ai/",
@@ -173,7 +173,7 @@
     "source_id": "khanmigo",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://blog.khanacademy.org/",
@@ -187,7 +187,7 @@
     "source_id": "ka-blog",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://learnlab.org/",
@@ -201,7 +201,7 @@
     "source_id": "cmu-learnlab",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://acceleratelearning.stanford.edu/overview/ai-learning",
@@ -215,7 +215,7 @@
     "source_id": "stanford-ai-ed",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://hai.stanford.edu/",
@@ -229,7 +229,7 @@
     "source_id": "stanford-hai",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://www.microsoft.com/en-us/research/project/autogen/",
@@ -243,7 +243,7 @@
     "source_id": "ms-autogen",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/",
@@ -257,7 +257,7 @@
     "source_id": "ms-agent-framework",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-jarvela",
@@ -271,7 +271,7 @@
     "source_id": "p-jarvela",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-nguyen",
@@ -285,7 +285,7 @@
     "source_id": "p-nguyen",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-edwards",
@@ -299,7 +299,7 @@
     "source_id": "p-edwards",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-sobocinski",
@@ -313,7 +313,7 @@
     "source_id": "p-sobocinski",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-tormanen",
@@ -327,7 +327,7 @@
     "source_id": "p-tormanen",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-koedinger",
@@ -341,7 +341,7 @@
     "source_id": "p-koedinger",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-khan",
@@ -355,7 +355,7 @@
     "source_id": "p-khan",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-chiwang",
@@ -369,7 +369,7 @@
     "source_id": "p-chiwang",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-shuangli",
@@ -383,7 +383,7 @@
     "source_id": "p-shuangli",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-haiyangxin",
@@ -397,7 +397,7 @@
     "source_id": "p-haiyangxin",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-chingsingchai",
@@ -411,7 +411,7 @@
     "source_id": "p-chingsingchai",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "p-harisubramonyam",
@@ -425,7 +425,7 @@
     "source_id": "p-harisubramonyam",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "conf-aied",
@@ -439,7 +439,7 @@
     "source_id": "conf-aied",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "conf-isls",
@@ -453,7 +453,7 @@
     "source_id": "conf-isls",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "conf-lak",
@@ -467,7 +467,7 @@
     "source_id": "conf-lak",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "conf-edm",
@@ -481,7 +481,7 @@
     "source_id": "conf-edm",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "conf-cui",
@@ -495,7 +495,7 @@
     "source_id": "conf-cui",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   },
   {
     "id": "conf-bjet",
@@ -509,6 +509,6 @@
     "source_id": "conf-bjet",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-08-03T01:04:19.097434+00:00"
+    "last_seen": "2026-08-10T01:03:04.533863+00:00"
   }
 ]

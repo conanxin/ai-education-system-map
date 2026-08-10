@@ -1,6 +1,6 @@
 {
-  "ran_at": "2026-08-03T01:04:19.110828+00:00",
-  "week_tag": "2026-W32",
+  "ran_at": "2026-08-10T01:03:04.666242+00:00",
+  "week_tag": "2026-W33",
   "registry_version": "1.2.0",
   "source_counts": {
     "arxiv-abs-2308.08155": 1,
@@ -99,14 +99,14 @@
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "weekly_report": "reports/weekly/2026-W32.md",
+  "weekly_report": "reports/weekly/2026-W33.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-08-03T01:04:19.206767+00:00",
+  "dashboard_summary_updated_at": "2026-08-10T01:03:05.588412+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "58f96428cbb9749ae6b798c8557f2a584fd339e9",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": false
 }
