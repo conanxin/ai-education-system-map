@@ -1,6 +1,6 @@
 {
-  "ran_at": "2026-09-14T01:02:57.739457+00:00",
-  "week_tag": "2026-W38",
+  "ran_at": "2026-09-21T01:03:28.605924+00:00",
+  "week_tag": "2026-W39",
   "registry_version": "1.2.0",
   "source_counts": {
     "arxiv-abs-2308.08155": 1,
@@ -94,19 +94,19 @@
   },
   "entity_changes": {
     "papers_added": 31,
-    "systems_updated": 8,
+    "systems_updated": 7,
     "people_updated": 5,
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "weekly_report": "reports/weekly/2026-W38.md",
+  "weekly_report": "reports/weekly/2026-W39.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-09-14T01:02:58.692451+00:00",
+  "dashboard_summary_updated_at": "2026-09-21T01:03:28.775751+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "7546476babf23c10e8c45ca75bc9edba440dfc66",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": false
 }

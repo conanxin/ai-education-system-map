@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-14T01:02:57.737689+00:00",
-  "week_tag": "2026-W38",
-  "source_report": "reports/weekly/2026-W38.md",
-  "github_report_path": "reports/weekly/2026-W38.md",
-  "page_report_url": "/ai-education-system-map/reports/weekly/2026-W38.md",
+  "updated_at": "2026-09-21T01:03:28.593105+00:00",
+  "week_tag": "2026-W39",
+  "source_report": "reports/weekly/2026-W39.md",
+  "github_report_path": "reports/weekly/2026-W39.md",
+  "page_report_url": "/ai-education-system-map/reports/weekly/2026-W39.md",
   "new_papers": 31,
-  "new_systems": 8,
+  "new_systems": 7,
   "new_people": 5,
   "tech_stack_updated": 0,
   "fallback_status": {
@@ -99,7 +99,7 @@
   },
   "entity_changes": {
     "papers_added": 31,
-    "systems_updated": 8,
+    "systems_updated": 7,
     "people_updated": 5,
     "tech_stack_updated": 0,
     "timeline_extended": 0
