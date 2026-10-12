@@ -1,5 +1,5 @@
 {
-  "ran_at": "2026-10-12T01:04:01.591289+00:00",
+  "ran_at": "2026-10-12T01:06:18.469513+00:00",
   "week_tag": "2026-W42",
   "registry_version": "1.2.0",
   "source_counts": {
@@ -102,11 +102,11 @@
   "weekly_report": "reports/weekly/2026-W42.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-10-12T01:04:01.765803+00:00",
+  "dashboard_summary_updated_at": "2026-10-12T01:06:18.533490+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "2869cbcaedc9666c3bcd472a128dcfe3746ee265",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": false
 }
