@@ -602,9 +602,15 @@ function buildSystemCard(c) {
         el("div", {class: "sys-badges"}, badges)
     ]);
     card.appendChild(header);
+    if (c.lifecycle_status==="archived_unmaintained") {
+        card.appendChild(el("p",{class:"sys-lifecycle-warning"},
+          "⚠ AutoGen 原仓库已归档，不再维护或提供安全修复；新项目请查看微软继任框架。"));
+    }
     if (c.type) card.appendChild(el("p", {class:"sys-type"}, c.type));
     if (c.relation_to_mai_miracle) card.appendChild(
         el("p", {class: "sys-context"}, c.relation_to_mai_miracle));
+    if (c.source_limit_note) card.appendChild(
+        el("p", {class:"sys-evidence-limits"}, c.source_limit_note));
     const detail = el("details", {class: "sys-details"});
     detail.appendChild(el("summary", {}, "架构与项目资料"));
     for (const [key, value] of [

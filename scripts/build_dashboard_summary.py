@@ -241,6 +241,8 @@ def main(argv: list[str]) -> int:
             "source_url": s.get("source_url", ""),
             "source_verification": s.get("source_verification", ""),
             "source_verified_at": s.get("source_verified_at", ""),
+            "lifecycle_status": s.get("lifecycle_status", ""),
+            "source_limit_note": s.get("source_limit_note", ""),
             "additional_source_links": s.get("additional_source_links", []),
             "categories": classify_system_card(s),
         })

@@ -97,6 +97,24 @@ retains editorial_reviewed_at; subsequent revisions require independent
 primary-source verification. The Python unittest suite checks paper IDs,
 system names, evidence categories, and canonical data/dashboard consistency.
 
+## P45 system provenance and software lifecycle review
+
+All ten existing system cards now have official source URLs, provenance dates
+and a distinct statement of what those URLs actually establish. P45 reviewed
+Khanmigo, archived AutoGen, CTAT, CocoRobo SMART and UC Berkeley MAST.
+AutoGen is **archived and not supported**; its official Microsoft Agent
+Framework successor has its own separate link. CTAT's free academic/research
+use must not be mistaken for proof of an open source code license. The MAST
+record describes a general multi-agent failure taxonomy, not a deployed
+education product. CocoRobo's platform capabilities remain vendor claims,
+not independently replicated learning outcomes.
+
+Cards expose audited primary-source links, available successor/research links,
+and explicit caveats. The canonical sources remain docs/data/systems.json
+and docs/data/tech-stack.json; the dashboard builder copies the provenance
+fields. Updating a source URL never alters the counts for 12 scholarly papers,
+29 other research sources, 10 system records or 16 people.
+
 ## Structure
 
 ```

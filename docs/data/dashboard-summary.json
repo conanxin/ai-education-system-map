@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T10:41:31.519819+00:00",
+  "generated_at": "2026-10-26T10:54:25.865257+00:00",
   "last_updated": "2026-10-26T01:01:48.800339+00:00",
   "latest_week_tag": "2026-W44",
   "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
@@ -130,6 +130,8 @@
       "source_url": "https://oulurepo.oulu.fi/handle/10024/58874",
       "source_verification": "official_primary_source_page",
       "source_verified_at": "2026-10-26",
+      "lifecycle_status": "",
+      "source_limit_note": "",
       "additional_source_links": [],
       "categories": [
         "SSRL / HASRL",
@@ -139,13 +141,15 @@
     {
       "system": "Khanmigo",
       "institution": "",
-      "type": "LLM tutor + teacher-assistant + district analytics",
-      "relation_to_mai_miracle": "Closest deployed commercial cousin of MAI at scale; differs in being one-to-one tutor rather than group-regulation agent. ~700K K-12 students in 2024–25.",
-      "agent_architecture": "Single-agent per student + admin agent",
-      "open_source_status": "Closed",
+      "type": "Khan Academy 的 AI 学习辅导及教师备课工具（商业产品）",
+      "relation_to_mai_miracle": "与 MAI 的共同研究问题是学习者主动调节；Khanmigo 以引导式辅导为主，MAI 侧重合作学习的元认知提示。这只是编辑性比较。",
+      "agent_architecture": "官方披露教师工具和学习者引导式对话；内部模型与微服务技术未经本次核对",
+      "open_source_status": "商业服务；未确认为开源",
       "source_url": "https://www.khanmigo.ai/",
-      "source_verification": "",
-      "source_verified_at": "",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "lifecycle_status": "commercial_active",
+      "source_limit_note": "产品能力和使用条件依照 Khan Academy 官网；不凭官网宣传推断独立学习成效、用户数或内部技术架构。",
       "additional_source_links": [],
       "categories": [
         "Tutor",
@@ -155,14 +159,25 @@
     {
       "system": "AutoGen v0.4 / Microsoft Agent Framework",
       "institution": "",
-      "type": "Multi-agent orchestration SDK",
-      "relation_to_mai_miracle": "Generic substrate — not education-specific, but the orchestration layer a MAI-class system would run on.",
-      "agent_architecture": "Async, event-driven; group chat + manager",
-      "open_source_status": "Yes (MIT)",
-      "source_url": "https://arxiv.org/abs/2308.08155",
-      "source_verification": "",
-      "source_verified_at": "",
-      "additional_source_links": [],
+      "type": "AutoGen：已归档的多智能体开发框架；Microsoft Agent Framework 为继任项目",
+      "relation_to_mai_miracle": "通用多智能体编排方法的历史技术参照，并非已经证实用于 MAI 或 MIRACLE 的底层引擎。",
+      "agent_architecture": "AutoGen v0.4: asynchronous messaging, AgentChat/Core; archived. Agent Framework is separate maintained successor.",
+      "open_source_status": "AutoGen source archive available; no new security fixes or support",
+      "source_url": "https://github.com/microsoft/autogen",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "lifecycle_status": "archived_unmaintained",
+      "source_limit_note": "2026-10-26 微软 GitHub 官方 README 明示 AutoGen 已归档、不再提供修复或支持；旧论文不能充当现行框架的维护状态证据。",
+      "additional_source_links": [
+        {
+          "label": "微软继任框架（官方）",
+          "url": "https://github.com/microsoft/agent-framework"
+        },
+        {
+          "label": "AutoGen 研究论文",
+          "url": "https://arxiv.org/abs/2308.08155"
+        }
+      ],
       "categories": [
         "Infrastructure",
         "Multi-Agent"
@@ -178,6 +193,8 @@
       "source_url": "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/",
       "source_verification": "official_primary_source_page",
       "source_verified_at": "2026-10-26",
+      "lifecycle_status": "",
+      "source_limit_note": "",
       "additional_source_links": [
         {
           "label": "arXiv 论文原文",
@@ -198,6 +215,8 @@
       "source_url": "https://aclanthology.org/2025.naacl-long.520/",
       "source_verification": "official_primary_source_page",
       "source_verified_at": "2026-10-26",
+      "lifecycle_status": "",
+      "source_limit_note": "",
       "additional_source_links": [
         {
           "label": "作者项目仓库",
@@ -212,14 +231,21 @@
     {
       "system": "CTAT / Cognitive Tutor (LearnLab)",
       "institution": "",
-      "type": "Authoring tools for Intelligent Tutoring Systems",
-      "relation_to_mai_miracle": "Oldest line (since 1990s) — what MAI's \"proactive\" model adds is metacognitive trigger recognition on top of step-level ITS feedback.",
-      "agent_architecture": "Example-tracing model-tracing tutors",
-      "open_source_status": "Yes (CTAT)",
-      "source_url": "",
-      "source_verification": "",
-      "source_verified_at": "",
-      "additional_source_links": [],
+      "type": "CMU 智能导师制作工具：Example-Tracing / Cognitive Tutor",
+      "relation_to_mai_miracle": "面向个体问题求解的智能导师与关注合作学习调节的 HASRL/MAI，可用于历史方法比较；不据此推断直接技术继承。",
+      "agent_architecture": "Example-Tracing Tutors and rule-based Cognitive Tutors",
+      "open_source_status": "免费研究使用（CMU 官网），并不等同开源许可证",
+      "source_url": "https://cdn.ctat.cs.cmu.edu/CMUCTAT/CTAT/docs/",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "lifecycle_status": "academic_authoring_tool",
+      "source_limit_note": "CMU 官方说明 CTAT 可免费用于研究用途，但这不等于源代码已经开源；本次未评估 CTAT 与现代 LLM 系统的实测效果。",
+      "additional_source_links": [
+        {
+          "label": "CMU LearnLab 介绍",
+          "url": "https://learnlab.org/enabling-technologies/"
+        }
+      ],
       "categories": [
         "Tutor",
         "Infrastructure"
@@ -235,6 +261,8 @@
       "source_url": "https://oli.cmu.edu/",
       "source_verification": "official_primary_source_page",
       "source_verified_at": "2026-10-26",
+      "lifecycle_status": "",
+      "source_limit_note": "",
       "additional_source_links": [
         {
           "label": "CMU DataShop 项目来源",
@@ -248,14 +276,21 @@
     {
       "system": "CocoRobo SMART Suite",
       "institution": "",
-      "type": "AI-native classroom OS (commercial)",
-      "relation_to_mai_miracle": "Closest \"Multi-Agent Classroom OS\" reference deployment. Explicitly positions AI as team-partner for student thinking, not answer-vendor. MAI could be the metacognition layer on top of CocoClass; MIRACLE the simulator.",
-      "agent_architecture": "Multi-product suite with embedded agents/workflows",
-      "open_source_status": "Closed",
-      "source_url": "https://cocorobo.hk/research",
-      "source_verification": "",
-      "source_verified_at": "",
-      "additional_source_links": [],
+      "type": "CocoRobo 官方介绍的多产品 AI-native 教学平台",
+      "relation_to_mai_miracle": "商业课堂平台与研究项目在协作课堂和反馈机制方面存在可比较的问题，但不意味着 MAI/MIRACLE 已并入其产品。",
+      "agent_architecture": "Vendor claims a shared orchestration core for CocoClass/CocoStudy (not independently audited)",
+      "open_source_status": "商用产品；本次未验证代码开源",
+      "source_url": "https://cocorobo.hk/smart",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "lifecycle_status": "vendor_product_suite",
+      "source_limit_note": "部署规模、用户触达和学习成效如有具体数字，应标记‘CocoRobo 官网自报’，不能当作独立教学效果证据。",
+      "additional_source_links": [
+        {
+          "label": "CocoRobo 研究与实践",
+          "url": "https://cocorobo.hk/research"
+        }
+      ],
       "categories": [
         "Multi-Agent",
         "Classroom OS",
@@ -272,6 +307,8 @@
       "source_url": "https://coconote.app/",
       "source_verification": "official_primary_source_page",
       "source_verified_at": "2026-10-26",
+      "lifecycle_status": "",
+      "source_limit_note": "",
       "additional_source_links": [],
       "categories": [
         "Product"
@@ -280,14 +317,25 @@
     {
       "system": "MAST (Berkeley, Multi-Agent System Traces)",
       "institution": "",
-      "type": "Benchmark + failure taxonomy",
-      "relation_to_mai_miracle": "Diagnostic tool — tells you why a MAI/MIRACLE multi-agent system might fail in classroom deployment.",
-      "agent_architecture": "",
-      "open_source_status": "",
-      "source_url": "",
-      "source_verification": "",
-      "source_verified_at": "",
-      "additional_source_links": [],
+      "type": "MAST：Multi-Agent System Failure Taxonomy，研究型失败分类法",
+      "relation_to_mai_miracle": "可为评估教育多智能体工作流的失败模式提供方法学参考，但原论文不是针对 MAI/MIRACLE 课堂效果的直接实验。",
+      "agent_architecture": "Analysis methodology, not an orchestration runtime",
+      "open_source_status": "Academic paper and code available; licensing must be checked separately",
+      "source_url": "https://sky.cs.berkeley.edu/project/mast/",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "lifecycle_status": "research_taxonomy",
+      "source_limit_note": "MAST 原始研究分析通用多智能体执行轨迹；不能把它写成已部署的教育产品或证明课堂学习成果。",
+      "additional_source_links": [
+        {
+          "label": "MAST 原始论文",
+          "url": "https://arxiv.org/abs/2503.13657"
+        },
+        {
+          "label": "MAST 代码与数据",
+          "url": "https://github.com/multi-agent-systems-failure-taxonomy/MAST"
+        }
+      ],
       "categories": [
         "Research Prototype"
       ]

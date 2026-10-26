@@ -586,3 +586,17 @@ section.module { margin-top:66px; padding:32px 34px 34px; border-radius:var(--ra
     .evidence-relation-grid { grid-template-columns:1fr; }
     .evidence-relation { padding:17px; }
 }
+
+/* P45: distinguish verified project identity from claims not independently
+   evaluated. The lifecycle banner is specifically for archived AutoGen. */
+.sys-lifecycle-warning {
+    margin-top:3px; border:1px solid rgba(240,200,147,.38);
+    border-left:3px solid var(--amber); border-radius:6px;
+    padding:11px 13px; background:rgba(240,200,147,.08);
+    font-size:12px; font-weight:700; color:var(--amber); line-height:1.8;
+}
+.sys-evidence-limits {
+    padding:11px 13px; font-size:11.5px; line-height:1.8;
+    border-radius:8px; background:var(--surface-soft);
+    color:var(--text-muted); border:1px solid var(--stroke);
+}

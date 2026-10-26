@@ -13,21 +13,40 @@
   },
   {
     "name": "Khanmigo",
-    "type": "LLM tutor + teacher-assistant + district analytics",
-    "architecture": "Single-conversation LLM (GPT-4 class) with structured access to student skill history; Go services; Langfuse for observability; ~100 internal users across 7 product teams.",
-    "relation": "Closest deployed commercial cousin of MAI at scale; differs in being one-to-one tutor rather than group-regulation agent. ~700K K-12 students in 2024–25.",
+    "type": "Khan Academy 的 AI 学习辅导及教师备课工具（商业产品）",
+    "architecture": "官方介绍引导式学习支持、教师备课和分层教学工具；底层模型/服务编排未在本次官方资料中独立核实。",
+    "relation": "与 MAI 的共同研究问题是学习者主动调节；Khanmigo 以引导式辅导为主，MAI 侧重合作学习的元认知提示。这只是编辑性比较。",
     "last_seen": "2026-10-26T01:01:48.766241+00:00",
     "source_url": "https://www.khanmigo.ai/",
-    "first_seen": "2026-07-02T10:05:41.625241+00:00"
+    "first_seen": "2026-07-02T10:05:41.625241+00:00",
+    "source_verification": "official_primary_source_page",
+    "source_verified_at": "2026-10-26",
+    "lifecycle_status": "commercial_active",
+    "source_limit_note": "产品能力和使用条件依照 Khan Academy 官网；不凭官网宣传推断独立学习成效、用户数或内部技术架构。",
+    "additional_source_links": []
   },
   {
     "name": "AutoGen v0.4 / Microsoft Agent Framework",
-    "type": "Multi-agent orchestration SDK",
-    "architecture": "Asynchronous, event-driven; Studio (no-code) + AgentChat (Python) + Core runtime; unified with Semantic Kernel Oct 2025. MCP + A2A protocol support.",
-    "relation": "Generic substrate — not education-specific, but the orchestration layer a MAI-class system would run on.",
+    "type": "AutoGen：已归档的多智能体开发框架；Microsoft Agent Framework 为继任项目",
+    "architecture": "AutoGen v0.4 是异步、消息驱动的多智能体 SDK；微软当前已停止维护原 AutoGen 仓库，建议使用继任的 Agent Framework。两者不能直接当作同一个已持续更新的软件版本。",
+    "relation": "通用多智能体编排方法的历史技术参照，并非已经证实用于 MAI 或 MIRACLE 的底层引擎。",
     "last_seen": "2026-10-26T01:01:48.766241+00:00",
-    "source_url": "https://arxiv.org/abs/2308.08155",
-    "first_seen": "2026-07-02T10:05:41.625241+00:00"
+    "source_url": "https://github.com/microsoft/autogen",
+    "first_seen": "2026-07-02T10:05:41.625241+00:00",
+    "source_verification": "official_primary_source_page",
+    "source_verified_at": "2026-10-26",
+    "lifecycle_status": "archived_unmaintained",
+    "source_limit_note": "2026-10-26 微软 GitHub 官方 README 明示 AutoGen 已归档、不再提供修复或支持；旧论文不能充当现行框架的维护状态证据。",
+    "additional_source_links": [
+      {
+        "label": "微软继任框架（官方）",
+        "url": "https://github.com/microsoft/agent-framework"
+      },
+      {
+        "label": "AutoGen 研究论文",
+        "url": "https://arxiv.org/abs/2308.08155"
+      }
+    ]
   },
   {
     "name": "MASS (Google)",
@@ -63,9 +82,20 @@
   },
   {
     "name": "CTAT / Cognitive Tutor (LearnLab)",
-    "type": "Authoring tools for Intelligent Tutoring Systems",
-    "architecture": "Example-tracing tutors; non-programmer authoring.",
-    "relation": "Oldest line (since 1990s) — what MAI's \"proactive\" model adds is metacognitive trigger recognition on top of step-level ITS feedback."
+    "type": "CMU 智能导师制作工具：Example-Tracing / Cognitive Tutor",
+    "architecture": "CMU 官方文档介绍示例轨迹导师（可不编程制作）与认知导师（需要认知模型编程），提供逐步反馈及相关创作工具。",
+    "relation": "面向个体问题求解的智能导师与关注合作学习调节的 HASRL/MAI，可用于历史方法比较；不据此推断直接技术继承。",
+    "source_url": "https://cdn.ctat.cs.cmu.edu/CMUCTAT/CTAT/docs/",
+    "source_verification": "official_primary_source_page",
+    "source_verified_at": "2026-10-26",
+    "lifecycle_status": "academic_authoring_tool",
+    "source_limit_note": "CMU 官方说明 CTAT 可免费用于研究用途，但这不等于源代码已经开源；本次未评估 CTAT 与现代 LLM 系统的实测效果。",
+    "additional_source_links": [
+      {
+        "label": "CMU LearnLab 介绍",
+        "url": "https://learnlab.org/enabling-technologies/"
+      }
+    ]
   },
   {
     "name": "OLI / Torus + DataShop (CMU)",
@@ -87,12 +117,22 @@
   },
   {
     "name": "CocoRobo SMART Suite",
-    "type": "AI-native classroom OS (commercial)",
-    "architecture": "5-product suite anchored on SMART principles (Share / Measure / Adaptive / Reconstructive / Team); CocoClass orchestrator with PPT→HTML, PIN co-screen, real-time whole-class diagnosis, embedded agents/workflows (CocoFlow).",
-    "relation": "Closest \"Multi-Agent Classroom OS\" reference deployment. Explicitly positions AI as team-partner for student thinking, not answer-vendor. MAI could be the metacognition layer on top of CocoClass; MIRACLE the simulator.",
+    "type": "CocoRobo 官方介绍的多产品 AI-native 教学平台",
+    "architecture": "厂商页面介绍共享智能核心、CocoClass/CocoStudy 与教师确认的人机协同闭环；具体架构和效果属于厂商自述，未由本次独立审计。",
+    "relation": "商业课堂平台与研究项目在协作课堂和反馈机制方面存在可比较的问题，但不意味着 MAI/MIRACLE 已并入其产品。",
     "last_seen": "2026-10-26T01:01:48.766241+00:00",
-    "source_url": "https://cocorobo.hk/research",
-    "first_seen": "2026-07-02T10:05:41.625241+00:00"
+    "source_url": "https://cocorobo.hk/smart",
+    "first_seen": "2026-07-02T10:05:41.625241+00:00",
+    "source_verification": "official_primary_source_page",
+    "source_verified_at": "2026-10-26",
+    "lifecycle_status": "vendor_product_suite",
+    "source_limit_note": "部署规模、用户触达和学习成效如有具体数字，应标记‘CocoRobo 官网自报’，不能当作独立教学效果证据。",
+    "additional_source_links": [
+      {
+        "label": "CocoRobo 研究与实践",
+        "url": "https://cocorobo.hk/research"
+      }
+    ]
   },
   {
     "name": "Coconote (Quizlet)",
@@ -108,8 +148,23 @@
   },
   {
     "name": "MAST (Berkeley, Multi-Agent System Traces)",
-    "type": "Benchmark + failure taxonomy",
-    "architecture": "~200 traces analysed → taxonomy of failure modes: system design, task verification, inter-agent misalignment.",
-    "relation": "Diagnostic tool — tells you why a MAI/MIRACLE multi-agent system might fail in classroom deployment."
+    "type": "MAST：Multi-Agent System Failure Taxonomy，研究型失败分类法",
+    "architecture": "UC Berkeley 研究团队对 7 个开源 MAS 框架约 200 条执行轨迹进行系统分析，识别 14 类失败模式，包括规格定义、智能体间协调和任务验证问题。",
+    "relation": "可为评估教育多智能体工作流的失败模式提供方法学参考，但原论文不是针对 MAI/MIRACLE 课堂效果的直接实验。",
+    "source_url": "https://sky.cs.berkeley.edu/project/mast/",
+    "source_verification": "official_primary_source_page",
+    "source_verified_at": "2026-10-26",
+    "lifecycle_status": "research_taxonomy",
+    "source_limit_note": "MAST 原始研究分析通用多智能体执行轨迹；不能把它写成已部署的教育产品或证明课堂学习成果。",
+    "additional_source_links": [
+      {
+        "label": "MAST 原始论文",
+        "url": "https://arxiv.org/abs/2503.13657"
+      },
+      {
+        "label": "MAST 代码与数据",
+        "url": "https://github.com/multi-agent-systems-failure-taxonomy/MAST"
+      }
+    ]
   }
 ]
