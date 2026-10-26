@@ -989,7 +989,14 @@ def main(argv: list[str]) -> int:
     week_tag = iso_week_tag()
     weekly_report_path = args.reports_dir / f"{week_tag}.md"
 
+    # The merge counts only genuinely inserted papers; candidate hits may all be
+    # existing records whose last_seen timestamp is refreshed. Preserve that
+    # distinction in every published weekly report and dashboard metric.
+    prior_paper_count = len(papers)
     papers, papers_added = merge_papers(papers, candidates)
+    new_papers = papers[prior_paper_count:]
+    if len(new_papers) != papers_added:
+        raise RuntimeError("New-paper count diverges from appended records")
     systems, systems_updated = merge_systems(systems, candidates)
     people, people_updated = merge_people(people, candidates)
     tech_stack, tech_updated = merge_tech_stack(tech_stack, candidates)
@@ -1020,9 +1027,9 @@ def main(argv: list[str]) -> int:
     save_json(tech_path, tech_stack)
     save_json(timeline_path, timeline)
 
-    write_weekly_report(weekly_report_path, candidates, week_tag, totals, diag)
-    update_latest_snapshot(latest_path, candidates, totals, week_tag, diag)
-    write_manifest(manifest_path, week_tag, candidates, diag, totals)
+    write_weekly_report(weekly_report_path, new_papers, week_tag, totals, diag)
+    update_latest_snapshot(latest_path, new_papers, totals, week_tag, diag)
+    write_manifest(manifest_path, week_tag, new_papers, diag, totals)
 
     # Mirror the per-week MD into docs/reports/weekly/ so it's Pages-served.
     docs_reports_weekly = args.data_dir.parent / "reports" / "weekly"

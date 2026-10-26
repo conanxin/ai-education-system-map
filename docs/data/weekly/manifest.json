@@ -90,7 +90,7 @@
     ]
   },
   "entity_changes": {
-    "papers_added": 30,
+    "papers_added": 0,
     "systems_updated": 7,
     "people_updated": 5,
     "tech_stack_updated": 0,
@@ -105,5 +105,14 @@
   "publish_status": "committed",
   "publish_commit": "3a9f4d1da805d898e432a4f330685078e2cd0313",
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": true,
+  "candidate_hits_revisited": 30,
+  "statistics_correction": {
+    "reason": "P40 count repair: week-44 candidate hits (30) were mistaken for new inserts (0)",
+    "reported_candidate_hits": 30,
+    "prior_reported_new_papers": 30,
+    "corrected_new_papers": 0,
+    "basis": "Git revs 0387172 and 3a9f4d1 have the same 41 tracked paper IDs; today's paper IDs unchanged",
+    "corrected_at": "2026-10-26T08:27:55.661613+00:00"
+  }
 }

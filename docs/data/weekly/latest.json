@@ -4,7 +4,7 @@
   "source_report": "reports/weekly/2026-W44.md",
   "github_report_path": "reports/weekly/2026-W44.md",
   "page_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
-  "new_papers": 30,
+  "new_papers": 0,
   "new_systems": 7,
   "new_people": 5,
   "tech_stack_updated": 0,
@@ -95,25 +95,25 @@
     ]
   },
   "entity_changes": {
-    "papers_added": 30,
+    "papers_added": 0,
     "systems_updated": 7,
     "people_updated": 5,
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "highlights": [
-    "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation",
-    "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies",
-    "Towards a Science of Scaling Agent Systems",
-    "MIRACLE_Multi-Agent Intelligent Regulation to Advance Collaborative Learning Environment",
-    "CocoRobo Research | AI-Native Learning Systems",
-    "CocoRobo SMART | AI-Native Learning Environment &amp; Product Suite",
-    "Meet Khanmigo: Khan Academy&#x27;s AI-powered teaching assistant &amp; tutor",
-    "LearnLab &#8211; Part of the Simon Initiative"
-  ],
+  "highlights": [],
   "insights": [
     "Weekly run completed; only items passing relevance + dedup filters were appended.",
     "See the per-week markdown for the full per-item list.",
     "Source registry used: v1.2.0"
-  ]
+  ],
+  "candidate_hits_revisited": 30,
+  "statistics_correction": {
+    "reason": "P40 count repair: week-44 candidate hits (30) were mistaken for new inserts (0)",
+    "reported_candidate_hits": 30,
+    "prior_reported_new_papers": 30,
+    "corrected_new_papers": 0,
+    "basis": "Git revs 0387172 and 3a9f4d1 have the same 41 tracked paper IDs; today's paper IDs unchanged",
+    "corrected_at": "2026-10-26T08:27:55.661613+00:00"
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T01:01:48.949909+00:00",
+  "generated_at": "2026-10-26T08:27:55.706725+00:00",
   "last_updated": "2026-10-26T01:01:48.800339+00:00",
   "latest_week_tag": "2026-W44",
   "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
@@ -13,7 +13,7 @@
     "active_sources": 30
   },
   "this_week": {
-    "new_papers": 30,
+    "new_papers": 0,
     "new_systems": 7,
     "new_people": 5,
     "fallback_status": {
