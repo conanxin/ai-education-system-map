@@ -68,8 +68,9 @@ class WeeklyNewPapersTest(unittest.TestCase):
         existing = json.loads((ROOT / "docs" / "data" / "papers.json").read_text())
         sample = {
             "title": "P40 Fixture: Unique SSRL Agent Study",
-            "url": "https://example.invalid/p40-unique",
+            "url": "https://arxiv.org/abs/2601.99999",
             "source_id": "p40-fixture",
+            "tags": ["arxiv"],
             "summary": "A new SSRL study for testing only.",
             "year": "2026"
         }
@@ -82,6 +83,23 @@ class WeeklyNewPapersTest(unittest.TestCase):
         self.assertIn(sample["title"], latest["highlights"])
         self.assertIn("New papers added this run: **1**", report)
         self.assertEqual(report.count("### [P40 Fixture:"), 1)
+
+    def test_official_source_url_migration_does_not_create_fake_new_paper(self):
+        official=[{
+            "id":"https://www.oulu.fi/en/hybrid-intelligence",
+            "title":"Hybrid Intelligence | University of Oulu",
+            "url":"https://www.oulu.fi/en/hybrid-intelligence",
+            "source_id":"oulu-hi",
+            "tags":["official-page"],
+            "summary":"Official institutional research programme",
+            "institution":"University of Oulu",
+            "year":"2026",
+        }]
+        diff,manifest,latest,report=self.run_offline(official)
+        self.assertEqual(diff,0)
+        self.assertEqual(manifest["entity_changes"]["papers_added"],0)
+        self.assertEqual(latest["new_papers"],0)
+        self.assertIn("New papers added this run: **0**",report)
 
     def test_merge_counts_reseen_url_and_normalized_title_correctly(self):
         start = [

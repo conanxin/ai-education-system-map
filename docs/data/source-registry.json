@@ -26,9 +26,9 @@
     "description": "Official project pages, lab sites, blog RSS feeds.",
     "strategy": 2,
     "items": [
-      {"id": "oulu-hi", "url": "https://www.oulu.fi/en/university/faculties-and-units/hybrid-intelligence-research-programme", "type": "lab_page", "label": "University of Oulu HI"},
-      {"id": "oulu-lead", "url": "https://www.oulu.fi/en/projects/lead", "type": "lab_page", "label": "University of Oulu LEAD"},
-      {"id": "oulu-let", "url": "https://www.oulu.fi/en/research/research-groups/learning-and-educational-technology-research-lab-let", "type": "lab_page", "label": "Oulu LET Lab"},
+      {"id": "oulu-hi", "url": "https://www.oulu.fi/en/hybrid-intelligence", "type": "lab_page", "label": "University of Oulu HI"},
+      {"id": "oulu-lead", "url": "https://www.oulu.fi/en/projects/learning-regulation-ai-promoting-adaptive-k-12-learners", "type": "lab_page", "label": "University of Oulu LEAD"},
+      {"id": "oulu-let", "url": "https://www.oulu.fi/en/research-groups/let-lab-learning-and-educational-technology-research-lab", "type": "lab_page", "label": "Oulu LET Lab"},
       {"id": "cocorobo-research", "url": "https://cocorobo.hk/research", "type": "lab_page", "label": "CocoRobo Research"},
       {"id": "cocorobo-smart", "url": "https://cocorobo.hk/smart", "type": "lab_page", "label": "CocoRobo SMART"},
       {"id": "khanmigo", "url": "https://www.khanmigo.ai/", "type": "product_page", "label": "Khanmigo"},
@@ -38,7 +38,7 @@
       {"id": "stanford-hai", "url": "https://hai.stanford.edu/", "type": "lab_page", "label": "Stanford HAI"},
       {"id": "ms-autogen", "url": "https://www.microsoft.com/en-us/research/project/autogen/", "type": "project_page", "label": "Microsoft AutoGen"},
       {"id": "ms-agent-framework", "url": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/", "type": "blog", "label": "Microsoft Agent Framework"},
-      {"id": "google-mass", "url": "https://research.google/pubs/multi-agent-system-search-mass/", "type": "project_page", "label": "Google Research MASS"}
+      {"id": "google-mass", "url": "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/", "type": "project_page", "label": "Google Research MASS"}
     ]
   },
   "people_sources": {

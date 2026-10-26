@@ -29,6 +29,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import html as html_module
 import json
 import re
 import shutil
@@ -109,20 +110,27 @@ def iso_week_tag(now: datetime | None = None) -> str:
 # HTTP / parsing helpers
 # ---------------------------------------------------------------------------
 
-def http_get(url: str, timeout: float = 5.0) -> str | None:
-    """Plain stdlib GET. Returns body string or None on transport error.
-    Default timeout is intentionally tight (5s) so the registry's 50+ sources
-    don't blow past cron's 5-minute ceiling."""
+def http_get(url: str, timeout: float = 7.0,
+             *, errors: list[str] | None = None) -> str | None:
+    """Text-only bounded fetch. Report failures to the caller, never pretend
+    a 404/timeout/challenge is a legitimate zero-result data source."""
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "HermesBot/1.2 (+ai-education-system-map)"})
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            ct = r.headers.get("content-type", "")
-            raw = r.read()
-            # Don't try to parse binary responses.
-            if "html" not in ct and "xml" not in ct and "json" not in ct and "text" not in ct and "atom" not in ct:
+        req = urllib.request.Request(
+            url, headers={"User-Agent": "HermesBot/1.2 (+ai-education-system-map)"})
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            content_type = response.headers.get("content-type", "").lower()
+            if not any(kind in content_type for kind in ("html", "xml", "json", "text", "atom")):
+                if errors is not None:
+                    errors.append("unsupported_content_type")
                 return None
-            return raw.decode("utf-8", errors="replace")
-    except (urllib.error.URLError, TimeoutError, OSError, ValueError):
+            return response.read(2_500_000).decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as exc:
+        if errors is not None:
+            errors.append(f"http_{exc.code}")
+        return None
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as exc:
+        if errors is not None:
+            errors.append(f"fetch_{type(exc).__name__}")
         return None
 
 
@@ -166,62 +174,114 @@ def parse_arxiv_abs(html: str) -> dict[str, Any] | None:
     return {"title": title, "authors": authors, "abstract": abstract} if title else None
 
 
-def fetch_arxiv_source(item: dict[str, Any]) -> list[dict[str, Any]]:
-    """For an arxiv_sources item, return parsed paper dicts."""
+def _canonical_arxiv_abs_url(href: str) -> str | None:
+    """Accept real arXiv abstract links only; normalize relative/absolute
+    forms, strip tracking params, and reject external or PDF links."""
+    url = urllib.parse.urljoin("https://arxiv.org", html_module.unescape(href).strip())
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme != "https" or parsed.hostname not in (
+        "arxiv.org", "www.arxiv.org", "export.arxiv.org"
+    ):
+        return None
+    path = parsed.path.rstrip("/")
+    if not re.fullmatch(r"/abs/(?:[0-9]{4}\.[0-9]{4,5}|[a-zA-Z.\-]+/[0-9]{7})(?:v[0-9]+)?", path):
+        return None
+    return "https://arxiv.org" + path
+
+
+def parse_arxiv_search_results(html_text: str, item: dict[str, Any],
+                               max_items: int = 10) -> list[dict[str, Any]]:
+    """Extract arXiv search results with either absolute or relative /abs/
+    links. A malformed link does not become an unrelated candidate."""
+    if not html_text or max_items <= 0:
+        return []
     out: list[dict[str, Any]] = []
+    seen_urls: set[str] = set()
+    blocks = re.finditer(
+        r"""<li\b[^>]*class\s*=\s*['"][^'"]*\barxiv-result\b[^'"]*['"][^>]*>(.*?)</li>""",
+        html_text, re.DOTALL | re.IGNORECASE)
+    for found in blocks:
+        block = found.group(1)
+        title_match = re.search(
+            r"""<p\b[^>]*class\s*=\s*['"][^'"]*\btitle\b[^'"]*['"][^>]*>(.*?)</p>""",
+            block, re.DOTALL | re.IGNORECASE)
+        if title_match is None:
+            continue
+        title = html_module.unescape(re.sub(r"<[^>]+>", "", title_match.group(1)))
+        title = re.sub(r"\s+", " ", title).strip()
+        link = None
+        for href in re.findall(r"""<a\b[^>]*href\s*=\s*['"]([^'"]+)['"]""",
+                               block, re.IGNORECASE):
+            link = _canonical_arxiv_abs_url(href)
+            if link:
+                break
+        if not title or not link or link in seen_urls:
+            continue
+        authors_match = re.search(
+            r"""<p\b[^>]*class\s*=\s*['"][^'"]*\bauthors\b[^'"]*['"][^>]*>(.*?)</p>""",
+            block, re.DOTALL | re.IGNORECASE)
+        authors = (html_module.unescape(re.sub(r"<[^>]+>", " ", authors_match.group(1)))
+                   if authors_match else "")
+        authors = re.sub(r"\s+", " ", re.sub(r"^Authors:\s*", "", authors)).strip()
+        out.append({
+            "id": link, "title": title, "url": link, "institution": "",
+            "summary": authors[:300],
+            "tags": ["arxiv-search", item.get("label", "")],
+            "source_id": item.get("id", ""), "year": _guess_year(title + " " + link)
+        })
+        seen_urls.add(link)
+        if len(out) >= max_items:
+            break
+    return out
+
+
+def fetch_arxiv_source(item: dict[str, Any],
+                       *, errors: list[str] | None = None) -> list[dict[str, Any]]:
+    """Parse arXiv abstract/search pages; report HTTP and schema failures."""
     url = item.get("url", "")
     if "/abs/" in url:
-        html = http_get(url)
-        parsed = parse_arxiv_abs(html) if html else None
-        if parsed and parsed.get("title"):
-            out.append({
-                "id": url,
-                "title": parsed["title"],
-                "url": url,
-                "institution": "",
-                "summary": (parsed.get("abstract", "") or "")[:600],
-                "tags": ["arxiv", item.get("label", "")],
-                "source_id": item.get("id", ""),
-                "year": _guess_year(parsed.get("abstract", "") + " " + url + " " + parsed.get("title", "")),
-            })
-    elif "/search/" in url:
-        # arXiv search results page — pick off titles + links.
-        html = http_get(url)
-        if not html:
-            return out
-        # Each result: <li class="arxiv-result"> ... <p class="title">...</p> <a href="/abs/...">arXiv:...</a>
-        for m in re.finditer(r'<li[^>]*class="arxiv-result"[^>]*>(.*?)</li>', html, re.DOTALL):
-            block = m.group(1)
-            m_title = re.search(r'<p[^>]*class="title"[^>]*>(.*?)</p>', block, re.DOTALL)
-            m_link = re.search(r'<a[^>]+href="(/abs/[^"]+)"', block)
-            m_authors = re.search(r'<p[^>]*class="authors"[^>]*>(.*?)</p>', block, re.DOTALL)
-            if not (m_title and m_link):
-                continue
-            title = re.sub(r"<[^>]+>", "", m_title.group(1)).strip()
-            link = "https://arxiv.org" + m_link.group(1)
-            authors = re.sub(r"<[^>]+>", " ", m_authors.group(1)).strip() if m_authors else ""
-            authors = re.sub(r"\s+", " ", re.sub(r"^Authors:\s*", "", authors))
-            if title:
-                out.append({
-                    "id": link,
-                    "title": title,
-                    "url": link,
-                    "institution": "",
-                    "summary": authors[:300],
-                    "tags": ["arxiv-search", item.get("label", "")],
-                    "source_id": item.get("id", ""),
-                    "year": _guess_year(title + " " + link),
-                })
-    return out
+        text = http_get(url, timeout=9.0, errors=errors)
+        parsed = parse_arxiv_abs(text) if text else None
+        if text and not parsed and errors is not None:
+            errors.append("arxiv_abs_missing_title")
+        if not parsed:
+            return []
+        return [{
+            "id": url,
+            "title": parsed["title"], "url": url, "institution": "",
+            "summary": (parsed.get("abstract") or "")[:600],
+            "tags": ["arxiv", item.get("label", "")],
+            "source_id": item.get("id", ""),
+            "year": _guess_year(parsed.get("abstract", "") + " " + url + " " + parsed["title"])
+        }]
+    if "/search/" in url:
+        text = http_get(url, timeout=12.0, errors=errors)
+        if not text:
+            return []
+        result = parse_arxiv_search_results(text, item, max_items=10)
+        if not result and errors is not None:
+            if "arxiv-result" in text:
+                errors.append("arxiv_search_markup_unparseable")
+            elif re.search(r"(captcha|cloudflare|verify you are human|access denied|too many requests)",
+                           text, re.IGNORECASE):
+                errors.append("arxiv_search_challenge_detected")
+            elif not re.search(r"(no results found|0 results found|no papers found)",
+                               text, re.IGNORECASE):
+                errors.append("arxiv_search_unrecognized_empty_markup")
+        return result
+    if errors is not None:
+        errors.append("arxiv_source_unknown_url_type")
+    return []
 
 
 # ---------------------------------------------------------------------------
 # Official page parser (Strategy 2)
 # ---------------------------------------------------------------------------
 
-def fetch_official_source(item: dict[str, Any]) -> list[dict[str, Any]]:
-    """Light title+description extraction from an official page."""
-    html = http_get(item.get("url", ""))
+def fetch_official_source(item: dict[str, Any],
+                          *, errors: list[str] | None = None) -> list[dict[str, Any]]:
+    """Light title+description extraction, with explicit source diagnostics."""
+    html = http_get(item.get("url", ""), timeout=9.0, errors=errors)
     if not html:
         return []
     out: list[dict[str, Any]] = []
@@ -234,6 +294,8 @@ def fetch_official_source(item: dict[str, Any]) -> list[dict[str, Any]]:
     if m:
         desc = m.group(1).strip()
     if not title:
+        if errors is not None:
+            errors.append("official_page_missing_title")
         return []
     out.append({
         "id": item.get("url", ""),
@@ -289,48 +351,74 @@ def fetch_conference_source(item: dict[str, Any]) -> list[dict[str, Any]]:
 # Search fallback (Strategy 4) — DuckDuckGo HTML, hermes_tools if available
 # ---------------------------------------------------------------------------
 
-def search_duckduckgo(query: str, limit: int = 5) -> list[dict[str, str]]:
+def search_duckduckgo(query: str, limit: int = 5,
+                      *, errors: list[str] | None = None) -> list[dict[str, str]]:
+    """Only parse genuine result pages; surface anti-bot/error pages."""
+    url = "https://duckduckgo.com/html/?" + urllib.parse.urlencode({
+        "q": query, "kl": "us-en"})
     try:
-        url = "https://duckduckgo.com/html/?" + urllib.parse.urlencode({
-            "q": query,
-            "kl": "us-en",
-        })
         req = urllib.request.Request(url, headers={"User-Agent": "HermesBot/1.2"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            html = r.read().decode("utf-8", errors="replace")
-    except Exception:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            text = response.read(1_500_000).decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as exc:
+        if errors is not None:
+            errors.append(f"duckduckgo_http_{exc.code}")
         return []
-    out: list[dict[str, str]] = []
-    titles = re.findall(r'<a[^>]+class="result__a"[^>]+href="([^"]+)"[^>]*>(.*?)</a>', html, re.DOTALL)
-    snippets = re.findall(r'<a[^>]+class="result__snippet"[^>]*>(.*?)</a>', html, re.DOTALL)
-    for i, (u, t) in enumerate(titles[:limit]):
-        clean_u = u
-        m = re.search(r"uddg=([^&]+)", u)
-        if m:
-            clean_u = urllib.parse.unquote(m.group(1))
-        clean_t = re.sub(r"<[^>]+>", "", t).strip()
-        sn = re.sub(r"<[^>]+>", "", snippets[i]).strip() if i < len(snippets) else ""
-        out.append({"title": clean_t, "url": clean_u, "snippet": sn})
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        if errors is not None:
+            errors.append(f"duckduckgo_fetch_{type(exc).__name__}")
+        return []
+    anchors = re.findall(
+        r"""<a[^>]+class=['"][^'"]*\bresult__a\b[^'"]*['"][^>]+href=['"]([^'"]+)['"][^>]*>(.*?)</a>""",
+        text, re.DOTALL | re.IGNORECASE)
+    if not anchors and re.search(
+        r"(anomaly-modal|challenge-form|captcha|not a robot|unusual traffic|"
+        r"verify you are human|automated requests|anomaly\.js)",
+        text, re.IGNORECASE):
+        if errors is not None:
+            errors.append("duckduckgo_challenge_detected")
+        return []
+    if not anchors and "result__" in text and errors is not None:
+        errors.append("duckduckgo_result_markup_unparseable")
+    snippets = re.findall(
+        r"""<a[^>]+class=['"][^'"]*\bresult__snippet\b[^'"]*['"][^>]*>(.*?)</a>""",
+        text, re.DOTALL | re.IGNORECASE)
+    out = []
+    for i,(raw_url,title) in enumerate(anchors[:limit]):
+        encoded = re.search(r"uddg=([^&]+)", html_module.unescape(raw_url))
+        final_url = urllib.parse.unquote(encoded.group(1)) if encoded else html_module.unescape(raw_url)
+        clean_title = re.sub(r"<[^>]+>", "", title)
+        snippet = re.sub(r"<[^>]+>", "", snippets[i]) if i < len(snippets) else ""
+        out.append({"title": html_module.unescape(clean_title).strip(),
+                    "url": final_url,
+                    "snippet": html_module.unescape(snippet).strip()})
     return out
 
 
-def try_hermes_search(query: str, limit: int = 5) -> list[dict[str, str]]:
+def try_hermes_search(query: str, limit: int = 5,
+                      *, errors: list[str] | None = None) -> list[dict[str, str]]:
+    """Optional provider integration; missing dependency is recorded."""
     try:
         from hermes_tools import web_search  # type: ignore
-    except Exception:
+    except ImportError:
+        if errors is not None:
+            errors.append("hermes_search_module_unavailable")
         return []
     try:
-        out = web_search(query=query, limit=limit)
-        web = (out or {}).get("data", {}).get("web", []) or []
+        result = web_search(query=query, limit=limit)
+        web = (result or {}).get("data", {}).get("web", []) or []
         return [{"title": w.get("title", ""), "url": w.get("url", ""),
                  "snippet": w.get("description", "")} for w in web if w.get("url")]
-    except Exception:
+    except Exception as exc:
+        if errors is not None:
+            errors.append(f"hermes_search_{type(exc).__name__}")
         return []
 
 
-def run_query(query: str, limit: int = 5) -> list[dict[str, str]]:
-    hits = try_hermes_search(query, limit=limit)
-    return hits if hits else search_duckduckgo(query, limit=limit)
+def run_query(query: str, limit: int = 5,
+              *, errors: list[str] | None = None) -> list[dict[str, str]]:
+    hits = try_hermes_search(query, limit=limit, errors=errors)
+    return hits if hits else search_duckduckgo(query, limit=limit, errors=errors)
 
 
 # ---------------------------------------------------------------------------
@@ -413,7 +501,10 @@ def fetch_from_registry(reg: dict[str, Any], max_results: int) -> tuple[list[dic
     # Strategy 1: arXiv
     for item in reg.get("arxiv_sources", {}).get("items", []):
         try:
-            hits = fetch_arxiv_source(item)
+            source_errors: list[str] = []
+            hits = fetch_arxiv_source(item, errors=source_errors)
+            if source_errors:
+                diag["source_errors"][item["id"]] = "; ".join(source_errors)
             diag["source_counts"][item["id"]] = len(hits)
             if hits:
                 diag["candidates_by_source"][item["id"]] = [h["url"] for h in hits]
@@ -424,7 +515,10 @@ def fetch_from_registry(reg: dict[str, Any], max_results: int) -> tuple[list[dic
     # Strategy 2: Official project pages
     for item in reg.get("official_project_sources", {}).get("items", []):
         try:
-            hits = fetch_official_source(item)
+            source_errors = []
+            hits = fetch_official_source(item, errors=source_errors)
+            if source_errors:
+                diag["source_errors"][item["id"]] = "; ".join(source_errors)
             diag["source_counts"][item["id"]] = len(hits)
             if hits:
                 diag["candidates_by_source"][item["id"]] = [h["url"] for h in hits]
@@ -454,11 +548,24 @@ def fetch_from_registry(reg: dict[str, Any], max_results: int) -> tuple[list[dic
     fb = reg.get("search_fallback", {})
     fb_queries = fb.get("queries", []) if isinstance(fb, dict) else []
     fb_hits: list[dict[str, Any]] = []
-    fb_status = {"ran": False, "queries": len(fb_queries), "hits": 0, "errors": []}
-    for q in fb_queries:
+    fb_status = {
+        "ran": False, "queries": len(fb_queries), "hits": 0,
+        "errors": [], "attempted_queries": 0,
+        "skipped_queries": 0, "circuit_open": False,
+    }
+    for q_index, q in enumerate(fb_queries):
         try:
             fb_status["ran"] = True
-            r = run_query(q, limit=max_results)
+            fb_status["attempted_queries"] += 1
+            query_errors: list[str] = []
+            r = run_query(q, limit=max_results, errors=query_errors)
+            for error in query_errors:
+                fb_status["errors"].append(f"{q[:40]}: {error}")
+            if any(error in ("duckduckgo_challenge_detected", "duckduckgo_http_429",
+                             "duckduckgo_http_403") for error in query_errors):
+                fb_status["circuit_open"] = True
+                fb_status["skipped_queries"] = len(fb_queries)-q_index-1
+                break
             for h in r:
                 hb = {
                     "id": url_canon(h.get("url", "")),
@@ -488,6 +595,28 @@ def fetch_from_registry(reg: dict[str, Any], max_results: int) -> tuple[list[dic
 # ---------------------------------------------------------------------------
 # Entity extraction & dedup
 # ---------------------------------------------------------------------------
+
+# A verified official project page, researcher profile or conference is a
+# useful research ENTITY, but must not be counted as a newly-added PAPER.
+# Keep legacy records in papers.json until a separate versioned migration is
+# reviewed, but prevent new non-paper references entering that collection.
+def is_paper_candidate(item: dict[str, Any]) -> bool:
+    tags = set(item.get("tags") or [])
+    if tags.intersection({"official-page", "person-source", "conference-venue"}):
+        return False
+    if tags.intersection({"arxiv", "arxiv-search"}):
+        return True
+    if "fallback-search" in tags:
+        url = str(item.get("url") or "")
+        if _canonical_arxiv_abs_url(url):
+            return True
+        parsed = urllib.parse.urlsplit(url)
+        return parsed.scheme == "https" and parsed.hostname in (
+            "doi.org", "www.doi.org", "openreview.net", "aclanthology.org"
+        )
+    return False
+
+
 
 def merge_papers(existing: list[dict[str, Any]], new_items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
     """Update papers.json with new items. Match by canonical URL or normalized title."""
@@ -992,8 +1121,11 @@ def main(argv: list[str]) -> int:
     # The merge counts only genuinely inserted papers; candidate hits may all be
     # existing records whose last_seen timestamp is refreshed. Preserve that
     # distinction in every published weekly report and dashboard metric.
+    paper_candidates = [item for item in candidates if is_paper_candidate(item)]
+    diag["paper_candidate_count"] = len(paper_candidates)
+    diag["non_paper_reference_count"] = len(candidates)-len(paper_candidates)
     prior_paper_count = len(papers)
-    papers, papers_added = merge_papers(papers, candidates)
+    papers, papers_added = merge_papers(papers, paper_candidates)
     new_papers = papers[prior_paper_count:]
     if len(new_papers) != papers_added:
         raise RuntimeError("New-paper count diverges from appended records")
