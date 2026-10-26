@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-19T01:01:55.625562+00:00",
-  "week_tag": "2026-W43",
-  "source_report": "reports/weekly/2026-W43.md",
-  "github_report_path": "reports/weekly/2026-W43.md",
-  "page_report_url": "/ai-education-system-map/reports/weekly/2026-W43.md",
-  "new_papers": 31,
+  "updated_at": "2026-10-26T01:01:48.800339+00:00",
+  "week_tag": "2026-W44",
+  "source_report": "reports/weekly/2026-W44.md",
+  "github_report_path": "reports/weekly/2026-W44.md",
+  "page_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
+  "new_papers": 30,
   "new_systems": 7,
   "new_people": 5,
   "tech_stack_updated": 0,
@@ -29,7 +29,7 @@
     "cocorobo-research": 1,
     "cocorobo-smart": 1,
     "khanmigo": 1,
-    "ka-blog": 1,
+    "ka-blog": 0,
     "cmu-learnlab": 1,
     "stanford-ai-ed": 1,
     "stanford-hai": 1,
@@ -78,9 +78,6 @@
     "khanmigo": [
       "https://www.khanmigo.ai/"
     ],
-    "ka-blog": [
-      "https://blog.khanacademy.org/"
-    ],
     "cmu-learnlab": [
       "https://learnlab.org/"
     ],
@@ -98,7 +95,7 @@
     ]
   },
   "entity_changes": {
-    "papers_added": 31,
+    "papers_added": 30,
     "systems_updated": 7,
     "people_updated": 5,
     "tech_stack_updated": 0,
@@ -112,7 +109,7 @@
     "CocoRobo Research | AI-Native Learning Systems",
     "CocoRobo SMART | AI-Native Learning Environment &amp; Product Suite",
     "Meet Khanmigo: Khan Academy&#x27;s AI-powered teaching assistant &amp; tutor",
-    "Khan Academy Blog - Khan Academy Blog"
+    "LearnLab &#8211; Part of the Simon Initiative"
   ],
   "insights": [
     "Weekly run completed; only items passing relevance + dedup filters were appended.",

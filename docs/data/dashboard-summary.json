@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-10-19T01:01:55.762804+00:00",
-  "last_updated": "2026-10-19T01:01:55.625562+00:00",
-  "latest_week_tag": "2026-W43",
-  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W43.md",
-  "github_report_path": "reports/weekly/2026-W43.md",
+  "generated_at": "2026-10-26T01:01:48.949909+00:00",
+  "last_updated": "2026-10-26T01:01:48.800339+00:00",
+  "latest_week_tag": "2026-W44",
+  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
+  "github_report_path": "reports/weekly/2026-W44.md",
   "totals": {
     "papers": 41,
     "systems": 10,
     "people": 16,
     "timeline_events": 11,
     "stable_sources": 51,
-    "active_sources": 31
+    "active_sources": 30
   },
   "this_week": {
-    "new_papers": 31,
+    "new_papers": 30,
     "new_systems": 7,
     "new_people": 5,
     "fallback_status": {
@@ -25,7 +25,7 @@
   },
   "source_health": {
     "stable_sources": 51,
-    "active_sources": 31,
+    "active_sources": 30,
     "source_errors_count": 0,
     "source_errors": {},
     "fallback_status": {
@@ -55,9 +55,6 @@
       ],
       "khanmigo": [
         "https://www.khanmigo.ai/"
-      ],
-      "ka-blog": [
-        "https://blog.khanacademy.org/"
       ],
       "cmu-learnlab": [
         "https://learnlab.org/"
@@ -90,7 +87,7 @@
       "cocorobo-research": 1,
       "cocorobo-smart": 1,
       "khanmigo": 1,
-      "ka-blog": 1,
+      "ka-blog": 0,
       "cmu-learnlab": 1,
       "stanford-ai-ed": 1,
       "stanford-hai": 1,
@@ -117,7 +114,7 @@
       "conf-bjet": 1,
       "search_fallback": 0
     },
-    "last_run": "2026-10-19T01:01:55.638963+00:00",
+    "last_run": "2026-10-26T01:01:48.832348+00:00",
     "registry_version": "1.2.0"
   },
   "system_cards": [
