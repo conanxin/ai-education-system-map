@@ -55,9 +55,10 @@ class ResearchAtlasStaticTests(unittest.TestCase):
         self.assertEqual(len(self.tags.ids),len(set(self.tags.ids)))
         self.assertEqual(len(set(self.tags.anchor_refs)-set(self.tags.ids)),0)
         for key in (
-            "main","research-guide","this-week","research-lineage","system-cards",
+            "main","research-guide","this-week","research-lineage","evidence-lab","system-cards",
             "paper-groups","research-references","people-groups","source-health",
-            "methodology","paper-search","reference-search","timeline-grid",
+            "methodology","evidence-tabs","evidence-article","evidence-relations",
+            "relation-filter-chips","paper-search","reference-search","timeline-grid",
             "system-filter-chips","reference-filter-chips","paper-groups-body",
             "reference-groups-body","paper-visible-count","reference-visible-count"
         ):
@@ -103,7 +104,7 @@ class ResearchAtlasStaticTests(unittest.TestCase):
     def test_source_links_and_data_files_are_available(self):
         for relative in (
             "assets/style.css","assets/app.js","data/dashboard-summary.json",
-            "data/research-migration.json","data/source-registry.json",
+            "data/research-migration.json","data/research-deep-dives.json","data/source-registry.json",
             "data/weekly/manifest.json"
         ):
             with self.subTest(path=relative):

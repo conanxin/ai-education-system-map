@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "editorial_reviewed_at": "2026-10-26",
+  "collection_title": "研究证据与系统关系",
+  "review_notice": "证据标注代表所核查的原始资料范围，不是教育成效等级、论文质量评分或产品推荐。",
+  "evidence_levels": [
+    {
+      "code": "source_fulltext",
+      "label": "原文正文与摘要核对",
+      "description": "对照出版机构公开的原文网页、摘要与相关正文段落核实概念；不表示独立复现实验。"
+    },
+    {
+      "code": "source_abstract",
+      "label": "原始摘要与书目信息核对",
+      "description": "对照论文官方摘要、作者、研究范围和书目元数据；不声称已经复核全部实验细节。"
+    },
+    {
+      "code": "editorial_comparison",
+      "label": "研究比较（非原文实证）",
+      "description": "研究者根据共同问题提出的系统或理论关联，不能视为项目集成、技术继承或教育效果验证。"
+    }
+  ],
+  "studies": [
+    {
+      "id": "human-ai-ssrl-2023",
+      "paper_id": "https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13325",
+      "short_title": "从 SSRL 到人机共享调节",
+      "original_title": "Human and artificial intelligence collaboration for socially shared regulation in learning",
+      "authors": "Sanna Järvelä · Andy Nguyen · Allyson F. Hadwin",
+      "year": 2023,
+      "publisher": "British Journal of Educational Technology",
+      "primary_url": "https://bera-journals.onlinelibrary.wiley.com/doi/full/10.1111/bjet.13325",
+      "doi": "10.1111/bjet.13325",
+      "evidence_level": "source_fulltext",
+      "verification_scope": "出版方开放获取的摘要、实践者说明及 HASRL/SSRL 相关正文段落",
+      "study_type": "理论框架与研究示例",
+      "research_question": "AI 应如何在合作学习中识别需要调节的时机，同时保留学习者自身的调节能动性？",
+      "verified_points": [
+        "论文提出 trigger（触发情境）概念与 Human–AI Shared Regulation in Learning（HASRL）模型，用于组织学习者与 AI 在调节过程中的协作。",
+        "文章围绕社会共享学习调节（SSRL）讨论多模态数据、学习者反应与 AI 反馈的联系，并结合研究示例说明可能的研究路径。",
+        "论文强调发展理论、数据和 AI 方法之间的一致性，而非仅以模型输出代替对真实学习调节的分析。"
+      ],
+      "not_established": "提出理论模型与展示研究示例，不等于证明所有采用该概念的 AI 教育产品都能显著提高学习成绩。",
+      "editorial_interpretation": "作为研究框架，它帮助我们区分‘AI 给出答案’与‘AI 辅助学习者监控、协商和调整学习过程’。",
+      "reading_questions": [
+        "哪些行为信号可以被合理解释为需要调节的触发情境？",
+        "AI 提示何时会增强、何时可能削弱学习者的自主调节？",
+        "如何用群体层面的证据而非个体模型评分评估效果？"
+      ]
+    },
+    {
+      "id": "simclass-2025",
+      "paper_id": "https://aclanthology.org/2025.naacl-long.520.pdf",
+      "short_title": "多智能体课堂能模拟什么？",
+      "original_title": "Simulating Classroom Education with LLM-Empowered Agents",
+      "authors": "Zheyuan Zhang 等",
+      "year": 2025,
+      "publisher": "NAACL 2025 · ACL Anthology",
+      "primary_url": "https://aclanthology.org/2025.naacl-long.520/",
+      "doi": "10.18653/v1/2025.naacl-long.520",
+      "evidence_level": "source_abstract",
+      "verification_scope": "ACL Anthology 官方摘要、会议书目信息和作者公开的代码仓库说明",
+      "study_type": "课堂多智能体模拟与用户实验",
+      "research_question": "课堂中的教师、学生与协调角色能否由协作型智能体模拟，并支持真实学习者参与？",
+      "verified_points": [
+        "SimClass 为课堂教学模拟设计不同角色及课堂控制机制，而不是只用一个独立的问答智能体。",
+        "官方摘要报告在两门真实课程中进行用户实验，并借助 Flanders Interaction Analysis 与 Community of Inquiry 框架分析互动。",
+        "作者报告可观察到师生、学生之间的动态互动与智能体群体行为；这是特定实验场景的结果。"
+      ],
+      "not_established": "两门课程中的结果不能直接等同于不同年龄、课程和长期部署环境中的普遍学习收益，也不意味着所有模拟角色都可替代真实教师。",
+      "editorial_interpretation": "它让‘课堂是多主体互动过程’这一想法具有可实验的系统形态，可以与 SSRL 的群体调节问题对照。",
+      "reading_questions": [
+        "系统中的角色控制与真实教师调度有哪些差别？",
+        "互动活跃是否就代表概念理解与学习迁移获得改善？",
+        "在不同课程、参与者或更长期干预中，结果会如何变化？"
+      ]
+    },
+    {
+      "id": "mass-2025",
+      "paper_id": "https://arxiv.org/abs/2502.02533",
+      "short_title": "多智能体设计不能只数人数",
+      "original_title": "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies",
+      "authors": "Han Zhou 等",
+      "year": 2025,
+      "publisher": "arXiv 2502.02533 · Google Research / ICLR 2026",
+      "primary_url": "https://arxiv.org/abs/2502.02533",
+      "official_project_url": "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/",
+      "evidence_level": "source_abstract",
+      "verification_scope": "arXiv 原始摘要、Google Research 原始论文页面",
+      "study_type": "多智能体工作流与提示优化方法",
+      "research_question": "构建多智能体系统时，如何联合考虑提示、角色结构与工作流拓扑？",
+      "verified_points": [
+        "MASS 研究对多智能体系统设计空间进行分析，关注提示设计和智能体工作流拓扑的相互影响。",
+        "原始 arXiv 摘要介绍分阶段优化思路：局部提示、工作流拓扑，以及全局提示优化。",
+        "原文报告 MASS 在其研究的多智能体实验任务中优于若干对照方案；论文并非针对真实课堂进行的学习成效实验。"
+      ],
+      "not_established": "该框架在通用多智能体实验任务上的结果，不能直接证明把它应用于教学系统后会提高学生成绩或课堂协作质量。",
+      "editorial_interpretation": "它为教育多智能体系统提供设计方法的比较视角，但教育场景的效果必须通过额外实验检验。",
+      "reading_questions": [
+        "优化的目标函数是任务正确率、资源成本，还是学习过程质量？",
+        "角色增多时，什么协调成本会抵消潜在收益？",
+        "如果要迁移到课堂，哪些教育学评价指标必须重新设计？"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "simclass-system",
+      "study_id": "simclass-2025",
+      "system_name": "SimClass (Tsinghua MAIC)",
+      "relation_kind": "direct_subject",
+      "label": "论文直接研究该系统",
+      "rationale": "NAACL 论文标题、官方摘要与 SimClass 作者代码仓库均直接对应这一课堂模拟系统。",
+      "scope_note": "该关联验证系统身份，不代表其在所有课堂中得到效果验证。"
+    },
+    {
+      "id": "mass-system",
+      "study_id": "mass-2025",
+      "system_name": "MASS (Google)",
+      "relation_kind": "direct_subject",
+      "label": "论文直接提出该方法",
+      "rationale": "Google Research 与 arXiv 将 MASS 介绍为多智能体设计优化框架。",
+      "scope_note": "原论文主要是通用系统方法，不是课堂学习结果评估。"
+    },
+    {
+      "id": "ssrl-mai-context",
+      "study_id": "human-ai-ssrl-2023",
+      "system_name": "MAI (Metacognitive AI agent)",
+      "relation_kind": "editorial_comparison",
+      "label": "理论问题与系统设计相呼应",
+      "rationale": "HASRL 讨论需要调节的情境与人机协作；MAI 论文介绍通过识别触发情境向学习小组提供元认知提示。此处只作研究主题比较。",
+      "scope_note": "不据此认定 2023 论文直接测试了 2025 年的 MAI 产品。"
+    },
+    {
+      "id": "ssrl-its-contrast",
+      "study_id": "human-ai-ssrl-2023",
+      "system_name": "CTAT / Cognitive Tutor (LearnLab)",
+      "relation_kind": "editorial_comparison",
+      "label": "个体导师与群体调节的概念比较",
+      "rationale": "传统智能辅导强调面向个体的步骤反馈，SSRL/HASRL 则关注合作学习中的共享调节。",
+      "scope_note": "这是研究问题与历史系统的对照，不表示 CTAT 实现了 HASRL。"
+    },
+    {
+      "id": "simclass-mai-contrast",
+      "study_id": "simclass-2025",
+      "system_name": "MAI (Metacognitive AI agent)",
+      "relation_kind": "editorial_comparison",
+      "label": "课堂模拟与调节提示的设计比较",
+      "rationale": "SimClass 侧重多角色课堂模拟；MAI 侧重触发情境识别和元认知提示。两者可比较角色和调节职责。",
+      "scope_note": "原始资料未在此核实两项目实际集成或开展联合实验。"
+    },
+    {
+      "id": "mass-autogen-analogy",
+      "study_id": "mass-2025",
+      "system_name": "AutoGen v0.4 / Microsoft Agent Framework",
+      "relation_kind": "editorial_comparison",
+      "label": "优化方法与智能体编排底座的比较",
+      "rationale": "MASS 讨论如何搜索多智能体工作流设计，AutoGen 是智能体编排框架；属于方法与实现层面的比较。",
+      "scope_note": "并未证明 MASS 以 AutoGen 为被测实现，也未证明双方已经集成。"
+    }
+  ]
+}

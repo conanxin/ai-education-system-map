@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T09:29:58.358300+00:00",
+  "generated_at": "2026-10-26T10:41:31.519819+00:00",
   "last_updated": "2026-10-26T01:01:48.800339+00:00",
   "latest_week_tag": "2026-W44",
   "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
@@ -127,7 +127,10 @@
       "relation_to_mai_miracle": "This IS the MAI reference system. Co-evolutionary partner, not controller.",
       "agent_architecture": "Single agent, trigger-recognition",
       "open_source_status": "Pending (paper-only)",
-      "source_url": "https://arxiv.org/abs/2512.08296",
+      "source_url": "https://oulurepo.oulu.fi/handle/10024/58874",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "additional_source_links": [],
       "categories": [
         "SSRL / HASRL",
         "Research Prototype"
@@ -141,6 +144,9 @@
       "agent_architecture": "Single-agent per student + admin agent",
       "open_source_status": "Closed",
       "source_url": "https://www.khanmigo.ai/",
+      "source_verification": "",
+      "source_verified_at": "",
+      "additional_source_links": [],
       "categories": [
         "Tutor",
         "Product"
@@ -154,6 +160,9 @@
       "agent_architecture": "Async, event-driven; group chat + manager",
       "open_source_status": "Yes (MIT)",
       "source_url": "https://arxiv.org/abs/2308.08155",
+      "source_verification": "",
+      "source_verified_at": "",
+      "additional_source_links": [],
       "categories": [
         "Infrastructure",
         "Multi-Agent"
@@ -166,7 +175,15 @@
       "relation_to_mai_miracle": "Indirect: validates that prompt-then-topology optimisation matters; informs how a multi-agent classroom should be designed before deployment.",
       "agent_architecture": "Prompt + topology co-optimisation",
       "open_source_status": "Paper-only",
-      "source_url": "",
+      "source_url": "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "additional_source_links": [
+        {
+          "label": "arXiv 论文原文",
+          "url": "https://arxiv.org/abs/2502.02533"
+        }
+      ],
       "categories": [
         "Infrastructure"
       ]
@@ -178,7 +195,15 @@
       "relation_to_mai_miracle": "Direct conceptual sibling of MIRACLE — multi-agent classroom simulation with student peers as agents.",
       "agent_architecture": "Teacher + peers + manager + assistant",
       "open_source_status": "Yes (GitHub THU-MAIC/SimClass)",
-      "source_url": "",
+      "source_url": "https://aclanthology.org/2025.naacl-long.520/",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "additional_source_links": [
+        {
+          "label": "作者项目仓库",
+          "url": "https://github.com/THU-MAIC/SimClass"
+        }
+      ],
       "categories": [
         "Multi-Agent",
         "Research Prototype"
@@ -192,6 +217,9 @@
       "agent_architecture": "Example-tracing model-tracing tutors",
       "open_source_status": "Yes (CTAT)",
       "source_url": "",
+      "source_verification": "",
+      "source_verified_at": "",
+      "additional_source_links": [],
       "categories": [
         "Tutor",
         "Infrastructure"
@@ -204,7 +232,15 @@
       "relation_to_mai_miracle": "LA infrastructure layer MAI/MIRACLE-style systems plug into.",
       "agent_architecture": "Course delivery + analytics pipeline",
       "open_source_status": "Mixed",
-      "source_url": "https://hai.stanford.edu/",
+      "source_url": "https://oli.cmu.edu/",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "additional_source_links": [
+        {
+          "label": "CMU DataShop 项目来源",
+          "url": "https://hcii.cmu.edu/project/datashop"
+        }
+      ],
       "categories": [
         "Infrastructure"
       ]
@@ -217,6 +253,9 @@
       "agent_architecture": "Multi-product suite with embedded agents/workflows",
       "open_source_status": "Closed",
       "source_url": "https://cocorobo.hk/research",
+      "source_verification": "",
+      "source_verified_at": "",
+      "additional_source_links": [],
       "categories": [
         "Multi-Agent",
         "Classroom OS",
@@ -230,7 +269,10 @@
       "relation_to_mai_miracle": "Consumer-side AI study tool; not multi-agent, but defines student expectation baseline.",
       "agent_architecture": "Single LLM pipeline",
       "open_source_status": "Closed",
-      "source_url": "https://arxiv.org/abs/2605.12923",
+      "source_url": "https://coconote.app/",
+      "source_verification": "official_primary_source_page",
+      "source_verified_at": "2026-10-26",
+      "additional_source_links": [],
       "categories": [
         "Product"
       ]
@@ -243,6 +285,9 @@
       "agent_architecture": "",
       "open_source_status": "",
       "source_url": "",
+      "source_verification": "",
+      "source_verified_at": "",
+      "additional_source_links": [],
       "categories": [
         "Research Prototype"
       ]

@@ -239,6 +239,9 @@ def main(argv: list[str]) -> int:
             "agent_architecture": (ts_row or {}).get("agent_architecture", ""),
             "open_source_status": (ts_row or {}).get("open_source_status", ""),
             "source_url": s.get("source_url", ""),
+            "source_verification": s.get("source_verification", ""),
+            "source_verified_at": s.get("source_verified_at", ""),
+            "additional_source_links": s.get("additional_source_links", []),
             "categories": classify_system_card(s),
         })
 

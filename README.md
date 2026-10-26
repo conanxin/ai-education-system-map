@@ -71,6 +71,32 @@ suite for data and static markup guards. The P43 browser and interaction
 smoke-test receipts are kept privately in the upgrade research work directory,
 not in the published GitHub repository.
 
+## P44 primary-source evidence and research relations
+
+The evidence workbench is a curated static editorial dataset in
+docs/data/research-deep-dives.json. It contains:
+
+- **Three readings**: the 2023 HASRL/SSRL framework article (publisher
+  full-text and abstract sections consulted), the 2025 SimClass NAACL paper
+  (ACL Anthology metadata/abstract), and the 2025 MASS manuscript (arXiv
+  abstract and Google Research publication record).
+- **Six typed research-system links**: two verified direct paper/system
+  identities and four clearly marked editorial comparisons. The latter
+  must never be presented as actual project integrations or published
+  experiments. All explanations, questions and boundaries link back
+  to the original study URL.
+- **Explicit review scope**: source_fulltext, source_abstract and
+  editorial_comparison describe how statements were checked. They do not
+  rate educational outcomes, paper quality or commercial product safety.
+- **Five verified system-link corrections** in docs/data/systems.json
+  (MAI, SimClass, MASS, CMU OLI/Torus and Coconote), replacing blank or
+  unrelated destinations. The builder forwards provenance into system cards.
+
+No weekly automation overwrites these authored research notes. The JSON
+retains editorial_reviewed_at; subsequent revisions require independent
+primary-source verification. The Python unittest suite checks paper IDs,
+system names, evidence categories, and canonical data/dashboard consistency.
+
 ## Structure
 
 ```

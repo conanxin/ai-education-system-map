@@ -62,6 +62,7 @@
         <a href="#research-guide">研究导览</a>
         <a href="#this-week">本周观察</a>
         <a href="#research-lineage">研究脉络</a>
+        <a href="#evidence-lab">证据工作台</a>
         <a href="#system-cards">系统地图</a>
         <a href="#paper-groups">学术论文</a>
         <a href="#research-references">研究资料</a>
@@ -167,9 +168,34 @@
         <div id="timeline-grid" class="timeline-grid" aria-label="研究年份与事件"></div>
     </section>
 
+    <section class="module evidence-lab" id="evidence-lab" aria-labelledby="evidence-title">
+        <div class="section-heading">
+            <div><p class="section-label">03 / EVIDENCE WORKBENCH</p>
+                <h2 id="evidence-title">论文、实验与系统：证据工作台 <span class="pill" id="evidence-study-count">—</span></h2>
+                <p class="section-intro">逐项区分论文原文的论断、研究者整理的解读，以及尚未验证的教育效果。所有研究摘要均保留官方出处。</p>
+            </div>
+        </div>
+        <p class="evidence-disclosure">证据等级表示<b>所核对的资料范围</b>，不是学术质量评分，也不代表教育产品的实际成效。</p>
+        <div id="evidence-scale" class="evidence-scale" aria-label="证据等级说明"></div>
+        <div class="evidence-workbench">
+            <div class="evidence-tabs" id="evidence-tabs" role="tablist" aria-label="选择研究论文"></div>
+            <article class="evidence-article" id="evidence-article" role="tabpanel" aria-live="polite">
+                <p class="empty-note">研究解读载入中…</p>
+            </article>
+        </div>
+        <div class="relations-header">
+            <div><h3>论文与系统的对应关系 <span id="relation-count">—</span></h3>
+                <p class="section-intro">直接研究的系统与研究主题的编辑比较分别标注，不把理论对照误写成项目集成。</p>
+            </div>
+        </div>
+        <div class="chips" id="relation-filter-chips" role="group" aria-label="筛选文献与系统关系"></div>
+        <div id="evidence-relations" class="evidence-relation-grid"></div>
+        <div class="result-empty" id="relation-empty" hidden>当前筛选条件下没有关系记录。</div>
+    </section>
+
     <section class="module" id="system-cards" aria-labelledby="systems-title">
         <div class="section-heading">
-            <div><p class="section-label">03 / SYSTEM LANDSCAPE</p><h2 id="systems-title">教育 AI 系统地图 <span class="pill" id="sys-count">—</span></h2>
+            <div><p class="section-label">04 / SYSTEM LANDSCAPE</p><h2 id="systems-title">教育 AI 系统地图 <span class="pill" id="sys-count">—</span></h2>
                 <p class="section-intro">系统卡片从用途、架构、开源状态与研究关系观察不同路线。卡片所列是研究索引，不是产品质量评分。</p></div>
         </div>
         <div class="chips" id="system-filter-chips" role="group" aria-label="按系统类型筛选"></div>
@@ -179,7 +205,7 @@
 
     <section class="module" id="paper-groups" aria-labelledby="papers-title">
         <div class="section-heading">
-            <div><p class="section-label">04 / SCHOLARLY LITERATURE</p><h2 id="papers-title">论文与研究证据 <span class="pill" id="paper-count">—</span></h2>
+            <div><p class="section-label">05 / SCHOLARLY LITERATURE</p><h2 id="papers-title">论文与研究证据 <span class="pill" id="paper-count">—</span></h2>
                 <p class="section-intro">这里仅列经过整理的论文与预印本；机构介绍、政策文件和新闻报道已移至独立的研究资料章节。</p></div>
         </div>
         <div class="library-toolbar"><label class="search-control"><span aria-hidden="true">⌕</span>
@@ -191,7 +217,7 @@
 
     <section class="module" id="research-references" aria-labelledby="references-title">
         <div class="section-heading">
-            <div><p class="section-label">05 / RESEARCH SOURCES</p><h2 id="references-title">机构、人物与研究资料 <span class="pill" id="reference-count">—</span></h2>
+            <div><p class="section-label">06 / RESEARCH SOURCES</p><h2 id="references-title">机构、人物与研究资料 <span class="pill" id="reference-count">—</span></h2>
                 <p class="section-intro">保留官网、研究人员、学术会议、政策回应和研究报道的入口，并明确不将这些记录计入论文数量。</p></div>
         </div>
         <div class="library-toolbar"><label class="search-control"><span aria-hidden="true">⌕</span>
@@ -204,7 +230,7 @@
 
     <section class="module" id="people-groups" aria-labelledby="people-title">
         <div class="section-heading">
-            <div><p class="section-label">06 / RESEARCH COMMUNITY</p><h2 id="people-title">关键研究者与机构 <span class="pill" id="people-count">—</span></h2>
+            <div><p class="section-label">07 / RESEARCH COMMUNITY</p><h2 id="people-title">关键研究者与机构 <span class="pill" id="people-count">—</span></h2>
                 <p class="section-intro">从研究者和团队的公开资料出发，了解不同方法与研究计划；此列表不代表完整领域名录。</p></div>
         </div>
         <div id="people-groups-body"></div>
@@ -212,7 +238,7 @@
 
     <section class="module" id="source-health" aria-labelledby="source-title">
         <div class="section-heading">
-            <div><p class="section-label">07 / SOURCE TRANSPARENCY</p><h2 id="source-title">采集来源与运行状态 <span class="pill">最近一次记录</span></h2>
+            <div><p class="section-label">08 / SOURCE TRANSPARENCY</p><h2 id="source-title">采集来源与运行状态 <span class="pill">最近一次记录</span></h2>
                 <p class="section-intro">公开每次监测的命中、错误和搜索回退情况。采集时间之后的网页状态可能变化，不能解释为实时健康。</p></div>
         </div>
         <div class="stats source-stats">

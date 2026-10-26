@@ -7,6 +7,7 @@
 
 const DATA = {
     summary: "data/dashboard-summary.json",
+    evidence: "data/research-deep-dives.json",
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -324,6 +325,224 @@ function renderThisWeek(s) {
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
+// Evidence workbench: primary research vs. editor comparison.
+// All content is authored in a reviewed JSON source; no HTML injection.
+// ---------------------------------------------------------------------------
+const EVIDENCE_LEVEL_LABELS = {
+    source_fulltext: "正文与摘要已核对",
+    source_abstract: "原始摘要已核对",
+    editorial_comparison: "编辑性研究比较",
+};
+let currentEvidence = null;
+let activeEvidenceRelation = "all";
+
+function evidenceTextList(items, className) {
+    const ul = el("ul", {class: className});
+    for (const item of items || []) ul.appendChild(el("li", {}, String(item)));
+    return ul;
+}
+
+function evidenceReference(href, label, className="evidence-primary-link") {
+    const safe = safeExternalHref(href);
+    if (!safe) return el("span", {class:"evidence-source-unavailable"}, "来源链接待核实");
+    return el("a", {href:safe,target:"_blank",rel:"noopener noreferrer",
+                    class:className}, label + " ↗");
+}
+
+function renderEvidenceAtlas(evidence) {
+    if (!evidence || evidence.schema_version!==1 ||
+        !Array.isArray(evidence.studies) || !Array.isArray(evidence.relations)) {
+        throw new Error("研究解读数据结构无效");
+    }
+    currentEvidence = evidence;
+    setText("#evidence-study-count", evidence.studies.length + " 篇重点阅读");
+    const scale = $("#evidence-scale");
+    const tabs = $("#evidence-tabs");
+    scale.innerHTML = "";
+    tabs.innerHTML = "";
+    for (const level of evidence.evidence_levels || []) {
+        const node = el("div", {class:"evidence-legend-item"});
+        node.appendChild(el("span", {class:"evidence-legend-tag",
+                        "data-evidence":level.code}, level.label));
+        node.appendChild(el("p", {}, level.description));
+        scale.appendChild(node);
+    }
+    evidence.studies.forEach((study,i) => {
+        const btn = el("button", {
+            type:"button",
+            role:"tab",
+            id:"evidence-tab-" + study.id,
+            "data-study-id":study.id,
+            "aria-controls":"evidence-article",
+            "aria-selected": i===0 ? "true" : "false",
+            class:"evidence-tab" + (i===0 ? " evidence-tab-active" : "")
+        });
+        btn.appendChild(el("span", {class:"evidence-tab-index"},
+                           String(i+1).padStart(2,"0") + " / PAPER"));
+        btn.appendChild(el("strong", {}, study.short_title));
+        btn.appendChild(el("small", {}, study.publisher + " · " + study.year));
+        tabs.appendChild(btn);
+        btn.addEventListener("click", () => selectEvidenceStudy(study.id));
+    });
+    tabs.addEventListener("keydown", event => {
+        const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+        if (!keys.includes(event.key)) return;
+        const items=[...tabs.querySelectorAll("button[data-study-id]")];
+        const current=items.indexOf(document.activeElement);
+        if (current<0 || !items.length) return;
+        event.preventDefault();
+        let next=current;
+        if (event.key==="ArrowLeft") next=(current+items.length-1)%items.length;
+        if (event.key==="ArrowRight") next=(current+1)%items.length;
+        if (event.key==="Home") next=0;
+        if (event.key==="End") next=items.length-1;
+        items[next].click();
+        items[next].focus();
+    });
+    if (evidence.studies.length) selectEvidenceStudy(evidence.studies[0].id);
+    const chips = $("#relation-filter-chips");
+    chips.innerHTML = "";
+    for (const option of [
+        {id:"all",label:"全部关系"},
+        {id:"direct_subject",label:"原文直接对应"},
+        {id:"editorial_comparison",label:"编辑研究比较"}
+    ]) {
+        const button = el("button", {
+            type:"button",class:"chip" + (option.id==="all" ? " chip-active" : ""),
+            "data-kind":option.id,
+            "aria-pressed":option.id==="all" ? "true" : "false"
+        },option.label);
+        button.addEventListener("click", () => {
+            activeEvidenceRelation = option.id;
+            for (const elm of chips.querySelectorAll("button")) {
+                const selected = elm===button;
+                elm.classList.toggle("chip-active",selected);
+                elm.setAttribute("aria-pressed",String(selected));
+            }
+            filterEvidenceRelations();
+        });
+        chips.appendChild(button);
+    }
+    renderEvidenceRelations(evidence);
+}
+
+function selectEvidenceStudy(id) {
+    if (!currentEvidence) return;
+    const study = currentEvidence.studies.find(s => s.id===id);
+    if (!study) return;
+    const host = $("#evidence-article");
+    host.setAttribute("aria-labelledby","evidence-tab-"+id);
+    host.innerHTML = "";
+    const context = el("div", {class:"evidence-article-header"});
+    const overline = el("div", {class:"evidence-article-badges"}, [
+        el("span", {class:"evidence-legend-tag","data-evidence":study.evidence_level},
+           EVIDENCE_LEVEL_LABELS[study.evidence_level] || "核对范围待记录"),
+        el("span", {class:"evidence-study-type"}, study.study_type)
+    ]);
+    context.appendChild(overline);
+    context.appendChild(el("h3",{},study.short_title));
+    context.appendChild(el("p",{class:"evidence-original-title"},study.original_title));
+    context.appendChild(el("p",{class:"evidence-byline"},
+                           study.authors + " · " + study.publisher));
+    context.appendChild(el("div",{class:"evidence-source-row"}, [
+        evidenceReference(study.primary_url,"阅读原始文献"),
+        el("span", {class:"evidence-scope"}, "核查范围：" + study.verification_scope)
+    ]));
+    host.appendChild(context);
+
+    const core = el("div", {class:"evidence-section evidence-question"});
+    core.appendChild(el("span",{class:"overline"},"RESEARCH QUESTION"));
+    core.appendChild(el("h4",{},"这篇研究真正关心什么？"));
+    core.appendChild(el("p",{},study.research_question));
+    host.appendChild(core);
+
+    const support = el("div",{class:"evidence-section"});
+    support.appendChild(el("span",{class:"overline"},"GROUNDED IN PRIMARY SOURCE"));
+    support.appendChild(el("h4",{},"原始来源直接支持的内容"));
+    support.appendChild(evidenceTextList(study.verified_points,"evidence-list"));
+    host.appendChild(support);
+
+    const boundary=el("div",{class:"evidence-section evidence-boundary"});
+    boundary.appendChild(el("span",{class:"overline"},"WHAT IT DOES NOT PROVE"));
+    boundary.appendChild(el("h4",{},"不应直接推断的结论"));
+    boundary.appendChild(el("p",{},study.not_established));
+    host.appendChild(boundary);
+
+    const synthesis=el("div",{class:"evidence-section evidence-interpretation"});
+    synthesis.appendChild(el("span",{class:"overline"},"EDITORIAL READING · NOT AN EXPERIMENTAL RESULT"));
+    synthesis.appendChild(el("h4",{},"研究者的比较性解读"));
+    synthesis.appendChild(el("p",{},study.editorial_interpretation));
+    host.appendChild(synthesis);
+
+    const next=el("div",{class:"evidence-section"});
+    next.appendChild(el("span",{class:"overline"},"NEXT QUESTIONS"));
+    next.appendChild(el("h4",{},"下一步值得追问"));
+    next.appendChild(evidenceTextList(study.reading_questions,"evidence-questions"));
+    host.appendChild(next);
+
+    for (const btn of $$("#evidence-tabs button[data-study-id]")) {
+        const selected=btn.getAttribute("data-study-id")===id;
+        btn.classList.toggle("evidence-tab-active",selected);
+        btn.setAttribute("aria-selected",String(selected));
+    }
+}
+
+function renderEvidenceRelations(evidence) {
+    const host = $("#evidence-relations");
+    host.innerHTML = "";
+    for (const relation of evidence.relations) {
+        const study=evidence.studies.find(s => s.id===relation.study_id);
+        if (!study) continue;
+        const card=el("article",{
+            class:"evidence-relation",
+            "data-relation-kind":relation.relation_kind
+        });
+        card.appendChild(el("span", {
+            class:"relation-kind relation-" + relation.relation_kind
+        },relation.relation_kind==="direct_subject"
+            ? "原始论文与系统直接对应" : "编辑性概念比较"));
+        card.appendChild(el("h4",{},relation.label));
+        card.appendChild(el("p",{class:"relation-endpoints"},
+            study.short_title + "  ↔  " + relation.system_name));
+        card.appendChild(el("p",{class:"relation-explanation"},relation.rationale));
+        card.appendChild(el("p",{class:"relation-limit"},relation.scope_note));
+        const footer=el("div",{class:"relation-actions"});
+        footer.appendChild(evidenceReference(study.primary_url,"原始研究"));
+        const jump=el("button", {type:"button",class:"relation-system-jump"},
+                      "定位系统卡片 ↗");
+        jump.addEventListener("click",()=>focusRelatedSystem(relation.system_name));
+        footer.appendChild(jump);
+        card.appendChild(footer);
+        host.appendChild(card);
+    }
+    filterEvidenceRelations();
+}
+
+function focusRelatedSystem(name) {
+    const all=$("#system-filter-chips button[data-filter='All']");
+    if (all) all.click();
+    const target=[...$$("#system-cards-grid .sys-card")]
+        .find(card => card.getAttribute("data-system")===name);
+    if (!target) return;
+    target.scrollIntoView({behavior:"smooth",block:"center"});
+    target.classList.add("evidence-related-highlight");
+    window.setTimeout(()=>target.classList.remove("evidence-related-highlight"),2600);
+}
+
+function filterEvidenceRelations() {
+    let count=0;
+    for (const card of $$("#evidence-relations .evidence-relation")) {
+        const show=activeEvidenceRelation==="all" ||
+            card.getAttribute("data-relation-kind")===activeEvidenceRelation;
+        card.hidden=!show;
+        if (show) count++;
+    }
+    setText("#relation-count",count+" 条关系");
+    const empty=$("#relation-empty");
+    if (empty) empty.hidden=count!==0;
+}
+
+// ---------------------------------------------------------------------------
 // Module 3: 系统卡片 with filter chips
 // ---------------------------------------------------------------------------
 function renderSystemCards(s) {
@@ -376,6 +595,7 @@ function applySystemFilter(filter) {
 function buildSystemCard(c) {
     const badges = (c.categories || []).map(badgeNode);
     const card = el("article", {class: "sys-card",
+        "data-system": c.system || "",
         "data-cats": (c.categories || []).join(",")});
     const header = el("header", {class: "sys-card-header"}, [
         el("h3", {class: "sys-name"}, c.system || "(未命名系统)"),
@@ -398,10 +618,25 @@ function buildSystemCard(c) {
     }
     card.appendChild(detail);
     const source = safeExternalHref(c.source_url);
-    if (source) card.appendChild(el("footer", {class:"sys-card-footer"}, [
-        el("a", {class:"sys-source-link",href:source,target:"_blank",
-                 rel:"noopener noreferrer"}, "查看资料来源 ↗")
-    ]));
+    if (source) {
+        const footer=el("footer",{class:"sys-card-footer"});
+        footer.appendChild(el("a",{
+            class:"sys-source-link",href:source,target:"_blank",
+            rel:"noopener noreferrer"
+        },"查看资料来源 ↗"));
+        for (const other of (c.additional_source_links || [])) {
+            const otherHref=safeExternalHref(other.url);
+            if (otherHref) footer.appendChild(el("a",{
+                class:"sys-source-link sys-secondary-link",
+                href:otherHref,target:"_blank",rel:"noopener noreferrer"
+            }, (other.label || "补充原始来源")+" ↗"));
+        }
+        if (c.source_verification==="official_primary_source_page") {
+            footer.appendChild(el("span",{class:"source-provenance-date"},
+                  "出版方 / 官方页面已核对 · "+(c.source_verified_at||"")));
+        }
+        card.appendChild(footer);
+    }
     return card;
 }
 
@@ -676,6 +911,13 @@ async function main() {
     try { renderPeopleGroups(summary); } catch (e) { showModuleError("#people-groups", e.message); }
     try { renderSourceHealth(summary); } catch (e) { showModuleError("#source-health", e.message); }
     try { renderFooter(summary); } catch (_) { /* non-critical */ }
+
+    try {
+        const evidence = await loadJson(DATA.evidence);
+        renderEvidenceAtlas(evidence);
+    } catch (e) {
+        showModuleError("#evidence-lab", "专题证据暂时不可用：" + e.message);
+    }
 
     enableSectionNavigation();
 }

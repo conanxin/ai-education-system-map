@@ -5,8 +5,11 @@
     "architecture": "Trigger-recognition engine → prompts group to self-regulate; does NOT act on group's behalf. Built on HASRL model.",
     "relation": "This IS the MAI reference system. Co-evolutionary partner, not controller.",
     "last_seen": "2026-10-26T01:01:48.766241+00:00",
-    "source_url": "https://arxiv.org/abs/2512.08296",
-    "first_seen": "2026-07-02T10:05:41.625241+00:00"
+    "source_url": "https://oulurepo.oulu.fi/handle/10024/58874",
+    "first_seen": "2026-07-02T10:05:41.625241+00:00",
+    "source_verified_at": "2026-10-26",
+    "source_verification": "official_primary_source_page",
+    "source_audit_note": "University of Oulu repository contains the named 2025 MAI interactive demo paper; former arxiv 2512.08296 was an unrelated agent scaling study."
   },
   {
     "name": "Khanmigo",
@@ -30,13 +33,33 @@
     "name": "MASS (Google)",
     "type": "Automated MAS design framework",
     "architecture": "Three-stage interleaved optimisation: local prompt → topology → global prompt. Meta-heuristic search over agent designs.",
-    "relation": "Indirect: validates that prompt-then-topology optimisation matters; informs how a multi-agent classroom should be designed before deployment."
+    "relation": "Indirect: validates that prompt-then-topology optimisation matters; informs how a multi-agent classroom should be designed before deployment.",
+    "source_url": "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/",
+    "source_verified_at": "2026-10-26",
+    "source_verification": "official_primary_source_page",
+    "source_audit_note": "Google Research original MASS publication entry; previously empty.",
+    "additional_source_links": [
+      {
+        "label": "arXiv 论文原文",
+        "url": "https://arxiv.org/abs/2502.02533"
+      }
+    ]
   },
   {
     "name": "SimClass (Tsinghua MAIC)",
     "type": "Multi-agent classroom simulator",
     "architecture": "Teacher + classmates + manager + assistant agents; emergent group behaviours; validated against Flanders Interactive Analysis.",
-    "relation": "Direct conceptual sibling of MIRACLE — multi-agent classroom simulation with student peers as agents."
+    "relation": "Direct conceptual sibling of MIRACLE — multi-agent classroom simulation with student peers as agents.",
+    "source_url": "https://aclanthology.org/2025.naacl-long.520/",
+    "source_verified_at": "2026-10-26",
+    "source_verification": "official_primary_source_page",
+    "source_audit_note": "ACL Anthology original NAACL 2025 SimClass paper; previously empty source link.",
+    "additional_source_links": [
+      {
+        "label": "作者项目仓库",
+        "url": "https://github.com/THU-MAIC/SimClass"
+      }
+    ]
   },
   {
     "name": "CTAT / Cognitive Tutor (LearnLab)",
@@ -50,8 +73,17 @@
     "architecture": "OLI courses + EDM via DataShop; ~1-week Summer School trains next-gen practitioners.",
     "relation": "LA infrastructure layer MAI/MIRACLE-style systems plug into.",
     "last_seen": "2026-09-14T01:02:57.642230+00:00",
-    "source_url": "https://hai.stanford.edu/",
-    "first_seen": "2026-07-02T10:05:41.625241+00:00"
+    "source_url": "https://oli.cmu.edu/",
+    "first_seen": "2026-07-02T10:05:41.625241+00:00",
+    "source_verified_at": "2026-10-26",
+    "source_verification": "official_primary_source_page",
+    "source_audit_note": "CMU's Open Learning Initiative official site; previous Stanford HAI link did not document CMU OLI.",
+    "additional_source_links": [
+      {
+        "label": "CMU DataShop 项目来源",
+        "url": "https://hcii.cmu.edu/project/datashop"
+      }
+    ]
   },
   {
     "name": "CocoRobo SMART Suite",
@@ -68,8 +100,11 @@
     "architecture": "Audio→notes→study-guide/quiz/flashcards pipeline.",
     "relation": "Consumer-side AI study tool; not multi-agent, but defines student expectation baseline.",
     "last_seen": "2026-10-26T01:01:48.766241+00:00",
-    "source_url": "https://arxiv.org/abs/2605.12923",
-    "first_seen": "2026-07-02T10:05:41.625241+00:00"
+    "source_url": "https://coconote.app/",
+    "first_seen": "2026-07-02T10:05:41.625241+00:00",
+    "source_verified_at": "2026-10-26",
+    "source_verification": "official_primary_source_page",
+    "source_audit_note": "Coconote official application site; former arxiv 2605.12923 was unrelated MIRACLE research. Quizlet publisher is separately verified in Google Play listing."
   },
   {
     "name": "MAST (Berkeley, Multi-Agent System Traces)",
