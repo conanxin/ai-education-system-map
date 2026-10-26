@@ -1,0 +1,425 @@
+[
+  {
+    "id": "https://hai.stanford.edu/assets/files/hai-stanford-accelerator-for-learning-rfi-response-advancing-ai-in-education.pdf",
+    "title": "RFI: Advancing AI in Education — Stanford HAI + Accelerator for Learning Response (Aug 2025)",
+    "url": "https://hai.stanford.edu/assets/files/hai-stanford-accelerator-for-learning-rfi-response-advancing-ai-in-education.pdf",
+    "institution": "Stanford HAI / Accelerator for Learning",
+    "summary": "Federal policy response noting only 35 RCTs on GenAI-in-education exist worldwide. Calls for \"research-practice ecosystem\" and broadening vision beyond individualised remediation — policy framing, not technical contribution, but signals US Department of Education priorities.",
+    "tags": [],
+    "record_type": "policy_document"
+  },
+  {
+    "id": "https://hai.stanford.edu/news/data-centered-approach-education-ai",
+    "title": "A Data-Centered Approach to Education AI (Subramonyam, Tan, Lee, Wang, 2024)",
+    "url": "https://hai.stanford.edu/news/data-centered-approach-education-ai",
+    "institution": "Stanford HAI / GSE",
+    "summary": "Participatory-AI framework with 10 stakeholder meetings; \"Is a Seat at the Table Enough?\" (arXiv 2311.05792) shows ML-for-ed tools need teacher/student co-design from data spec stage.",
+    "tags": [],
+    "record_type": "news_article"
+  },
+  {
+    "id": "https://cocorobo.hk/research",
+    "title": "CocoRobo Research | AI-Native Learning Systems",
+    "url": "https://cocorobo.hk/research",
+    "institution": "CocoRobo Research",
+    "summary": "",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "cocorobo-research",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://cocorobo.hk/smart",
+    "title": "CocoRobo SMART | AI-Native Learning Environment &amp; Product Suite",
+    "url": "https://cocorobo.hk/smart",
+    "institution": "CocoRobo SMART",
+    "summary": "CocoRobo builds AI-native learning environments on the SMART principles. CocoClass, CocoStudy, CocoNote, CocoView and CocoFlow span in-class, self-paced, project-based, classroom-analytics and teacher AI-workflow scenarios — serving 1,400+ schools across Hong Kong, Macau and the Greater Bay Area.",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "cocorobo-smart",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://www.khanmigo.ai/",
+    "title": "Meet Khanmigo: Khan Academy&#x27;s AI-powered teaching assistant &amp; tutor",
+    "url": "https://www.khanmigo.ai/",
+    "institution": "Khanmigo",
+    "summary": "",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "khanmigo",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://blog.khanacademy.org/",
+    "title": "Khan Academy Blog - Khan Academy Blog",
+    "url": "https://blog.khanacademy.org/",
+    "institution": "Khan Academy Blog",
+    "summary": "",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "ka-blog",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-19T01:01:55.588401+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://learnlab.org/",
+    "title": "LearnLab &#8211; Part of the Simon Initiative",
+    "url": "https://learnlab.org/",
+    "institution": "CMU LearnLab",
+    "summary": "",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "cmu-learnlab",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://acceleratelearning.stanford.edu/overview/ai-learning",
+    "title": "The Accelerator and AI &#8226; Stanford Accelerator for Learning",
+    "url": "https://acceleratelearning.stanford.edu/overview/ai-learning",
+    "institution": "Stanford AI+Education",
+    "summary": "",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "stanford-ai-ed",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://hai.stanford.edu/",
+    "title": "Home | Stanford HAI",
+    "url": "https://hai.stanford.edu/",
+    "institution": "Stanford HAI",
+    "summary": "Advancing AI research, education, and policy to improve the human condition.",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "stanford-hai",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://www.microsoft.com/en-us/research/project/autogen/",
+    "title": "AutoGen - Microsoft Research",
+    "url": "https://www.microsoft.com/en-us/research/project/autogen/",
+    "institution": "Microsoft AutoGen",
+    "summary": "AutoGen allows developers to build LLM applications via multiple agents that can converse with each other to accomplish tasks.",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "ms-autogen",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/",
+    "title": "Introducing Microsoft Agent Framework: The Open-Source Engine for Agentic AI Apps | Microsoft Foundry Blog",
+    "url": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/",
+    "institution": "Microsoft Agent Framework",
+    "summary": "Why agents need a new foundation Over the last year, developers have been experimenting with AI agents in every imaginable form. Agents are not just",
+    "tags": [
+      "official-page"
+    ],
+    "source_id": "ms-agent-framework",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "official_page"
+  },
+  {
+    "id": "p-jarvela",
+    "title": "Sanna Järvelä",
+    "url": "https://scholar.google.com/citations?user=jarvela_sanna",
+    "institution": "University of Oulu",
+    "summary": "people_source: Sanna Järvelä",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-jarvela",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-nguyen",
+    "title": "Andy Nguyen",
+    "url": "https://scholar.google.com/citations?user=nguyen_andy_oulu",
+    "institution": "University of Oulu",
+    "summary": "people_source: Andy Nguyen",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-nguyen",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-edwards",
+    "title": "Justin Edwards",
+    "url": "https://www.oulu.fi/en/people/justin-edwards",
+    "institution": "University of Oulu",
+    "summary": "people_source: Justin Edwards",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-edwards",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-sobocinski",
+    "title": "Márta Sobocinski",
+    "url": "https://www.oulu.fi/en/people/marta-sobocinski",
+    "institution": "University of Oulu",
+    "summary": "people_source: Márta Sobocinski",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-sobocinski",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-tormanen",
+    "title": "Tiina Törmänen",
+    "url": "https://www.oulu.fi/en/people/tiina-tormanen",
+    "institution": "University of Oulu",
+    "summary": "people_source: Tiina Törmänen",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-tormanen",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-koedinger",
+    "title": "Ken Koedinger",
+    "url": "https://www.cmu.edu/dietrich/psychology/koedinger.html",
+    "institution": "Carnegie Mellon University",
+    "summary": "people_source: Ken Koedinger",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-koedinger",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-khan",
+    "title": "Sal Khan",
+    "url": "https://blog.khanacademy.org/author/sal-khan/",
+    "institution": "Khan Academy",
+    "summary": "people_source: Sal Khan",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-khan",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-chiwang",
+    "title": "Chi Wang",
+    "url": "https://www.microsoft.com/en-us/research/people/chiw/",
+    "institution": "Microsoft Research",
+    "summary": "people_source: Chi Wang",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-chiwang",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-shuangli",
+    "title": "Shuang Li",
+    "url": "https://scholar.google.com/citations?user=shuang_li",
+    "institution": "Tsinghua University",
+    "summary": "people_source: Shuang Li",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-shuangli",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-haiyangxin",
+    "title": "Haiyang Xin",
+    "url": "https://scholar.google.com/citations?user=haiyang_xin",
+    "institution": "East China Normal University",
+    "summary": "people_source: Haiyang Xin",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-haiyangxin",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-chingsingchai",
+    "title": "Ching Sing Chai",
+    "url": "https://scholar.google.com/citations?user=chingsing_chai",
+    "institution": "Beijing Normal University",
+    "summary": "people_source: Ching Sing Chai",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-chingsingchai",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "p-harisubramonyam",
+    "title": "Hari Subramonyam",
+    "url": "https://ed.stanford.edu/faculty/harihars",
+    "institution": "Stanford University",
+    "summary": "people_source: Hari Subramonyam",
+    "tags": [
+      "person-source"
+    ],
+    "source_id": "p-harisubramonyam",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "person_profile"
+  },
+  {
+    "id": "conf-aied",
+    "title": "AIED",
+    "url": "https://www.aied-conference.org/",
+    "institution": "",
+    "summary": "conference_source: AIED",
+    "tags": [
+      "conference-venue"
+    ],
+    "source_id": "conf-aied",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "venue_or_journal"
+  },
+  {
+    "id": "conf-isls",
+    "title": "ISLS / CSCL",
+    "url": "https://www.isls.org/",
+    "institution": "",
+    "summary": "conference_source: ISLS / CSCL",
+    "tags": [
+      "conference-venue"
+    ],
+    "source_id": "conf-isls",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "venue_or_journal"
+  },
+  {
+    "id": "conf-lak",
+    "title": "LAK",
+    "url": "https://www.solaresearch.org/events/lak/",
+    "institution": "",
+    "summary": "conference_source: LAK",
+    "tags": [
+      "conference-venue"
+    ],
+    "source_id": "conf-lak",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "venue_or_journal"
+  },
+  {
+    "id": "conf-edm",
+    "title": "EDM",
+    "url": "https://www.educationaldatamining.org/",
+    "institution": "",
+    "summary": "conference_source: EDM",
+    "tags": [
+      "conference-venue"
+    ],
+    "source_id": "conf-edm",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "venue_or_journal"
+  },
+  {
+    "id": "conf-cui",
+    "title": "CUI",
+    "url": "https://cuicui.org/",
+    "institution": "",
+    "summary": "conference_source: CUI",
+    "tags": [
+      "conference-venue"
+    ],
+    "source_id": "conf-cui",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "venue_or_journal"
+  },
+  {
+    "id": "conf-bjet",
+    "title": "BJET",
+    "url": "https://bera-journals.onlinelibrary.wiley.com/journal/14678535",
+    "institution": "",
+    "summary": "conference_source: BJET",
+    "tags": [
+      "conference-venue"
+    ],
+    "source_id": "conf-bjet",
+    "year": "",
+    "first_seen": "2026-07-02T10:05:41.625041+00:00",
+    "last_seen": "2026-10-26T01:01:48.766020+00:00",
+    "record_type": "venue_or_journal"
+  }
+]

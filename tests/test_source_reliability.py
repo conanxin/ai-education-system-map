@@ -125,14 +125,108 @@ class SearchFallbackCases(unittest.TestCase):
             return []
 
         registry={"search_fallback":{"queries":["one","two","three"]}}
-        with patch.object(watch,"try_hermes_search",side_effect=missing),\
-             patch.object(watch,"search_duckduckgo",side_effect=blocked):
+        def public_api_outage(query,limit=5,*,errors=None):
+            errors.append("openalex_http_503")
+            return []
+
+        with patch.object(watch,"search_openalex",side_effect=public_api_outage),\
+             patch.object(watch,"try_hermes_search",side_effect=missing),\
+             patch.object(watch,"search_duckduckgo",side_effect=blocked),\
+             patch.dict(watch.os.environ,{
+                 "AI_EDUCATION_ALLOW_DDG_HTML":"1",
+                 "AI_EDUCATION_ENABLE_HERMES_SEARCH_FALLBACK":"1"}):
             rows, diag=watch.fetch_from_registry(registry,5)
         self.assertEqual(rows,[])
         self.assertTrue(diag["fallback_status"]["circuit_open"])
         self.assertEqual(diag["fallback_status"]["attempted_queries"],1)
         self.assertEqual(diag["fallback_status"]["skipped_queries"],2)
         self.assertTrue(diag["fallback_status"]["errors"])
+
+    def test_openalex_valid_json_only_scholarly_types_are_accepted(self):
+        payload={
+            "meta":{"count":3},
+            "results":[
+                {"id":"https://openalex.org/W12345",
+                 "title":"Socially Shared Regulation of Learning",
+                 "doi":"https://doi.org/10.1234/valid",
+                 "publication_year":2026,"type":"article"},
+                {"id":"https://openalex.org/W23456",
+                 "title":"Institution Home","doi":None,
+                 "publication_year":2026,"type":"dataset"},
+                {"id":"https://openalex.org/W34567",
+                 "title":"Multi-Agent Education Study","doi":None,
+                 "publication_year":2025,"type":"preprint"}
+            ]
+        }
+        import io
+        import json as jsonmodule
+        with patch.object(watch.urllib.request,"urlopen",
+                          return_value=io.BytesIO(jsonmodule.dumps(payload).encode())):
+            errors=[]
+            rows=watch.search_openalex("SSRL agent",limit=5,errors=errors)
+        self.assertEqual(errors,[])
+        self.assertEqual(len(rows),2)
+        self.assertEqual(rows[0]["url"],"https://doi.org/10.1234/valid")
+        self.assertEqual(rows[0]["provider"],"openalex")
+        self.assertEqual(rows[1]["url"],"https://openalex.org/W34567")
+        self.assertEqual(rows[1]["publication_type"],"preprint")
+        self.assertTrue(watch.is_paper_candidate({
+            "tags":["fallback-search","openalex-search"],
+            "publication_type":"article","openalex_id":"https://openalex.org/W12345"
+        }))
+        self.assertFalse(watch.is_paper_candidate({
+            "tags":["fallback-search","openalex-search"],
+            "publication_type":"dataset","openalex_id":"https://openalex.org/W23456"
+        }))
+
+    def test_openalex_valid_empty_never_scrapes_ddg_by_default(self):
+        import io
+        with patch.object(watch.urllib.request,"urlopen",
+                          return_value=io.BytesIO(b'{"meta":{"count":0},"results":[]}')),\
+             patch.object(watch,"search_duckduckgo") as ddg,\
+             patch.dict(watch.os.environ,{
+                 "AI_EDUCATION_ALLOW_DDG_HTML":"0",
+                 "AI_EDUCATION_ENABLE_HERMES_SEARCH_FALLBACK":"0"}):
+            errors=[]
+            rows=watch.run_query("no results",errors=errors)
+        self.assertEqual(rows,[])
+        self.assertEqual(errors,[])
+        ddg.assert_not_called()
+
+    def test_openalex_fallback_integration_classifies_real_paper_only(self):
+        item={
+            "title":"Socially Shared Regulation of Learning with AI Agents",
+            "url":"https://doi.org/10.5555/p42paper",
+            "provider":"openalex",
+            "publication_type":"article",
+            "openalex_id":"https://openalex.org/W123456",
+            "year":"2026","snippet":""
+        }
+        with patch.object(watch,"search_openalex",return_value=[item]),\
+             patch.object(watch,"search_duckduckgo") as ddg:
+            rows,diagnostics=watch.fetch_from_registry(
+                {"search_fallback":{"queries":["Socially Shared Regulation"]}},3)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(diagnostics["fallback_status"]["errors"],[])
+        self.assertEqual(rows[0]["source_id"],"search_fallback:openalex")
+        self.assertTrue(watch.is_paper_candidate(rows[0]))
+        self.assertEqual(rows[0]["year"],"2026")
+        ddg.assert_not_called()
+
+    def test_openalex_rate_limit_creates_explicit_error_without_scraping(self):
+        with patch.object(watch.urllib.request,"urlopen",
+                          side_effect=HTTPError("https://api.openalex.org/works",
+                          429,"rate limited",{},None)),\
+             patch.object(watch,"search_duckduckgo") as ddg,\
+             patch.dict(watch.os.environ,{
+                 "AI_EDUCATION_ALLOW_DDG_HTML":"0",
+                 "AI_EDUCATION_ENABLE_HERMES_SEARCH_FALLBACK":"0"}):
+            errors=[]
+            rows=watch.run_query("SSRL",errors=errors)
+        self.assertEqual(rows,[])
+        self.assertIn("openalex_http_429",errors)
+        self.assertIn("no_enabled_secondary_search_provider",errors)
+        ddg.assert_not_called()
 
     def test_ddg_real_results_url_unwrapped(self):
         html=(

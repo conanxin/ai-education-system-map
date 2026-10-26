@@ -1,11 +1,12 @@
 {
-  "generated_at": "2026-10-26T08:27:55.706725+00:00",
+  "generated_at": "2026-10-26T09:29:58.358300+00:00",
   "last_updated": "2026-10-26T01:01:48.800339+00:00",
   "latest_week_tag": "2026-W44",
   "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
   "github_report_path": "reports/weekly/2026-W44.md",
   "totals": {
-    "papers": 41,
+    "papers": 12,
+    "references": 29,
     "systems": 10,
     "people": 16,
     "timeline_events": 11,
@@ -14,6 +15,7 @@
   },
   "this_week": {
     "new_papers": 0,
+    "new_references": 0,
     "new_systems": 7,
     "new_people": 5,
     "fallback_status": {
@@ -278,15 +280,6 @@
           "arxiv",
           "MIRACLE"
         ]
-      },
-      {
-        "title": "Sanna Järvelä",
-        "year": "",
-        "url": "https://scholar.google.com/citations?user=jarvela_sanna",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
       }
     ],
     "Theory papers": [
@@ -319,220 +312,6 @@
         "tags": [
           "arxiv",
           "Scaling agent systems"
-        ]
-      },
-      {
-        "title": "Khan Academy Blog - Khan Academy Blog",
-        "year": "",
-        "url": "https://blog.khanacademy.org/",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
-      },
-      {
-        "title": "LearnLab &#8211; Part of the Simon Initiative",
-        "year": "",
-        "url": "https://learnlab.org/",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
-      },
-      {
-        "title": "The Accelerator and AI &#8226; Stanford Accelerator for Learning",
-        "year": "",
-        "url": "https://acceleratelearning.stanford.edu/overview/ai-learning",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
-      },
-      {
-        "title": "Andy Nguyen",
-        "year": "",
-        "url": "https://scholar.google.com/citations?user=nguyen_andy_oulu",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Justin Edwards",
-        "year": "",
-        "url": "https://www.oulu.fi/en/people/justin-edwards",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Márta Sobocinski",
-        "year": "",
-        "url": "https://www.oulu.fi/en/people/marta-sobocinski",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Tiina Törmänen",
-        "year": "",
-        "url": "https://www.oulu.fi/en/people/tiina-tormanen",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Ken Koedinger",
-        "year": "",
-        "url": "https://www.cmu.edu/dietrich/psychology/koedinger.html",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Sal Khan",
-        "year": "",
-        "url": "https://blog.khanacademy.org/author/sal-khan/",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Chi Wang",
-        "year": "",
-        "url": "https://www.microsoft.com/en-us/research/people/chiw/",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Shuang Li",
-        "year": "",
-        "url": "https://scholar.google.com/citations?user=shuang_li",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Haiyang Xin",
-        "year": "",
-        "url": "https://scholar.google.com/citations?user=haiyang_xin",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Ching Sing Chai",
-        "year": "",
-        "url": "https://scholar.google.com/citations?user=chingsing_chai",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "Hari Subramonyam",
-        "year": "",
-        "url": "https://ed.stanford.edu/faculty/harihars",
-        "related_system": "person-source",
-        "tags": [
-          "person-source"
-        ]
-      },
-      {
-        "title": "AIED",
-        "year": "",
-        "url": "https://www.aied-conference.org/",
-        "related_system": "conference-venue",
-        "tags": [
-          "conference-venue"
-        ]
-      },
-      {
-        "title": "ISLS / CSCL",
-        "year": "",
-        "url": "https://www.isls.org/",
-        "related_system": "conference-venue",
-        "tags": [
-          "conference-venue"
-        ]
-      },
-      {
-        "title": "LAK",
-        "year": "",
-        "url": "https://www.solaresearch.org/events/lak/",
-        "related_system": "conference-venue",
-        "tags": [
-          "conference-venue"
-        ]
-      },
-      {
-        "title": "EDM",
-        "year": "",
-        "url": "https://www.educationaldatamining.org/",
-        "related_system": "conference-venue",
-        "tags": [
-          "conference-venue"
-        ]
-      },
-      {
-        "title": "CUI",
-        "year": "",
-        "url": "https://cuicui.org/",
-        "related_system": "conference-venue",
-        "tags": [
-          "conference-venue"
-        ]
-      },
-      {
-        "title": "BJET",
-        "year": "",
-        "url": "https://bera-journals.onlinelibrary.wiley.com/journal/14678535",
-        "related_system": "conference-venue",
-        "tags": [
-          "conference-venue"
-        ]
-      }
-    ],
-    "Evidence / policy papers": [
-      {
-        "title": "RFI: Advancing AI in Education — Stanford HAI + Accelerator for Learning Response (Aug 2025)",
-        "year": "",
-        "url": "https://hai.stanford.edu/assets/files/hai-stanford-accelerator-for-learning-rfi-response-advancing-ai-in-education.pdf",
-        "related_system": "",
-        "tags": []
-      },
-      {
-        "title": "A Data-Centered Approach to Education AI (Subramonyam, Tan, Lee, Wang, 2024)",
-        "year": "",
-        "url": "https://hai.stanford.edu/news/data-centered-approach-education-ai",
-        "related_system": "",
-        "tags": []
-      },
-      {
-        "title": "Meet Khanmigo: Khan Academy&#x27;s AI-powered teaching assistant &amp; tutor",
-        "year": "",
-        "url": "https://www.khanmigo.ai/",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
-      },
-      {
-        "title": "Home | Stanford HAI",
-        "year": "",
-        "url": "https://hai.stanford.edu/",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
         ]
       }
     ],
@@ -567,44 +346,192 @@
           "arxiv",
           "AutoGen (Wu et al., 2023)"
         ]
-      },
+      }
+    ]
+  },
+  "reference_groups": {
+    "policy_document": [
       {
-        "title": "AutoGen - Microsoft Research",
-        "year": "",
-        "url": "https://www.microsoft.com/en-us/research/project/autogen/",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
-      },
-      {
-        "title": "Introducing Microsoft Agent Framework: The Open-Source Engine for Agentic AI Apps | Microsoft Foundry Blog",
-        "year": "",
-        "url": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
+        "title": "RFI: Advancing AI in Education — Stanford HAI + Accelerator for Learning Response (Aug 2025)",
+        "url": "https://hai.stanford.edu/assets/files/hai-stanford-accelerator-for-learning-rfi-response-advancing-ai-in-education.pdf",
+        "institution": "Stanford HAI / Accelerator for Learning",
+        "record_type": "policy_document"
       }
     ],
-    "MIRACLE / CocoNote papers": [
+    "news_article": [
+      {
+        "title": "A Data-Centered Approach to Education AI (Subramonyam, Tan, Lee, Wang, 2024)",
+        "url": "https://hai.stanford.edu/news/data-centered-approach-education-ai",
+        "institution": "Stanford HAI / GSE",
+        "record_type": "news_article"
+      }
+    ],
+    "official_page": [
       {
         "title": "CocoRobo Research | AI-Native Learning Systems",
-        "year": "",
         "url": "https://cocorobo.hk/research",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
+        "institution": "CocoRobo Research",
+        "record_type": "official_page"
       },
       {
         "title": "CocoRobo SMART | AI-Native Learning Environment &amp; Product Suite",
-        "year": "",
         "url": "https://cocorobo.hk/smart",
-        "related_system": "official-page",
-        "tags": [
-          "official-page"
-        ]
+        "institution": "CocoRobo SMART",
+        "record_type": "official_page"
+      },
+      {
+        "title": "Meet Khanmigo: Khan Academy&#x27;s AI-powered teaching assistant &amp; tutor",
+        "url": "https://www.khanmigo.ai/",
+        "institution": "Khanmigo",
+        "record_type": "official_page"
+      },
+      {
+        "title": "Khan Academy Blog - Khan Academy Blog",
+        "url": "https://blog.khanacademy.org/",
+        "institution": "Khan Academy Blog",
+        "record_type": "official_page"
+      },
+      {
+        "title": "LearnLab &#8211; Part of the Simon Initiative",
+        "url": "https://learnlab.org/",
+        "institution": "CMU LearnLab",
+        "record_type": "official_page"
+      },
+      {
+        "title": "The Accelerator and AI &#8226; Stanford Accelerator for Learning",
+        "url": "https://acceleratelearning.stanford.edu/overview/ai-learning",
+        "institution": "Stanford AI+Education",
+        "record_type": "official_page"
+      },
+      {
+        "title": "Home | Stanford HAI",
+        "url": "https://hai.stanford.edu/",
+        "institution": "Stanford HAI",
+        "record_type": "official_page"
+      },
+      {
+        "title": "AutoGen - Microsoft Research",
+        "url": "https://www.microsoft.com/en-us/research/project/autogen/",
+        "institution": "Microsoft AutoGen",
+        "record_type": "official_page"
+      },
+      {
+        "title": "Introducing Microsoft Agent Framework: The Open-Source Engine for Agentic AI Apps | Microsoft Foundry Blog",
+        "url": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/",
+        "institution": "Microsoft Agent Framework",
+        "record_type": "official_page"
+      }
+    ],
+    "person_profile": [
+      {
+        "title": "Sanna Järvelä",
+        "url": "https://scholar.google.com/citations?user=jarvela_sanna",
+        "institution": "University of Oulu",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Andy Nguyen",
+        "url": "https://scholar.google.com/citations?user=nguyen_andy_oulu",
+        "institution": "University of Oulu",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Justin Edwards",
+        "url": "https://www.oulu.fi/en/people/justin-edwards",
+        "institution": "University of Oulu",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Márta Sobocinski",
+        "url": "https://www.oulu.fi/en/people/marta-sobocinski",
+        "institution": "University of Oulu",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Tiina Törmänen",
+        "url": "https://www.oulu.fi/en/people/tiina-tormanen",
+        "institution": "University of Oulu",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Ken Koedinger",
+        "url": "https://www.cmu.edu/dietrich/psychology/koedinger.html",
+        "institution": "Carnegie Mellon University",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Sal Khan",
+        "url": "https://blog.khanacademy.org/author/sal-khan/",
+        "institution": "Khan Academy",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Chi Wang",
+        "url": "https://www.microsoft.com/en-us/research/people/chiw/",
+        "institution": "Microsoft Research",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Shuang Li",
+        "url": "https://scholar.google.com/citations?user=shuang_li",
+        "institution": "Tsinghua University",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Haiyang Xin",
+        "url": "https://scholar.google.com/citations?user=haiyang_xin",
+        "institution": "East China Normal University",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Ching Sing Chai",
+        "url": "https://scholar.google.com/citations?user=chingsing_chai",
+        "institution": "Beijing Normal University",
+        "record_type": "person_profile"
+      },
+      {
+        "title": "Hari Subramonyam",
+        "url": "https://ed.stanford.edu/faculty/harihars",
+        "institution": "Stanford University",
+        "record_type": "person_profile"
+      }
+    ],
+    "venue_or_journal": [
+      {
+        "title": "AIED",
+        "url": "https://www.aied-conference.org/",
+        "institution": "",
+        "record_type": "venue_or_journal"
+      },
+      {
+        "title": "ISLS / CSCL",
+        "url": "https://www.isls.org/",
+        "institution": "",
+        "record_type": "venue_or_journal"
+      },
+      {
+        "title": "LAK",
+        "url": "https://www.solaresearch.org/events/lak/",
+        "institution": "",
+        "record_type": "venue_or_journal"
+      },
+      {
+        "title": "EDM",
+        "url": "https://www.educationaldatamining.org/",
+        "institution": "",
+        "record_type": "venue_or_journal"
+      },
+      {
+        "title": "CUI",
+        "url": "https://cuicui.org/",
+        "institution": "",
+        "record_type": "venue_or_journal"
+      },
+      {
+        "title": "BJET",
+        "url": "https://bera-journals.onlinelibrary.wiley.com/journal/14678535",
+        "institution": "",
+        "record_type": "venue_or_journal"
       }
     ]
   },

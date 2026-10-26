@@ -1,6 +1,6 @@
 // app.js — renders the AI Education System Map static page (v1.3.3, zh-CN UI).
 // Pure ES2017+, no build step. Fetches ONE aggregated summary file
-// (dashboard-summary.json) and renders 6 modules.
+// (dashboard-summary.json) and renders 7 modules.
 // JSON schema stays English (matches the watcher / builder output). Display
 // labels, group titles, badges and filter chips are localised to zh-CN via
 // lookup tables below.
@@ -93,6 +93,7 @@ const T = {
 
     // Footer / meta
     "papers": "论文",
+    "references": "研究资料",
     "systems": "系统",
     "people": "人物",
     "last update": "最后更新",
@@ -185,6 +186,7 @@ function badgeNode(label) {
 function renderThisWeek(s) {
     setText("#this-week-tag", s.latest_week_tag || "—");
     setText('[data-stat="new_papers"]', s.this_week.new_papers ?? "—");
+    setText('[data-stat="new_references"]', s.this_week.new_references ?? 0);
     setText('[data-stat="new_systems"]', s.this_week.new_systems ?? "—");
     setText('[data-stat="new_people"]', s.this_week.new_people ?? "—");
     setText('[data-stat="active_sources"]', s.totals.active_sources ?? "—");
@@ -364,7 +366,47 @@ function buildPaperGroup(groupName, papers) {
 }
 
 // ---------------------------------------------------------------------------
-// Module 5: 关键人物与机构
+// Module 5: 独立的非论文研究资料
+// ---------------------------------------------------------------------------
+const REFERENCE_KIND_LABELS = {
+    "official_page": "官方项目与机构网页",
+    "person_profile": "研究者资料页",
+    "venue_or_journal": "学术会议与期刊",
+    "policy_document": "政策文件",
+    "news_article": "新闻与研究报道",
+};
+function renderResearchReferences(s) {
+    const groups=s.reference_groups || {};
+    const total=Object.values(groups).reduce((n,items)=>n+items.length,0);
+    setText("#reference-count",String(total)+" 条资料 · "+
+            String(Object.keys(groups).length)+" 类");
+    const host=$("#reference-groups-body");
+    host.innerHTML="";
+    const order=["official_page","person_profile","venue_or_journal",
+                 "policy_document","news_article"];
+    for (const kind of order) {
+        const items=groups[kind] || [];
+        if (!items.length) continue;
+        const group=el("section",{class:"paper-group"});
+        group.appendChild(el("h3",{class:"paper-group-title"},
+                             REFERENCE_KIND_LABELS[kind]+" ("+items.length+")"));
+        const ul=el("ul",{class:"paper-list"});
+        for (const ref of items) {
+            const li=el("li",{class:"paper-item"});
+            const title=ref.title || "(未命名资料)";
+            li.appendChild(ref.url
+                ? el("a",{href:ref.url,target:"_blank",rel:"noopener noreferrer"},title)
+                : el("span",{},title));
+            if (ref.institution) li.appendChild(
+                el("div",{class:"paper-meta"},ref.institution));
+            ul.appendChild(li);
+        }
+        group.appendChild(ul);
+        host.appendChild(group);
+    }
+}
+// ---------------------------------------------------------------------------
+// Module 6: 关键人物与机构
 // ---------------------------------------------------------------------------
 function renderPeopleGroups(s) {
     const groups = s.people_groups || {};
@@ -402,7 +444,7 @@ function buildPeopleGroup(groupName, people) {
 }
 
 // ---------------------------------------------------------------------------
-// Module 6: 信息源健康状态
+// Module 7: 信息源健康状态
 // ---------------------------------------------------------------------------
 function renderSourceHealth(s) {
     const h = s.source_health || {};
@@ -437,7 +479,7 @@ function renderSourceHealth(s) {
 // ---------------------------------------------------------------------------
 function renderFooter(s) {
     setText("#meta-data-count",
-        `${s.totals.papers} ${T["papers"]} · ${s.totals.systems} ${T["systems"]} · ${s.totals.people} ${T["people"]} · ${T["last update"]} ${fmtDate(s.last_updated)}`);
+        `${s.totals.papers} ${T["papers"]} · ${s.totals.references ?? 0} ${T["references"]} · ${s.totals.systems} ${T["systems"]} · ${s.totals.people} ${T["people"]} · ${T["last update"]} ${fmtDate(s.last_updated)}`);
 
     const footer = $("#footer-sources");
     if (footer) {
@@ -487,6 +529,7 @@ async function main() {
     try { renderThisWeek(summary); } catch (e) { showModuleError("#this-week", e.message); }
     try { renderSystemCards(summary); } catch (e) { showModuleError("#system-cards", e.message); }
     try { renderPaperGroups(summary); } catch (e) { showModuleError("#paper-groups", e.message); }
+    try { renderResearchReferences(summary); } catch (e) { showModuleError("#research-references", e.message); }
     try { renderPeopleGroups(summary); } catch (e) { showModuleError("#people-groups", e.message); }
     try { renderSourceHealth(summary); } catch (e) { showModuleError("#source-health", e.message); }
     try { renderFooter(summary); } catch (_) { /* non-critical */ }

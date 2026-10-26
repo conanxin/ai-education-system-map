@@ -378,7 +378,8 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--weekly-dir", action="store_true",
                     help="Also write docs/data/weekly/latest.json snapshot.")
     args = ap.parse_args(argv)
-
+    if (args.data_dir / "research-migration.json").exists():
+        raise RuntimeError("Typed P42 live corpus exists; import seed in separate directory")
     md = args.input.read_text(encoding="utf-8")
 
     papers_table = extract_table(md, "New Papers")

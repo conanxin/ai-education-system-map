@@ -74,7 +74,7 @@
   "search_fallback": {
     "description": "Last-resort search when higher strategies return nothing.",
     "strategy": 4,
-    "provider": "duckduckgo_html",
+    "provider": "openalex_public_api",
     "queries": [
       "University of Oulu Hybrid Intelligence 2026 paper",
       "MAI proactive agent Sanna Jarvela 2026",

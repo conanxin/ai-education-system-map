@@ -31,6 +31,7 @@ from __future__ import annotations
 import argparse
 import html as html_module
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -415,10 +416,90 @@ def try_hermes_search(query: str, limit: int = 5,
         return []
 
 
+def search_openalex(query: str, limit: int = 5,
+                    *, errors: list[str] | None = None) -> list[dict[str, str]]:
+    """Search OpenAlex's documented public /works API; no HTML scraping.
+
+    No credentials are required for basic requests. Only real academic
+    articles and preprints are accepted; malformed/unverified result entries
+    are not silently inserted into a scholarly corpus.
+    """
+    params = urllib.parse.urlencode({
+        "search": query,
+        "filter": "type:article|preprint,from_publication_date:2025-01-01",
+        "per_page": max(1, min(5, int(limit))),
+        "select": "id,title,doi,publication_year,type,primary_location",
+    })
+    url = "https://api.openalex.org/works?" + params
+    try:
+        req = urllib.request.Request(
+            url, headers={"User-Agent":"Conan Xin AI Education Watcher/2.0",
+                          "Accept":"application/json"})
+        with urllib.request.urlopen(req, timeout=12) as response:
+            result = json.loads(response.read(700_000))
+    except urllib.error.HTTPError as exc:
+        if errors is not None:
+            errors.append("openalex_http_" + str(exc.code))
+        return []
+    except (urllib.error.URLError,TimeoutError,OSError,ValueError) as exc:
+        if errors is not None:
+            errors.append("openalex_" + type(exc).__name__)
+        return []
+    if not isinstance(result,dict) or not isinstance(result.get("results"),list):
+        if errors is not None:
+            errors.append("openalex_invalid_json_schema")
+        return []
+    out=[]
+    seen=set()
+    for record in result["results"]:
+        if not isinstance(record,dict) or record.get("type") not in ("article","preprint"):
+            continue
+        title = str(record.get("title") or "").strip()
+        oid = str(record.get("id") or "").strip()
+        doi = str(record.get("doi") or "").strip()
+        if not title or not oid.startswith("https://openalex.org/W"):
+            continue
+        url = doi if doi.startswith("https://doi.org/") else oid
+        if url in seen:
+            continue
+        seen.add(url)
+        year=str(record.get("publication_year") or "")
+        out.append({
+            "title":title,
+            "url":url,
+            "snippet":"",
+            "year":year,
+            "provider":"openalex",
+            "publication_type":record["type"],
+            "openalex_id":oid,
+        })
+    return out
+
+
 def run_query(query: str, limit: int = 5,
               *, errors: list[str] | None = None) -> list[dict[str, str]]:
-    hits = try_hermes_search(query, limit=limit, errors=errors)
-    return hits if hits else search_duckduckgo(query, limit=limit, errors=errors)
+    """Structured public OpenAlex search first, no DDG HTML scraping by default.
+
+    Historical providers remain explicitly opt-in for controlled recovery
+    only. Callers always receive errors rather than unexplained zero results.
+    """
+    api_errors: list[str] = []
+    hits = search_openalex(query, limit=limit, errors=api_errors)
+    if hits:
+        return hits
+    if not api_errors:
+        return []  # Valid OpenAlex 200 result set with no matching works
+    if errors is not None:
+        errors.extend(api_errors)
+    if os.getenv("AI_EDUCATION_ENABLE_HERMES_SEARCH_FALLBACK") == "1":
+        hits=try_hermes_search(query,limit=limit,errors=errors)
+        if hits:
+            return hits
+    if os.getenv("AI_EDUCATION_ALLOW_DDG_HTML") == "1":
+        return search_duckduckgo(query,limit=limit,errors=errors)
+    if errors is not None:
+        errors.append("no_enabled_secondary_search_provider")
+    return []
 
 
 # ---------------------------------------------------------------------------
@@ -562,7 +643,8 @@ def fetch_from_registry(reg: dict[str, Any], max_results: int) -> tuple[list[dic
             for error in query_errors:
                 fb_status["errors"].append(f"{q[:40]}: {error}")
             if any(error in ("duckduckgo_challenge_detected", "duckduckgo_http_429",
-                             "duckduckgo_http_403") for error in query_errors):
+                             "duckduckgo_http_403", "openalex_http_429",
+                             "openalex_http_403") for error in query_errors):
                 fb_status["circuit_open"] = True
                 fb_status["skipped_queries"] = len(fb_queries)-q_index-1
                 break
@@ -573,9 +655,14 @@ def fetch_from_registry(reg: dict[str, Any], max_results: int) -> tuple[list[dic
                     "url": url_canon(h.get("url", "")),
                     "institution": "",
                     "summary": h.get("snippet", ""),
-                    "tags": ["fallback-search"],
-                    "source_id": "search_fallback",
-                    "year": _guess_year(h.get("title", "") + " " + h.get("snippet", "")),
+                    "tags": (["fallback-search", "openalex-search"] if
+                             h.get("provider")=="openalex" else ["fallback-search"]),
+                    "source_id": ("search_fallback:openalex" if
+                                  h.get("provider")=="openalex" else "search_fallback"),
+                    "publication_type": h.get("publication_type"),
+                    "openalex_id": h.get("openalex_id"),
+                    "year": str(h.get("year") or
+                                _guess_year(h.get("title", "")+" "+h.get("snippet", ""))),
                 }
                 fb_hits.append(hb)
         except Exception as e:
@@ -606,6 +693,9 @@ def is_paper_candidate(item: dict[str, Any]) -> bool:
         return False
     if tags.intersection({"arxiv", "arxiv-search"}):
         return True
+    if "openalex-search" in tags:
+        return (item.get("publication_type") in ("article","preprint")
+                and str(item.get("openalex_id") or "").startswith("https://openalex.org/W"))
     if "fallback-search" in tags:
         url = str(item.get("url") or "")
         if _canonical_arxiv_abs_url(url):
@@ -616,6 +706,71 @@ def is_paper_candidate(item: dict[str, Any]) -> bool:
         )
     return False
 
+
+
+def reference_kind(candidate: dict[str, Any]) -> str | None:
+    """Non-paper sources remain searchable references, not new papers."""
+    tags = set(candidate.get("tags") or [])
+    if "official-page" in tags:
+        return "official_page"
+    if "person-source" in tags:
+        return "person_profile"
+    if "conference-venue" in tags:
+        return "venue_or_journal"
+    return None
+
+
+def merge_references(existing: list[dict[str, Any]],
+                     candidates: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
+    """Preserve stable IDs and source provenance while refreshing official URLs.
+
+    References are not scholarly papers, and never increment papers_added.
+    """
+    by_source = {str(x["source_id"]):x for x in existing if x.get("source_id")}
+    by_url = {url_canon(x["url"]):x for x in existing if x.get("url")}
+    seen_keys = set()
+    added = 0
+    timestamp = now_iso()
+    for candidate in candidates:
+        kind = reference_kind(candidate)
+        if not kind:
+            continue
+        source_id = str(candidate.get("source_id") or "")
+        url = url_canon(candidate.get("url") or "")
+        title = str(candidate.get("title") or "")
+        if not source_id and not url:
+            continue
+        if not title:
+            continue
+        key = source_id or url
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        existing_item = (by_source.get(source_id) if source_id else None) or by_url.get(url)
+        if existing_item is not None:
+            if existing_item.get("record_type") != kind:
+                raise ValueError("Existing source changed reference kind: " + key)
+            old_url = existing_item.get("url") or ""
+            if url and old_url and url_canon(old_url) != url:
+                history = existing_item.setdefault("previous_urls", [])
+                if old_url not in history:
+                    history.append(old_url)
+                existing_item["url"] = url
+            existing_item["last_seen"] = timestamp
+            continue
+        row = dict(candidate)
+        row["record_type"] = kind
+        row["first_seen"] = timestamp
+        row["last_seen"] = timestamp
+        if not row.get("id"):
+            row["id"] = source_id or url
+        existing.append(row)
+        if source_id:
+            by_source[source_id] = row
+        if url:
+            by_url[url] = row
+        added += 1
+    return existing,added
 
 
 def merge_papers(existing: list[dict[str, Any]], new_items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
@@ -635,6 +790,7 @@ def merge_papers(existing: list[dict[str, Any]], new_items: list[dict[str, Any]]
             by_title[nt]["last_seen"] = now
             continue
         merged = dict(it)
+        merged["record_type"] = "scholarly_paper"
         merged["first_seen"] = now
         merged["last_seen"] = now
         existing.append(merged)
@@ -865,6 +1021,7 @@ def update_latest_snapshot(weekly_path: Path, items_added: list[dict[str, Any]],
         "github_report_path": f"reports/weekly/{week_tag}.md",
         "page_report_url": f"{PAGES_BASE}/reports/weekly/{week_tag}.md",
         "new_papers": len(items_added),
+        "new_references": totals.get("references_added", 0),
         "new_systems": totals.get("systems_updated", 0),
         "new_people": totals.get("people_updated", 0),
         "tech_stack_updated": totals.get("tech_stack_updated", 0),
@@ -873,6 +1030,7 @@ def update_latest_snapshot(weekly_path: Path, items_added: list[dict[str, Any]],
         "candidates_by_source": diag.get("candidates_by_source", {}),
         "entity_changes": {
             "papers_added": len(items_added),
+            "references_added": totals.get("references_added", 0),
             "systems_updated": totals.get("systems_updated", 0),
             "people_updated": totals.get("people_updated", 0),
             "tech_stack_updated": totals.get("tech_stack_updated", 0),
@@ -908,6 +1066,7 @@ def write_manifest(manifest_path: Path, week_tag: str, items_added: list[dict[st
         "candidates_by_source": diag.get("candidates_by_source", {}),
         "entity_changes": {
             "papers_added": len(items_added),
+            "references_added": totals.get("references_added", 0),
             "systems_updated": totals.get("systems_updated", 0),
             "people_updated": totals.get("people_updated", 0),
             "tech_stack_updated": totals.get("tech_stack_updated", 0),
@@ -1094,6 +1253,7 @@ def main(argv: list[str]) -> int:
     args = ap.parse_args(argv)
 
     papers_path = args.data_dir / "papers.json"
+    refs_path = args.data_dir / "research-entities.json"
     systems_path = args.data_dir / "systems.json"
     people_path = args.data_dir / "people.json"
     tech_path = args.data_dir / "tech-stack.json"
@@ -1103,6 +1263,12 @@ def main(argv: list[str]) -> int:
     registry_path = args.data_dir / "source-registry.json"
 
     papers = load_json(papers_path)
+    references = load_json(refs_path)
+    if not isinstance(papers,list) or not isinstance(references,list):
+        raise RuntimeError("P42 typed entity stores must be lists")
+    if any(not isinstance(x,dict) or x.get("record_type") != "scholarly_paper"
+           for x in papers):
+        raise RuntimeError("Legacy mixed papers.json detected: run P42 migration first")
     systems = load_json(systems_path)
     people = load_json(people_path)
     tech_stack = load_json(tech_path)
@@ -1129,6 +1295,7 @@ def main(argv: list[str]) -> int:
     new_papers = papers[prior_paper_count:]
     if len(new_papers) != papers_added:
         raise RuntimeError("New-paper count diverges from appended records")
+    references, references_added = merge_references(references, candidates)
     systems, systems_updated = merge_systems(systems, candidates)
     people, people_updated = merge_people(people, candidates)
     tech_stack, tech_updated = merge_tech_stack(tech_stack, candidates)
@@ -1136,6 +1303,8 @@ def main(argv: list[str]) -> int:
 
     totals = {
         "papers": len(papers),
+        "references": len(references),
+        "references_added": references_added,
         "systems": len(systems),
         "people": len(people),
         "systems_updated": systems_updated,
@@ -1154,6 +1323,7 @@ def main(argv: list[str]) -> int:
 
     # Persist
     save_json(papers_path, papers)
+    save_json(refs_path, references)
     save_json(systems_path, systems)
     save_json(people_path, people)
     save_json(tech_path, tech_stack)

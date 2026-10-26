@@ -153,6 +153,12 @@ def main(argv: list[str]) -> int:
 
     dd = args.data_dir
     papers = load_json(dd / "papers.json", default=[])
+    references = load_json(dd / "research-entities.json", default=[])
+    if not isinstance(papers,list) or not isinstance(references,list):
+        raise ValueError("P42 papers and reference stores must be lists")
+    if any(not isinstance(x,dict) or x.get("record_type")!="scholarly_paper"
+           for x in papers):
+        raise ValueError("P42 papers.json still contains mixed legacy records")
     systems = load_json(dd / "systems.json", default=[])
     people = load_json(dd / "people.json", default=[])
     registry = load_json(dd / "source-registry.json", default={})
@@ -187,6 +193,20 @@ def main(argv: list[str]) -> int:
             "tags": p.get("tags") or [],
         })
 
+    # Non-paper research references remain visible but never inflate papers.
+    reference_groups: dict[str, list[dict[str, Any]]] = {}
+    expected_kinds={"official_page","person_profile","venue_or_journal",
+                    "policy_document","news_article"}
+    for ref in references:
+        if not isinstance(ref,dict) or ref.get("record_type") not in expected_kinds:
+            raise ValueError("Unknown P42 research reference type")
+        group=ref["record_type"]
+        reference_groups.setdefault(group,[]).append({
+            "title":str(ref.get("title") or ""),
+            "url":str(ref.get("url") or ""),
+            "institution":str(ref.get("institution") or ""),
+            "record_type":group,
+        })
     # People groups
     people_groups: dict[str, list[dict[str, Any]]] = {}
     for person in people:
@@ -233,6 +253,7 @@ def main(argv: list[str]) -> int:
         "github_report_path": safe_get(latest, "github_report_path", default=""),
         "totals": {
             "papers": len(papers),
+            "references": len(references),
             "systems": len(systems),
             "people": len(people),
             "timeline_events": len(timeline),
@@ -241,6 +262,7 @@ def main(argv: list[str]) -> int:
         },
         "this_week": {
             "new_papers": safe_get(latest, "new_papers", default=0),
+            "new_references": safe_get(latest, "new_references", default=0),
             "new_systems": safe_get(latest, "new_systems", default=0),
             "new_people": safe_get(latest, "new_people", default=0),
             "fallback_status": fallback_status,
@@ -258,6 +280,7 @@ def main(argv: list[str]) -> int:
         },
         "system_cards": sys_cards,
         "paper_groups": paper_groups,
+        "reference_groups": reference_groups,
         "people_groups": people_groups,
         "timeline": timeline,
     }

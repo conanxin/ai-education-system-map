@@ -1,0 +1,24 @@
+{
+  "migration": "P42_AI_EDUCATION_TYPED_RESEARCH_RECORDS_V1",
+  "status": "MIGRATED",
+  "input_record_count": 41,
+  "input_sha256": "dfd9d08019b171527f278174bdeb0ec5a4d2fdb0e9098e06306304cbeafed617",
+  "typed_papers": 12,
+  "typed_references": 29,
+  "reference_kinds": {
+    "news_article": 1,
+    "official_page": 9,
+    "person_profile": 12,
+    "policy_document": 1,
+    "scholarly_paper": 12,
+    "venue_or_journal": 6
+  },
+  "full_legacy_fields_preserved": true,
+  "original_record_ids_preserved": true,
+  "all_records_disjoint_by_id": true,
+  "source_backup": "~/.local/state/hermes-upgrade-preflight/P42-backups/ai-before-record-migration/papers.json",
+  "new_documents": [
+    "docs/data/research-entities.json",
+    "docs/data/research-migration.json"
+  ]
+}

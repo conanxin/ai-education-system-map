@@ -115,5 +115,6 @@
     "corrected_new_papers": 0,
     "basis": "Git revs 0387172 and 3a9f4d1 have the same 41 tracked paper IDs; today's paper IDs unchanged",
     "corrected_at": "2026-10-26T08:27:55.661613+00:00"
-  }
+  },
+  "new_references": 0
 }

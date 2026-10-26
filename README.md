@@ -17,9 +17,9 @@ and a weekly auto-updated research snapshot.
 
 中文界面通过 `docs/index.html` 静态文本 + `docs/assets/app.js` 中的查找表(`T`、`BADGE_LABELS`、`PAPER_GROUP_TITLES`、`PEOPLE_GROUP_TITLES`)实现。修改任一文件即可调整显示文案,不影响数据。
 
-## Dashboard modules (v1.3, zh-CN UI in v1.3.3)
+## Dashboard modules (P42 typed research data)
 
-The single-page site is organised into six modules, all driven by one
+The single-page site is organised into seven modules, all driven by one
 aggregated JSON file (`docs/data/dashboard-summary.json`):
 
 1. **本周更新 (This Week)** — 周标签、本周新论文/系统/人物数量、备用搜索状态、查看每周报告 / 在 GitHub 查看 按钮。
@@ -30,21 +30,35 @@ aggregated JSON file (`docs/data/dashboard-summary.json`):
    (SSRL/HASRL、多智能体、课堂 OS、AI 导师、产品、研究原型、基础设施)。筛选标签可客户端过滤。
 4. **论文网络摘要 (Paper Network Summary)** — 论文按脉络角色分组
    (理论基础 / MAI 研究脉络 / MIRACLE·CocoNote / 多智能体基础设施 / 证据与政策)。点击标题打开来源链接。
-5. **关键人物与机构 (People & Institutions)** — 研究者按机构分组
+5. **研究资料与来源 (Research References)** — 独立列出机构官网、人物资料、会议、政策与新闻，不计入论文总数。
+6. **关键人物与机构 (People & Institutions)** — 研究者按机构分组
    (奥卢大学、Stanford、CMU LearnLab、Microsoft/Google、Khan Academy、CocoRobo/MIRACLE、其他)。
-6. **信息源健康状态 (Source Health)** — 稳定来源数、本次活跃数、来源错误数、备用搜索状态、按来源的候选结果、registry/manifest/summary JSON 链接。
+7. **信息源健康状态 (Source Health)** — 稳定来源数、本次活跃数、来源错误数、备用搜索状态、按来源的候选结果、registry/manifest/summary JSON 链接。
+
+## P42 typed research sources
+
+P42 separates the 41 legacy mixed records into 12 reviewed publications
+stored in docs/data/papers.json and 29 non-paper references in
+docs/data/research-entities.json. The provenance file
+docs/data/research-migration.json documents original SHA256 and classification.
+Private byte-preserving backup was made before migration.
+Dashboard totals and reference_groups display each type without paper inflation.
+Weekly monitoring routes official web pages, people and venues into references.
+Seed bootstrap refuses overwriting a typed production collection.
 
 ## Structure
 
 ```
 docs/
-  index.html              Single-page site (6 modules: This Week / Lineage /
+  index.html              Single-page site (7 modules: This Week / Lineage /
                           System Cards / Paper Network / People / Source Health)
   .nojekyll               Tells GitHub Pages to skip Jekyll processing
   assets/style.css
   assets/app.js
   data/
-    papers.json           Structured paper list
+    papers.json           Only reviewed scholarly papers
+    research-entities.json Typed non-paper references
+    research-migration.json Lossless migration provenance
     systems.json          Structured system list
     people.json           Researchers
     tech-stack.json       Comparison table
