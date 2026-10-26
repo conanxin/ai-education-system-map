@@ -17,9 +17,9 @@ and a weekly auto-updated research snapshot.
 
 中文界面通过 `docs/index.html` 静态文本 + `docs/assets/app.js` 中的查找表(`T`、`BADGE_LABELS`、`PAPER_GROUP_TITLES`、`PEOPLE_GROUP_TITLES`)实现。修改任一文件即可调整显示文案,不影响数据。
 
-## Dashboard modules (P42 typed research data)
+## Dashboard module history (P42 snapshot; see P43 section above)
 
-The single-page site is organised into seven modules, all driven by one
+The single-page site now has nine anchored reading sections, all driven by one
 aggregated JSON file (`docs/data/dashboard-summary.json`):
 
 1. **本周更新 (This Week)** — 周标签、本周新论文/系统/人物数量、备用搜索状态、查看每周报告 / 在 GitHub 查看 按钮。
@@ -46,11 +46,36 @@ Dashboard totals and reference_groups display each type without paper inflation.
 Weekly monitoring routes official web pages, people and venues into references.
 Seed bootstrap refuses overwriting a typed production collection.
 
+## P43 editorial website redesign
+
+The site remains a single GitHub Pages static HTML/CSS/JavaScript application,
+with no added frontend framework, CDN runtime or backend service. A consistent
+research-atlas visual language unifies the landing page, cards, navigation and
+data-provenance notes.
+
+- Editorial cover with live-from-archive totals for 12 papers, 29 references,
+  10 systems and 16 people. The timestamp is the last archive, not live data.
+- Four guided research routes, three directly linked primary reading examples,
+  a six-stage interpretive framework and 11 data-derived timeline entries.
+- Dedicated paper title/topic/year search and reference type filters/search,
+  alongside the existing system categories and original source links.
+- Source-transparency and research-method sections explain the separation of
+  scholarly and non-scholarly records, and limits of weekly data.
+- Four tested viewport widths (1440, 768, 390, 320), native light/dark themes,
+  keyboard focus, skip links and reduced-motion handling.
+- Replaces external Mermaid rendering with native, offline-capable semantic
+  HTML/CSS for the research framework and timeline.
+
+Existing deep link anchors are preserved. Run the repository Python unittest
+suite for data and static markup guards. The P43 browser and interaction
+smoke-test receipts are kept privately in the upgrade research work directory,
+not in the published GitHub repository.
+
 ## Structure
 
 ```
 docs/
-  index.html              Single-page site (7 modules: This Week / Lineage /
+  index.html              Editorial research atlas (9 sections: This Week / Lineage /
                           System Cards / Paper Network / People / Source Health)
   .nojekyll               Tells GitHub Pages to skip Jekyll processing
   assets/style.css

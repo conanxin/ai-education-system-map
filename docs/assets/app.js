@@ -25,7 +25,7 @@ function el(tag, attrs = {}, children = []) {
         if (k === "class") node.className = v;
         else if (k === "html") node.innerHTML = v;
         else if (k === "text") node.textContent = v;
-        else if (k.startsWith("data-")) node.setAttribute(k, v);
+        else if (k.startsWith("data-") || k.startsWith("aria-")) node.setAttribute(k, v);
         else node[k] = v;
     }
     for (const c of [].concat(children)) {
@@ -63,6 +63,108 @@ function fmtDate(iso) {
 function setText(sel, value) {
     const node = $(sel);
     if (node) node.textContent = value == null ? "—" : String(value);
+}
+
+function safeExternalHref(value) {
+    try {
+        const url = new URL(value, window.location.href);
+        return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+    } catch (_) {
+        return "";
+    }
+}
+
+function renderHero(s) {
+    const totals = s.totals || {};
+    for (const key of ["papers", "systems", "people", "references"]) {
+        setText('[data-hero="' + key + '"]', totals[key] ?? "—");
+    }
+    const latest = s.source_health?.last_run || s.last_updated;
+    setText("#hero-last-updated", latest ? fmtDate(latest) : "尚无归档时间");
+}
+
+function renderFeaturedReading(s) {
+    const target = $("#featured-reads");
+    if (!target) return;
+    target.innerHTML = "";
+    const papers = Object.values(s.paper_groups || {}).flat();
+    const selections = [
+        {
+            name: "01 / HUMAN–AI CO-REGULATION",
+            pattern: /Human and artificial intelligence collaboration/i,
+            question: "人机可以怎样共同参与合作学习的调节？"
+        },
+        {
+            name: "02 / CLASSROOM SIMULATION",
+            pattern: /Simulating Classroom Education/i,
+            question: "多智能体模拟能为课堂研究提供什么实验入口？"
+        },
+        {
+            name: "03 / AGENT SYSTEM DESIGN",
+            pattern: /Multi-Agent Design: Optimizing/i,
+            question: "提示与协作拓扑应如何共同设计？"
+        }
+    ];
+    for (const item of selections) {
+        const match = papers.find(paper => item.pattern.test(paper.title || ""));
+        if (!match) continue;
+        const card = el("article", {class: "featured-card"});
+        card.appendChild(el("span", {class:"featured-tag"},item.name));
+        card.appendChild(el("h4",{},item.question));
+        const href = safeExternalHref(match.url);
+        if (href) {
+            card.appendChild(el("a", {
+                href, target:"_blank",rel:"noopener noreferrer"
+            },match.title + " ↗"));
+        } else {
+            card.appendChild(el("p",{},match.title));
+        }
+        target.appendChild(card);
+    }
+}
+
+function renderTimeline(s) {
+    const host = $("#timeline-grid");
+    if (!host) return;
+    host.innerHTML = "";
+    const events = Array.isArray(s.timeline) ? s.timeline : [];
+    setText("#timeline-count", String(events.length) + " 个记录");
+    const ordered = [...events].sort((a, b) => Number(a.year) - Number(b.year));
+    for (const event of ordered) {
+        const node = el("article", {class: "timeline-entry",
+            "data-layer": String(event.layer || "other")});
+        node.appendChild(el("span", {class: "timeline-year"}, String(event.year ?? "—")));
+        node.appendChild(el("h4", {}, String(event.label || "未命名节点")));
+        if (event.note) node.appendChild(el("p", {}, String(event.note)));
+        host.appendChild(node);
+    }
+}
+
+function enableSectionNavigation() {
+    const nav = $(".nav-inner");
+    if (!nav || !("IntersectionObserver" in window)) return;
+    const links = [...nav.querySelectorAll('a[href^="#"]')];
+    const targets = links.map(link => document.querySelector(link.getAttribute("href")))
+                         .filter(Boolean);
+    const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting)
+                               .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (!visible.length) return;
+        const id = visible[0].target.id;
+        for (const link of links) {
+            if (link.getAttribute("href") === "#" + id) {
+                link.setAttribute("aria-current", "location");
+            } else {
+                link.removeAttribute("aria-current");
+            }
+        }
+    }, {rootMargin: "-90px 0px -65% 0px", threshold: 0});
+    for (const target of targets) observer.observe(target);
+}
+
+function containsSearch(haystack, query) {
+    return String(haystack || "").toLocaleLowerCase()
+                 .includes(String(query || "").trim().toLocaleLowerCase());
 }
 
 function showModuleError(sel, message) {
@@ -234,14 +336,19 @@ function renderSystemCards(s) {
         chipsHost.appendChild(el("button", {
             class: "chip" + (f === "All" ? " chip-active" : ""),
             "data-filter": f,
+            "aria-pressed": f === "All" ? "true" : "false",
             type: "button",
         }, BADGE_LABELS[f] || f));
     }
     chipsHost.addEventListener("click", (ev) => {
         const target = ev.target;
         if (!target.classList || !target.classList.contains("chip")) return;
-        $$(".chip").forEach(c => c.classList.remove("chip-active"));
+        chipsHost.querySelectorAll(".chip").forEach(c => {
+            c.classList.remove("chip-active");
+            c.setAttribute("aria-pressed", "false");
+        });
         target.classList.add("chip-active");
+        target.setAttribute("aria-pressed", "true");
         const f = target.getAttribute("data-filter");
         applySystemFilter(f);
     });
@@ -254,58 +361,50 @@ function renderSystemCards(s) {
 }
 
 function applySystemFilter(filter) {
-    const cards = $$(".sys-card");
+    const cards = $$("#system-cards-grid .sys-card");
+    let visible = 0;
     for (const card of cards) {
         const cats = (card.getAttribute("data-cats") || "").split(",").filter(Boolean);
-        if (filter === "All" || cats.includes(filter)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
+        const match = filter === "All" || cats.includes(filter);
+        card.hidden = !match;
+        if (match) visible++;
     }
+    const empty = $("#system-empty");
+    if (empty) empty.hidden = visible > 0;
 }
 
 function buildSystemCard(c) {
     const badges = (c.categories || []).map(badgeNode);
-    const card = el("article", {
-        class: "sys-card",
-        "data-cats": (c.categories || []).join(","),
-    }, [
-        el("header", { class: "sys-card-header" }, [
-            el("h3", { class: "sys-name" }, c.system || "(未命名)"),
-            el("div", { class: "sys-badges" }, badges),
-        ]),
-        el("div", { class: "sys-row" }, [
-            el("span", { class: "sys-key" }, T["Institution"]),
-            el("span", { class: "sys-val" }, c.institution || "—"),
-        ]),
-        el("div", { class: "sys-row" }, [
-            el("span", { class: "sys-key" }, T["Type"]),
-            el("span", { class: "sys-val" }, c.type || "—"),
-        ]),
-        el("div", { class: "sys-row" }, [
-            el("span", { class: "sys-key" }, T["Agent architecture"]),
-            el("span", { class: "sys-val" }, c.agent_architecture || "—"),
-        ]),
-        el("div", { class: "sys-row" }, [
-            el("span", { class: "sys-key" }, T["Open source"]),
-            el("span", { class: "sys-val" }, c.open_source_status || "—"),
-        ]),
-        el("div", { class: "sys-row" }, [
-            el("span", { class: "sys-key" }, T["Relation to MAI / MIRACLE"]),
-            el("span", { class: "sys-val sys-rel" }, c.relation_to_mai_miracle || "—"),
-        ]),
+    const card = el("article", {class: "sys-card",
+        "data-cats": (c.categories || []).join(",")});
+    const header = el("header", {class: "sys-card-header"}, [
+        el("h3", {class: "sys-name"}, c.system || "(未命名系统)"),
+        el("div", {class: "sys-badges"}, badges)
     ]);
-    if (c.source_url) {
-        card.appendChild(el("footer", { class: "sys-card-footer" }, [
-            el("a", {
-                href: c.source_url, target: "_blank", rel: "noopener noreferrer",
-                class: "sys-source-link",
-            }, `${T["Source"]} →`),
+    card.appendChild(header);
+    if (c.type) card.appendChild(el("p", {class:"sys-type"}, c.type));
+    if (c.relation_to_mai_miracle) card.appendChild(
+        el("p", {class: "sys-context"}, c.relation_to_mai_miracle));
+    const detail = el("details", {class: "sys-details"});
+    detail.appendChild(el("summary", {}, "架构与项目资料"));
+    for (const [key, value] of [
+        ["Institution", c.institution], ["Agent architecture", c.agent_architecture],
+        ["Open source", c.open_source_status]
+    ]) {
+        detail.appendChild(el("div", {class:"sys-row"}, [
+            el("span", {class:"sys-key"}, T[key]),
+            el("span", {class:"sys-val"}, value || "未记录")
         ]));
     }
+    card.appendChild(detail);
+    const source = safeExternalHref(c.source_url);
+    if (source) card.appendChild(el("footer", {class:"sys-card-footer"}, [
+        el("a", {class:"sys-source-link",href:source,target:"_blank",
+                 rel:"noopener noreferrer"}, "查看资料来源 ↗")
+    ]));
     return card;
 }
+
 
 // ---------------------------------------------------------------------------
 // Module 4: 论文网络摘要
@@ -313,56 +412,70 @@ function buildSystemCard(c) {
 function renderPaperGroups(s) {
     const groups = s.paper_groups || {};
     const total = Object.values(groups).reduce((sum, arr) => sum + arr.length, 0);
-    setText("#paper-count",
-        `${total} ${T["papers"]} · ${Object.keys(groups).length} 个分组`);
-
+    setText("#paper-count", String(total) + " 条 · " +
+            Object.keys(groups).length + " 组");
     const body = $("#paper-groups-body");
     body.innerHTML = "";
-
-    // Stable display order — keys are English JSON keys; titles mapped via PAPER_GROUP_TITLES
     const order = [
-        "Theory papers",
-        "MAI lineage papers",
+        "Theory papers", "MAI lineage papers",
         "MIRACLE / CocoNote papers",
-        "Agent infrastructure papers",
-        "Evidence / policy papers",
+        "Agent infrastructure papers", "Evidence / policy papers"
     ];
     const seen = new Set();
-    for (const g of order) {
-        if (groups[g]) {
-            body.appendChild(buildPaperGroup(g, groups[g]));
-            seen.add(g);
-        }
+    for (const group of order) {
+        if (!groups[group]) continue;
+        body.appendChild(buildPaperGroup(group, groups[group]));
+        seen.add(group);
     }
-    // Anything not in the canonical order
-    for (const g of Object.keys(groups)) {
-        if (!seen.has(g)) {
-            body.appendChild(buildPaperGroup(g, groups[g]));
-        }
+    for (const group of Object.keys(groups)) {
+        if (!seen.has(group)) body.appendChild(buildPaperGroup(group, groups[group]));
     }
+    const search = $("#paper-search");
+    if (search) search.addEventListener("input", filterPapers);
+    filterPapers();
 }
 
 function buildPaperGroup(groupName, papers) {
+    const wrap = el("section", {class:"paper-group"});
     const display = PAPER_GROUP_TITLES[groupName] || groupName;
-    const wrap = el("section", { class: "paper-group" });
-    wrap.appendChild(el("h3", { class: "paper-group-title" }, `${display} (${papers.length})`));
-    const list = el("ul", { class: "paper-list" });
+    wrap.appendChild(el("h3", {class:"paper-group-title"},
+                        display + " · " + papers.length + " 条"));
+    const list = el("ul", {class:"paper-list"});
     for (const p of papers) {
-        const li = el("li", { class: "paper-item" });
-        const titleNode = p.url
-            ? el("a", { href: p.url, target: "_blank", rel: "noopener noreferrer" }, p.title || "(无标题)")
-            : el("span", {}, p.title || "(无标题)");
-        li.appendChild(titleNode);
-        const meta = [];
-        if (p.year) meta.push(String(p.year));
-        if (p.related_system && p.related_system !== p.title) meta.push(p.related_system);
-        if (meta.length) {
-            li.appendChild(el("div", { class: "paper-meta", html: meta.map(escapeHtml).join(" · ") }));
-        }
+        const metadata = [
+            String(p.year || ""), String(p.related_system || ""),
+            ...(Array.isArray(p.tags) ? p.tags : [])
+        ].filter(Boolean);
+        const haystack = [p.title, groupName, ...metadata].join(" ");
+        const li = el("li", {class:"paper-item","data-search":haystack});
+        const url = safeExternalHref(p.url);
+        li.appendChild(url
+            ? el("a", {href:url,target:"_blank",rel:"noopener noreferrer"},
+                 p.title || "(未命名论文)")
+            : el("span", {}, p.title || "(未命名论文)"));
+        if (metadata.length) li.appendChild(
+            el("div", {class:"paper-meta"}, metadata.join(" · ")));
         list.appendChild(li);
     }
     wrap.appendChild(list);
     return wrap;
+}
+
+function filterPapers() {
+    const query = $("#paper-search")?.value || "";
+    let visible = 0;
+    for (const group of $$("#paper-groups-body .paper-group")) {
+        let shown = 0;
+        for (const item of group.querySelectorAll(".paper-item")) {
+            const match = containsSearch(item.getAttribute("data-search"), query);
+            item.hidden = !match;
+            if (match) { shown++; visible++; }
+        }
+        group.hidden = shown === 0;
+    }
+    setText("#paper-visible-count", visible + " 条匹配");
+    const empty = $("#paper-empty");
+    if (empty) empty.hidden = visible !== 0;
 }
 
 // ---------------------------------------------------------------------------
@@ -375,28 +488,42 @@ const REFERENCE_KIND_LABELS = {
     "policy_document": "政策文件",
     "news_article": "新闻与研究报道",
 };
+let activeReferenceFilter = "all";
 function renderResearchReferences(s) {
-    const groups=s.reference_groups || {};
-    const total=Object.values(groups).reduce((n,items)=>n+items.length,0);
-    setText("#reference-count",String(total)+" 条资料 · "+
-            String(Object.keys(groups).length)+" 类");
-    const host=$("#reference-groups-body");
-    host.innerHTML="";
-    const order=["official_page","person_profile","venue_or_journal",
-                 "policy_document","news_article"];
-    for (const kind of order) {
-        const items=groups[kind] || [];
+    const groups = s.reference_groups || {};
+    const total = Object.values(groups).reduce((n,items)=>n+items.length,0);
+    setText("#reference-count", String(total) + " 条 · " +
+            Object.keys(groups).length + " 类");
+    const chips = $("#reference-filter-chips");
+    chips.innerHTML = "";
+    const categories = ["all", "official_page", "person_profile",
+                        "venue_or_journal", "policy_document", "news_article"];
+    for (const kind of categories) {
+        if (kind !== "all" && !groups[kind]?.length) continue;
+        chips.appendChild(el("button", {
+            class:"chip" + (kind==="all" ? " chip-active" : ""),
+            type:"button", "data-kind":kind,
+            "aria-pressed":kind==="all" ? "true" : "false"
+        }, kind==="all" ? "全部资料" : REFERENCE_KIND_LABELS[kind]));
+    }
+    const host = $("#reference-groups-body");
+    host.innerHTML = "";
+    for (const kind of categories) {
+        if (kind==="all") continue;
+        const items = groups[kind] || [];
         if (!items.length) continue;
-        const group=el("section",{class:"paper-group"});
-        group.appendChild(el("h3",{class:"paper-group-title"},
-                             REFERENCE_KIND_LABELS[kind]+" ("+items.length+")"));
-        const ul=el("ul",{class:"paper-list"});
+        const group = el("section", {class:"paper-group","data-kind":kind});
+        group.appendChild(el("h3", {class:"paper-group-title"},
+                             REFERENCE_KIND_LABELS[kind]+" · "+items.length+" 条"));
+        const ul = el("ul", {class:"paper-list"});
         for (const ref of items) {
-            const li=el("li",{class:"paper-item"});
-            const title=ref.title || "(未命名资料)";
-            li.appendChild(ref.url
-                ? el("a",{href:ref.url,target:"_blank",rel:"noopener noreferrer"},title)
-                : el("span",{},title));
+            const haystack = [ref.title, ref.institution, kind].join(" ");
+            const li = el("li", {class:"paper-item","data-search":haystack});
+            const url = safeExternalHref(ref.url);
+            li.appendChild(url
+                ? el("a",{href:url,target:"_blank",rel:"noopener noreferrer"},
+                     ref.title || "(未命名资料)")
+                : el("span",{},ref.title || "(未命名资料)"));
             if (ref.institution) li.appendChild(
                 el("div",{class:"paper-meta"},ref.institution));
             ul.appendChild(li);
@@ -404,6 +531,40 @@ function renderResearchReferences(s) {
         group.appendChild(ul);
         host.appendChild(group);
     }
+    chips.addEventListener("click", event => {
+        const btn = event.target.closest("button[data-kind]");
+        if (!btn || !chips.contains(btn)) return;
+        activeReferenceFilter = btn.getAttribute("data-kind");
+        chips.querySelectorAll(".chip").forEach(elm => {
+            const selected = elm === btn;
+            elm.classList.toggle("chip-active", selected);
+            elm.setAttribute("aria-pressed", String(selected));
+        });
+        filterResearchReferences();
+    });
+    const search = $("#reference-search");
+    if (search) search.addEventListener("input", filterResearchReferences);
+    filterResearchReferences();
+}
+
+function filterResearchReferences() {
+    const query = $("#reference-search")?.value || "";
+    let visible = 0;
+    for (const group of $$("#reference-groups-body .paper-group")) {
+        const includeKind = activeReferenceFilter === "all" ||
+                            group.getAttribute("data-kind") === activeReferenceFilter;
+        let shown = 0;
+        for (const item of group.querySelectorAll(".paper-item")) {
+            const match = includeKind &&
+                containsSearch(item.getAttribute("data-search"),query);
+            item.hidden = !match;
+            if (match) { shown++; visible++; }
+        }
+        group.hidden = shown===0;
+    }
+    setText("#reference-visible-count", visible + " 条匹配");
+    const empty = $("#reference-empty");
+    if (empty) empty.hidden = visible!==0;
 }
 // ---------------------------------------------------------------------------
 // Module 6: 关键人物与机构
@@ -494,27 +655,6 @@ function renderFooter(s) {
 }
 
 // ---------------------------------------------------------------------------
-// Mermaid init
-// ---------------------------------------------------------------------------
-async function initMermaid() {
-    if (window.mermaid) return window.mermaid;
-    await new Promise((res, rej) => {
-        const s = document.createElement("script");
-        s.src = "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js";
-        s.onload = res;
-        s.onerror = rej;
-        document.head.appendChild(s);
-    });
-    window.mermaid.initialize({
-        startOnLoad: false,
-        theme: "dark",
-        securityLevel: "loose",
-        flowchart: { htmlLabels: true, curve: "basis" },
-    });
-    return window.mermaid;
-}
-
-// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 async function main() {
@@ -526,6 +666,9 @@ async function main() {
         return;
     }
 
+    try { renderHero(summary); } catch (e) { /* editorial summary is supplementary */ }
+    try { renderFeaturedReading(summary); } catch (e) { /* optional curated entry points */ }
+    try { renderTimeline(summary); } catch (e) { showModuleError("#research-lineage", e.message); }
     try { renderThisWeek(summary); } catch (e) { showModuleError("#this-week", e.message); }
     try { renderSystemCards(summary); } catch (e) { showModuleError("#system-cards", e.message); }
     try { renderPaperGroups(summary); } catch (e) { showModuleError("#paper-groups", e.message); }
@@ -534,14 +677,7 @@ async function main() {
     try { renderSourceHealth(summary); } catch (e) { showModuleError("#source-health", e.message); }
     try { renderFooter(summary); } catch (_) { /* non-critical */ }
 
-    // Initialise Mermaid AFTER all data is on the page so theme is consistent.
-    try {
-        const m = await initMermaid();
-        await m.run({ nodes: document.querySelectorAll(".mermaid") });
-    } catch (e) {
-        const host = $("#lineage-mermaid");
-        if (host) host.innerHTML = `<pre class="module-error">Mermaid 加载失败:${escapeHtml(e.message)}</pre>`;
-    }
+    enableSectionNavigation();
 }
 
 document.addEventListener("DOMContentLoaded", main);
