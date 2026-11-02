@@ -1,40 +1,49 @@
 {
-  "generated_at": "2026-10-26T10:54:25.865257+00:00",
-  "last_updated": "2026-10-26T01:01:48.800339+00:00",
-  "latest_week_tag": "2026-W44",
-  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W44.md",
-  "github_report_path": "reports/weekly/2026-W44.md",
+  "generated_at": "2026-11-02T01:05:39.627666+00:00",
+  "last_updated": "2026-11-02T01:05:38.286213+00:00",
+  "latest_week_tag": "2026-W45",
+  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W45.md",
+  "github_report_path": "reports/weekly/2026-W45.md",
   "totals": {
-    "papers": 12,
-    "references": 29,
+    "papers": 42,
+    "references": 33,
     "systems": 10,
     "people": 16,
     "timeline_events": 11,
     "stable_sources": 51,
-    "active_sources": 30
+    "active_sources": 38
   },
   "this_week": {
-    "new_papers": 0,
-    "new_references": 0,
-    "new_systems": 7,
+    "new_papers": 30,
+    "new_references": 4,
+    "new_systems": 11,
     "new_people": 5,
     "fallback_status": {
       "ran": true,
       "queries": 12,
-      "hits": 0,
-      "errors": []
+      "hits": 45,
+      "errors": [],
+      "attempted_queries": 12,
+      "skipped_queries": 0,
+      "circuit_open": false
     }
   },
   "source_health": {
     "stable_sources": 51,
-    "active_sources": 30,
-    "source_errors_count": 0,
-    "source_errors": {},
+    "active_sources": 38,
+    "source_errors_count": 2,
+    "source_errors": {
+      "arxiv-search-collab-learning-agent": "fetch_TimeoutError",
+      "arxiv-search-learning-analytics-ai": "fetch_TimeoutError"
+    },
     "fallback_status": {
       "ran": true,
       "queries": 12,
-      "hits": 0,
-      "errors": []
+      "hits": 45,
+      "errors": [],
+      "attempted_queries": 12,
+      "skipped_queries": 0,
+      "circuit_open": false
     },
     "candidates_by_source": {
       "arxiv-abs-2308.08155": [
@@ -49,6 +58,39 @@
       "arxiv-abs-2605.12923": [
         "https://arxiv.org/abs/2605.12923"
       ],
+      "arxiv-search-multi-agent-edu": [
+        "https://arxiv.org/abs/2610.26943",
+        "https://arxiv.org/abs/2610.24498",
+        "https://arxiv.org/abs/2610.00035",
+        "https://arxiv.org/abs/2609.19429",
+        "https://arxiv.org/abs/2609.13348",
+        "https://arxiv.org/abs/2609.12851",
+        "https://arxiv.org/abs/2609.10939",
+        "https://arxiv.org/abs/2609.05806",
+        "https://arxiv.org/abs/2608.30968",
+        "https://arxiv.org/abs/2608.29481"
+      ],
+      "arxiv-search-ai-education-agent": [
+        "https://arxiv.org/abs/2610.38990",
+        "https://arxiv.org/abs/2610.33105",
+        "https://arxiv.org/abs/2610.32105",
+        "https://arxiv.org/abs/2610.31875",
+        "https://arxiv.org/abs/2610.30580",
+        "https://arxiv.org/abs/2610.26943",
+        "https://arxiv.org/abs/2610.25560",
+        "https://arxiv.org/abs/2610.22949",
+        "https://arxiv.org/abs/2610.05579",
+        "https://arxiv.org/abs/2610.05470"
+      ],
+      "oulu-hi": [
+        "https://www.oulu.fi/en/hybrid-intelligence"
+      ],
+      "oulu-lead": [
+        "https://www.oulu.fi/en/projects/learning-regulation-ai-promoting-adaptive-k-12-learners"
+      ],
+      "oulu-let": [
+        "https://www.oulu.fi/en/research-groups/let-lab-learning-and-educational-technology-research-lab"
+      ],
       "cocorobo-research": [
         "https://cocorobo.hk/research"
       ],
@@ -57,6 +99,9 @@
       ],
       "khanmigo": [
         "https://www.khanmigo.ai/"
+      ],
+      "ka-blog": [
+        "https://blog.khanacademy.org/"
       ],
       "cmu-learnlab": [
         "https://learnlab.org/"
@@ -72,6 +117,21 @@
       ],
       "ms-agent-framework": [
         "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/"
+      ],
+      "google-mass": [
+        "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/"
+      ],
+      "search_fallback": [
+        "https://openalex.org/W7202007207",
+        "https://doi.org/10.3390/cmtr19040039",
+        "https://doi.org/10.1108/ils-11-2024-0148",
+        "https://doi.org/10.11648/j.stpp.20261002.13",
+        "https://doi.org/10.1111/bjet.70047",
+        "https://doi.org/10.48550/arxiv.2510.19252",
+        "https://doi.org/10.48550/arxiv.2607.11881",
+        "https://doi.org/10.62381/h261619",
+        "https://doi.org/10.1007/s11218-026-10204-2",
+        "https://doi.org/10.58295/2375-3668.1646"
       ]
     },
     "source_counts": {
@@ -79,23 +139,23 @@
       "arxiv-abs-2502.02533": 1,
       "arxiv-abs-2512.08296": 1,
       "arxiv-abs-2605.12923": 1,
-      "arxiv-search-multi-agent-edu": 0,
-      "arxiv-search-ai-education-agent": 0,
+      "arxiv-search-multi-agent-edu": 10,
+      "arxiv-search-ai-education-agent": 10,
       "arxiv-search-collab-learning-agent": 0,
       "arxiv-search-learning-analytics-ai": 0,
-      "oulu-hi": 0,
-      "oulu-lead": 0,
-      "oulu-let": 0,
+      "oulu-hi": 1,
+      "oulu-lead": 1,
+      "oulu-let": 1,
       "cocorobo-research": 1,
       "cocorobo-smart": 1,
       "khanmigo": 1,
-      "ka-blog": 0,
+      "ka-blog": 1,
       "cmu-learnlab": 1,
       "stanford-ai-ed": 1,
       "stanford-hai": 1,
       "ms-autogen": 1,
       "ms-agent-framework": 1,
-      "google-mass": 0,
+      "google-mass": 1,
       "p-jarvela": 1,
       "p-nguyen": 1,
       "p-edwards": 1,
@@ -114,9 +174,9 @@
       "conf-edm": 1,
       "conf-cui": 1,
       "conf-bjet": 1,
-      "search_fallback": 0
+      "search_fallback": 45
     },
-    "last_run": "2026-10-26T01:01:48.832348+00:00",
+    "last_run": "2026-11-02T01:05:38.299888+00:00",
     "registry_version": "1.2.0"
   },
   "system_cards": [
@@ -406,6 +466,286 @@
           "arxiv",
           "Scaling agent systems"
         ]
+      },
+      {
+        "title": "arXiv:2610.26943 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.26943",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2610.24498 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.24498",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2610.00035 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.00035",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2609.19429 [pdf]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2609.19429",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2609.13348 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2609.13348",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2609.12851 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2609.12851",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2609.10939 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2609.10939",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2609.05806 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2609.05806",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2608.30968 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2608.30968",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2608.29481 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2608.29481",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education"
+        ]
+      },
+      {
+        "title": "arXiv:2610.38990 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.38990",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.33105 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.33105",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.32105 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.32105",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.31875 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.31875",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.30580 [pdf]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.30580",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.25560 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.25560",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.22949 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.22949",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.05579 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.05579",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "arXiv:2610.05470 [pdf, ps, other]",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.05470",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "Agentic AI Modernization: Transforming Institutional Infrastructure Through Orchestrated Multi-Agent LLM Framework",
+        "year": "2026",
+        "url": "https://doi.org/10.32996/jcsts.2026.8.4.1",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Agentic artificial intelligence: Architectures, planning mechanisms, multi-agent collaboration, applications, challenges, and future research directions-A comprehensive review",
+        "year": "2026",
+        "url": "https://doi.org/10.33545/27076571.2026.v7.i7a.358",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Mining the Design Space of Multi-Agent Workflows",
+        "year": "2026",
+        "url": "https://doi.org/10.48550/arxiv.2610.31709",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Multi-Agent Social Simulation: Protocolizing LLM-Driven Agent-Based Modeling as a Quantitative Research Method",
+        "year": "2026",
+        "url": "https://doi.org/10.3390/ai7080279",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Design and Tuning of Multi-Agent Systems Using Bayesian Evolutionary Optimization",
+        "year": "2026",
+        "url": "https://doi.org/10.48550/arxiv.2610.29276",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Collaborative Memory for Multi-Agent VLM Systems",
+        "year": "2026",
+        "url": "https://doi.org/10.48550/arxiv.2609.17921",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Symbolic Machine Learning for Quasi-Optimal Control of a Collaborative Multi-Agent Robotic System",
+        "year": "2026",
+        "url": "https://doi.org/10.15622/ia.25.4.5",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Learning to Steer LLM Agents and Multi-Agent Systems",
+        "year": "2026",
+        "url": "https://doi.org/10.48550/arxiv.2610.22316",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "APRENDIZAGEM BASEADA EM DADOS: POTENCIALIZANDO A PERSONALIZAÇÃO E A EFICIÊNCIA POR MEIO DE LEARNING ANALYTICS",
+        "year": "2026",
+        "url": "https://doi.org/10.56238/revgeov17n7-056",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
       }
     ],
     "Agent infrastructure papers": [
@@ -438,6 +778,26 @@
         "tags": [
           "arxiv",
           "AutoGen (Wu et al., 2023)"
+        ]
+      },
+      {
+        "title": "An empirical study of testing practices in open source AI agent frameworks and agentic applications",
+        "year": "2026",
+        "url": "https://doi.org/10.1007/s10664-026-10857-9",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
+        ]
+      },
+      {
+        "title": "Deep Research in Physical Sciences: A Multi-Agent Framework and Comprehensive Benchmark",
+        "year": "2026",
+        "url": "https://doi.org/10.48550/arxiv.2606.18648",
+        "related_system": "fallback-search",
+        "tags": [
+          "fallback-search",
+          "openalex-search"
         ]
       }
     ]
@@ -512,6 +872,30 @@
         "title": "Introducing Microsoft Agent Framework: The Open-Source Engine for Agentic AI Apps | Microsoft Foundry Blog",
         "url": "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/",
         "institution": "Microsoft Agent Framework",
+        "record_type": "official_page"
+      },
+      {
+        "title": "Hybrid Intelligence: Human-AI Co-evolution and Learning in Multi-realities (HI) | University of Oulu",
+        "url": "https://www.oulu.fi/en/hybrid-intelligence",
+        "institution": "University of Oulu HI",
+        "record_type": "official_page"
+      },
+      {
+        "title": "Learning regulation with AI – promoting adaptive K-12 learners | University of Oulu",
+        "url": "https://www.oulu.fi/en/projects/learning-regulation-ai-promoting-adaptive-k-12-learners",
+        "institution": "University of Oulu LEAD",
+        "record_type": "official_page"
+      },
+      {
+        "title": "LET Lab - Learning and Educational Technology Research Lab | University of Oulu",
+        "url": "https://www.oulu.fi/en/research-groups/let-lab-learning-and-educational-technology-research-lab",
+        "institution": "Oulu LET Lab",
+        "record_type": "official_page"
+      },
+      {
+        "title": "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies",
+        "url": "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/",
+        "institution": "Google Research MASS",
         "record_type": "official_page"
       }
     ],

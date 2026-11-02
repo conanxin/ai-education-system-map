@@ -1,29 +1,29 @@
 {
-  "ran_at": "2026-10-26T01:01:48.832348+00:00",
-  "week_tag": "2026-W44",
+  "ran_at": "2026-11-02T01:05:38.299888+00:00",
+  "week_tag": "2026-W45",
   "registry_version": "1.2.0",
   "source_counts": {
     "arxiv-abs-2308.08155": 1,
     "arxiv-abs-2502.02533": 1,
     "arxiv-abs-2512.08296": 1,
     "arxiv-abs-2605.12923": 1,
-    "arxiv-search-multi-agent-edu": 0,
-    "arxiv-search-ai-education-agent": 0,
+    "arxiv-search-multi-agent-edu": 10,
+    "arxiv-search-ai-education-agent": 10,
     "arxiv-search-collab-learning-agent": 0,
     "arxiv-search-learning-analytics-ai": 0,
-    "oulu-hi": 0,
-    "oulu-lead": 0,
-    "oulu-let": 0,
+    "oulu-hi": 1,
+    "oulu-lead": 1,
+    "oulu-let": 1,
     "cocorobo-research": 1,
     "cocorobo-smart": 1,
     "khanmigo": 1,
-    "ka-blog": 0,
+    "ka-blog": 1,
     "cmu-learnlab": 1,
     "stanford-ai-ed": 1,
     "stanford-hai": 1,
     "ms-autogen": 1,
     "ms-agent-framework": 1,
-    "google-mass": 0,
+    "google-mass": 1,
     "p-jarvela": 1,
     "p-nguyen": 1,
     "p-edwards": 1,
@@ -42,14 +42,20 @@
     "conf-edm": 1,
     "conf-cui": 1,
     "conf-bjet": 1,
-    "search_fallback": 0
+    "search_fallback": 45
   },
-  "source_errors": {},
+  "source_errors": {
+    "arxiv-search-collab-learning-agent": "fetch_TimeoutError",
+    "arxiv-search-learning-analytics-ai": "fetch_TimeoutError"
+  },
   "fallback_status": {
     "ran": true,
     "queries": 12,
-    "hits": 0,
-    "errors": []
+    "hits": 45,
+    "errors": [],
+    "attempted_queries": 12,
+    "skipped_queries": 0,
+    "circuit_open": false
   },
   "candidates_by_source": {
     "arxiv-abs-2308.08155": [
@@ -64,6 +70,39 @@
     "arxiv-abs-2605.12923": [
       "https://arxiv.org/abs/2605.12923"
     ],
+    "arxiv-search-multi-agent-edu": [
+      "https://arxiv.org/abs/2610.26943",
+      "https://arxiv.org/abs/2610.24498",
+      "https://arxiv.org/abs/2610.00035",
+      "https://arxiv.org/abs/2609.19429",
+      "https://arxiv.org/abs/2609.13348",
+      "https://arxiv.org/abs/2609.12851",
+      "https://arxiv.org/abs/2609.10939",
+      "https://arxiv.org/abs/2609.05806",
+      "https://arxiv.org/abs/2608.30968",
+      "https://arxiv.org/abs/2608.29481"
+    ],
+    "arxiv-search-ai-education-agent": [
+      "https://arxiv.org/abs/2610.38990",
+      "https://arxiv.org/abs/2610.33105",
+      "https://arxiv.org/abs/2610.32105",
+      "https://arxiv.org/abs/2610.31875",
+      "https://arxiv.org/abs/2610.30580",
+      "https://arxiv.org/abs/2610.26943",
+      "https://arxiv.org/abs/2610.25560",
+      "https://arxiv.org/abs/2610.22949",
+      "https://arxiv.org/abs/2610.05579",
+      "https://arxiv.org/abs/2610.05470"
+    ],
+    "oulu-hi": [
+      "https://www.oulu.fi/en/hybrid-intelligence"
+    ],
+    "oulu-lead": [
+      "https://www.oulu.fi/en/projects/learning-regulation-ai-promoting-adaptive-k-12-learners"
+    ],
+    "oulu-let": [
+      "https://www.oulu.fi/en/research-groups/let-lab-learning-and-educational-technology-research-lab"
+    ],
     "cocorobo-research": [
       "https://cocorobo.hk/research"
     ],
@@ -72,6 +111,9 @@
     ],
     "khanmigo": [
       "https://www.khanmigo.ai/"
+    ],
+    "ka-blog": [
+      "https://blog.khanacademy.org/"
     ],
     "cmu-learnlab": [
       "https://learnlab.org/"
@@ -87,33 +129,39 @@
     ],
     "ms-agent-framework": [
       "https://devblogs.microsoft.com/foundry/introducing-microsoft-agent-framework-the-open-source-engine-for-agentic-ai-apps/"
+    ],
+    "google-mass": [
+      "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/"
+    ],
+    "search_fallback": [
+      "https://openalex.org/W7202007207",
+      "https://doi.org/10.3390/cmtr19040039",
+      "https://doi.org/10.1108/ils-11-2024-0148",
+      "https://doi.org/10.11648/j.stpp.20261002.13",
+      "https://doi.org/10.1111/bjet.70047",
+      "https://doi.org/10.48550/arxiv.2510.19252",
+      "https://doi.org/10.48550/arxiv.2607.11881",
+      "https://doi.org/10.62381/h261619",
+      "https://doi.org/10.1007/s11218-026-10204-2",
+      "https://doi.org/10.58295/2375-3668.1646"
     ]
   },
   "entity_changes": {
-    "papers_added": 0,
-    "systems_updated": 7,
+    "papers_added": 30,
+    "references_added": 4,
+    "systems_updated": 11,
     "people_updated": 5,
     "tech_stack_updated": 0,
-    "timeline_extended": 0,
-    "references_added": 0
+    "timeline_extended": 0
   },
-  "weekly_report": "reports/weekly/2026-W44.md",
+  "weekly_report": "reports/weekly/2026-W45.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-10-26T01:01:48.949909+00:00",
+  "dashboard_summary_updated_at": "2026-11-02T01:05:39.627666+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "3a9f4d1da805d898e432a4f330685078e2cd0313",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true,
-  "candidate_hits_revisited": 30,
-  "statistics_correction": {
-    "reason": "P40 count repair: week-44 candidate hits (30) were mistaken for new inserts (0)",
-    "reported_candidate_hits": 30,
-    "prior_reported_new_papers": 30,
-    "corrected_new_papers": 0,
-    "basis": "Git revs 0387172 and 3a9f4d1 have the same 41 tracked paper IDs; today's paper IDs unchanged",
-    "corrected_at": "2026-10-26T08:27:55.661613+00:00"
-  }
+  "pages_expected_to_rebuild": false
 }
