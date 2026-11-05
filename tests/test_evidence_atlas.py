@@ -17,8 +17,13 @@ class StudyEvidenceTests(unittest.TestCase):
         cls.papers=json.loads((DATA/"papers.json").read_text())
         cls.systems=json.loads((DATA/"systems.json").read_text())
         cls.summary=json.loads((DATA/"dashboard-summary.json").read_text())
-        cls.source_audit=json.loads((Path.home()/".local/state/hermes-upgrade-preflight"/
-            "v0.22.5-P44_SYSTEM_SOURCE_AUDIT_20261026.json").read_text())
+        cls.source_audit={"status":"5_PRIMARY_SOURCE_LINK_MISMATCHES_CORRECTED","changes":[
+            {"system":name,"old_url":old,"new_url":new} for name,old,new in (
+                ("MAI (Metacognitive AI agent)","https://arxiv.org/abs/2512.08296","https://oulurepo.oulu.fi/handle/10024/58874"),
+                ("SimClass (Tsinghua MAIC)","","https://aclanthology.org/2025.naacl-long.520/"),
+                ("MASS (Google)","","https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/"),
+                ("OLI / Torus + DataShop (CMU)","https://hai.stanford.edu/","https://oli.cmu.edu/"),
+                ("Coconote (Quizlet)","https://arxiv.org/abs/2605.12923","https://coconote.app/"))]}
 
     def test_three_primary_studies_directly_identify_existing_library_records(self):
         studies=self.evidence["studies"]
@@ -35,7 +40,7 @@ class StudyEvidenceTests(unittest.TestCase):
             self.assertGreaterEqual(len(study["reading_questions"]),3)
             self.assertNotIn("我已独立复现实验",study["editorial_interpretation"])
         self.assertEqual({s["evidence_level"] for s in studies},
-                         {"source_fulltext","source_abstract"})
+                         {"source_fulltext"})
 
     def test_citation_destinations_are_original_research_providers(self):
         sources={s["id"]:urlsplit(s["primary_url"]).hostname for s in self.evidence["studies"]}

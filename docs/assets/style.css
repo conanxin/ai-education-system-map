@@ -600,3 +600,12 @@ section.module { margin-top:66px; padding:32px 34px 34px; border-radius:var(--ra
     border-radius:8px; background:var(--surface-soft);
     color:var(--text-muted); border:1px solid var(--stroke);
 }
+
+/* P46: stable, versioned primary-source locators. */
+.evidence-locations { border-top:1px solid var(--stroke); padding-top:20px; }
+.evidence-location-note { font-size:11px!important; color:var(--text-muted)!important; }
+.evidence-location-list { padding-left:20px; display:grid; gap:15px; }
+.evidence-location-list li { padding-left:4px; overflow-wrap:anywhere; }
+.evidence-location-list a { font-size:12px; font-weight:700; }
+.evidence-location-list p { margin:6px 0 3px; color:var(--text-subtle); font-size:12px; line-height:1.8; }
+.evidence-location-list small { color:var(--text-muted); font-size:10px; }

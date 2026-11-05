@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "editorial_reviewed_at": "2026-10-26",
+  "editorial_reviewed_at": "2026-11-05",
   "collection_title": "研究证据与系统关系",
   "review_notice": "证据标注代表所核查的原始资料范围，不是教育成效等级、论文质量评分或产品推荐。",
   "evidence_levels": [
@@ -32,7 +32,7 @@
       "primary_url": "https://bera-journals.onlinelibrary.wiley.com/doi/full/10.1111/bjet.13325",
       "doi": "10.1111/bjet.13325",
       "evidence_level": "source_fulltext",
-      "verification_scope": "出版方开放获取的摘要、实践者说明及 HASRL/SSRL 相关正文段落",
+      "verification_scope": "出版方 HTML 的触发情境、HASRL 模型和实验案例三个小节；无虚构 PDF 页码。",
       "study_type": "理论框架与研究示例",
       "research_question": "AI 应如何在合作学习中识别需要调节的时机，同时保留学习者自身的调节能动性？",
       "verified_points": [
@@ -46,7 +46,43 @@
         "哪些行为信号可以被合理解释为需要调节的触发情境？",
         "AI 提示何时会增强、何时可能削弱学习者的自主调节？",
         "如何用群体层面的证据而非个体模型评分评估效果？"
-      ]
+      ],
+      "evidence_locations": [
+        {
+          "id": "hasrl-trigger",
+          "format": "html_section",
+          "locator": "触发情境框架（HTML 小节）",
+          "section_title": "Trigger concept framework for SSRL",
+          "pdf_page": null,
+          "printed_page": null,
+          "url": "https://bera-journals.onlinelibrary.wiley.com/doi/full/10.1111/bjet.13325#:~:text=Trigger%20concept%20framework%20for%20SSRL",
+          "source_version": "BJET 2023 出版方 HTML 正文",
+          "supports": "定位触发情境概念及其与多模态线索的关系。"
+        },
+        {
+          "id": "hasrl-model",
+          "format": "html_section",
+          "locator": "HASRL 模型（HTML 小节）",
+          "section_title": "Human-AI shared regulation in learning (HASRL) model",
+          "pdf_page": null,
+          "printed_page": null,
+          "url": "https://bera-journals.onlinelibrary.wiley.com/doi/full/10.1111/bjet.13325#:~:text=Human-AI%20shared%20regulation%20in%20learning%20%28HASRL%29%20model",
+          "source_version": "BJET 2023 出版方 HTML 正文",
+          "supports": "定位人类与 AI 两个调节子系统；这是理论框架，并非产品效果证明。"
+        },
+        {
+          "id": "hasrl-case",
+          "format": "html_section",
+          "locator": "研究案例：实验设计（HTML 小节）",
+          "section_title": "Experimental design with trigger concept",
+          "pdf_page": null,
+          "printed_page": null,
+          "url": "https://bera-journals.onlinelibrary.wiley.com/doi/full/10.1111/bjet.13325#:~:text=Experimental%20design%20with%20trigger%20concept",
+          "source_version": "BJET 2023 出版方 HTML 正文",
+          "supports": "案例涉及 82 名高中生的协作任务；研究示例不等同于具体教育产品成效。"
+        }
+      ],
+      "locator_reviewed_at": "2026-11-05"
     },
     {
       "id": "simclass-2025",
@@ -58,8 +94,8 @@
       "publisher": "NAACL 2025 · ACL Anthology",
       "primary_url": "https://aclanthology.org/2025.naacl-long.520/",
       "doi": "10.18653/v1/2025.naacl-long.520",
-      "evidence_level": "source_abstract",
-      "verification_scope": "ACL Anthology 官方摘要、会议书目信息和作者公开的代码仓库说明",
+      "evidence_level": "source_fulltext",
+      "verification_scope": "NAACL 正式版 PDF 第 4、5、9 页相关段落及页面图像，覆盖方法、实验设计与局限；未独立复现实验。",
       "study_type": "课堂多智能体模拟与用户实验",
       "research_question": "课堂中的教师、学生与协调角色能否由协作型智能体模拟，并支持真实学习者参与？",
       "verified_points": [
@@ -73,7 +109,40 @@
         "系统中的角色控制与真实教师调度有哪些差别？",
         "互动活跃是否就代表概念理解与学习迁移获得改善？",
         "在不同课程、参与者或更长期干预中，结果会如何变化？"
-      ]
+      ],
+      "evidence_locations": [
+        {
+          "id": "simclass-controller",
+          "format": "pdf",
+          "locator": "§3.3–3.4 · 印刷页 10367 / PDF 第 4 页",
+          "pdf_page": 4,
+          "printed_page": "10367",
+          "url": "https://aclanthology.org/2025.naacl-long.520.pdf#page=4",
+          "source_version": "NAACL 2025 会议正式版",
+          "supports": "课堂控制器观察状态、选择发言角色并推进流程。"
+        },
+        {
+          "id": "simclass-design",
+          "format": "pdf",
+          "locator": "§4.1 · 印刷页 10368 / PDF 第 5 页",
+          "pdf_page": 5,
+          "printed_page": "10368",
+          "url": "https://aclanthology.org/2025.naacl-long.520.pdf#page=5",
+          "source_version": "NAACL 2025 会议正式版",
+          "supports": "两门课程，118 人完成全部章节；另有 48 人参加首章消融实验。"
+        },
+        {
+          "id": "simclass-limits",
+          "format": "pdf",
+          "locator": "§6–7 · 印刷页 10372–10373 / PDF 第 9 页起",
+          "pdf_page": 9,
+          "printed_page": "10372–10373",
+          "url": "https://aclanthology.org/2025.naacl-long.520.pdf#page=9",
+          "source_version": "NAACL 2025 会议正式版",
+          "supports": "作者明确限定课程、模型与大学生样本范围，提醒真实课堂应用仍需评估。"
+        }
+      ],
+      "locator_reviewed_at": "2026-11-05"
     },
     {
       "id": "mass-2025",
@@ -85,8 +154,8 @@
       "publisher": "arXiv 2502.02533 · Google Research / ICLR 2026",
       "primary_url": "https://arxiv.org/abs/2502.02533",
       "official_project_url": "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/",
-      "evidence_level": "source_abstract",
-      "verification_scope": "arXiv 原始摘要、Google Research 原始论文页面",
+      "evidence_level": "source_fulltext",
+      "verification_scope": "固定 arXiv v2（2026-01-31），核查 §3、§4、附录 B.2 对应第 5–7、20 页；并非独立实验复现。",
       "study_type": "多智能体工作流与提示优化方法",
       "research_question": "构建多智能体系统时，如何联合考虑提示、角色结构与工作流拓扑？",
       "verified_points": [
@@ -94,13 +163,46 @@
         "原始 arXiv 摘要介绍分阶段优化思路：局部提示、工作流拓扑，以及全局提示优化。",
         "原文报告 MASS 在其研究的多智能体实验任务中优于若干对照方案；论文并非针对真实课堂进行的学习成效实验。"
       ],
-      "not_established": "该框架在通用多智能体实验任务上的结果，不能直接证明把它应用于教学系统后会提高学生成绩或课堂协作质量。",
+      "not_established": "该框架在通用多智能体实验任务上的结果，不能直接证明把它应用于教学系统后会提高学生成绩或课堂协作质量。 另需注意附录 B.2 对 AFlow 优化器差异及比较公平性的限定。",
       "editorial_interpretation": "它为教育多智能体系统提供设计方法的比较视角，但教育场景的效果必须通过额外实验检验。",
       "reading_questions": [
         "优化的目标函数是任务正确率、资源成本，还是学习过程质量？",
         "角色增多时，什么协调成本会抵消潜在收益？",
         "如果要迁移到课堂，哪些教育学评价指标必须重新设计？"
-      ]
+      ],
+      "evidence_locations": [
+        {
+          "id": "mass-method",
+          "format": "pdf",
+          "locator": "§3 · 印刷页 / PDF 第 5–7 页",
+          "pdf_page": 5,
+          "printed_page": "5–7",
+          "url": "https://arxiv.org/pdf/2502.02533v2#page=5",
+          "source_version": "arXiv 2502.02533v2 · 2026-01-31",
+          "supports": "方法依次优化局部提示、工作流拓扑和全局提示；算法 1 位于第 7 页。"
+        },
+        {
+          "id": "mass-evaluation",
+          "format": "pdf",
+          "locator": "§4 · 印刷页 / PDF 第 7–8 页",
+          "pdf_page": 7,
+          "printed_page": "7–8",
+          "url": "https://arxiv.org/pdf/2502.02533v2#page=7",
+          "source_version": "arXiv 2502.02533v2 · 2026-01-31",
+          "supports": "评估覆盖推理、长上下文与编程任务，不是学生课堂学习成效实验。"
+        },
+        {
+          "id": "mass-comparability",
+          "format": "pdf",
+          "locator": "附录 B.2（续）· 印刷页 / PDF 第 20 页",
+          "pdf_page": 20,
+          "printed_page": "20",
+          "url": "https://arxiv.org/pdf/2502.02533v2#page=20",
+          "source_version": "arXiv 2502.02533v2 · 2026-01-31",
+          "supports": "AFlow 对照使用不同优化器；作者说明比较并不完全公平，应保留这一限制。"
+        }
+      ],
+      "locator_reviewed_at": "2026-11-05"
     }
   ],
   "relations": [
@@ -158,5 +260,6 @@
       "rationale": "MASS 讨论如何搜索多智能体工作流设计，AutoGen 是智能体编排框架；属于方法与实现层面的比较。",
       "scope_note": "并未证明 MASS 以 AutoGen 为被测实现，也未证明双方已经集成。"
     }
-  ]
+  ],
+  "locator_note": "PDF 第几页是从文件首张起数，另列印刷页码；HTML 仅按核实的小节标题定位。浏览器不支持页码或文本定位时，可按显示的章节名称查找。"
 }

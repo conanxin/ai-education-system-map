@@ -1,6 +1,5 @@
 // app.js — renders the AI Education System Map static page (v1.3.3, zh-CN UI).
-// Pure ES2017+, no build step. Fetches ONE aggregated summary file
-// (dashboard-summary.json) and renders 7 modules.
+// Pure browser JavaScript; reads the generated summary and curated evidence JSON.
 // JSON schema stays English (matches the watcher / builder output). Display
 // labels, group titles, badges and filter chips are localised to zh-CN via
 // lookup tables below.
@@ -426,6 +425,27 @@ function renderEvidenceAtlas(evidence) {
     renderEvidenceRelations(evidence);
 }
 
+function renderEvidenceLocations(study) {
+    const section = el("section", {class:"evidence-section evidence-locations"});
+    section.appendChild(el("span",{class:"overline"},"TRACE THE PRIMARY SOURCE"));
+    section.appendChild(el("h4",{},"章节与页码：核查这些论断"));
+    section.appendChild(el("p",{class:"evidence-location-note"},
+        "核查日期：" + (study.locator_reviewed_at || "未记录") +
+        "。PDF 文件页序与印刷页码分别标注；HTML 按小节标题定位。不支持自动定位时，请按标签手动查找。"));
+    const list=el("ol",{class:"evidence-location-list"});
+    for (const location of study.evidence_locations || []) {
+        const url=safeExternalHref(location.url);
+        if (!url) continue;
+        const item=el("li",{"data-location-id":location.id});
+        item.appendChild(el("a",{href:url,target:"_blank",rel:"noopener noreferrer"},location.locator + " ↗"));
+        item.appendChild(el("p",{},location.supports));
+        item.appendChild(el("small",{},location.source_version));
+        list.appendChild(item);
+    }
+    section.appendChild(list);
+    return section;
+}
+
 function selectEvidenceStudy(id) {
     if (!currentEvidence) return;
     const study = currentEvidence.studies.find(s => s.id===id);
@@ -461,6 +481,7 @@ function selectEvidenceStudy(id) {
     support.appendChild(el("h4",{},"原始来源直接支持的内容"));
     support.appendChild(evidenceTextList(study.verified_points,"evidence-list"));
     host.appendChild(support);
+    host.appendChild(renderEvidenceLocations(study));
 
     const boundary=el("div",{class:"evidence-section evidence-boundary"});
     boundary.appendChild(el("span",{class:"overline"},"WHAT IT DOES NOT PROVE"));

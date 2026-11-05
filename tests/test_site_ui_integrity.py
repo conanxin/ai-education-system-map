@@ -74,19 +74,23 @@ class ResearchAtlasStaticTests(unittest.TestCase):
 
     def test_content_numbers_and_provenance_are_honest(self):
         totals=self.data["totals"]
-        self.assertEqual((totals["papers"],totals["references"],
-                          totals["systems"],totals["people"]),(12,29,10,16))
+        for key,filename in (("papers","papers.json"),("references","research-entities.json"),
+                             ("systems","systems.json"),("people","people.json")):
+            canonical=json.loads((DOCS/"data"/filename).read_text())
+            self.assertEqual(totals[key],len(canonical),key)
         self.assertEqual(len(self.data["timeline"]),11)
         self.assertIn("featured-reads",self.tags.ids)
         self.assertIn("function renderFeaturedReading(s)",self.js)
-        self.assertEqual(sum(len(x) for x in self.data["paper_groups"].values()),12)
-        self.assertEqual(sum(len(x) for x in self.data["reference_groups"].values()),29)
+        self.assertEqual(sum(len(x) for x in self.data["paper_groups"].values()),totals["papers"])
+        self.assertEqual(sum(len(x) for x in self.data["reference_groups"].values()),totals["references"])
         self.assertIn("最近一次归档更新",self.html)
         self.assertIn("研究索引，而非完整文献数据库",self.html)
         self.assertNotIn("实时</span>",self.html)
         self.assertIn("data/research-migration.json",self.html)
-        self.assertEqual(self.data["this_week"]["new_papers"],0)
-        self.assertEqual(self.data["this_week"]["new_references"],0)
+        latest=json.loads((DOCS/"data/weekly/latest.json").read_text())
+        for key in ("new_papers","new_references"):
+            self.assertEqual(self.data["this_week"][key],latest.get(key,0))
+            self.assertGreaterEqual(self.data["this_week"][key],0)
 
     def test_text_search_filter_and_source_accessibility(self):
         for marker in (
