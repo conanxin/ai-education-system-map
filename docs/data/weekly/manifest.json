@@ -140,8 +140,8 @@
   "dashboard_summary_updated_at": "2026-11-09T01:05:28.897625+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "pending",
-  "publish_commit": null,
+  "publish_status": "committed",
+  "publish_commit": "8a45a66496a0a803f9a8fcac7c419c549dbb0573",
   "publish_error": null,
-  "pages_expected_to_rebuild": false
+  "pages_expected_to_rebuild": true
 }
