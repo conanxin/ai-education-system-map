@@ -78,7 +78,7 @@
     "institution": "Google Research",
     "summary": "Three-stage prompt+topology optimisation. Key finding: \"optimise individual agents before composition\"; an optimised single agent with Self-Consistency beats a 9-agent SC with default prompts. Direct evidence that naive agent-counting hurts.",
     "tags": [],
-    "last_seen": "2026-11-02T01:05:37.605129+00:00",
+    "last_seen": "2026-11-09T01:04:52.904184+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -94,7 +94,7 @@
     "source_id": "arxiv-abs-2308.08155",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00",
+    "last_seen": "2026-11-09T01:04:52.904184+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -110,7 +110,7 @@
     "source_id": "arxiv-abs-2512.08296",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00",
+    "last_seen": "2026-11-09T01:04:52.904184+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -126,7 +126,7 @@
     "source_id": "arxiv-abs-2605.12923",
     "year": "",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00",
+    "last_seen": "2026-11-09T01:04:52.904184+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -143,7 +143,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2610.24498",
@@ -159,7 +159,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2610.00035",
@@ -175,7 +175,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2609.19429",
@@ -191,7 +191,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2609.13348",
@@ -207,7 +207,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2609.12851",
@@ -223,7 +223,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2609.10939",
@@ -239,7 +239,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2609.05806",
@@ -255,7 +255,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2608.30968",
@@ -271,7 +271,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2608.29481",
@@ -287,7 +287,7 @@
     "year": "",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-09T01:04:52.904184+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2610.38990",

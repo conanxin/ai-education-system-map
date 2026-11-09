@@ -1,6 +1,6 @@
 {
-  "ran_at": "2026-11-02T01:05:38.299888+00:00",
-  "week_tag": "2026-W45",
+  "ran_at": "2026-11-09T01:04:55.248543+00:00",
+  "week_tag": "2026-W46",
   "registry_version": "1.2.0",
   "source_counts": {
     "arxiv-abs-2308.08155": 1,
@@ -8,7 +8,7 @@
     "arxiv-abs-2512.08296": 1,
     "arxiv-abs-2605.12923": 1,
     "arxiv-search-multi-agent-edu": 10,
-    "arxiv-search-ai-education-agent": 10,
+    "arxiv-search-ai-education-agent": 0,
     "arxiv-search-collab-learning-agent": 0,
     "arxiv-search-learning-analytics-ai": 0,
     "oulu-hi": 1,
@@ -42,20 +42,24 @@
     "conf-edm": 1,
     "conf-cui": 1,
     "conf-bjet": 1,
-    "search_fallback": 45
+    "search_fallback": 0
   },
   "source_errors": {
+    "arxiv-search-ai-education-agent": "fetch_TimeoutError",
     "arxiv-search-collab-learning-agent": "fetch_TimeoutError",
     "arxiv-search-learning-analytics-ai": "fetch_TimeoutError"
   },
   "fallback_status": {
     "ran": true,
     "queries": 12,
-    "hits": 45,
-    "errors": [],
-    "attempted_queries": 12,
-    "skipped_queries": 0,
-    "circuit_open": false
+    "hits": 0,
+    "errors": [
+      "University of Oulu Hybrid Intelligence 2: openalex_http_429",
+      "University of Oulu Hybrid Intelligence 2: no_enabled_secondary_search_provider"
+    ],
+    "attempted_queries": 1,
+    "skipped_queries": 11,
+    "circuit_open": true
   },
   "candidates_by_source": {
     "arxiv-abs-2308.08155": [
@@ -81,18 +85,6 @@
       "https://arxiv.org/abs/2609.05806",
       "https://arxiv.org/abs/2608.30968",
       "https://arxiv.org/abs/2608.29481"
-    ],
-    "arxiv-search-ai-education-agent": [
-      "https://arxiv.org/abs/2610.38990",
-      "https://arxiv.org/abs/2610.33105",
-      "https://arxiv.org/abs/2610.32105",
-      "https://arxiv.org/abs/2610.31875",
-      "https://arxiv.org/abs/2610.30580",
-      "https://arxiv.org/abs/2610.26943",
-      "https://arxiv.org/abs/2610.25560",
-      "https://arxiv.org/abs/2610.22949",
-      "https://arxiv.org/abs/2610.05579",
-      "https://arxiv.org/abs/2610.05470"
     ],
     "oulu-hi": [
       "https://www.oulu.fi/en/hybrid-intelligence"
@@ -132,36 +124,24 @@
     ],
     "google-mass": [
       "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/"
-    ],
-    "search_fallback": [
-      "https://openalex.org/W7202007207",
-      "https://doi.org/10.3390/cmtr19040039",
-      "https://doi.org/10.1108/ils-11-2024-0148",
-      "https://doi.org/10.11648/j.stpp.20261002.13",
-      "https://doi.org/10.1111/bjet.70047",
-      "https://doi.org/10.48550/arxiv.2510.19252",
-      "https://doi.org/10.48550/arxiv.2607.11881",
-      "https://doi.org/10.62381/h261619",
-      "https://doi.org/10.1007/s11218-026-10204-2",
-      "https://doi.org/10.58295/2375-3668.1646"
     ]
   },
   "entity_changes": {
-    "papers_added": 30,
-    "references_added": 4,
-    "systems_updated": 11,
+    "papers_added": 0,
+    "references_added": 0,
+    "systems_updated": 8,
     "people_updated": 5,
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "weekly_report": "reports/weekly/2026-W45.md",
+  "weekly_report": "reports/weekly/2026-W46.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-11-02T01:05:39.627666+00:00",
+  "dashboard_summary_updated_at": "2026-11-09T01:05:28.897625+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "bf743eae82dd7df98506b2c3505fb426b93257c7",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": false
 }
