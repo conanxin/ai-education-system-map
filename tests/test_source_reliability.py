@@ -57,6 +57,30 @@ class ArxivHTMLCases(unittest.TestCase):
         self.assertIn("Mary Li",rows[0]["summary"])
         self.assertEqual(rows[0]["source_id"],"arxiv-search-test")
 
+    def test_search_title_is_exact_class_token_not_list_title(self):
+        # Real arXiv search markup puts the identifier line in
+        # class="list-title is-inline-block" BEFORE the real title in
+        # class="title is-5 mathjax". A loose \btitle\b match grabs the
+        # identifier line and yields "arXiv:<id> [pdf, ps, other]" as the
+        # title (the W45 corruption of 19 records).
+        markup = """
+        <ol>
+          <li class="arxiv-result">
+             <p class="list-title is-inline-block"><a href="https://arxiv.org/abs/2610.26943">arXiv:2610.26943</a>
+               <span>&nbsp;[<a href="https://arxiv.org/pdf/2610.26943">pdf</a>, <a href="https://arxiv.org/ps/2610.26943">ps</a>, <a href="https://arxiv.org/format/2610.26943">other</a>]&nbsp;</span>
+             </p>
+             <p class="title is-5 mathjax">
+               MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning
+             </p>
+             <a href="https://arxiv.org/abs/2610.26943">arXiv:2610.26943</a>
+          </li>
+        </ol>"""
+        rows = watch.parse_arxiv_search_results(markup, {"id": "arxiv-search-real"}, max_items=5)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["title"],
+                         "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning")
+        self.assertNotIn("[pdf", rows[0]["title"])
+
     def test_search_results_not_duplicated_and_bounded(self):
         markup = "".join(
             f'<li class="arxiv-result"><p class="title">Paper {i}</p>'

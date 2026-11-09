@@ -190,6 +190,23 @@ def _canonical_arxiv_abs_url(href: str) -> str | None:
     return "https://arxiv.org" + path
 
 
+def _class_tokens(attrs: str) -> set[str]:
+    """Return the whitespace-separated class names declared on a tag."""
+    m = re.search(r"""class\s*=\s*['"]([^'"]*)['"]""", attrs, re.IGNORECASE)
+    return set(m.group(1).split()) if m else set()
+
+
+def _has_class_token(attrs: str, token: str) -> bool:
+    """True when `token` is a whole class name on the tag.
+
+    Exact-token matching matters for arXiv search markup: the identifier
+    line uses class="list-title" and the real title uses class="title ...".
+    A loose \\btitle\\b match hits "list-title" first and yields the arXiv
+    id plus "[pdf, ps, other]" instead of the paper title.
+    """
+    return token in _class_tokens(attrs)
+
+
 def parse_arxiv_search_results(html_text: str, item: dict[str, Any],
                                max_items: int = 10) -> list[dict[str, Any]]:
     """Extract arXiv search results with either absolute or relative /abs/
@@ -203,13 +220,15 @@ def parse_arxiv_search_results(html_text: str, item: dict[str, Any],
         html_text, re.DOTALL | re.IGNORECASE)
     for found in blocks:
         block = found.group(1)
-        title_match = re.search(
-            r"""<p\b[^>]*class\s*=\s*['"][^'"]*\btitle\b[^'"]*['"][^>]*>(.*?)</p>""",
-            block, re.DOTALL | re.IGNORECASE)
-        if title_match is None:
+        title = ""
+        for para in re.finditer(r"<p\b([^>]*)>(.*?)</p>", block, re.DOTALL | re.IGNORECASE):
+            if not _has_class_token(para.group(1), "title"):
+                continue
+            title = html_module.unescape(re.sub(r"<[^>]+>", "", para.group(2)))
+            title = re.sub(r"\s+", " ", title).strip()
+            break
+        if not title:
             continue
-        title = html_module.unescape(re.sub(r"<[^>]+>", "", title_match.group(1)))
-        title = re.sub(r"\s+", " ", title).strip()
         link = None
         for href in re.findall(r"""<a\b[^>]*href\s*=\s*['"]([^'"]+)['"]""",
                                block, re.IGNORECASE):
