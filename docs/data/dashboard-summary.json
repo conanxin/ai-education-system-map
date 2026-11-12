@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-11-09T01:25:09.014119+00:00",
+  "generated_at": "2026-11-12T13:12:24.420515+00:00",
   "last_updated": "2026-11-09T01:04:54.287326+00:00",
   "latest_week_tag": "2026-W46",
   "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W46.md",
   "github_report_path": "reports/weekly/2026-W46.md",
   "totals": {
-    "papers": 42,
+    "papers": 21,
     "references": 33,
     "systems": 10,
     "people": 16,
     "timeline_events": 11,
-    "stable_sources": 51,
+    "stable_sources": 52,
     "active_sources": 36
   },
   "this_week": {
@@ -31,8 +31,110 @@
       "circuit_open": true
     }
   },
+  "weekly_archive": [
+    {
+      "week_tag": "2026-W46",
+      "report_path": "reports/weekly/2026-W46.md",
+      "new_papers": 0,
+      "generated_at": "2026-11-09T01:04:53.624827+00:00"
+    },
+    {
+      "week_tag": "2026-W45",
+      "report_path": "reports/weekly/2026-W45.md",
+      "new_papers": 30,
+      "generated_at": "2026-11-02T01:05:38.210895+00:00"
+    },
+    {
+      "week_tag": "2026-W44",
+      "report_path": "reports/weekly/2026-W44.md",
+      "new_papers": 0,
+      "generated_at": "2026-10-26T01:01:48.788398+00:00"
+    },
+    {
+      "week_tag": "2026-W43",
+      "report_path": "reports/weekly/2026-W43.md",
+      "new_papers": 0,
+      "generated_at": "2026-10-19T01:01:55.594181+00:00"
+    },
+    {
+      "week_tag": "2026-W42",
+      "report_path": "reports/weekly/2026-W42.md",
+      "new_papers": 0,
+      "generated_at": "2026-10-12T01:06:18.468933+00:00"
+    },
+    {
+      "week_tag": "2026-W41",
+      "report_path": "reports/weekly/2026-W41.md",
+      "new_papers": 0,
+      "generated_at": "2026-10-07T23:55:06.179621+00:00"
+    },
+    {
+      "week_tag": "2026-W40",
+      "report_path": "reports/weekly/2026-W40.md",
+      "new_papers": 0,
+      "generated_at": "2026-09-28T01:02:05.730966+00:00"
+    },
+    {
+      "week_tag": "2026-W39",
+      "report_path": "reports/weekly/2026-W39.md",
+      "new_papers": 0,
+      "generated_at": "2026-09-21T01:03:28.563743+00:00"
+    },
+    {
+      "week_tag": "2026-W38",
+      "report_path": "reports/weekly/2026-W38.md",
+      "new_papers": 0,
+      "generated_at": "2026-09-14T01:02:57.686477+00:00"
+    },
+    {
+      "week_tag": "2026-W37",
+      "report_path": "reports/weekly/2026-W37.md",
+      "new_papers": 0,
+      "generated_at": "2026-09-07T01:03:45.985822+00:00"
+    },
+    {
+      "week_tag": "2026-W33",
+      "report_path": "reports/weekly/2026-W33.md",
+      "new_papers": 0,
+      "generated_at": "2026-08-10T01:03:04.588328+00:00"
+    },
+    {
+      "week_tag": "2026-W32",
+      "report_path": "reports/weekly/2026-W32.md",
+      "new_papers": 0,
+      "generated_at": "2026-08-03T01:04:19.110248+00:00"
+    },
+    {
+      "week_tag": "2026-W30",
+      "report_path": "reports/weekly/2026-W30.md",
+      "new_papers": 0,
+      "generated_at": "2026-07-20T01:04:49.287500+00:00"
+    },
+    {
+      "week_tag": "2026-W29",
+      "report_path": "reports/weekly/2026-W29.md",
+      "new_papers": 0,
+      "generated_at": "2026-07-13T01:06:21.389361+00:00"
+    },
+    {
+      "week_tag": "2026-W28",
+      "report_path": "reports/weekly/2026-W28.md",
+      "new_papers": 0,
+      "generated_at": "2026-07-06T01:04:38.575040+00:00"
+    },
+    {
+      "week_tag": "2026-W27",
+      "report_path": "reports/weekly/2026-W27.md",
+      "new_papers": 0,
+      "generated_at": "2026-07-02T13:54:00.939382+00:00"
+    }
+  ],
+  "review_queue": {
+    "open": 21,
+    "total": 21
+  },
   "source_health": {
-    "stable_sources": 51,
+    "stable_sources": 52,
     "active_sources": 36,
     "source_errors_count": 3,
     "source_errors": {
@@ -409,7 +511,7 @@
       },
       {
         "title": "MIRACLE_Multi-Agent Intelligent Regulation to Advance Collaborative Learning Environment",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2605.12923",
         "related_system": "arxiv",
         "tags": [
@@ -428,21 +530,21 @@
       },
       {
         "title": "AI Agent for Education: Von Neumann Multi-Agent System Framework (Jiang et al., GCCCE 2024)",
-        "year": "",
+        "year": "2025",
         "url": "https://arxiv.org/html/2501.00083",
         "related_system": "",
         "tags": []
       },
       {
         "title": "Leveraging a Multi-Agent LLM-Based System to Educate Teachers in Hate Incidents Management (ARISE) (Gajewska et al., 2025)",
-        "year": "",
+        "year": "2025",
         "url": "https://arxiv.org/html/2506.23774v1",
         "related_system": "",
         "tags": []
       },
       {
         "title": "Towards a Science of Scaling Agent Systems",
-        "year": "",
+        "year": "2025",
         "url": "https://arxiv.org/abs/2512.08296",
         "related_system": "arxiv",
         "tags": [
@@ -451,28 +553,8 @@
         ]
       },
       {
-        "title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
-        "year": "",
-        "url": "https://arxiv.org/abs/2610.26943",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: multi-agent education"
-        ]
-      },
-      {
-        "title": "Integrating Fairness and Explainability in a Multiple Instance Reinforcement Learning System",
-        "year": "",
-        "url": "https://arxiv.org/abs/2610.00035",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: multi-agent education"
-        ]
-      },
-      {
         "title": "CARES: A Conversational AI System for Regulation-Grounded Safety Reporting in Construction Education",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2609.19429",
         "related_system": "arxiv-search",
         "tags": [
@@ -481,28 +563,8 @@
         ]
       },
       {
-        "title": "ViFA-Council: Multi-Agent LLM Deliberation for Vietnamese Folk Art Generation",
-        "year": "",
-        "url": "https://arxiv.org/abs/2609.13348",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: multi-agent education"
-        ]
-      },
-      {
-        "title": "MedRoundsQA: A Persona and Difficulty Aware Evaluation for Multi-Turn Medical Consultations",
-        "year": "",
-        "url": "https://arxiv.org/abs/2609.12851",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: multi-agent education"
-        ]
-      },
-      {
         "title": "Evaluating Scaffolding-Oriented Multi-Agent Large Language Model System for Clinical Interview Training",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2609.10939",
         "related_system": "arxiv-search",
         "tags": [
@@ -511,38 +573,8 @@
         ]
       },
       {
-        "title": "Exposing Weaknesses in Emotion Recognition in Conversations",
-        "year": "",
-        "url": "https://arxiv.org/abs/2609.05806",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: multi-agent education"
-        ]
-      },
-      {
-        "title": "CogEvol: Towards Efficient and Reliable Learning Environment Generation",
-        "year": "",
-        "url": "https://arxiv.org/abs/2608.30968",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: multi-agent education"
-        ]
-      },
-      {
-        "title": "SIC-Agents: Benchmarking and Building an Adaptive Simulator for Pediatric Serious Illness Communication Training",
-        "year": "",
-        "url": "https://arxiv.org/abs/2608.29481",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: multi-agent education"
-        ]
-      },
-      {
         "title": "Exploring AI Peer in Collaborative Mathematics Learning",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2610.38990",
         "related_system": "arxiv-search",
         "tags": [
@@ -551,28 +583,8 @@
         ]
       },
       {
-        "title": "Artificial Intelligence in Mechanical Engineering: Foundations, Opportunities, Challenges, and Responsibilities",
-        "year": "",
-        "url": "https://arxiv.org/abs/2610.33105",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: AI education agent"
-        ]
-      },
-      {
-        "title": "When Statisticians Can Also Be AI Engineers, What Could We Build?",
-        "year": "",
-        "url": "https://arxiv.org/abs/2610.32105",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: AI education agent"
-        ]
-      },
-      {
         "title": "An AI Factory for Technology Education: An Agentic Pipeline with Closed Loop Audience Feedback",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2610.31875",
         "related_system": "arxiv-search",
         "tags": [
@@ -582,7 +594,7 @@
       },
       {
         "title": "DagFlow AI: Agentic Synthetic Data Generation for Personalized Statistics Learning",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2610.30580",
         "related_system": "arxiv-search",
         "tags": [
@@ -592,7 +604,7 @@
       },
       {
         "title": "Voice-Based AI Feedback in Higher Education: A Field Study on Quality and Actionability",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2610.25560",
         "related_system": "arxiv-search",
         "tags": [
@@ -602,112 +614,12 @@
       },
       {
         "title": "Designing an AI Agent That Does Not Tutor: Design Rules for Socratic Probing in Introductory Physics",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2610.22949",
         "related_system": "arxiv-search",
         "tags": [
           "arxiv-search",
           "arXiv search: AI education agent"
-        ]
-      },
-      {
-        "title": "When Does It Become Cheating? Exploring the Roles of Self-Efficacy and the Impostor Phenomenon in Computing Students&#39; Perceptions of Academic Dishonesty",
-        "year": "",
-        "url": "https://arxiv.org/abs/2610.05579",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: AI education agent"
-        ]
-      },
-      {
-        "title": "Altruism as Infrastructure: Volunteer Moderation in a Bangladeshi Higher Education Facebook Group",
-        "year": "",
-        "url": "https://arxiv.org/abs/2610.05470",
-        "related_system": "arxiv-search",
-        "tags": [
-          "arxiv-search",
-          "arXiv search: AI education agent"
-        ]
-      },
-      {
-        "title": "Agentic AI Modernization: Transforming Institutional Infrastructure Through Orchestrated Multi-Agent LLM Framework",
-        "year": "2026",
-        "url": "https://doi.org/10.32996/jcsts.2026.8.4.1",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Agentic artificial intelligence: Architectures, planning mechanisms, multi-agent collaboration, applications, challenges, and future research directions-A comprehensive review",
-        "year": "2026",
-        "url": "https://doi.org/10.33545/27076571.2026.v7.i7a.358",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Mining the Design Space of Multi-Agent Workflows",
-        "year": "2026",
-        "url": "https://doi.org/10.48550/arxiv.2610.31709",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Multi-Agent Social Simulation: Protocolizing LLM-Driven Agent-Based Modeling as a Quantitative Research Method",
-        "year": "2026",
-        "url": "https://doi.org/10.3390/ai7080279",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Design and Tuning of Multi-Agent Systems Using Bayesian Evolutionary Optimization",
-        "year": "2026",
-        "url": "https://doi.org/10.48550/arxiv.2610.29276",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Collaborative Memory for Multi-Agent VLM Systems",
-        "year": "2026",
-        "url": "https://doi.org/10.48550/arxiv.2609.17921",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Symbolic Machine Learning for Quasi-Optimal Control of a Collaborative Multi-Agent Robotic System",
-        "year": "2026",
-        "url": "https://doi.org/10.15622/ia.25.4.5",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Learning to Steer LLM Agents and Multi-Agent Systems",
-        "year": "2026",
-        "url": "https://doi.org/10.48550/arxiv.2610.22316",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
         ]
       },
       {
@@ -738,14 +650,14 @@
       },
       {
         "title": "Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies (MASS) (ICLR 2026, arXiv 2502.02533)",
-        "year": "",
+        "year": "2025",
         "url": "https://arxiv.org/abs/2502.02533",
         "related_system": "",
         "tags": []
       },
       {
         "title": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation",
-        "year": "",
+        "year": "2023",
         "url": "https://arxiv.org/abs/2308.08155",
         "related_system": "arxiv",
         "tags": [
@@ -755,32 +667,12 @@
       },
       {
         "title": "MAVE: A Multi-Agent Framework for Grounded Pedagogical Feedback from Online Class Videos",
-        "year": "",
+        "year": "2026",
         "url": "https://arxiv.org/abs/2610.24498",
         "related_system": "arxiv-search",
         "tags": [
           "arxiv-search",
           "arXiv search: multi-agent education"
-        ]
-      },
-      {
-        "title": "An empirical study of testing practices in open source AI agent frameworks and agentic applications",
-        "year": "2026",
-        "url": "https://doi.org/10.1007/s10664-026-10857-9",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
-        ]
-      },
-      {
-        "title": "Deep Research in Physical Sciences: A Multi-Agent Framework and Comprehensive Benchmark",
-        "year": "2026",
-        "url": "https://doi.org/10.48550/arxiv.2606.18648",
-        "related_system": "fallback-search",
-        "tags": [
-          "fallback-search",
-          "openalex-search"
         ]
       }
     ]

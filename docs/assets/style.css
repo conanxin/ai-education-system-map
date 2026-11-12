@@ -248,6 +248,40 @@ section.module { margin-top:66px; padding:32px 34px 34px; border-radius:var(--ra
     border:1px solid var(--stroke); background:var(--surface-soft); }
 .weekly-link:hover { color:var(--blue); border-color:var(--stroke-strong); }
 
+/* In-page weekly report reader (P49) */
+.review-queue-note { margin:14px 0 0; font-size:12.5px; color:var(--text-subtle); }
+.review-queue-note strong { color:var(--amber); font-family:var(--mono); }
+.review-queue-note a { color:var(--link); }
+.weekly-reader { margin-top:16px; border:1px solid var(--stroke);
+    border-radius:var(--radius-sm); background:var(--surface-soft); }
+.weekly-reader > summary { cursor:pointer; padding:13px 16px; font-size:13px;
+    font-weight:650; color:var(--text-subtle); min-height:44px; }
+.weekly-reader > summary:hover { color:var(--blue); }
+.weekly-reader[open] > summary { border-bottom:1px solid var(--stroke); }
+.weekly-reader-bar { display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
+    padding:14px 16px 0; font-size:12px; color:var(--text-muted); }
+.weekly-reader-bar select { min-height:40px; max-width:100%; padding:7px 10px;
+    border-radius:8px; border:1px solid var(--stroke-strong);
+    background:var(--surface-raised); color:var(--text); font:inherit; }
+.weekly-reader-meta a { color:var(--link); }
+.weekly-report { padding:6px 16px 18px; font-size:13.5px; line-height:1.65;
+    color:var(--text-subtle); overflow-wrap:anywhere; }
+.weekly-report h3 { margin:18px 0 8px; font-size:15px; color:var(--text); }
+.weekly-report h4 { margin:16px 0 4px; font-size:14px; color:var(--text); }
+.weekly-report h4 a, .weekly-report p a { color:var(--link); }
+.weekly-report ul { margin:6px 0; padding-left:20px; }
+.weekly-report li.report-subitem { margin-left:18px; font-family:var(--mono);
+    font-size:12px; color:var(--text-muted); list-style:circle; }
+.weekly-report code { font-family:var(--mono); font-size:.92em;
+    background:var(--surface-raised); padding:1px 5px; border-radius:5px; }
+.weekly-report blockquote { margin:6px 0; padding:8px 12px;
+    border-left:3px solid var(--stroke-strong); color:var(--text-muted); }
+.weekly-report .report-meta { color:var(--text-muted); font-size:12px; }
+.weekly-report details.report-section { margin-top:14px; border-top:1px solid var(--stroke);
+    padding-top:10px; }
+.weekly-report details.report-section > summary { cursor:pointer; font-weight:650;
+    color:var(--text); min-height:32px; }
+
 /* Conceptual framework + living timeline */
 .lineage-flow { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px;
     margin:0; padding:0; list-style:none; }

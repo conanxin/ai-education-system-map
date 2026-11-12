@@ -1,12 +1,13 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "generated_at": "2026-07-02",
   "notes": [
     "Sources are grouped by fetch strategy. The weekly watcher reads this file",
     "and tries each strategy in priority order. Higher-priority sources fail",
     "softly (logged in source_errors, never crash the run).",
     "Add new sources by appending; do not remove existing ones without bumping version.",
-    "Strategy 1 = highest trust (arxiv abs / official RSS), Strategy 4 = fallback (DDG)."
+    "Strategy 1 = highest trust (arxiv abs / official RSS), Strategy 4 = fallback (DDG).",
+    "1.3.0: arxiv_search items carry api_query and are fetched via the arXiv API (export.arxiv.org/api/query, newest first); url stays as the HTML fallback."
   ],
   "arxiv_sources": {
     "description": "arXiv abstract pages and category searches. Direct HTTP GET, RSS-friendly.",
@@ -16,10 +17,11 @@
       {"id": "arxiv-abs-2502.02533", "url": "https://arxiv.org/abs/2502.02533", "type": "arxiv_abs", "label": "MASS (Zhang et al., ICLR 2026)"},
       {"id": "arxiv-abs-2512.08296", "url": "https://arxiv.org/abs/2512.08296", "type": "arxiv_abs", "label": "Scaling agent systems"},
       {"id": "arxiv-abs-2605.12923", "url": "https://arxiv.org/abs/2605.12923", "type": "arxiv_abs", "label": "MIRACLE"},
-      {"id": "arxiv-search-multi-agent-edu", "url": "https://arxiv.org/search/?query=multi-agent+education&searchtype=all", "type": "arxiv_search", "label": "arXiv search: multi-agent education"},
-      {"id": "arxiv-search-ai-education-agent", "url": "https://arxiv.org/search/?query=AI+education+agent&searchtype=all", "type": "arxiv_search", "label": "arXiv search: AI education agent"},
-      {"id": "arxiv-search-collab-learning-agent", "url": "https://arxiv.org/search/?query=collaborative+learning+agent&searchtype=all", "type": "arxiv_search", "label": "arXiv search: collaborative learning agent"},
-      {"id": "arxiv-search-learning-analytics-ai", "url": "https://arxiv.org/search/?query=learning+analytics+AI&searchtype=all", "type": "arxiv_search", "label": "arXiv search: learning analytics AI"}
+      {"id": "arxiv-search-multi-agent-edu", "url": "https://arxiv.org/search/?query=multi-agent+education&searchtype=all", "type": "arxiv_search", "label": "arXiv search: multi-agent education", "api_query": "all:\"multi-agent\" AND (all:education OR all:classroom OR all:tutoring OR all:students)", "max_results": 15},
+      {"id": "arxiv-search-ai-education-agent", "url": "https://arxiv.org/search/?query=AI+education+agent&searchtype=all", "type": "arxiv_search", "label": "arXiv search: AI education agent", "api_query": "(all:\"AI agent\" OR all:\"LLM agent\" OR all:\"pedagogical agent\") AND (all:education OR all:students OR all:classroom)", "max_results": 15},
+      {"id": "arxiv-search-collab-learning-agent", "url": "https://arxiv.org/search/?query=collaborative+learning+agent&searchtype=all", "type": "arxiv_search", "label": "arXiv search: collaborative learning agent", "api_query": "all:\"collaborative learning\" AND (all:agent OR all:LLM OR all:\"generative AI\")", "max_results": 15},
+      {"id": "arxiv-search-learning-analytics-ai", "url": "https://arxiv.org/search/?query=learning+analytics+AI&searchtype=all", "type": "arxiv_search", "label": "arXiv search: learning analytics AI", "api_query": "all:\"learning analytics\" AND (all:LLM OR all:\"generative AI\" OR all:agent)", "max_results": 15},
+      {"id": "arxiv-search-srl-ai", "url": "https://arxiv.org/search/?query=self-regulated+learning+AI&searchtype=all", "type": "arxiv_search", "label": "arXiv search: self-regulated learning AI", "api_query": "(all:\"self-regulated learning\" OR all:\"socially shared regulation\") AND (all:AI OR all:LLM OR all:agent)", "max_results": 15}
     ]
   },
   "official_project_sources": {

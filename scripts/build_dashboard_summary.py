@@ -146,6 +146,33 @@ def classify_system_card(s: dict[str, Any]) -> list[str]:
     return out or ["Other"]
 
 
+def weekly_archive(dd: Path) -> list[dict[str, Any]]:
+    """Index the Pages-served weekly reports (newest first) so the site can
+    offer an in-page archive without listing a directory."""
+    import re
+    out: list[dict[str, Any]] = []
+    reports_dir = dd.parent / "reports" / "weekly"
+    for path in sorted(reports_dir.glob("20??-W??.md"), reverse=True):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        new = re.search(r"New papers added this run: \*\*(\d+)\*\*", text)
+        generated = re.search(r"_Generated: ([^_\n]+)_", text)
+        out.append({
+            "week_tag": path.stem,
+            "report_path": f"reports/weekly/{path.name}",
+            "new_papers": int(new.group(1)) if new else None,
+            "generated_at": generated.group(1).strip() if generated else "",
+        })
+    return out
+
+
+def review_queue_counts(dd: Path) -> dict[str, int]:
+    queue = load_json(dd / "review-queue.json", default={})
+    items = queue.get("items", []) if isinstance(queue, dict) else []
+    open_items = [x for x in items if isinstance(x, dict) and x.get("status") in
+                  ("rejected_by_filter", "quarantined_from_papers")]
+    return {"open": len(open_items), "total": len(items)}
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--data-dir", type=Path, required=True)
@@ -272,6 +299,8 @@ def main(argv: list[str]) -> int:
             "new_people": safe_get(latest, "new_people", default=0),
             "fallback_status": fallback_status,
         },
+        "weekly_archive": weekly_archive(dd),
+        "review_queue": review_queue_counts(dd),
         "source_health": {
             "stable_sources": stable_count,
             "active_sources": active_sources,

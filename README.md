@@ -17,103 +17,41 @@ and a weekly auto-updated research snapshot.
 
 中文界面通过 `docs/index.html` 静态文本 + `docs/assets/app.js` 中的查找表(`T`、`BADGE_LABELS`、`PAPER_GROUP_TITLES`、`PEOPLE_GROUP_TITLES`)实现。修改任一文件即可调整显示文案,不影响数据。
 
-## Dashboard module history (P42 snapshot; see P43 section above)
+## Current state
 
-The single-page site now has nine anchored reading sections, all driven by one
-aggregated JSON file (`docs/data/dashboard-summary.json`):
+- **Data:** 21 papers, 33 other research sources, 10 systems, 16 people
+  (`docs/data/dashboard-summary.json` is the source of truth; a test keeps
+  it in step with the data files).
+- **Relevance gate:** search-discovered papers need a strong tracked term or
+  an education context plus an AI/agent context (`scope_decision()` in
+  `scripts/weekly_ai_education_watch.py`).
+- **Review queue:** candidates the gate rejects go to
+  `docs/data/review-queue.json`, not into the site. Work through it with:
 
-1. **本周更新 (This Week)** — 周标签、本周新论文/系统/人物数量、备用搜索状态、查看每周报告 / 在 GitHub 查看 按钮。
-2. **研究脉络 (Research Lineage)** — 水平 Mermaid 流程图
-   (ITS → SRL/SSRL → HASRL → MAI → CocoNote → MIRACLE → Multi-Agent Classroom OS)
-   含旁路说明(Khanmigo、AutoGen、MASS、CocoRobo SMART)。
-3. **系统卡片 (System Cards)** — 所有追踪中的系统,以卡片形式展示徽章
-   (SSRL/HASRL、多智能体、课堂 OS、AI 导师、产品、研究原型、基础设施)。筛选标签可客户端过滤。
-4. **论文网络摘要 (Paper Network Summary)** — 论文按脉络角色分组
-   (理论基础 / MAI 研究脉络 / MIRACLE·CocoNote / 多智能体基础设施 / 证据与政策)。点击标题打开来源链接。
-5. **研究资料与来源 (Research References)** — 独立列出机构官网、人物资料、会议、政策与新闻，不计入论文总数。
-6. **关键人物与机构 (People & Institutions)** — 研究者按机构分组
-   (奥卢大学、Stanford、CMU LearnLab、Microsoft/Google、Khan Academy、CocoRobo/MIRACLE、其他)。
-7. **信息源健康状态 (Source Health)** — 稳定来源数、本次活跃数、来源错误数、备用搜索状态、按来源的候选结果、registry/manifest/summary JSON 链接。
+  ```bash
+  python3 scripts/review_queue.py list
+  python3 scripts/review_queue.py restore <index-or-url-fragment>
+  python3 scripts/review_queue.py dismiss <index-or-url-fragment>
+  ```
 
-## P42 typed research sources
+  `restore` puts the paper back in `papers.json` (tagged `manual-review`) and
+  rebuilds the dashboard summary; `dismiss` stops it being queued again.
+- **Paper identity:** every paper has a canonical `key` (`arxiv:<id>`,
+  `doi:<doi>`, or the URL) next to its original `id`. Dedupe uses `key`.
+- **Tests:** `python3 -m unittest discover -s tests` (also run by the Pages
+  workflow before each deploy).
+- **Environment:** optional `OPENALEX_API_KEY` / `OPENALEX_MAILTO`; tuning
+  knobs `AI_EDUCATION_ARXIV_API_DELAY` (3), `AI_EDUCATION_OPENALEX_ATTEMPTS`
+  (3), `AI_EDUCATION_OPENALEX_BACKOFF` (2), `AI_EDUCATION_OPENALEX_PACING`
+  (1). Set the last three to 0 for fast tests.
 
-P42 separates the 41 legacy mixed records into 12 reviewed publications
-stored in docs/data/papers.json and 29 non-paper references in
-docs/data/research-entities.json. The provenance file
-docs/data/research-migration.json documents original SHA256 and classification.
-Private byte-preserving backup was made before migration.
-Dashboard totals and reference_groups display each type without paper inflation.
-Weekly monitoring routes official web pages, people and venues into references.
-Seed bootstrap refuses overwriting a typed production collection.
+- **Weekly reports:** readable in the page ("在页面内阅读周报与历史归档"); the
+  archive index is rebuilt by `scripts/build_dashboard_summary.py`.
 
-## P43 editorial website redesign
+- **Weekly cap:** one run adds at most 15 new papers (`--max-new-papers`);
+  the rest wait in the review queue with reason `weekly_cap`.
 
-The site remains a single GitHub Pages static HTML/CSS/JavaScript application,
-with no added frontend framework, CDN runtime or backend service. A consistent
-research-atlas visual language unifies the landing page, cards, navigation and
-data-provenance notes.
-
-- Editorial cover with live-from-archive totals for 12 papers, 29 references,
-  10 systems and 16 people. The timestamp is the last archive, not live data.
-- Four guided research routes, three directly linked primary reading examples,
-  a six-stage interpretive framework and 11 data-derived timeline entries.
-- Dedicated paper title/topic/year search and reference type filters/search,
-  alongside the existing system categories and original source links.
-- Source-transparency and research-method sections explain the separation of
-  scholarly and non-scholarly records, and limits of weekly data.
-- Four tested viewport widths (1440, 768, 390, 320), native light/dark themes,
-  keyboard focus, skip links and reduced-motion handling.
-- Replaces external Mermaid rendering with native, offline-capable semantic
-  HTML/CSS for the research framework and timeline.
-
-Existing deep link anchors are preserved. Run the repository Python unittest
-suite for data and static markup guards. The P43 browser and interaction
-smoke-test receipts are kept privately in the upgrade research work directory,
-not in the published GitHub repository.
-
-## P44 primary-source evidence and research relations
-
-The evidence workbench is a curated static editorial dataset in
-docs/data/research-deep-dives.json. It contains:
-
-- **Three readings**: the 2023 HASRL/SSRL framework article (publisher
-  full-text and abstract sections consulted), the 2025 SimClass NAACL paper
-  (ACL Anthology metadata/abstract), and the 2025 MASS manuscript (arXiv
-  abstract and Google Research publication record).
-- **Six typed research-system links**: two verified direct paper/system
-  identities and four clearly marked editorial comparisons. The latter
-  must never be presented as actual project integrations or published
-  experiments. All explanations, questions and boundaries link back
-  to the original study URL.
-- **Explicit review scope**: source_fulltext, source_abstract and
-  editorial_comparison describe how statements were checked. They do not
-  rate educational outcomes, paper quality or commercial product safety.
-- **Five verified system-link corrections** in docs/data/systems.json
-  (MAI, SimClass, MASS, CMU OLI/Torus and Coconote), replacing blank or
-  unrelated destinations. The builder forwards provenance into system cards.
-
-No weekly automation overwrites these authored research notes. The JSON
-retains editorial_reviewed_at; subsequent revisions require independent
-primary-source verification. The Python unittest suite checks paper IDs,
-system names, evidence categories, and canonical data/dashboard consistency.
-
-## P45 system provenance and software lifecycle review
-
-All ten existing system cards now have official source URLs, provenance dates
-and a distinct statement of what those URLs actually establish. P45 reviewed
-Khanmigo, archived AutoGen, CTAT, CocoRobo SMART and UC Berkeley MAST.
-AutoGen is **archived and not supported**; its official Microsoft Agent
-Framework successor has its own separate link. CTAT's free academic/research
-use must not be mistaken for proof of an open source code license. The MAST
-record describes a general multi-agent failure taxonomy, not a deployed
-education product. CocoRobo's platform capabilities remain vendor claims,
-not independently replicated learning outcomes.
-
-Cards expose audited primary-source links, available successor/research links,
-and explicit caveats. The canonical sources remain docs/data/systems.json
-and docs/data/tech-stack.json; the dashboard builder copies the provenance
-fields. Updating a source URL never alters the counts for 12 scholarly papers,
-29 other research sources, 10 system records or 16 people.
+Release history for P42–P50 is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Structure
 
@@ -125,7 +63,9 @@ docs/
   assets/style.css
   assets/app.js
   data/
-    papers.json           Only reviewed scholarly papers
+    papers.json           Core reviewed papers + search hits that pass the relevance gate
+    review-queue.json     Rejected / quarantined candidates awaiting review
+    source-registry.json  Sources and arXiv API queries the watcher reads
     research-entities.json Typed non-paper references
     research-migration.json Lossless migration provenance
     systems.json          Structured system list
@@ -141,6 +81,9 @@ scripts/
   build_from_report.py         Seed parser: MVP markdown -> 6 JSON files
   build_dashboard_summary.py   Aggregator: 6 JSON files -> dashboard-summary.json
   weekly_ai_education_watch.py Weekly incremental fetcher
+  review_queue.py              List / restore / dismiss review-queue entries
+tests/                    unittest suite (run before every Pages deploy)
+CHANGELOG.md              Phase history (P42 onwards)
 logs/                     Cron output (gitignored)
 ```
 

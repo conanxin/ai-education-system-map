@@ -320,6 +320,142 @@ function renderThisWeek(s) {
 }
 
 // ---------------------------------------------------------------------------
+// Module 1b: 页面内周报阅读器 (P49)
+// ---------------------------------------------------------------------------
+const REPORT_SECTION_TITLES = {
+    "Snapshot": "概览",
+    "New items": "新增条目",
+    "Source diagnostics": "来源诊断",
+    "Methodology": "方法说明",
+};
+const REPORT_COLLAPSED_SECTIONS = new Set(["Source diagnostics", "Methodology"]);
+
+// Inline Markdown for the watcher's own reports: escape first, then allow
+// only **bold**, `code`, and [text](http…) links.
+function reportInline(text) {
+    // Older reports carry HTML entities scraped from arXiv (e.g. &#39;);
+    // decode the common ones to text first, then escape everything.
+    const plain = String(text ?? "")
+        .replace(/&#0*39;|&apos;/g, "'").replace(/&quot;/g, '"')
+        .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+    return escapeHtml(plain)
+        .replace(/`([^`]+)`/g, "<code>$1</code>")
+        .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+            '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+}
+
+// Render the small Markdown subset the weekly watcher writes. Returns a
+// DocumentFragment; every piece of report text passes through reportInline.
+function renderReportMarkdown(md) {
+    const root = document.createDocumentFragment();
+    let target = root;      // current section body
+    let list = null;        // open <ul>
+    const closeList = () => { list = null; };
+    for (const raw of String(md || "").split(/\r?\n/)) {
+        const line = raw.replace(/\s+$/, "");
+        if (!line.trim()) { closeList(); continue; }
+        let m;
+        if ((m = line.match(/^# (.+)$/))) { closeList(); continue; }   // page already shows the week
+        if ((m = line.match(/^## (.+)$/))) {
+            closeList();
+            const name = m[1].trim();
+            const label = REPORT_SECTION_TITLES[name] || name;
+            if (REPORT_COLLAPSED_SECTIONS.has(name)) {
+                const d = el("details", { class: "report-section" },
+                    [el("summary", { text: label })]);
+                root.appendChild(d);
+                target = d;
+            } else {
+                const sec = el("section", { class: "report-section" },
+                    [el("h3", { text: label })]);
+                root.appendChild(sec);
+                target = sec;
+            }
+            continue;
+        }
+        if ((m = line.match(/^### (.+)$/))) {
+            closeList();
+            target.appendChild(el("h4", { html: reportInline(m[1]) }));
+            continue;
+        }
+        if ((m = line.match(/^(\s*)- (.+)$/))) {
+            if (!list) { list = el("ul"); target.appendChild(list); }
+            list.appendChild(el("li", {
+                class: m[1].length >= 2 ? "report-subitem" : null,
+                html: reportInline(m[2]),
+            }));
+            continue;
+        }
+        closeList();
+        if ((m = line.match(/^> ?(.*)$/))) {
+            target.appendChild(el("blockquote", { html: reportInline(m[1]) }));
+        } else if ((m = line.match(/^_([^_]+):_\s*(.+)$/))) {
+            // "_Source:_ `id`" style label lines
+            target.appendChild(el("p", { class: "report-meta",
+                html: `${escapeHtml(m[1])}:${reportInline(m[2])}` }));
+        } else if ((m = line.match(/^_(.+)_$/))) {
+            target.appendChild(el("p", { class: "report-meta", html: reportInline(m[1]) }));
+        } else {
+            target.appendChild(el("p", { html: reportInline(line.trim()) }));
+        }
+    }
+    return root;
+}
+
+function renderWeeklyReader(s) {
+    const note = $("#review-queue-note");
+    const open = s.review_queue && s.review_queue.open;
+    if (note && open > 0) {
+        note.hidden = false;
+        note.innerHTML = `相关性过滤待审候选:<strong>${escapeHtml(open)}</strong> 条(未计入论文)· ` +
+            '<a href="data/review-queue.json" target="_blank" rel="noopener noreferrer">查看队列 JSON ↗</a>';
+    }
+    const reader = $("#weekly-reader");
+    const select = $("#weekly-week-select");
+    const view = $("#weekly-report-view");
+    const meta = $("#weekly-reader-meta");
+    const archive = Array.isArray(s.weekly_archive) ? s.weekly_archive : [];
+    if (!reader || !select || !view) return;
+    if (!archive.length) { reader.hidden = true; return; }
+    select.innerHTML = "";
+    for (const w of archive) {
+        const count = w.new_papers == null ? "" : ` · 新增论文 ${w.new_papers}`;
+        select.appendChild(el("option", { value: w.report_path, text: w.week_tag + count }));
+    }
+    let loaded = null;
+    async function show(path) {
+        if (loaded === path) return;
+        const entry = archive.find(w => w.report_path === path);
+        view.innerHTML = "";
+        view.appendChild(el("p", { class: "report-meta", text: "正在载入周报…" }));
+        try {
+            const r = await fetch(path, { cache: "no-store" });
+            if (!r.ok) throw new Error(`${path} -> ${r.status}`);
+            const md = await r.text();
+            view.innerHTML = "";
+            view.appendChild(renderReportMarkdown(md));
+            loaded = path;
+            if (meta) {
+                meta.innerHTML = "";
+                if (entry && entry.generated_at) {
+                    meta.appendChild(document.createTextNode(`生成于 ${fmtDate(entry.generated_at)} · `));
+                }
+                meta.appendChild(el("a", {
+                    href: path, target: "_blank", rel: "noopener noreferrer",
+                }, "原始 Markdown ↗"));
+            }
+        } catch (e) {
+            view.innerHTML = "";
+            view.appendChild(el("div", { class: "module-error",
+                html: escapeHtml(`周报载入失败:${e.message}`) }));
+        }
+    }
+    select.addEventListener("change", () => show(select.value));
+    reader.addEventListener("toggle", () => { if (reader.open) show(select.value); });
+}
+
+// ---------------------------------------------------------------------------
 // Module 2: 研究脉络 — Mermaid handled by initMermaid; nothing here.
 // ---------------------------------------------------------------------------
 
@@ -932,6 +1068,7 @@ async function main() {
     try { renderFeaturedReading(summary); } catch (e) { /* optional curated entry points */ }
     try { renderTimeline(summary); } catch (e) { showModuleError("#research-lineage", e.message); }
     try { renderThisWeek(summary); } catch (e) { showModuleError("#this-week", e.message); }
+    try { renderWeeklyReader(summary); } catch (e) { showModuleError("#this-week", e.message); }
     try { renderSystemCards(summary); } catch (e) { showModuleError("#system-cards", e.message); }
     try { renderPaperGroups(summary); } catch (e) { showModuleError("#paper-groups", e.message); }
     try { renderResearchReferences(summary); } catch (e) { showModuleError("#research-references", e.message); }

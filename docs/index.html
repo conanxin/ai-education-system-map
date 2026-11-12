@@ -127,8 +127,8 @@
             <div class="stats week-stats">
                 <div class="stat"><span>新增论文</span><strong data-stat="new_papers">—</strong></div>
                 <div class="stat"><span>新增研究资料</span><strong data-stat="new_references">—</strong></div>
-                <div class="stat"><span>新增系统</span><strong data-stat="new_systems">—</strong></div>
-                <div class="stat"><span>新增人物</span><strong data-stat="new_people">—</strong></div>
+                <div class="stat"><span>复核系统</span><strong data-stat="new_systems">—</strong></div>
+                <div class="stat"><span>复核人物</span><strong data-stat="new_people">—</strong></div>
                 <div class="stat"><span>参与采集的来源</span><strong data-stat="active_sources">—</strong></div>
                 <div class="stat"><span>已注册来源</span><strong data-stat="stable_sources">—</strong></div>
             </div>
@@ -136,6 +136,16 @@
                 <div class="fallback-status" id="this-week-fallback"><span class="mini-label">上次任务的后备搜索记录</span><span data-fb>—</span></div>
                 <div class="weekly-links" id="this-week-links"></div>
             </div>
+            <p class="review-queue-note" id="review-queue-note" hidden></p>
+            <details class="weekly-reader" id="weekly-reader">
+                <summary>在页面内阅读周报与历史归档</summary>
+                <div class="weekly-reader-bar">
+                    <label class="mini-label" for="weekly-week-select">选择周次</label>
+                    <select id="weekly-week-select" aria-controls="weekly-report-view"></select>
+                    <span class="weekly-reader-meta" id="weekly-reader-meta"></span>
+                </div>
+                <article class="weekly-report" id="weekly-report-view" aria-live="polite"></article>
+            </details>
         </div>
     </section>
 

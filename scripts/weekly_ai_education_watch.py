@@ -36,12 +36,14 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from xml.etree import ElementTree as ET
 
 
 # ---------------------------------------------------------------------------
@@ -59,6 +61,58 @@ IN_SCOPE_TERMS = (
     "Khan Academy", "AI education", "collaborative learning agent",
     "proactive speech agent", "teacher-created agent", "shared regulation",
 )
+
+# P47 relevance gate. The legacy IN_SCOPE_TERMS list above was matched
+# case-insensitively without word boundaries ("MAI" hit "main"/"domain",
+# "MASS" hit "massive") and any arXiv search hit bypassed it entirely.
+# Search-discovered papers now need either a strong, unambiguous term or
+# BOTH an education context and an AI/agent context.
+STRONG_SCOPE_TERMS_CS = (  # whole word, case-sensitive
+    "SSRL", "HASRL", "MIRACLE", "CocoRobo", "SimClass", "LearnLab", "Khanmigo",
+)
+STRONG_SCOPE_PHRASES = (  # whole phrase, case-insensitive
+    "socially shared regulation", "self-regulated learning",
+    "regulation of learning", "shared regulation", "metacognitive agent",
+    "AI classroom", "multi-agent classroom", "Cognitive Tutor", "Khan Academy",
+    "intelligent tutoring", "learning analytics", "AI education",
+    "AI in education", "collaborative learning agent",
+    "proactive speech agent", "teacher-created agent",
+)
+# Education terms come in two strengths. HARD terms are unambiguous. SOFT
+# terms are also machine-learning jargon ("teacher/student" distillation,
+# federated "collaborative learning"), so they only count when the text shows
+# no ML-jargon marker. (Tuned on a live arXiv/OpenAlex sample, 2026-11-12.)
+HARD_EDUCATION_PATTERN = (
+    r"\b(?:education(?:al)?|educators?|classrooms?|tutors?|tutoring|"
+    r"pedagog\w*|curricul\w*|schools?|k-12|moocs?|homework|coursework|"
+    r"instructional|learners?|undergraduates?|learning sciences)\b"
+)
+SOFT_EDUCATION_PATTERN = (
+    r"\b(?:students?|teachers?|teaching|scaffold\w*|"
+    r"collaborative (?:\w+ )?learning|learning (?:outcomes|gains)|"
+    r"(?:personali[sz]ed|adaptive|mathematics|math|statistics|physics|stem|"
+    r"language) learning)\b"
+)
+EDUCATION_CONTEXT_PATTERN = (
+    HARD_EDUCATION_PATTERN[:-3] + "|" + SOFT_EDUCATION_PATTERN[len(r"\b(?:"):]
+)
+ML_JARGON_PATTERN = (
+    r"\b(?:distill\w*|federated|quantiz\w*|teacher[- ]student|"
+    r"(?:student|teacher) (?:models?|networks?|polic(?:y|ies)|llms?)|"
+    r"continual learning|bilevel|on-policy|off-policy|cloud-edge|"
+    r"edge devices?|graph-structured|model slices|decentrali[sz]ed|"
+    r"skill transfer|non-iid)\b"
+)
+AI_CONTEXT_PATTERN = (
+    r"\b(?:agents?|multi-agent|llms?|large language models?|"
+    r"agentic (?:ai|systems?|workflows?|pipelines?|frameworks?|orchestration)|"
+    r"generative ai|genai|chatbots?|conversational|ai|artificial intelligence|"
+    r"gpt)\b"
+)
+# Tags whose source is hand-curated in the registry; these skip the gate.
+# "manual-review" marks a record a human restored from the review queue.
+CURATED_SOURCE_TAGS = ("arxiv", "official-page", "person-source", "conference-venue",
+                       "manual-review")
 
 # CocoNote disambiguation: only include "coconote" hits that ALSO mention
 # CocoRobo / MIRACLE / SMART / multi-agent classroom. Pure consumer
@@ -141,6 +195,19 @@ def url_canon(u: str) -> str:
     u = u.strip()
     u = re.sub(r"^http://", "https://", u)
     return u.split("#")[0].rstrip("/")
+
+
+def paper_key(u: str) -> str:
+    """Canonical identity for a paper URL so abs/html/pdf/DOI forms of the
+    same arXiv record (or the same DOI in different case) dedupe together."""
+    arxiv = ARXIV_ID_RE.search(u or "")
+    if arxiv:
+        return f"arxiv:{arxiv.group(1)}{arxiv.group(2)}.{arxiv.group(3)}"
+    doi = re.search(r"(?:doi\.org/|/doi/(?:abs/|full/|pdf/|epdf/)?)(10\.\d{4,9}/[^\s?#]+)",
+                    u or "", re.IGNORECASE)
+    if doi:
+        return "doi:" + doi.group(1).lower().rstrip("/")
+    return url_canon(u or "")
 
 
 def norm_title(t: str) -> str:
@@ -255,10 +322,89 @@ def parse_arxiv_search_results(html_text: str, item: dict[str, Any],
     return out
 
 
+ARXIV_API_URL = "https://export.arxiv.org/api/query"
+# arXiv asks API clients to pause ~3 s between calls.
+ARXIV_API_DELAY = float(os.getenv("AI_EDUCATION_ARXIV_API_DELAY", "3"))
+_ATOM = "{http://www.w3.org/2005/Atom}"
+
+
+def parse_arxiv_api_feed(xml_text: str, item: dict[str, Any],
+                         max_items: int = 15) -> list[dict[str, Any]] | None:
+    """Parse an arXiv API Atom feed. Returns None when the payload is not a
+    well-formed Atom feed (caller falls back), [] for a valid empty feed."""
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError:
+        return None
+    if root.tag != _ATOM + "feed":
+        return None
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for entry in root.iter(_ATOM + "entry"):
+        # The API reports ids as http://arxiv.org/abs/<id>v<n>.
+        raw_id = re.sub(r"^http://", "https://", (entry.findtext(_ATOM + "id") or "").strip())
+        link = _canonical_arxiv_abs_url(raw_id)
+        if not link:
+            continue  # includes arXiv's in-feed error entries
+        link = re.sub(r"v[0-9]+$", "", link)
+        title = re.sub(r"\s+", " ", entry.findtext(_ATOM + "title") or "").strip()
+        if not title or link in seen:
+            continue
+        abstract = re.sub(r"\s+", " ", entry.findtext(_ATOM + "summary") or "").strip()
+        authors = [re.sub(r"\s+", " ", a.findtext(_ATOM + "name") or "").strip()
+                   for a in entry.iter(_ATOM + "author")]
+        authors = [a for a in authors if a]
+        published = (entry.findtext(_ATOM + "published") or "").strip()
+        out.append({
+            "id": link, "title": title, "url": link, "institution": "",
+            "summary": abstract[:600],
+            "authors": authors[:12],
+            "published": published[:10],
+            "tags": ["arxiv-search", item.get("label", "")],
+            "source_id": item.get("id", ""),
+            "year": _guess_year(link) or published[:4],
+        })
+        seen.add(link)
+        if len(out) >= max_items:
+            break
+    return out
+
+
+def fetch_arxiv_api(item: dict[str, Any],
+                    *, errors: list[str] | None = None) -> list[dict[str, Any]] | None:
+    """Query the documented arXiv API (newest submissions first). Returns
+    None when the API could not be used so the caller can fall back."""
+    params = urllib.parse.urlencode({
+        "search_query": item["api_query"],
+        "start": 0,
+        "max_results": int(item.get("max_results", 15)),
+        "sortBy": "submittedDate",
+        "sortOrder": "descending",
+    })
+    for attempt in range(2):
+        attempt_errors: list[str] = []
+        text = http_get(ARXIV_API_URL + "?" + params, timeout=20.0, errors=attempt_errors)
+        if ARXIV_API_DELAY > 0:
+            time.sleep(ARXIV_API_DELAY)
+        if text:
+            parsed = parse_arxiv_api_feed(text, item, int(item.get("max_results", 15)))
+            if parsed is not None:
+                return parsed
+            attempt_errors.append("invalid_atom_feed")
+        if errors is not None and attempt == 1:
+            errors.extend("arxiv_api_" + e for e in attempt_errors)
+    return None
+
+
 def fetch_arxiv_source(item: dict[str, Any],
                        *, errors: list[str] | None = None) -> list[dict[str, Any]]:
-    """Parse arXiv abstract/search pages; report HTTP and schema failures."""
+    """Use the arXiv API when the registry item carries `api_query`; parse
+    arXiv abstract/search pages otherwise or as a fallback."""
     url = item.get("url", "")
+    if item.get("api_query"):
+        api_hits = fetch_arxiv_api(item, errors=errors)
+        if api_hits is not None:
+            return api_hits
     if "/abs/" in url:
         text = http_get(url, timeout=9.0, errors=errors)
         parsed = parse_arxiv_abs(text) if text else None
@@ -435,6 +581,22 @@ def try_hermes_search(query: str, limit: int = 5,
         return []
 
 
+OPENALEX_MAX_ATTEMPTS = max(1, int(os.getenv("AI_EDUCATION_OPENALEX_ATTEMPTS", "3")))
+OPENALEX_BACKOFF = float(os.getenv("AI_EDUCATION_OPENALEX_BACKOFF", "2"))
+OPENALEX_PACING = float(os.getenv("AI_EDUCATION_OPENALEX_PACING", "1"))
+
+
+def _openalex_abstract(inverted: Any) -> str:
+    """Rebuild plain text from OpenAlex's abstract_inverted_index."""
+    if not isinstance(inverted, dict):
+        return ""
+    words: list[tuple[int, str]] = []
+    for word, positions in inverted.items():
+        if isinstance(positions, list):
+            words.extend((p, str(word)) for p in positions if isinstance(p, int))
+    return " ".join(w for _, w in sorted(words))[:600]
+
+
 def search_openalex(query: str, limit: int = 5,
                     *, errors: list[str] | None = None) -> list[dict[str, str]]:
     """Search OpenAlex's documented public /works API; no HTML scraping.
@@ -443,27 +605,47 @@ def search_openalex(query: str, limit: int = 5,
     articles and preprints are accepted; malformed/unverified result entries
     are not silently inserted into a scholarly corpus.
     """
-    params = urllib.parse.urlencode({
+    query_params = {
         "search": query,
         "filter": "type:article|preprint,from_publication_date:2025-01-01",
         "per_page": max(1, min(5, int(limit))),
-        "select": "id,title,doi,publication_year,type,primary_location",
-    })
-    url = "https://api.openalex.org/works?" + params
-    try:
-        req = urllib.request.Request(
-            url, headers={"User-Agent":"Conan Xin AI Education Watcher/2.0",
-                          "Accept":"application/json"})
-        with urllib.request.urlopen(req, timeout=12) as response:
-            result = json.loads(response.read(700_000))
-    except urllib.error.HTTPError as exc:
-        if errors is not None:
-            errors.append("openalex_http_" + str(exc.code))
-        return []
-    except (urllib.error.URLError,TimeoutError,OSError,ValueError) as exc:
-        if errors is not None:
-            errors.append("openalex_" + type(exc).__name__)
-        return []
+        "select": "id,title,doi,publication_year,type,primary_location,"
+                  "abstract_inverted_index",
+    }
+    # Identification is optional and never hard-coded: set OPENALEX_API_KEY
+    # and/or OPENALEX_MAILTO in the cron environment to get a proper quota.
+    if os.getenv("OPENALEX_API_KEY"):
+        query_params["api_key"] = os.environ["OPENALEX_API_KEY"]
+    if os.getenv("OPENALEX_MAILTO"):
+        query_params["mailto"] = os.environ["OPENALEX_MAILTO"]
+    url = "https://api.openalex.org/works?" + urllib.parse.urlencode(query_params)
+    result = None
+    for attempt in range(OPENALEX_MAX_ATTEMPTS):
+        try:
+            req = urllib.request.Request(
+                url, headers={"User-Agent":"Conan Xin AI Education Watcher/2.1",
+                              "Accept":"application/json"})
+            with urllib.request.urlopen(req, timeout=12) as response:
+                result = json.loads(response.read(1_500_000))
+            break
+        except urllib.error.HTTPError as exc:
+            retryable = exc.code == 429 or 500 <= exc.code < 600
+            if retryable and attempt + 1 < OPENALEX_MAX_ATTEMPTS:
+                try:
+                    wait = float(exc.headers.get("Retry-After", "")) if exc.headers else 0.0
+                except (TypeError, ValueError):
+                    wait = 0.0
+                time.sleep(min(max(wait, OPENALEX_BACKOFF * (attempt + 1)), 20.0))
+                continue
+            if errors is not None:
+                errors.append("openalex_http_" + str(exc.code))
+            return []
+        except (urllib.error.URLError,TimeoutError,OSError,ValueError) as exc:
+            if errors is not None:
+                errors.append("openalex_" + type(exc).__name__)
+            return []
+    if OPENALEX_PACING > 0:
+        time.sleep(OPENALEX_PACING)
     if not isinstance(result,dict) or not isinstance(result.get("results"),list):
         if errors is not None:
             errors.append("openalex_invalid_json_schema")
@@ -486,7 +668,7 @@ def search_openalex(query: str, limit: int = 5,
         out.append({
             "title":title,
             "url":url,
-            "snippet":"",
+            "snippet":_openalex_abstract(record.get("abstract_inverted_index")),
             "year":year,
             "provider":"openalex",
             "publication_type":record["type"],
@@ -525,7 +707,16 @@ def run_query(query: str, limit: int = 5,
 # Year heuristic
 # ---------------------------------------------------------------------------
 
+ARXIV_ID_RE = re.compile(
+    r"(?:arxiv\.org/(?:abs|html|pdf)/|10\.48550/arxiv\.)(\d{2})(\d{2})\.(\d{4,5})",
+    re.IGNORECASE)
+
+
 def _guess_year(text: str) -> str:
+    # A new-style arXiv identifier encodes YYMM; trust it over prose years.
+    arxiv = ARXIV_ID_RE.search(text or "")
+    if arxiv and 1 <= int(arxiv.group(2)) <= 12:
+        return "20" + arxiv.group(1)
     m = re.search(r"\b(20[2-3]\d)\b", text or "")
     return m.group(1) if m else ""
 
@@ -563,16 +754,50 @@ def is_noise(item: dict[str, Any]) -> bool:
     return False
 
 
+STRONG_SCOPE_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(t) for t in STRONG_SCOPE_TERMS_CS) + r")\b"
+    r"|(?i:\b(?:" + "|".join(re.escape(t) for t in STRONG_SCOPE_PHRASES) + r")\b)")
+EDUCATION_CONTEXT_RE = re.compile(EDUCATION_CONTEXT_PATTERN, re.IGNORECASE)
+HARD_EDUCATION_RE = re.compile(HARD_EDUCATION_PATTERN, re.IGNORECASE)
+SOFT_EDUCATION_RE = re.compile(SOFT_EDUCATION_PATTERN, re.IGNORECASE)
+ML_JARGON_RE = re.compile(ML_JARGON_PATTERN, re.IGNORECASE)
+AI_CONTEXT_RE = re.compile(AI_CONTEXT_PATTERN, re.IGNORECASE)
+
+
+def scope_decision(item: dict[str, Any]) -> tuple[bool, str]:
+    """Return (in_scope, reason). Curated registry sources pass; everything
+    discovered by search must show a strong tracked term, or an education
+    context plus an AI/agent context. The education context is a HARD term
+    in the title, a SOFT term in the title of a text without ML jargon, or
+    an abstract with at least one HARD term and two distinct terms overall
+    (again without ML jargon)."""
+    if any(t in (item.get("tags") or []) for t in CURATED_SOURCE_TAGS):
+        return True, "curated_source"
+    title = str(item.get("title", "") or "")
+    summary = str(item.get("summary", "") or "")
+    text = title + " " + summary
+    if STRONG_SCOPE_RE.search(text):
+        return True, "strong_term"
+    jargon = bool(ML_JARGON_RE.search(text))
+    hard_in_summary = {m.group(0).lower()[:6] for m in HARD_EDUCATION_RE.finditer(summary)}
+    soft_in_summary = {m.group(0).lower()[:6] for m in SOFT_EDUCATION_RE.finditer(summary)}
+    education = (
+        bool(HARD_EDUCATION_RE.search(title))
+        or (not jargon and bool(SOFT_EDUCATION_RE.search(title)))
+        or (not jargon and hard_in_summary
+            and len(hard_in_summary | soft_in_summary) >= 2)
+    )
+    if not education:
+        any_term = bool(EDUCATION_CONTEXT_RE.search(text))
+        return False, ("ml_jargon_not_education" if jargon and any_term
+                       else "no_education_context")
+    if not AI_CONTEXT_RE.search(text):
+        return False, "no_ai_agent_context"
+    return True, "education_and_ai"
+
+
 def is_in_scope(item: dict[str, Any]) -> bool:
-    """An item is in scope if its text hits any tracked keyword. People /
-    conference / arxiv tags bypass this (they're already trusted by their
-    source)."""
-    if any(t in (item.get("tags") or []) for t in ("arxiv", "arxiv-search",
-                                                   "official-page", "person-source",
-                                                   "conference-venue")):
-        return True
-    text = " ".join([str(item.get("title", "") or ""), str(item.get("summary", "") or "")])
-    return bool(IN_SCOPE_RE.search(text))
+    return scope_decision(item)[0]
 
 
 def is_relevant(item: dict[str, Any]) -> bool:
@@ -693,9 +918,87 @@ def fetch_from_registry(reg: dict[str, Any], max_results: int) -> tuple[list[dic
         diag["candidates_by_source"]["search_fallback"] = [h["url"] for h in fb_hits][:10]
     candidates.extend(fb_hits)
 
-    # Final relevance pass
-    relevant = [c for c in candidates if is_relevant(c)]
+    # Final relevance pass. Rejected search-discovered papers are kept in
+    # the diagnostics so they can be reviewed instead of silently vanishing.
+    relevant: list[dict[str, Any]] = []
+    rejected: list[dict[str, Any]] = []
+    for c in candidates:
+        if is_relevant(c):
+            relevant.append(c)
+        elif c.get("url") and c.get("title") and is_paper_candidate(c):
+            rejected.append({
+                "title": c.get("title", ""), "url": c.get("url", ""),
+                "source_id": c.get("source_id", ""),
+                "reason": "noise_pattern" if is_noise(c) else scope_decision(c)[1],
+            })
+    diag["rejected_candidates"] = rejected[:60]
+    diag["rejected_candidate_count"] = len(rejected)
     return relevant, diag
+
+
+def limit_new_papers(paper_candidates: list[dict[str, Any]],
+                     papers: list[dict[str, Any]], queue: Any,
+                     max_new: int) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Decide which gate-passing candidates may be merged this run.
+
+    Known papers always pass through (their last_seen is refreshed). A paper
+    waiting in, or dismissed from, the review queue is never auto-added: a
+    person decides via scripts/review_queue.py. At most `max_new` genuinely
+    new papers are admitted; the overflow is returned for the review queue
+    so one noisy week cannot flood the atlas."""
+    known = {paper_key(p.get("url", "")) for p in papers}
+    items = queue.get("items", []) if isinstance(queue, dict) else []
+    queued = {paper_key(x.get("url", "")) for x in items
+              if isinstance(x, dict) and x.get("status") != "restored"}
+    admitted: list[dict[str, Any]] = []
+    held_back: list[dict[str, Any]] = []
+    new_keys: set[str] = set()
+    for item in paper_candidates:
+        key = paper_key(item.get("url", ""))
+        if key in known or key in new_keys:
+            admitted.append(item)
+        elif key in queued:
+            continue
+        elif len(new_keys) < max(0, max_new):
+            new_keys.add(key)
+            admitted.append(item)
+        else:
+            held_back.append({
+                "title": item.get("title", ""), "url": item.get("url", ""),
+                "source_id": item.get("source_id", ""), "reason": "weekly_cap",
+            })
+    return admitted, held_back
+
+
+def update_review_queue(path: Path, rejected: list[dict[str, Any]], week_tag: str,
+                        max_entries: int = 300,
+                        *, known_paper_keys: set[str] | None = None) -> int:
+    """Append newly rejected paper candidates to docs/data/review-queue.json
+    (deduped by canonical paper key, newest kept when over the cap)."""
+    queue = load_json(path)
+    if not isinstance(queue, dict) or not isinstance(queue.get("items"), list):
+        queue = {"schema_version": 1,
+                 "note": "Search hits that failed the relevance gate. Not shown "
+                         "as papers; move an entry back into papers.json to restore it.",
+                 "items": []}
+    # Papers already published (e.g. restored by hand) and entries already
+    # queued or dismissed are never queued again.
+    known = {paper_key(x.get("url", "")) for x in queue["items"]}
+    known |= set(known_paper_keys or ())
+    added = 0
+    for r in rejected:
+        key = paper_key(r.get("url", ""))
+        if not key or key in known:
+            continue
+        queue["items"].append({**r, "status": "rejected_by_filter",
+                               "week_tag": week_tag, "queued_at": now_iso()})
+        known.add(key)
+        added += 1
+    queue["items"] = queue["items"][-max_entries:]
+    queue["updated_at"] = now_iso()
+    if added or not path.exists():
+        save_json(path, queue)
+    return added
 
 
 # ---------------------------------------------------------------------------
@@ -795,6 +1098,7 @@ def merge_references(existing: list[dict[str, Any]],
 def merge_papers(existing: list[dict[str, Any]], new_items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
     """Update papers.json with new items. Match by canonical URL or normalized title."""
     by_url = {url_canon(p.get("url", "")): p for p in existing if p.get("url")}
+    by_key = {paper_key(p.get("url", "")): p for p in existing if p.get("url")}
     by_title = {norm_title(p.get("title", "")): p for p in existing if p.get("title")}
     added = 0
     now = now_iso()
@@ -805,16 +1109,22 @@ def merge_papers(existing: list[dict[str, Any]], new_items: list[dict[str, Any]]
             by_url[u]["last_seen"] = now
             by_url[u]["summary"] = by_url[u].get("summary") or it.get("summary", "")
             continue
+        k = paper_key(it.get("url", ""))
+        if k and k in by_key:
+            by_key[k]["last_seen"] = now
+            continue
         if nt and nt in by_title:
             by_title[nt]["last_seen"] = now
             continue
         merged = dict(it)
+        merged["key"] = paper_key(it.get("url", ""))
         merged["record_type"] = "scholarly_paper"
         merged["first_seen"] = now
         merged["last_seen"] = now
         existing.append(merged)
         if u:
             by_url[u] = merged
+            by_key[paper_key(u)] = merged
         if nt:
             by_title[nt] = merged
         added += 1
@@ -988,6 +1298,9 @@ def write_weekly_report(path: Path, items_added: list[dict[str, Any]], week_tag:
             lines.append(f"### [{t}]({u})" if u else f"### {t}")
             if src:
                 lines.append(f"_Source:_ `{src}`")
+            if it.get("authors"):
+                lines.append("_Authors:_ " + ", ".join(it["authors"][:6])
+                             + (" et al." if len(it["authors"]) > 6 else ""))
             if it.get("institution"):
                 lines.append(f"_Institution:_ {it['institution']}")
             if it.get("summary"):
@@ -996,6 +1309,9 @@ def write_weekly_report(path: Path, items_added: list[dict[str, Any]], week_tag:
             lines.append("")
     lines.append("## Source diagnostics")
     lines.append("")
+    if diag.get("rejected_candidate_count"):
+        lines.append(f"- Rejected by relevance gate: **{diag['rejected_candidate_count']}** "
+                     "(see `docs/data/review-queue.json`)")
     sc = diag.get("source_counts", {})
     lines.append(f"- Total source hits: **{sum(sc.values())}**")
     if sc:
@@ -1047,6 +1363,7 @@ def update_latest_snapshot(weekly_path: Path, items_added: list[dict[str, Any]],
         "fallback_status": diag.get("fallback_status", {}),
         "source_counts": diag.get("source_counts", {}),
         "candidates_by_source": diag.get("candidates_by_source", {}),
+        "rejected_candidate_count": diag.get("rejected_candidate_count", 0),
         "entity_changes": {
             "papers_added": len(items_added),
             "references_added": totals.get("references_added", 0),
@@ -1266,6 +1583,9 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--reports-dir", type=Path, required=True)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--max-results", type=int, default=5)
+    ap.add_argument("--max-new-papers", type=int, default=15,
+                    help="Most new papers one run may add; the rest go to the "
+                         "review queue with reason weekly_cap.")
     ap.add_argument("--publish", action="store_true",
                     help="Auto git add/commit/push changed docs/data and docs/reports "
                          "after the weekly watch. Dry-run ignores this flag.")
@@ -1307,6 +1627,11 @@ def main(argv: list[str]) -> int:
     # existing records whose last_seen timestamp is refreshed. Preserve that
     # distinction in every published weekly report and dashboard metric.
     paper_candidates = [item for item in candidates if is_paper_candidate(item)]
+    paper_candidates, held_back = limit_new_papers(
+        paper_candidates, papers,
+        load_json(args.data_dir / "review-queue.json"), args.max_new_papers)
+    diag["rejected_candidates"] = diag.get("rejected_candidates", []) + held_back
+    diag["rejected_candidate_count"] = diag.get("rejected_candidate_count", 0) + len(held_back)
     diag["paper_candidate_count"] = len(paper_candidates)
     diag["non_paper_reference_count"] = len(candidates)-len(paper_candidates)
     prior_paper_count = len(papers)
@@ -1347,6 +1672,10 @@ def main(argv: list[str]) -> int:
     save_json(people_path, people)
     save_json(tech_path, tech_stack)
     save_json(timeline_path, timeline)
+
+    update_review_queue(args.data_dir / "review-queue.json",
+                        diag.get("rejected_candidates", []), week_tag,
+                        known_paper_keys={paper_key(p.get("url", "")) for p in papers})
 
     write_weekly_report(weekly_report_path, new_papers, week_tag, totals, diag)
     update_latest_snapshot(latest_path, new_papers, totals, week_tag, diag)
