@@ -1,5 +1,14 @@
 # Changelog
 
+## P51 queue resolution and validation (2026-11-13)
+
+- Examined all 21 original W45 quarantined papers. Restored three direct AI-education studies and dismissed 18 unrelated or only-adjacent works. Kept every queue record; open=0, papers=24.
+- Added [per-paper evidence and rationale](reports/review-queue-p51-2026-11-13.md). Restored titles are CogEvol, SIC-Agents and When Does It Become Cheating?
+- Refresh dashboard counts after dismiss. Adjust relevance-test assertions to permit explicitly restored queue entries and verify their manual-review tag; extend regression coverage for pending-to-dismissed transition. Increased a subprocess test timeout from 15s to 45s to accommodate intermittent local WSL startup delays.
+- A live non-publishing shadow weekly run on 2026-11-13 found that ML model distillation described as learner-centered passed the relevance gate. Move learner(s) from HARD to SOFT education terms (and add a test) so the ML-jargon guard catches this false positive.
+- Keep Hermes weekly writer unchanged pending first post-P50 scheduled run; no Actions scheduling or license change in this stage.
+
+
 Newest first. Counts quoted in older sections are snapshots from that phase.
 
 ## P50 live-tuned gate and weekly cap (2026-11-12)

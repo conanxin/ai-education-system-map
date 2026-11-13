@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-12T13:12:24.420515+00:00",
+  "generated_at": "2026-11-13T06:32:52.608346+00:00",
   "last_updated": "2026-11-09T01:04:54.287326+00:00",
   "latest_week_tag": "2026-W46",
   "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W46.md",
   "github_report_path": "reports/weekly/2026-W46.md",
   "totals": {
-    "papers": 21,
+    "papers": 24,
     "references": 33,
     "systems": 10,
     "people": 16,
@@ -130,7 +130,7 @@
     }
   ],
   "review_queue": {
-    "open": 21,
+    "open": 0,
     "total": 21
   },
   "source_health": {
@@ -630,6 +630,39 @@
         "tags": [
           "fallback-search",
           "openalex-search"
+        ]
+      },
+      {
+        "title": "CogEvol: Towards Efficient and Reliable Learning Environment Generation",
+        "year": "",
+        "url": "https://arxiv.org/abs/2608.30968",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education",
+          "manual-review"
+        ]
+      },
+      {
+        "title": "SIC-Agents: Benchmarking and Building an Adaptive Simulator for Pediatric Serious Illness Communication Training",
+        "year": "",
+        "url": "https://arxiv.org/abs/2608.29481",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: multi-agent education",
+          "manual-review"
+        ]
+      },
+      {
+        "title": "When Does It Become Cheating? Exploring the Roles of Self-Efficacy and the Impostor Phenomenon in Computing Students' Perceptions of Academic Dishonesty",
+        "year": "",
+        "url": "https://arxiv.org/abs/2610.05579",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent",
+          "manual-review"
         ]
       }
     ],

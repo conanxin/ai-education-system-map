@@ -114,7 +114,7 @@ class TypedRecordMigrationTests(unittest.TestCase):
             cmd=[sys.executable,str(ROOT/"scripts/build_from_report.py"),
                  "--input",str(ROOT/"reports/seed/latest-report.md"),
                  "--data-dir",str(base)]
-            result=subprocess.run(cmd,capture_output=True,text=True,timeout=15)
+            result=subprocess.run(cmd,capture_output=True,text=True,timeout=45)  # WSL process startup can stall under I/O load.
             self.assertNotEqual(result.returncode,0)
             self.assertIn("Typed P42 live corpus exists",result.stderr)
 

@@ -56,9 +56,17 @@ class ReviewQueueCli(unittest.TestCase):
         self.assertEqual(len(self.read("papers.json")), before + 1)
 
     def test_dismissed_and_published_items_are_not_requeued(self):
-        entry = self.read("review-queue.json")["items"][1]
+        # Build a pending fixture even if the live queue has been reviewed.
+        queue = self.read("review-queue.json")
+        queue["items"][1]["status"] = "quarantined_from_papers"
+        (self.data / "review-queue.json").write_text(json.dumps(queue))
+        summary = self.read("dashboard-summary.json")
+        summary["review_queue"]["open"] = 1
+        (self.data / "dashboard-summary.json").write_text(json.dumps(summary))
+        entry = queue["items"][1]
         self.assertEqual(self.run_cli("dismiss", entry["url"])[0], 0)
         self.assertEqual(self.read("review-queue.json")["items"][1]["status"], "dismissed")
+        self.assertEqual(self.read("dashboard-summary.json")["review_queue"]["open"], 0)
         size = len(self.read("review-queue.json")["items"])
         paper = self.read("papers.json")[-1]
         again = [{"title": entry["title"], "url": entry["url"], "source_id": "s",

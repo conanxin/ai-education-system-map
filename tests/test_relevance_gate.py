@@ -63,6 +63,7 @@ class RelevanceGate(unittest.TestCase):
             "Teaching the Harness: Student-Aware Skill Transfer for LLM Agents",
             "CIDERS: Cloud-Edge LLM Collaborative Learning via Bilevel Optimization",
             "Decentralized collaborative continual learning for agents",
+            "Overtaught, Underlearned: Learner-Centered Distillation from Multi-Agent Discussion",
         ):
             with self.subTest(title=title):
                 self.assertEqual(watch.scope_decision(cand(title)),
@@ -119,10 +120,16 @@ class RelevanceGate(unittest.TestCase):
     def test_published_papers_all_pass_gate_or_are_core(self):
         papers = json.loads((ROOT / "docs/data/papers.json").read_text(encoding="utf-8"))
         queue = json.loads((ROOT / "docs/data/review-queue.json").read_text(encoding="utf-8"))
-        queued = {watch.paper_key(x["url"]) for x in queue["items"]}
+        blocked = {watch.paper_key(x["url"]) for x in queue["items"]
+                   if x.get("status") != "restored"}
+        restored = {watch.paper_key(x["url"]) for x in queue["items"]
+                    if x.get("status") == "restored"}
         for p in papers:
             with self.subTest(title=p["title"]):
-                self.assertNotIn(watch.paper_key(p["url"]), queued)
+                key = watch.paper_key(p["url"])
+                self.assertNotIn(key, blocked)
+                if key in restored:
+                    self.assertIn("manual-review", p.get("tags", []))
                 core = not str(p.get("first_seen") or "").startswith("2026-11")
                 self.assertTrue(core or watch.is_in_scope(p))
 

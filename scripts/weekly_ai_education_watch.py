@@ -79,16 +79,16 @@ STRONG_SCOPE_PHRASES = (  # whole phrase, case-insensitive
     "proactive speech agent", "teacher-created agent",
 )
 # Education terms come in two strengths. HARD terms are unambiguous. SOFT
-# terms are also machine-learning jargon ("teacher/student" distillation,
+# terms are also machine-learning jargon ("teacher/student/learner" distillation,
 # federated "collaborative learning"), so they only count when the text shows
 # no ML-jargon marker. (Tuned on a live arXiv/OpenAlex sample, 2026-11-12.)
 HARD_EDUCATION_PATTERN = (
     r"\b(?:education(?:al)?|educators?|classrooms?|tutors?|tutoring|"
     r"pedagog\w*|curricul\w*|schools?|k-12|moocs?|homework|coursework|"
-    r"instructional|learners?|undergraduates?|learning sciences)\b"
+    r"instructional|undergraduates?|learning sciences)\b"
 )
 SOFT_EDUCATION_PATTERN = (
-    r"\b(?:students?|teachers?|teaching|scaffold\w*|"
+    r"\b(?:students?|teachers?|learners?|teaching|scaffold\w*|"
     r"collaborative (?:\w+ )?learning|learning (?:outcomes|gains)|"
     r"(?:personali[sz]ed|adaptive|mathematics|math|statistics|physics|stem|"
     r"language) learning)\b"

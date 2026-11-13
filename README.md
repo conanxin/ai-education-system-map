@@ -19,7 +19,7 @@ and a weekly auto-updated research snapshot.
 
 ## Current state
 
-- **Data:** 21 papers, 33 other research sources, 10 systems, 16 people
+- **Data:** 24 papers, 33 other research sources, 10 systems, 16 people
   (`docs/data/dashboard-summary.json` is the source of truth; a test keeps
   it in step with the data files).
 - **Relevance gate:** search-discovered papers need a strong tracked term or
@@ -51,7 +51,9 @@ and a weekly auto-updated research snapshot.
 - **Weekly cap:** one run adds at most 15 new papers (`--max-new-papers`);
   the rest wait in the review queue with reason `weekly_cap`.
 
-Release history for P42–P50 is in [CHANGELOG.md](CHANGELOG.md).
+Review decision audit (21 entries): [P51 paper adjudication](reports/review-queue-p51-2026-11-13.md).
+
+Release history for P42–P51 is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Structure
 

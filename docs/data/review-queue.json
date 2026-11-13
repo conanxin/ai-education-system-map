@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "note": "Search hits that failed the relevance gate. Not shown as papers; move an entry's `record` back into papers.json to restore it.",
-  "updated_at": "2026-11-12T12:59:45.444261+00:00",
+  "updated_at": "2026-11-13T06:21:52.026510+00:00",
   "items": [
     {
       "title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
       "url": "https://arxiv.org/abs/2610.26943",
       "source_id": "arxiv-search-multi-agent-edu",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -26,14 +26,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-09T01:04:52.904184+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765729+00:00"
     },
     {
       "title": "Integrating Fairness and Explainability in a Multiple Instance Reinforcement Learning System",
       "url": "https://arxiv.org/abs/2610.00035",
       "source_id": "arxiv-search-multi-agent-edu",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -51,14 +52,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-09T01:04:52.904184+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765747+00:00"
     },
     {
       "title": "ViFA-Council: Multi-Agent LLM Deliberation for Vietnamese Folk Art Generation",
       "url": "https://arxiv.org/abs/2609.13348",
       "source_id": "arxiv-search-multi-agent-edu",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -76,14 +78,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-09T01:04:52.904184+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765751+00:00"
     },
     {
       "title": "MedRoundsQA: A Persona and Difficulty Aware Evaluation for Multi-Turn Medical Consultations",
       "url": "https://arxiv.org/abs/2609.12851",
       "source_id": "arxiv-search-multi-agent-edu",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -101,14 +104,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-09T01:04:52.904184+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765754+00:00"
     },
     {
       "title": "Exposing Weaknesses in Emotion Recognition in Conversations",
       "url": "https://arxiv.org/abs/2609.05806",
       "source_id": "arxiv-search-multi-agent-edu",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -126,14 +130,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-09T01:04:52.904184+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765756+00:00"
     },
     {
       "title": "CogEvol: Towards Efficient and Reliable Learning Environment Generation",
       "url": "https://arxiv.org/abs/2608.30968",
       "source_id": "arxiv-search-multi-agent-edu",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "restored",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -151,14 +156,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-09T01:04:52.904184+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:52.026281+00:00"
     },
     {
       "title": "SIC-Agents: Benchmarking and Building an Adaptive Simulator for Pediatric Serious Illness Communication Training",
       "url": "https://arxiv.org/abs/2608.29481",
       "source_id": "arxiv-search-multi-agent-edu",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "restored",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -176,14 +182,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-09T01:04:52.904184+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:52.026369+00:00"
     },
     {
       "title": "Artificial Intelligence in Mechanical Engineering: Foundations, Opportunities, Challenges, and Responsibilities",
       "url": "https://arxiv.org/abs/2610.33105",
       "source_id": "arxiv-search-ai-education-agent",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -201,14 +208,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765758+00:00"
     },
     {
       "title": "When Statisticians Can Also Be AI Engineers, What Could We Build?",
       "url": "https://arxiv.org/abs/2610.32105",
       "source_id": "arxiv-search-ai-education-agent",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -226,19 +234,20 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765760+00:00"
     },
     {
-      "title": "When Does It Become Cheating? Exploring the Roles of Self-Efficacy and the Impostor Phenomenon in Computing Students&#39; Perceptions of Academic Dishonesty",
+      "title": "When Does It Become Cheating? Exploring the Roles of Self-Efficacy and the Impostor Phenomenon in Computing Students' Perceptions of Academic Dishonesty",
       "url": "https://arxiv.org/abs/2610.05579",
       "source_id": "arxiv-search-ai-education-agent",
       "reason": "no_ai_agent_context",
-      "status": "quarantined_from_papers",
+      "status": "restored",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
         "id": "https://arxiv.org/abs/2610.05579",
-        "title": "When Does It Become Cheating? Exploring the Roles of Self-Efficacy and the Impostor Phenomenon in Computing Students&#39; Perceptions of Academic Dishonesty",
+        "title": "When Does It Become Cheating? Exploring the Roles of Self-Efficacy and the Impostor Phenomenon in Computing Students' Perceptions of Academic Dishonesty",
         "url": "https://arxiv.org/abs/2610.05579",
         "institution": "",
         "summary": "Authors: Chandler C. Payne , Jhonathan Sora-Cardenas , Olufisayo Omojokun , Pedro Guillermo Feijóo-García",
@@ -251,14 +260,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:52.026478+00:00"
     },
     {
       "title": "Altruism as Infrastructure: Volunteer Moderation in a Bangladeshi Higher Education Facebook Group",
       "url": "https://arxiv.org/abs/2610.05470",
       "source_id": "arxiv-search-ai-education-agent",
       "reason": "no_ai_agent_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -276,14 +286,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765765+00:00"
     },
     {
       "title": "Agentic AI Modernization: Transforming Institutional Infrastructure Through Orchestrated Multi-Agent LLM Framework",
       "url": "https://doi.org/10.32996/jcsts.2026.8.4.1",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -303,14 +314,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765767+00:00"
     },
     {
       "title": "An empirical study of testing practices in open source AI agent frameworks and agentic applications",
       "url": "https://doi.org/10.1007/s10664-026-10857-9",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -330,14 +342,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765769+00:00"
     },
     {
       "title": "Agentic artificial intelligence: Architectures, planning mechanisms, multi-agent collaboration, applications, challenges, and future research directions-A comprehensive review",
       "url": "https://doi.org/10.33545/27076571.2026.v7.i7a.358",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -357,14 +370,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765771+00:00"
     },
     {
       "title": "Mining the Design Space of Multi-Agent Workflows",
       "url": "https://doi.org/10.48550/arxiv.2610.31709",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -384,14 +398,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765773+00:00"
     },
     {
       "title": "Multi-Agent Social Simulation: Protocolizing LLM-Driven Agent-Based Modeling as a Quantitative Research Method",
       "url": "https://doi.org/10.3390/ai7080279",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -411,14 +426,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765775+00:00"
     },
     {
       "title": "Design and Tuning of Multi-Agent Systems Using Bayesian Evolutionary Optimization",
       "url": "https://doi.org/10.48550/arxiv.2610.29276",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -438,14 +454,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765777+00:00"
     },
     {
       "title": "Deep Research in Physical Sciences: A Multi-Agent Framework and Comprehensive Benchmark",
       "url": "https://doi.org/10.48550/arxiv.2606.18648",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -465,14 +482,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765779+00:00"
     },
     {
       "title": "Collaborative Memory for Multi-Agent VLM Systems",
       "url": "https://doi.org/10.48550/arxiv.2609.17921",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -492,14 +510,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765781+00:00"
     },
     {
       "title": "Symbolic Machine Learning for Quasi-Optimal Control of a Collaborative Multi-Agent Robotic System",
       "url": "https://doi.org/10.15622/ia.25.4.5",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -519,14 +538,15 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765783+00:00"
     },
     {
       "title": "Learning to Steer LLM Agents and Multi-Agent Systems",
       "url": "https://doi.org/10.48550/arxiv.2610.22316",
       "source_id": "search_fallback:openalex",
       "reason": "no_education_context",
-      "status": "quarantined_from_papers",
+      "status": "dismissed",
       "week_tag": "2026-W45",
       "queued_at": "2026-11-12T12:59:45.444261+00:00",
       "record": {
@@ -546,7 +566,8 @@
         "record_type": "scholarly_paper",
         "first_seen": "2026-11-02T01:05:37.605129+00:00",
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
-      }
+      },
+      "resolved_at": "2026-11-13T06:21:33.765785+00:00"
     }
   ]
 }

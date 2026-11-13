@@ -95,14 +95,21 @@ def cmd_dismiss(data_dir: Path, queue: dict, selectors: list[str]) -> int:
     if not picked:
         print("no matching queue entries", file=sys.stderr)
         return 1
+    changed = False
     for i in picked:
         entry = queue["items"][i]
         if entry.get("status") in OPEN_STATUSES:
             entry["status"] = "dismissed"
             entry["resolved_at"] = watch.now_iso()
             print(f"dismissed: {entry.get('title', '')[:80]}")
-    queue["updated_at"] = watch.now_iso()
-    watch.save_json(data_dir / "review-queue.json", queue)
+            changed = True
+    if changed:
+        queue["updated_at"] = watch.now_iso()
+        watch.save_json(data_dir / "review-queue.json", queue)
+        ok, _, error = watch.rebuild_dashboard_summary(data_dir.parent.parent, data_dir)
+        if not ok:
+            print(f"summary rebuild failed: {error}", file=sys.stderr)
+            return 1
     return 0
 
 
