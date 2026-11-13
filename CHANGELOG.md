@@ -1,5 +1,12 @@
 # Changelog
 
+## P52 README and maintainer documentation correction (2026-11-13)
+
+- Rebuilt the GitHub landing README as a concise Chinese-first project guide, retaining the English scholarly names and linking directly to actual site sections, live datasets, provenance, P51 adjudication and development entrypoints.
+- Removed contradictory instructions about legacy GitHub Pages branch builds, supposedly non-updated systems/people, automatic DDG fallbacks, live use of the seed importer and hard-coded old report links.
+- Moved accurate manual commands, review queue workflow, source failure handling, environment knobs, validation and seed safeguards into [RUNBOOK.md](RUNBOOK.md). Source of truth for running counts remains `docs/data/dashboard-summary.json`; the P51 figures are explicitly dated, not a live counter.
+- Added `tests/test_documentation_integrity.py` to detect unbalanced Markdown fences, broken repo-local links, wrong site section hashes and deployment/seed drift. No collector, Cron, Telegram, licensing or site data changes.
+
 ## P51 queue resolution and validation (2026-11-13)
 
 - Examined all 21 original W45 quarantined papers. Restored three direct AI-education studies and dismissed 18 unrelated or only-adjacent works. Kept every queue record; open=0, papers=24.

@@ -1,439 +1,87 @@
-# Global AI Education System Map
+# AI Education Atlas｜全球 AI 教育研究图谱
 
-A static GitHub Pages site that maps the global AI-education research landscape:
-papers, systems, key researchers, tech stack comparison, evolution timeline,
-and a weekly auto-updated research snapshot.
+**从学习调节到教育智能体：把论文、系统、研究者与证据放在同一张可追溯的地图上。**
 
-**Main lineage:** SSRL → HASRL → MAI → MIRACLE → Multi-Agent Classroom OS
+AI Education Atlas is a curated research atlas for AI-supported learning, self-regulated learning and multi-agent education systems.
 
-## UI 语言 (Language)
+**[在线浏览研究图谱](https://conanxin.github.io/ai-education-system-map/)** · [最新周报索引](https://conanxin.github.io/ai-education-system-map/data/weekly/manifest.json) · [公开数据](docs/data/) · [维护手册](RUNBOOK.md) · [更新记录](CHANGELOG.md)
 
-页面默认中文(`<html lang="zh-CN">`),但:
+> **使用边界：**这是持续更新的研究索引，不是文献穷尽性检索、系统性能排行榜，也不代表对论文结论或产品效果的独立复现。请依据每条记录的原始来源核查。
 
-- **论文标题**:保留英文原文,不做机器翻译
-- **系统/项目名**:保留英文原名(MAI、MIRACLE、CocoNote、CocoFlow、Khanmigo、LearnLab、AutoGen、MASS、SSRL、HASRL、SRL 等)
-- **机构名**:保留英文(University of Oulu、Stanford、CMU、Khan Academy 等);关键术语首次出现时附中文释义
-- **数据 schema**(`docs/data/*.json`):保持英文,以便 watcher / builder 脚本兼容
+## 从哪里开始阅读
 
-中文界面通过 `docs/index.html` 静态文本 + `docs/assets/app.js` 中的查找表(`T`、`BADGE_LABELS`、`PAPER_GROUP_TITLES`、`PEOPLE_GROUP_TITLES`)实现。修改任一文件即可调整显示文案,不影响数据。
+| 阅读路线 | 适合的问题 | 入口 |
+| --- | --- | --- |
+| 研究脉络 | SRL、SSRL、HASRL 如何连接到 AI 智能体？ | [理论与演化](https://conanxin.github.io/ai-education-system-map/#research-lineage) |
+| 系统地图 | MAI、MIRACLE、SimClass、Khanmigo 等系统有何不同？ | [系统比较](https://conanxin.github.io/ai-education-system-map/#system-cards) |
+| 论文与证据 | 哪些主张有论文、原文与定位依据？ | [论文索引](https://conanxin.github.io/ai-education-system-map/#paper-groups) · [证据工作台](https://conanxin.github.io/ai-education-system-map/#evidence-lab) |
+| 每周变化 | 最近收录了什么？数据源是否正常？ | [本周研究观察](https://conanxin.github.io/ai-education-system-map/#this-week) · [来源状态](https://conanxin.github.io/ai-education-system-map/#source-health) |
 
-## Current state
+**核心研究线索：**自我调节学习（SRL）→ 社会共享调节学习（SSRL）→ 人机共享调节（HASRL）→ 元认知 AI 智能体（MAI）→ MIRACLE / 多智能体课堂。这是本项目组织研究的**阅读路径**，不意味着相关系统彼此具有直接继承关系或教育效果已获验证。
 
-- **Data:** 24 papers, 33 other research sources, 10 systems, 16 people
-  (`docs/data/dashboard-summary.json` is the source of truth; a test keeps
-  it in step with the data files).
-- **Relevance gate:** search-discovered papers need a strong tracked term or
-  an education context plus an AI/agent context (`scope_decision()` in
-  `scripts/weekly_ai_education_watch.py`).
-- **Review queue:** candidates the gate rejects go to
-  `docs/data/review-queue.json`, not into the site. Work through it with:
+## 数据、来源与更新状态
 
-  ```bash
-  python3 scripts/review_queue.py list
-  python3 scripts/review_queue.py restore <index-or-url-fragment>
-  python3 scripts/review_queue.py dismiss <index-or-url-fragment>
-  ```
+图谱的论文、研究资料、系统、人物和时间线来自版本化 JSON。**当前数量请以 [dashboard-summary.json](docs/data/dashboard-summary.json) 为准**；[papers.json](docs/data/papers.json) 和 [review-queue.json](docs/data/review-queue.json) 提供可检查的原始记录与人工判定状态。
 
-  `restore` puts the paper back in `papers.json` (tagged `manual-review`) and
-  rebuilds the dashboard summary; `dismiss` stops it being queued again.
-- **Paper identity:** every paper has a canonical `key` (`arxiv:<id>`,
-  `doi:<doi>`, or the URL) next to its original `id`. Dedupe uses `key`.
-- **Tests:** `python3 -m unittest discover -s tests` (also run by the Pages
-  workflow before each deploy).
-- **Environment:** optional `OPENALEX_API_KEY` / `OPENALEX_MAILTO`; tuning
-  knobs `AI_EDUCATION_ARXIV_API_DELAY` (3), `AI_EDUCATION_OPENALEX_ATTEMPTS`
-  (3), `AI_EDUCATION_OPENALEX_BACKOFF` (2), `AI_EDUCATION_OPENALEX_PACING`
-  (1). Set the last three to 0 for fast tests.
+**P51 快照（2026-11-13；不是实时计数）：**24 篇论文、33 条非论文研究资料、10 个系统、16 位人物。原 W45 隔离队列 21 条已逐条审定：恢复 3 条、驳回 18 条、待处理 0 条。[查看逐篇审查依据](reports/review-queue-p51-2026-11-13.md)。
 
-- **Weekly reports:** readable in the page ("在页面内阅读周报与历史归档"); the
-  archive index is rebuilt by `scripts/build_dashboard_summary.py`.
+- **截至 P51 阶段（2026-11-13）的运行记录：**当时最近一次正式周任务为 2026-W46（2026-11-09）；P51 代码虽已上线，但当时尚未经历下一次正式周任务。请从 [manifest.json](docs/data/weekly/manifest.json) 查看**最新实际运行状态**。P51 影子运行只验证独立副本，模拟新增论文未发布到正式站点。
+- **采集：**维护的官方来源与论文入口、arXiv 官方 API、OpenAlex 搜索补充。单个来源不可用时在运行诊断中留下错误，不等同于“没有新论文”。
+- **相关性：**自动发现的论文须满足研究主题门禁；机器学习的 student/teacher/learner、蒸馏等技术术语不能仅凭字面被认定为真实教育研究。
+- **准入：**每次周任务最多自动新增 **15 篇**；超额与不通过门禁的候选进入可追溯的人工队列。曾被驳回的条目不会自行重新收录；人工恢复标记为 `manual-review`。
+- **身份与去重：**论文保留原始 `id`，并使用规范化 `key`（arXiv、DOI 或 URL）识别同一作品的不同链接形式。
 
-- **Weekly cap:** one run adds at most 15 new papers (`--max-new-papers`);
-  the rest wait in the review queue with reason `weekly_cap`.
+网站支持页面内阅读历史周报、查看来源诊断与原始论文链接。**收录**意味着满足项目的整理标准，不等于全文已逐字审读或独立复现实验。
 
-Review decision audit (21 entries): [P51 paper adjudication](reports/review-queue-p51-2026-11-13.md).
+## 本地使用
 
-Release history for P42–P51 is in [CHANGELOG.md](CHANGELOG.md).
+不需要后台服务、数据库或前端打包工具；静态网站使用 HTML、CSS、JavaScript，数据处理使用 Python 标准库。
 
-## Structure
-
+```bash
+git clone https://github.com/conanxin/ai-education-system-map.git
+cd ai-education-system-map
+python3 -m http.server 8765 --directory docs --bind 127.0.0.1
 ```
+
+打开 http://127.0.0.1:8765/ 即可浏览。运行现有自动化测试：
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+以上命令**不会采集新论文或推送仓库**。更新数据、人工审查和发布命令在 [RUNBOOK.md](RUNBOOK.md)，不要对现有正式数据执行旧版种子初始化。
+
+## 更新机制与责任边界
+
+- **采集任务：**本机 Hermes `ai-education-weekly-watch`（ID `452055bd607a`），每周一 09:00（`Asia/Shanghai`）；按配置执行研究采集与数据发布。
+- **网站部署：**推送 `main` 后，由 [`pages.yml`](.github/workflows/pages.yml) 中的 **GitHub Actions** 执行 Python 测试、检查站点数据、上传 `docs/` 产物并部署 GitHub Pages。**不是**旧版“从 `main/docs` 分支直接构建”模式。
+- **调度原则：**目前由 Hermes 执行每周写入，GitHub Actions 只负责测试和网站部署。未启用第二套 Actions 周采集计划，避免重复写入。
+- **状态核查：**[Actions 工作流](https://github.com/conanxin/ai-education-system-map/actions/workflows/pages.yml) · [最新运行清单](docs/data/weekly/manifest.json) · [运行维护手册](RUNBOOK.md)。
+
+## 仓库导航
+
+```text
 docs/
-  index.html              Editorial research atlas (9 sections: This Week / Lineage /
-                          System Cards / Paper Network / People / Source Health)
-  .nojekyll               Tells GitHub Pages to skip Jekyll processing
-  assets/style.css
-  assets/app.js
-  data/
-    papers.json           Core reviewed papers + search hits that pass the relevance gate
-    review-queue.json     Rejected / quarantined candidates awaiting review
-    source-registry.json  Sources and arXiv API queries the watcher reads
-    research-entities.json Typed non-paper references
-    research-migration.json Lossless migration provenance
-    systems.json          Structured system list
-    people.json           Researchers
-    tech-stack.json       Comparison table
-    timeline.json         Evolution timeline
-    sources.json          Tracked keywords + institutions
-    weekly/latest.json    Latest weekly snapshot
-reports/
-  seed/latest-report.md   The MVP report this site is bootstrapped from
-  weekly/YYYY-WW.md       Per-week digests (append-only)
-scripts/
-  build_from_report.py         Seed parser: MVP markdown -> 6 JSON files
-  build_dashboard_summary.py   Aggregator: 6 JSON files -> dashboard-summary.json
-  weekly_ai_education_watch.py Weekly incremental fetcher
-  review_queue.py              List / restore / dismiss review-queue entries
-tests/                    unittest suite (run before every Pages deploy)
-CHANGELOG.md              Phase history (P42 onwards)
-logs/                     Cron output (gitignored)
+  index.html                 静态研究图谱
+  assets/                    页面 CSS / JavaScript
+  data/                      公开的结构化研究数据
+    dashboard-summary.json   网页展示用摘要与计数
+    papers.json              论文记录
+    research-entities.json   非论文研究资料
+    review-queue.json        待审、恢复和驳回的历史记录
+    source-registry.json     采集来源与查询配置
+    weekly/                  最新周度数据与运行清单
+  reports/weekly/            GitHub Pages 可访问的周报副本
+reports/weekly/              周报的源文件
+reports/review-queue-p51-2026-11-13.md  P51 审查台账
+scripts/                     采集、索引、队列与迁移脚本
+tests/                       标准库 unittest 自动测试
+RUNBOOK.md                   操作说明与故障排查
+CHANGELOG.md                 各阶段改动记录
 ```
 
-## Quick start (local preview)
+## 语言与研究原则
 
-```
-cd docs
-python3 -m http.server 8765 --bind 127.0.0.1
-# open http://127.0.0.1:8765/
-```
+界面以中文为主；论文标题、机构名、系统名和数据字段保持原始英文，避免翻译后难以追溯。每条研究主张尽量连接一手来源，区分原始文献、供应商报告、人工整理与推测，保留历史更新而不把旧结论默认为当前状态。
 
-## Rebuild from MVP report
-
-```
-python3 scripts/build_from_report.py \
-    --input reports/seed/latest-report.md \
-    --data-dir docs/data \
-    --weekly-dir
-```
-
-## Weekly update (auto)
-
-Runs every Monday 09:00 Asia/Shanghai via the Hermes scheduler
-(`ai-education-weekly-watch`, job id stored in this repo's Hermes config).
-Reads existing `docs/data/*.json`, fetches new items, dedupes by URL / title,
-appends, writes `reports/weekly/YYYY-WW.md` + `docs/data/weekly/latest.json`,
-rebuilds `docs/data/dashboard-summary.json`, and — since **v1.3.2** —
-auto-commits + pushes the curated paths to `origin/main` so GitHub Pages
-rebuilds without any operator action.
-
-The auto-publish path stages only these paths (logs / temp files never leak):
-
-- `docs/data`
-- `docs/reports`
-- `reports/weekly`
-- `README.md`
-
-When the curated paths are byte-identical to `HEAD`, no commit is made and
-the manifest records `publish_status: no_changes`.
-
-Manual run (no publish, safe for spot-checks):
-```
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly
-```
-
-Manual run with publish (matches cron behaviour):
-```
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly \
-    --publish
-```
-
-Dry-run preview (no files written, no publish):
-```
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly \
-    --dry-run
-```
-
-## Tracked scope
-
-**Institutions** (16 query seeds):
-University of Oulu Hybrid Intelligence / LEAD / MAI; Stanford HAI / Accelerator
-for Learning; CMU LearnLab / Cognitive Tutor / ITS; Microsoft Research AutoGen
-/ Agent Framework; Google Research MASS / multi-agent; Khan Academy Khanmigo;
-CocoRobo SMART / CocoNote; MIRACLE.
-
-**Keywords** (13): SSRL, HASRL, metacognitive AI agent, proactive speech agent,
-AI education agent, multi-agent learning system, collaborative learning
-environment, AI classroom OS, learning analytics, teacher-created agents,
-Khanmigo evidence, AutoGen education, MASS multi-agent design.
-
-**Filters**:
-- Consumer `coconote.app` (Quizlet) is filtered out unless the result references
-  CocoRobo, MIRACLE, SMART, CocoClass or multi-agent classroom research.
-- Marketing listicles ("top 10 AI tools", "best of", etc.) are filtered out.
-
-## GitHub Pages deployment
-
-This repo publishes from `docs/` on the `main` branch using GitHub Pages'
-legacy build mode. `docs/.nojekyll` disables Jekyll processing so plain JSON
-and Markdown files are served verbatim (without Jekyll trying to parse them
-as Liquid templates).
-
-If Pages isn't enabled yet, go to **Settings → Pages → Build and deployment →
-Source: Deploy from a branch → Branch: `main` / `docs`**.
-
-Expected URL once enabled:
-`https://conanxin.github.io/ai-education-system-map/`
-
-After a push, if new files 404 for more than 5 minutes, trigger a Pages
-rebuild:
-
-```
-gh api -X POST repos/conanxin/ai-education-system-map/pages/builds
-```
-
-Wait ~90 s, then re-check. If the build status is `"errored"` with duration 0,
-make sure `docs/.nojekyll` exists.
-
-## Constraints honoured
-
-- No force-push, no overwriting of remote history.
-- No sudo / root writes.
-- No backend, no database, no login.
-- No build chain — vanilla HTML + CSS + JS, Mermaid loaded from CDN at runtime.
-- Stdlib-only Python scripts (works in any Python 3.10+).
-
----
-
-## Runbook
-
-### Schedule
-
-- Hermes cron job: **`ai-education-weekly-watch`** (job id `452055bd607a`)
-- Schedule: `0 9 * * 1` (every Monday 09:00 Asia/Shanghai)
-- Next run: `hermes cron list 2>&1 | grep -A 6 452055bd607a`
-- Deliver: telegram (summary goes to home chat)
-
-The cron subprocess is clean — only `HOME`, `PATH`, `TERM` are inherited.
-That is by design: it matches what `env -i bash -lc` produces.
-
-### Manual commands
-
-Preview only (no files written):
-
-```
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly \
-    --dry-run
-```
-
-Light-touch real run (caps per-query results, recommended for spot-checks):
-
-```
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly \
-    --max-results 3
-```
-
-Full real run (matches cron defaults):
-
-```
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly
-```
-
-### Rebuild data from MVP report
-
-When you have a fresh `reports/seed/latest-report.md`:
-
-```
-python3 scripts/build_from_report.py \
-    --input reports/seed/latest-report.md \
-    --data-dir docs/data \
-    --weekly-dir
-```
-
-This re-parses the seed markdown tables into the 6 JSON files. It does NOT
-merge with existing weekly additions — it overwrites papers/systems/people.
-Re-run the weekly watcher afterwards to fold in any new items.
-
-### Outputs after a run
-
-| Path | What |
-|---|---|
-| `reports/weekly/YYYY-WW.md` | Per-week human-readable digest (append-only) |
-| `docs/data/weekly/latest.json` | Snapshot for the static site ("Weekly Watch" panel) |
-| `docs/data/weekly/manifest.json` | Run record: queries, candidates, after-dedup count |
-| `docs/data/papers.json` | Merged (deduped) paper list |
-
-`docs/data/systems.json` and `docs/data/people.json` are NOT mutated by the
-weekly watcher yet — systems/people updates need a fresh seed (TODO v1.2).
-
-### Logs
-
-| Path | Source |
-|---|---|
-| `logs/v1_1_cron_preflight_dry_run.log` | V1.1 preflight dry-run audit |
-| `logs/v1_1_manual_run.log`             | V1.1 preflight real-run audit |
-| `~/.hermes/cron/output/`               | Hermes cron delivery + agent stdout (managed by Hermes) |
-
-Local logs are gitignored. Hermes-managed cron logs persist on disk for ~30 days.
-
-### Deploy / Pages verification
-
-```
-# Trigger GitHub Pages rebuild status read
-gh api repos/conanxin/ai-education-system-map/pages
-
-# Wait ~30-60s after push, then:
-curl -sI https://conanxin.github.io/ai-education-system-map/
-curl -sI https://conanxin.github.io/ai-education-system-map/data/weekly/latest.json
-curl -sI https://conanxin.github.io/ai-education-system-map/data/papers.json
-```
-
-5-piece deployment check (HTTP 200 alone is not enough):
-1. `HTTP/2 200`
-2. `Cache-Control` header present
-3. Real asset size (e.g. `papers.json` > 5 KB, `index.html` > 3 KB) — not the 4 KB placeholder
-4. Second round T+~60s still 200
-5. `gh api .../pages` returns `html_url` + `source: {branch: main, path: /docs}` (this can lag 10+ min — HTTP behaviour is the truth)
-
----
-
-## FAQ
-
-### 1. DDG rate-limit caused 0 new items — what now?
-
-DuckDuckGo HTML has no API key but throttles aggressively. If a run
-returns `0 candidates` even though nothing is broken, do this:
-
-- Check `docs/data/weekly/manifest.json` — `candidates: 0` means DDG either
-  blocked us or returned nothing in scope. Both are fine.
-- Re-run later (`--max-results 3` is gentler).
-- If you have a Parallel / Firecrawl / other search provider configured in
-  Hermes, `weekly_ai_education_watch.try_hermes_search()` will pick it up
-  automatically on the next run — no code change needed.
-
-The seed is fine; 0-item weeks just produce empty audit reports and that's
-correct behaviour.
-
-### 2. How do I rebuild from a fresh `latest-report.md`?
-
-```
-cp /path/to/new/latest-report.md reports/seed/latest-report.md
-python3 scripts/build_from_report.py \
-    --input reports/seed/latest-report.md \
-    --data-dir docs/data \
-    --weekly-dir
-git add docs/data reports/seed/latest-report.md
-git commit -m "Rebuild from MVP report $(date -u +%FT%TZ)"
-git push
-```
-
-After rebuild, re-run the weekly watcher to merge in any new items since the
-last run.
-
-### 3. How do I confirm GitHub Pages actually updated?
-
-`gh api .../pages` has a 10+ min API cache lag — DO NOT trust it alone.
-The 5-piece check above is the truth. The fastest signal is:
-
-```
-curl -sI https://conanxin.github.io/ai-education-system-map/data/weekly/latest.json | grep -i last-modified
-```
-
-If `Last-Modified` moved forward, Pages served your new content.
-
-If HTTP returns 404 right after a push, wait 30-120 s and retry — Pages CDN
-has a propagation window. If still 404 after 5 min, check `gh api .../pages`
-for build errors.
-
-### 4. How do I trigger the weekly watch manually?
-
-```
-cd /home/conanxin/projects/ai-education-system-map
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly \
-    --max-results 3
-```
-
-To commit + push the resulting JSON updates:
-
-```
-git add reports/weekly docs/data
-git commit -m "manual weekly run $(date -u +%FT%TZ)"
-git push
-```
-
-To trigger via Hermes scheduler with custom timing, use
-`hermes cron run 452055bd607a` (runs the job once immediately). The default
-schedule is preserved.
-
-### 5. How do I refresh the dashboard summary and publish?
-
-`docs/data/dashboard-summary.json` is the single file the v1.3 page reads.
-
-**Auto-refresh + auto-publish (since v1.3.2):** every weekly cron run
-auto-invokes `scripts/build_dashboard_summary.py`, then commits + pushes the
-curated paths when they differ from `HEAD`. No operator action required.
-
-The manifest gets these dashboard-summary fields (v1.3.1+):
-
-- `dashboard_summary_rebuilt` — `true` / `false`
-- `dashboard_summary_path` — relative path inside the repo
-- `dashboard_summary_updated_at` — ISO timestamp of the regenerated file
-- `dashboard_summary_error` — `null` on success, error string on failure
-
-And these auto-publish fields (v1.3.2+):
-
-- `publish_requested` — `true` if `--publish` was passed (cron always true)
-- `publish_status` — `skipped` (no `--publish`), `pending`, `committed`,
-  `no_changes`, or `failed`
-- `publish_commit` — full SHA of the data commit, or `null`
-- `publish_error` — `null` on success, git stderr on failure
-- `pages_expected_to_rebuild` — `true` when a data commit landed
-
-If `dashboard_summary_rebuilt: false` OR `publish_status: failed`, the
-watcher exits 1 and the cron delivery tells you. Common causes: builder
-script moved, Python 3 missing, git push rejected (auth / non-fast-forward),
-or a parser error in one of the 6 source JSONs.
-
-**Manual refresh + publish (matches cron):**
-
-```
-python3 scripts/weekly_ai_education_watch.py \
-    --data-dir docs/data \
-    --reports-dir reports/weekly \
-    --publish
-```
-
-**Manual refresh only (no git):** if you edited a JSON file by hand:
-
-```
-python3 scripts/build_dashboard_summary.py --data-dir docs/data
-git add docs/data
-git commit -m "refresh dashboard summary"
-git push
-```
-
-### 6. How do I confirm the weekly report link is reachable from the site?
-
-The site links to `data/weekly/manifest.json` and to the latest weekly
-report via `page_report_url`. After a deploy:
-
-```
-# Local
-curl -sI http://127.0.0.1:8765/data/weekly/manifest.json
-curl -sI http://127.0.0.1:8765/reports/weekly/2026-W27.md
-
-# Live (replace week tag with the one from latest.json)
-curl -sI https://conanxin.github.io/ai-education-system-map/data/weekly/manifest.json
-curl -sI https://conanxin.github.io/ai-education-system-map/reports/weekly/2026-W27.md
-```
-
-If a new path 404s for >5 min after push, force a Pages rebuild:
-
-```
-gh api -X POST repos/conanxin/ai-education-system-map/pages/builds
-```
-
-Then wait ~90 s and re-check.
+**已知边界：**部分外部来源（如 `google-mass`）偶有访问失败；相关性过滤仍可能误收或漏收；真正的周任务质量需要继续按周核查。详见 [数据方法](https://conanxin.github.io/ai-education-system-map/#methodology)、[P51 审查记录](reports/review-queue-p51-2026-11-13.md) 和 [更新历史](CHANGELOG.md)。
