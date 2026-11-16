@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Search hits that failed the relevance gate. Not shown as papers; move an entry's `record` back into papers.json to restore it.",
-  "updated_at": "2026-11-13T06:21:52.026510+00:00",
+  "updated_at": "2026-11-16T01:05:24.423687+00:00",
   "items": [
     {
       "title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
@@ -568,6 +568,276 @@
         "last_seen": "2026-11-02T01:05:37.605129+00:00"
       },
       "resolved_at": "2026-11-13T06:21:33.765785+00:00"
+    },
+    {
+      "title": "PARIS: A multi-agent LLM framework for end-to-end, PRISMA-guided systematic literature reviews with pre-synthesis corpus quality assessment",
+      "url": "https://arxiv.org/abs/2611.12222",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423443+00:00"
+    },
+    {
+      "title": "Learning to Adjudicate: Verifier-Guided Multi-Agent Reasoning for E-Commerce Relevance",
+      "url": "https://arxiv.org/abs/2611.02758",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423458+00:00"
+    },
+    {
+      "title": "MultiAgent-OPD: End-to-End Training of Hierarchical Multi-Agent Systems with On-Policy Distillation",
+      "url": "https://arxiv.org/abs/2610.23234",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423465+00:00"
+    },
+    {
+      "title": "Emergent Discrimination and Polarization in Multi-Agent Systems",
+      "url": "https://arxiv.org/abs/2610.22701",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423469+00:00"
+    },
+    {
+      "title": "Overtaught, Underlearned: Learner-Centered Distillation from Multi-Agent Discussion",
+      "url": "https://arxiv.org/abs/2610.16543",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423473+00:00"
+    },
+    {
+      "title": "Recursive Self-Improvement through Multi-Agent Self-Supervision",
+      "url": "https://arxiv.org/abs/2610.12176",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423477+00:00"
+    },
+    {
+      "title": "When Agents Collude: Weak-to-Strong On-Policy Distillation for Mitigating Strategic Deception in Multi-Agent Systems",
+      "url": "https://arxiv.org/abs/2610.33011",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423480+00:00"
+    },
+    {
+      "title": "Multi-Agent Coordination via Support-Preserving Distillation",
+      "url": "https://arxiv.org/abs/2610.10087",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423483+00:00"
+    },
+    {
+      "title": "PRISM: PRIvileged Sibling-guided Multi-Agent Topology Design",
+      "url": "https://arxiv.org/abs/2610.20628",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423486+00:00"
+    },
+    {
+      "title": "MAS-OPD: On-Policy Distillation for Multi-agent Systems",
+      "url": "https://arxiv.org/abs/2609.34234",
+      "source_id": "arxiv-search-multi-agent-edu",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423490+00:00"
+    },
+    {
+      "title": "From More to Better: Causal Inference and Digital Experimentation in the Age of AI",
+      "url": "https://arxiv.org/abs/2611.16335",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423493+00:00"
+    },
+    {
+      "title": "Gradient-Aware AI Agents for Autonomous Turbulence Model Discovery via Differentiable CFD",
+      "url": "https://arxiv.org/abs/2611.16082",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423497+00:00"
+    },
+    {
+      "title": "An Eyring-Kramers Formula for Singular Wells",
+      "url": "https://arxiv.org/abs/2611.14603",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423536+00:00"
+    },
+    {
+      "title": "ARIA: An AI-Powered Radio-Channel Inference and Analysis Pipeline",
+      "url": "https://arxiv.org/abs/2611.13326",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423560+00:00"
+    },
+    {
+      "title": "Facilitating Reproducibility in Visualization Systems Research Through Containerization",
+      "url": "https://arxiv.org/abs/2611.09910",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423564+00:00"
+    },
+    {
+      "title": "Agentic AI for Healthcare Claim Denial Analysis: A Policy-Grounded Framework for Privacy Preservation",
+      "url": "https://arxiv.org/abs/2611.09423",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423582+00:00"
+    },
+    {
+      "title": "Scenario-aware Adaptive Neuromorphic Intelligence for multimodal sensor fusion",
+      "url": "https://arxiv.org/abs/2611.07830",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423585+00:00"
+    },
+    {
+      "title": "ProcessPrefBench: Evaluating Cross-Task Transfer of Individual Process Preferences from Naturalistic Human-AI Interaction",
+      "url": "https://arxiv.org/abs/2611.06065",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423588+00:00"
+    },
+    {
+      "title": "Embodied AI for Scientific Discovery: From Physical Action to Scientific Evidence",
+      "url": "https://arxiv.org/abs/2611.04371",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423607+00:00"
+    },
+    {
+      "title": "When Prediction Shapes the Future: A BlueSky Agenda for Reflexive Time Series Analysis",
+      "url": "https://arxiv.org/abs/2611.02511",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423610+00:00"
+    },
+    {
+      "title": "AI-Augmented Inquiry and Regulation in Hybrid Systems: A Control Allocation Architecture for Preserving Epistemic Agency in Hybrid Human-AI Cognition",
+      "url": "https://arxiv.org/abs/2608.21618",
+      "source_id": "arxiv-search-srl-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423613+00:00"
+    },
+    {
+      "title": "Latent On-Policy Self-Distillation",
+      "url": "https://arxiv.org/abs/2608.13040",
+      "source_id": "arxiv-search-srl-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423630+00:00"
+    },
+    {
+      "title": "A Taxonomy of Cognitive Capability Gaps in Generative and Agentic AI",
+      "url": "https://arxiv.org/abs/2608.02553",
+      "source_id": "arxiv-search-srl-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423633+00:00"
+    },
+    {
+      "title": "Change-Aware Self-Adaptive AI-Aided Kalman Filters With Neural Change Point Detection",
+      "url": "https://arxiv.org/abs/2607.13387",
+      "source_id": "arxiv-search-srl-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423637+00:00"
+    },
+    {
+      "title": "Changes in Help-Seeking Strategies Predict unaided Performance during AI-based Mathematical Learning",
+      "url": "https://arxiv.org/abs/2606.28472",
+      "source_id": "arxiv-search-srl-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423640+00:00"
+    },
+    {
+      "title": "Human-Centered Design: The Disclosure of Generative Artificial Intelligence for Emerging Professionals",
+      "url": "https://arxiv.org/abs/2606.24136",
+      "source_id": "arxiv-search-srl-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423643+00:00"
+    },
+    {
+      "title": "Critique of Agent Model",
+      "url": "https://arxiv.org/abs/2606.23991",
+      "source_id": "arxiv-search-srl-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423647+00:00"
+    },
+    {
+      "title": "The Hybrid Intelligence Manifesto:A Multi-Level Socio-Technical Framework for Keeping Human Judgement Economically Valuable",
+      "url": "https://openalex.org/W7202007207",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423670+00:00"
+    },
+    {
+      "title": "FACE AHEAD 2026 Abstract Report",
+      "url": "https://doi.org/10.3390/cmtr19040039",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423676+00:00"
+    },
+    {
+      "title": "Geopolitical Sustainability of Powering Distributed Artificial Intelligence in Pakistan",
+      "url": "https://doi.org/10.11648/j.stpp.20261002.13",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W47",
+      "queued_at": "2026-11-16T01:05:24.423680+00:00"
     }
   ]
 }

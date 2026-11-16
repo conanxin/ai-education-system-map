@@ -1,17 +1,18 @@
 {
-  "ran_at": "2026-11-09T01:04:55.248543+00:00",
-  "week_tag": "2026-W46",
-  "registry_version": "1.2.0",
+  "ran_at": "2026-11-16T01:05:24.474135+00:00",
+  "week_tag": "2026-W47",
+  "registry_version": "1.3.0",
   "source_counts": {
     "arxiv-abs-2308.08155": 1,
     "arxiv-abs-2502.02533": 1,
     "arxiv-abs-2512.08296": 1,
     "arxiv-abs-2605.12923": 1,
-    "arxiv-search-multi-agent-edu": 10,
+    "arxiv-search-multi-agent-edu": 15,
     "arxiv-search-ai-education-agent": 0,
     "arxiv-search-collab-learning-agent": 0,
-    "arxiv-search-learning-analytics-ai": 0,
-    "oulu-hi": 1,
+    "arxiv-search-learning-analytics-ai": 10,
+    "arxiv-search-srl-ai": 10,
+    "oulu-hi": 0,
     "oulu-lead": 1,
     "oulu-let": 1,
     "cocorobo-research": 1,
@@ -42,23 +43,25 @@
     "conf-edm": 1,
     "conf-cui": 1,
     "conf-bjet": 1,
-    "search_fallback": 0
+    "search_fallback": 5
   },
   "source_errors": {
-    "arxiv-search-ai-education-agent": "fetch_TimeoutError",
-    "arxiv-search-collab-learning-agent": "fetch_TimeoutError",
-    "arxiv-search-learning-analytics-ai": "fetch_TimeoutError"
+    "arxiv-search-ai-education-agent": "arxiv_api_http_429; fetch_TimeoutError",
+    "arxiv-search-collab-learning-agent": "arxiv_api_http_429; fetch_TimeoutError",
+    "arxiv-search-learning-analytics-ai": "arxiv_api_fetch_TimeoutError",
+    "arxiv-search-srl-ai": "arxiv_api_fetch_TimeoutError",
+    "oulu-hi": "fetch_TimeoutError"
   },
   "fallback_status": {
     "ran": true,
     "queries": 12,
-    "hits": 0,
+    "hits": 5,
     "errors": [
-      "University of Oulu Hybrid Intelligence 2: openalex_http_429",
-      "University of Oulu Hybrid Intelligence 2: no_enabled_secondary_search_provider"
+      "MAI proactive agent Sanna Jarvela 2026: openalex_http_429",
+      "MAI proactive agent Sanna Jarvela 2026: no_enabled_secondary_search_provider"
     ],
-    "attempted_queries": 1,
-    "skipped_queries": 11,
+    "attempted_queries": 2,
+    "skipped_queries": 10,
     "circuit_open": true
   },
   "candidates_by_source": {
@@ -75,19 +78,45 @@
       "https://arxiv.org/abs/2605.12923"
     ],
     "arxiv-search-multi-agent-edu": [
+      "https://arxiv.org/abs/2611.16986",
+      "https://arxiv.org/abs/2611.12222",
+      "https://arxiv.org/abs/2611.02758",
+      "https://arxiv.org/abs/2610.40492",
       "https://arxiv.org/abs/2610.26943",
       "https://arxiv.org/abs/2610.24498",
-      "https://arxiv.org/abs/2610.00035",
-      "https://arxiv.org/abs/2609.19429",
-      "https://arxiv.org/abs/2609.13348",
-      "https://arxiv.org/abs/2609.12851",
-      "https://arxiv.org/abs/2609.10939",
-      "https://arxiv.org/abs/2609.05806",
-      "https://arxiv.org/abs/2608.30968",
-      "https://arxiv.org/abs/2608.29481"
+      "https://arxiv.org/abs/2610.23234",
+      "https://arxiv.org/abs/2610.22701",
+      "https://arxiv.org/abs/2610.16543",
+      "https://arxiv.org/abs/2610.12176",
+      "https://arxiv.org/abs/2610.33011",
+      "https://arxiv.org/abs/2610.10087",
+      "https://arxiv.org/abs/2610.20628",
+      "https://arxiv.org/abs/2609.34234",
+      "https://arxiv.org/abs/2609.29804"
     ],
-    "oulu-hi": [
-      "https://www.oulu.fi/en/hybrid-intelligence"
+    "arxiv-search-learning-analytics-ai": [
+      "https://arxiv.org/abs/2611.16335",
+      "https://arxiv.org/abs/2611.16082",
+      "https://arxiv.org/abs/2611.14603",
+      "https://arxiv.org/abs/2611.13326",
+      "https://arxiv.org/abs/2611.09910",
+      "https://arxiv.org/abs/2611.09423",
+      "https://arxiv.org/abs/2611.07830",
+      "https://arxiv.org/abs/2611.06065",
+      "https://arxiv.org/abs/2611.04371",
+      "https://arxiv.org/abs/2611.02511"
+    ],
+    "arxiv-search-srl-ai": [
+      "https://arxiv.org/abs/2610.38950",
+      "https://arxiv.org/abs/2608.21618",
+      "https://arxiv.org/abs/2608.13040",
+      "https://arxiv.org/abs/2608.02553",
+      "https://arxiv.org/abs/2607.14046",
+      "https://arxiv.org/abs/2607.13387",
+      "https://arxiv.org/abs/2606.28472",
+      "https://arxiv.org/abs/2606.27398",
+      "https://arxiv.org/abs/2606.24136",
+      "https://arxiv.org/abs/2606.23991"
     ],
     "oulu-lead": [
       "https://www.oulu.fi/en/projects/learning-regulation-ai-promoting-adaptive-k-12-learners"
@@ -124,24 +153,31 @@
     ],
     "google-mass": [
       "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/"
+    ],
+    "search_fallback": [
+      "https://openalex.org/W7202007207",
+      "https://doi.org/10.3390/cmtr19040039",
+      "https://doi.org/10.1108/ils-11-2024-0148",
+      "https://doi.org/10.1111/bjet.70047",
+      "https://doi.org/10.11648/j.stpp.20261002.13"
     ]
   },
   "entity_changes": {
-    "papers_added": 0,
+    "papers_added": 8,
     "references_added": 0,
-    "systems_updated": 8,
+    "systems_updated": 9,
     "people_updated": 5,
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "weekly_report": "reports/weekly/2026-W46.md",
+  "weekly_report": "reports/weekly/2026-W47.md",
   "dashboard_summary_rebuilt": true,
   "dashboard_summary_path": "docs/data/dashboard-summary.json",
-  "dashboard_summary_updated_at": "2026-11-09T01:05:28.897625+00:00",
+  "dashboard_summary_updated_at": "2026-11-16T01:05:25.594538+00:00",
   "dashboard_summary_error": null,
   "publish_requested": true,
-  "publish_status": "committed",
-  "publish_commit": "8a45a66496a0a803f9a8fcac7c419c549dbb0573",
+  "publish_status": "pending",
+  "publish_commit": null,
   "publish_error": null,
-  "pages_expected_to_rebuild": true
+  "pages_expected_to_rebuild": false
 }

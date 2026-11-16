@@ -1,24 +1,24 @@
 {
-  "updated_at": "2026-11-09T01:04:54.287326+00:00",
-  "week_tag": "2026-W46",
-  "source_report": "reports/weekly/2026-W46.md",
-  "github_report_path": "reports/weekly/2026-W46.md",
-  "page_report_url": "/ai-education-system-map/reports/weekly/2026-W46.md",
-  "new_papers": 0,
+  "updated_at": "2026-11-16T01:05:24.473640+00:00",
+  "week_tag": "2026-W47",
+  "source_report": "reports/weekly/2026-W47.md",
+  "github_report_path": "reports/weekly/2026-W47.md",
+  "page_report_url": "/ai-education-system-map/reports/weekly/2026-W47.md",
+  "new_papers": 8,
   "new_references": 0,
-  "new_systems": 8,
+  "new_systems": 9,
   "new_people": 5,
   "tech_stack_updated": 0,
   "fallback_status": {
     "ran": true,
     "queries": 12,
-    "hits": 0,
+    "hits": 5,
     "errors": [
-      "University of Oulu Hybrid Intelligence 2: openalex_http_429",
-      "University of Oulu Hybrid Intelligence 2: no_enabled_secondary_search_provider"
+      "MAI proactive agent Sanna Jarvela 2026: openalex_http_429",
+      "MAI proactive agent Sanna Jarvela 2026: no_enabled_secondary_search_provider"
     ],
-    "attempted_queries": 1,
-    "skipped_queries": 11,
+    "attempted_queries": 2,
+    "skipped_queries": 10,
     "circuit_open": true
   },
   "source_counts": {
@@ -26,11 +26,12 @@
     "arxiv-abs-2502.02533": 1,
     "arxiv-abs-2512.08296": 1,
     "arxiv-abs-2605.12923": 1,
-    "arxiv-search-multi-agent-edu": 10,
+    "arxiv-search-multi-agent-edu": 15,
     "arxiv-search-ai-education-agent": 0,
     "arxiv-search-collab-learning-agent": 0,
-    "arxiv-search-learning-analytics-ai": 0,
-    "oulu-hi": 1,
+    "arxiv-search-learning-analytics-ai": 10,
+    "arxiv-search-srl-ai": 10,
+    "oulu-hi": 0,
     "oulu-lead": 1,
     "oulu-let": 1,
     "cocorobo-research": 1,
@@ -61,7 +62,7 @@
     "conf-edm": 1,
     "conf-cui": 1,
     "conf-bjet": 1,
-    "search_fallback": 0
+    "search_fallback": 5
   },
   "candidates_by_source": {
     "arxiv-abs-2308.08155": [
@@ -77,19 +78,45 @@
       "https://arxiv.org/abs/2605.12923"
     ],
     "arxiv-search-multi-agent-edu": [
+      "https://arxiv.org/abs/2611.16986",
+      "https://arxiv.org/abs/2611.12222",
+      "https://arxiv.org/abs/2611.02758",
+      "https://arxiv.org/abs/2610.40492",
       "https://arxiv.org/abs/2610.26943",
       "https://arxiv.org/abs/2610.24498",
-      "https://arxiv.org/abs/2610.00035",
-      "https://arxiv.org/abs/2609.19429",
-      "https://arxiv.org/abs/2609.13348",
-      "https://arxiv.org/abs/2609.12851",
-      "https://arxiv.org/abs/2609.10939",
-      "https://arxiv.org/abs/2609.05806",
-      "https://arxiv.org/abs/2608.30968",
-      "https://arxiv.org/abs/2608.29481"
+      "https://arxiv.org/abs/2610.23234",
+      "https://arxiv.org/abs/2610.22701",
+      "https://arxiv.org/abs/2610.16543",
+      "https://arxiv.org/abs/2610.12176",
+      "https://arxiv.org/abs/2610.33011",
+      "https://arxiv.org/abs/2610.10087",
+      "https://arxiv.org/abs/2610.20628",
+      "https://arxiv.org/abs/2609.34234",
+      "https://arxiv.org/abs/2609.29804"
     ],
-    "oulu-hi": [
-      "https://www.oulu.fi/en/hybrid-intelligence"
+    "arxiv-search-learning-analytics-ai": [
+      "https://arxiv.org/abs/2611.16335",
+      "https://arxiv.org/abs/2611.16082",
+      "https://arxiv.org/abs/2611.14603",
+      "https://arxiv.org/abs/2611.13326",
+      "https://arxiv.org/abs/2611.09910",
+      "https://arxiv.org/abs/2611.09423",
+      "https://arxiv.org/abs/2611.07830",
+      "https://arxiv.org/abs/2611.06065",
+      "https://arxiv.org/abs/2611.04371",
+      "https://arxiv.org/abs/2611.02511"
+    ],
+    "arxiv-search-srl-ai": [
+      "https://arxiv.org/abs/2610.38950",
+      "https://arxiv.org/abs/2608.21618",
+      "https://arxiv.org/abs/2608.13040",
+      "https://arxiv.org/abs/2608.02553",
+      "https://arxiv.org/abs/2607.14046",
+      "https://arxiv.org/abs/2607.13387",
+      "https://arxiv.org/abs/2606.28472",
+      "https://arxiv.org/abs/2606.27398",
+      "https://arxiv.org/abs/2606.24136",
+      "https://arxiv.org/abs/2606.23991"
     ],
     "oulu-lead": [
       "https://www.oulu.fi/en/projects/learning-regulation-ai-promoting-adaptive-k-12-learners"
@@ -126,20 +153,37 @@
     ],
     "google-mass": [
       "https://research.google/pubs/multi-agent-design-optimizing-agents-with-better-prompts-and-topologies/"
+    ],
+    "search_fallback": [
+      "https://openalex.org/W7202007207",
+      "https://doi.org/10.3390/cmtr19040039",
+      "https://doi.org/10.1108/ils-11-2024-0148",
+      "https://doi.org/10.1111/bjet.70047",
+      "https://doi.org/10.11648/j.stpp.20261002.13"
     ]
   },
+  "rejected_candidate_count": 31,
   "entity_changes": {
-    "papers_added": 0,
+    "papers_added": 8,
     "references_added": 0,
-    "systems_updated": 8,
+    "systems_updated": 9,
     "people_updated": 5,
     "tech_stack_updated": 0,
     "timeline_extended": 0
   },
-  "highlights": [],
+  "highlights": [
+    "Primer: An AI Framework for Instructor-Centered Educational Simulation Creation",
+    "Agentic University: Collaborative Agents for Personalized Learning",
+    "REAT: A Reflective Experience-Augmented Tutoring Framework for Multi-turn Mathematical Instruction",
+    "Student-LLM Interactions During Math Learning: Limited Epistemic Proactivity Overall, but Within-chat Change Predicts Performance Without AI",
+    "Earthquaker-AI: A Retrieval-Augmented Generation Framework with Rubric-Based Assessment for Primary School Earthquake Education",
+    "Implementing GenAI-Supported Learning in Software Engineering and Computer Science Education using Bloom's Taxonomy",
+    "Guidelines for learning design and assessment for generative artificial intelligence-integrated education: a unified view",
+    "Development and evaluation of artificial intelligence literacy training for teacher education students"
+  ],
   "insights": [
     "Weekly run completed; only items passing relevance + dedup filters were appended.",
     "See the per-week markdown for the full per-item list.",
-    "Source registry used: v1.2.0"
+    "Source registry used: v1.3.0"
   ]
 }

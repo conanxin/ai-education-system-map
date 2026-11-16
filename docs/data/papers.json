@@ -90,7 +90,7 @@
     "institution": "Google Research",
     "summary": "Three-stage prompt+topology optimisation. Key finding: \"optimise individual agents before composition\"; an optimised single agent with Self-Consistency beats a 9-agent SC with default prompts. Direct evidence that naive agent-counting hurts.",
     "tags": [],
-    "last_seen": "2026-11-09T01:04:52.904184+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00",
     "record_type": "scholarly_paper",
     "year": "2025"
   },
@@ -108,7 +108,7 @@
     "source_id": "arxiv-abs-2308.08155",
     "year": "2023",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-09T01:04:52.904184+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -125,7 +125,7 @@
     "source_id": "arxiv-abs-2512.08296",
     "year": "2025",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-09T01:04:52.904184+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -142,7 +142,7 @@
     "source_id": "arxiv-abs-2605.12923",
     "year": "2026",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-09T01:04:52.904184+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -160,7 +160,7 @@
     "year": "2026",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-09T01:04:52.904184+00:00"
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2609.19429",
@@ -353,5 +353,181 @@
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
     "last_seen": "2026-11-13T06:21:52.026478+00:00",
     "key": "arxiv:2610.05579"
+  },
+  {
+    "id": "https://arxiv.org/abs/2611.16986",
+    "title": "Primer: An AI Framework for Instructor-Centered Educational Simulation Creation",
+    "url": "https://arxiv.org/abs/2611.16986",
+    "institution": "",
+    "summary": "Educational simulations are a well-established pedagogical technique that gives learners opportunities to apply knowledge, respond to challenges, and reflect on their performance. High-quality simulations, however, are difficult to build, requiring instructor input, scenario design, character development, scaffolding, technical implementation, and repeated revision. This paper presents Primer, an open-source, LLM-agnostic AI-supported system that helps educators create adaptive educational simulations. Educators contribute their knowledge of the subject, lesson, and students, while generative ",
+    "authors": [
+      "Ethan Mollick",
+      "Lilach Mollick",
+      "Ben Przystanski",
+      "LJ Ciccarelli",
+      "Natalie Bach",
+      "Laura Zarrow"
+    ],
+    "published": "2026-11-12",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: multi-agent education"
+    ],
+    "source_id": "arxiv-search-multi-agent-edu",
+    "year": "2026",
+    "key": "arxiv:2611.16986",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2610.40492",
+    "title": "Agentic University: Collaborative Agents for Personalized Learning",
+    "url": "https://arxiv.org/abs/2610.40492",
+    "institution": "",
+    "summary": "Large language models support personalized tutoring, content generation, and adaptive learning paths. However, capability development requires these resources and interactions to form a coherent learning process that evolves with the learner. A central challenge is to align goals, activities, and assessment while using learning evidence to decide what should follow. We introduce Human-Participatory Multi-Agent Organization and instantiate it in Agentic University (AU). In AU, learners participate as organization members and work with specialized agents to maintain a revisable Capability Progra",
+    "authors": [
+      "Jingru Fan",
+      "Tianle Zhou",
+      "Yunjie Zhou",
+      "Zihao He",
+      "Yixuan Zhou",
+      "Kezhao Wu",
+      "Xinyu Zheng",
+      "Xiyuan Wang",
+      "Yuheng Wang",
+      "Zhi Li",
+      "Songhua Liu",
+      "Weinan E"
+    ],
+    "published": "2026-10-29",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: multi-agent education"
+    ],
+    "source_id": "arxiv-search-multi-agent-edu",
+    "year": "2026",
+    "key": "arxiv:2610.40492",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2609.29804",
+    "title": "REAT: A Reflective Experience-Augmented Tutoring Framework for Multi-turn Mathematical Instruction",
+    "url": "https://arxiv.org/abs/2609.29804",
+    "institution": "",
+    "summary": "Current Large Language Models (LLMs) excel at solving complex mathematical problems, yet this proficiency does not inherently translate into effective tutoring. While advanced LLM tutors may leverage multi-agent frameworks or fine-tuning, most still lack a mechanism to systematically accumulate and reuse pedagogical experience over time, limiting their adaptability to diverse student needs during fluid, multi-turn interactions. To bridge this gap, we propose the Reflective Experience-Augmented Tutoring (REAT) framework, which couples experience distillation from historical dialogues with real-",
+    "authors": [
+      "Jianheng Zhou",
+      "Chaoli Zhang",
+      "Xingjun Wei",
+      "Xinliang Zhou",
+      "Giancarlo Fortino",
+      "Xing Fan",
+      "Yanfeng Wang",
+      "Qingsong Wen",
+      "Haoyang Li"
+    ],
+    "published": "2026-09-24",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: multi-agent education"
+    ],
+    "source_id": "arxiv-search-multi-agent-edu",
+    "year": "2026",
+    "key": "arxiv:2609.29804",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2610.38950",
+    "title": "Student-LLM Interactions During Math Learning: Limited Epistemic Proactivity Overall, but Within-chat Change Predicts Performance Without AI",
+    "url": "https://arxiv.org/abs/2610.38950",
+    "institution": "",
+    "summary": "Authors: Rania Abdelghani , Peter Kaiser , Kou Murayama",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: self-regulated learning AI"
+    ],
+    "source_id": "arxiv-search-srl-ai",
+    "year": "2026",
+    "key": "arxiv:2610.38950",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2607.14046",
+    "title": "Earthquaker-AI: A Retrieval-Augmented Generation Framework with Rubric-Based Assessment for Primary School Earthquake Education",
+    "url": "https://arxiv.org/abs/2607.14046",
+    "institution": "",
+    "summary": "Authors: Xanthi Kokkinou , Chaido Mizeli , Nafsika Koulaxidou , Marina Delianidi , Konstantinos Diamantaras",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: self-regulated learning AI"
+    ],
+    "source_id": "arxiv-search-srl-ai",
+    "year": "2026",
+    "key": "arxiv:2607.14046",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2606.27398",
+    "title": "Implementing GenAI-Supported Learning in Software Engineering and Computer Science Education using Bloom's Taxonomy",
+    "url": "https://arxiv.org/abs/2606.27398",
+    "institution": "",
+    "summary": "Authors: Vahid Garousi , Zafar Jafarov , Aytan Mövsümova , Leyla Memmedova , Hüseyn Mirzayev",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: self-regulated learning AI"
+    ],
+    "source_id": "arxiv-search-srl-ai",
+    "year": "2026",
+    "key": "arxiv:2606.27398",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+  },
+  {
+    "id": "https://doi.org/10.1108/ils-11-2024-0148",
+    "title": "Guidelines for learning design and assessment for generative artificial intelligence-integrated education: a unified view",
+    "url": "https://doi.org/10.1108/ils-11-2024-0148",
+    "institution": "",
+    "summary": "Purpose The rapid advancement and widespread adoption of generative artificial intelligence (GenAI) in education have significantly impacted learning, teaching and assessment practices. This development has raised critical questions about necessary changes to learning design and traditional assessment methods for a society where GenAI becomes embedded in both learning and work environments. This paper aims to investigate the extent of global consensus on learning design and assessment for GenAI-integrated learning environments. Design/methodology/approach This study’s policy analysis approach ",
+    "tags": [
+      "fallback-search",
+      "openalex-search"
+    ],
+    "source_id": "search_fallback:openalex",
+    "publication_type": "article",
+    "openalex_id": "https://openalex.org/W4411449782",
+    "year": "2025",
+    "key": "doi:10.1108/ils-11-2024-0148",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+  },
+  {
+    "id": "https://doi.org/10.1111/bjet.70047",
+    "title": "Development and evaluation of artificial intelligence literacy training for teacher education students",
+    "url": "https://doi.org/10.1111/bjet.70047",
+    "institution": "",
+    "summary": "Abstract Teacher education students play double role as present learners and future educators. Hence, they need targeted training to navigate the growing influence of Generative Artificial Intelligence (GenAI) on teaching, learning and professional identity. However, existing artificial intelligence (AI) literacy programmes predominantly emphasize technical AI knowledge and pre‐GenAI tools or are offered by GenAI platforms that focus on their own technologies' features, thereby lacking pedagogically structured frameworks that address non‐technical dimensions such as ethics, contextual understa",
+    "tags": [
+      "fallback-search",
+      "openalex-search"
+    ],
+    "source_id": "search_fallback:openalex",
+    "publication_type": "article",
+    "openalex_id": "https://openalex.org/W7125769179",
+    "year": "2026",
+    "key": "doi:10.1111/bjet.70047",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-16T01:05:24.388116+00:00"
   }
 ]
