@@ -90,7 +90,7 @@
     "institution": "Google Research",
     "summary": "Three-stage prompt+topology optimisation. Key finding: \"optimise individual agents before composition\"; an optimised single agent with Self-Consistency beats a 9-agent SC with default prompts. Direct evidence that naive agent-counting hurts.",
     "tags": [],
-    "last_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00",
     "record_type": "scholarly_paper",
     "year": "2025"
   },
@@ -108,7 +108,7 @@
     "source_id": "arxiv-abs-2308.08155",
     "year": "2023",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -125,7 +125,7 @@
     "source_id": "arxiv-abs-2512.08296",
     "year": "2025",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -142,7 +142,7 @@
     "source_id": "arxiv-abs-2605.12923",
     "year": "2026",
     "first_seen": "2026-07-02T10:05:41.625041+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00",
     "record_type": "scholarly_paper"
   },
   {
@@ -287,7 +287,7 @@
     "title": "APRENDIZAGEM BASEADA EM DADOS: POTENCIALIZANDO A PERSONALIZAÇÃO E A EFICIÊNCIA POR MEIO DE LEARNING ANALYTICS",
     "url": "https://doi.org/10.56238/revgeov17n7-056",
     "institution": "",
-    "summary": "",
+    "summary": "A aprendizagem baseada em dados, mediada pelo Learning Analytics e pela inteligência artificial, tem se consolidado como uma abordagem inovadora para a transformação dos processos educacionais contemporâneos. Este estudo teve como objetivo analisar como essas tecnologias contribuem para a personalização e a eficiência do ensino, por meio de uma revisão integrativa da literatura. Os estudos evidenciam que a integração entre análise de dados educacionais e sistemas inteligentes possibilita o monitoramento contínuo da aprendizagem, a identificação de padrões de desempenho e a implementação de int",
     "tags": [
       "fallback-search",
       "openalex-search"
@@ -298,7 +298,7 @@
     "year": "2026",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-02T01:05:37.605129+00:00",
-    "last_seen": "2026-11-02T01:05:37.605129+00:00"
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2608.30968",
@@ -456,7 +456,7 @@
     "key": "arxiv:2610.38950",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-16T01:05:24.388116+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2607.14046",
@@ -473,7 +473,7 @@
     "key": "arxiv:2607.14046",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-16T01:05:24.388116+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
   },
   {
     "id": "https://arxiv.org/abs/2606.27398",
@@ -490,7 +490,7 @@
     "key": "arxiv:2606.27398",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-16T01:05:24.388116+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
   },
   {
     "id": "https://doi.org/10.1108/ils-11-2024-0148",
@@ -509,7 +509,7 @@
     "key": "doi:10.1108/ils-11-2024-0148",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-16T01:05:24.388116+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
   },
   {
     "id": "https://doi.org/10.1111/bjet.70047",
@@ -528,6 +528,368 @@
     "key": "doi:10.1111/bjet.70047",
     "record_type": "scholarly_paper",
     "first_seen": "2026-11-16T01:05:24.388116+00:00",
-    "last_seen": "2026-11-16T01:05:24.388116+00:00"
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2611.23058",
+    "title": "WIP: Exploring Student-Created AI Agents and Instructional Videos to Foster Engagement in Computing Education",
+    "url": "https://arxiv.org/abs/2611.23058",
+    "institution": "",
+    "summary": "This work-in-progress (WIP) research-to-practice study examines the use of student-created artifacts to promote active learning in a large undergraduate Software Design and Engineering (SWE) course. Active learning strategies have been shown to significantly enhance student engagement, comprehension, and motivation, particularly in computing education. In this work, we explore the use of student-created artifacts to foster student engagement in higher-level Computer Science (CS) courses. Specifically, we examine the experiences of undergraduate and graduate CS students who participated in the ",
+    "authors": [
+      "Lucas G. Zangari",
+      "Olufisayo Omojokun",
+      "Pedro Guillermo Feijóo-García"
+    ],
+    "published": "2026-11-17",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: AI education agent"
+    ],
+    "source_id": "arxiv-search-ai-education-agent",
+    "year": "2026",
+    "key": "arxiv:2611.23058",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2611.21501",
+    "title": "Is This Code Mine? Student Ownership When AI Agents Write the Spec and the Code",
+    "url": "https://arxiv.org/abs/2611.21501",
+    "institution": "",
+    "summary": "Software engineering courses are starting to ask students to build entire systems with AI coding agents, but little is known about what students actually do with them and whether they still own what they deliver. If the agent writes both the code and the decisions behind it, the artifacts we grade no longer show what students learned. We studied an assignment in which 18 pairs of students built applications with agents under Spec-Driven Development, combining the mined history of their repositories, the prompts they recorded, and a survey of 33 students. The agents wrote 69\\% of the specificat",
+    "authors": [
+      "Gustavo Pinto",
+      "Enne Rebeca Silva de Freitas",
+      "Danilo Monteiro Ribeiro"
+    ],
+    "published": "2026-11-16",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: AI education agent"
+    ],
+    "source_id": "arxiv-search-ai-education-agent",
+    "year": "2026",
+    "key": "arxiv:2611.21501",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2611.15170",
+    "title": "An Experience Report on Teaching Students to Evaluate AI Agent Skills as Authorization Decisions",
+    "url": "https://arxiv.org/abs/2611.15170",
+    "institution": "",
+    "summary": "Cultivating a security mindset has long been a goal of computing education, and students now need it when deciding whether to trust an AI agent skill. Skills are add-ons that can shape an agent's behavior through natural language instructions and configuration settings, not just executable code. To prepare students to evaluate skills as authorization decisions, we designed a classroom activity and taught it in a senior undergraduate and a graduate cybersecurity-focused course. Students inspected three example skills, each pairing a real workflow task with one agent-specific authority, such as ",
+    "authors": [
+      "Zikai Alex Wen",
+      "Donald Chinn",
+      "Yan Bai"
+    ],
+    "published": "2026-11-11",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: AI education agent"
+    ],
+    "source_id": "arxiv-search-ai-education-agent",
+    "year": "2026",
+    "key": "arxiv:2611.15170",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2611.03882",
+    "title": "ProofPaths: An AI Agent Framework for Assessing Student Reasoning",
+    "url": "https://arxiv.org/abs/2611.03882",
+    "institution": "",
+    "summary": "Students can use large language models to complete assignments, but a correct solution does not establish whether they understand the reasoning behind it. Individualized interviews can probe that understanding but require recurring staff effort. We introduce ProofPaths, an AI agentic framework that combines rubric-based grading with individualized and interactive interviews. Multiple grading agents assess a submission against instructor guidance, exchange critiques, and revise their judgments. Their scores determine which review supplies the grade and feedback. An interview agent asks students",
+    "authors": [
+      "Mohsen Hariri",
+      "Vipin Chaudhary"
+    ],
+    "published": "2026-11-02",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: AI education agent"
+    ],
+    "source_id": "arxiv-search-ai-education-agent",
+    "year": "2026",
+    "key": "arxiv:2611.03882",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2610.41057",
+    "title": "Out of sync: Accommodation, evaluation, and emergence in five weeks with an agentic AI teammate",
+    "url": "https://arxiv.org/abs/2610.41057",
+    "institution": "",
+    "summary": "As agentic AI in education shifts from reactive tools toward partners that take initiative and persist over time, a central question is how learners relate to, evaluate, and benefit from artificial agency. We conducted a longitudinal experiment in an undergraduate learning analytics course, in which 17 student teams (N = 48) collaborated with a persistent LLM-based teammate across weekly sessions. The agent decided when to intervene through a trigger-based architecture, and its social role was manipulated between teams: a Cognitive Agent that challenged quick consensus or a Supportive Agent th",
+    "authors": [
+      "Nia Nixon",
+      "Jaeyoon Choi",
+      "Pedro Martins de Bastos",
+      "Mohammad Amin Samadi"
+    ],
+    "published": "2026-10-29",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2610.41057",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2610.08703",
+    "title": "Agreement Is Not Validity: Cross-Model LLM Consensus in Diagnosing Student Failure Modes in K-12 Math Tutoring Dialogue",
+    "url": "https://arxiv.org/abs/2610.08703",
+    "institution": "",
+    "summary": "In K-12 mathematics tutoring, student-tutor dialogue provides rich evidence of learners' problem-solving processes and sources of difficulty. Learning analytics research increasingly relies on large language models (LLMs) to extract such information from dialogue for a variety of downstream tasks, including knowledge tracing, behavioral modeling, and diagnosis of student reasoning errors. However, the validity of these model-generated interpretations remains insufficiently understood. In this exploratory study, we examine the validity of LLM classifications of five student failure modes in mat",
+    "authors": [
+      "Clayton Cohn",
+      "Joyce Fonteles",
+      "Kirk Vanacore",
+      "Gianni Mazza",
+      "Candida Crawford",
+      "Tom Hooper",
+      "Gautam Biswas",
+      "Rene Kizilcec"
+    ],
+    "published": "2026-10-06",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2610.08703",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2610.06532",
+    "title": "AICoFe Demo: AI-based Collaborative Feedback System",
+    "url": "https://arxiv.org/abs/2610.06532",
+    "institution": "",
+    "summary": "Peer feedback promotes active learning, critical reflection, and skill development, but its effectiveness is often limited by the quality of feedback students provide. Recent advances in LLMs offer new opportunities to support peer feedback by generating more coherent and actionable feedback while preserving human oversight. This paper presents AICoFe, an AI-based collaborative feedback system designed to support teacher, peer, and self-assessment in higher education. AICoFe integrates rubric-based evaluations, GenAI-supported feedback, Learning Analytics dashboards, and video recordings to fo",
+    "authors": [
+      "Alvaro Becerra",
+      "Alejandra Palma",
+      "Ruth Cobos",
+      "Julian Fierrez"
+    ],
+    "published": "2026-10-05",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2610.06532",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2610.06506",
+    "title": "AISSA Demo: AI-based Student Slides Analysis Tool for Automated Grading and Feedback",
+    "url": "https://arxiv.org/abs/2610.06506",
+    "institution": "",
+    "summary": "We present an AI-based web-oriented tool designed to support formative feedback for oral presentation slides in higher education: AISSA. It allows students to upload their slides before presentation and automatically receive rubric-based quantitative scores and qualitative feedback generated by large language models (LLMs). The tool analyses slide-level features and content using a teacher-defined rubric and delivers feedback through interactive Learning Analytics dashboards. These dashboards enable students to visualize performance indicators, inspect feedback in context, and reflect on stren",
+    "authors": [
+      "Alvaro Becerra",
+      "Diego Gomez",
+      "Ruth Cobos",
+      "Julian Fierrez"
+    ],
+    "published": "2026-10-05",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2610.06506",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2609.38346",
+    "title": "Examining Variation in How Guided AI Tutors Resolve Student Impasses",
+    "url": "https://arxiv.org/abs/2609.38346",
+    "institution": "",
+    "summary": "When a student is stuck, a tutor faces the assistance dilemma: help given too early can hinder productive struggle, while help withheld too long leaves the student in a frustrating, persistent impasse (i.e., wheel spinning). Generative AI tutors increasingly use guardrails restricting answer-giving, yet little is known about how such tutors behave once an impasse persists. We analyze 20,462 student turns from 1,260 authentic sessions with a guided LLM chemistry tutor, identifying 6,630 impasse turns of three major types: conceptual errors, expressed uncertainty, or help-seeking. We then used t",
+    "authors": [
+      "Bakhtawar Ahtisham",
+      "Kirk Vanacore",
+      "Alessandra Napoli",
+      "Josh Arens",
+      "Ksenia Ionova",
+      "Clayton Cohn",
+      "Shima Salehi",
+      "Rene Kizilcec"
+    ],
+    "published": "2026-09-29",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2609.38346",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2609.33720",
+    "title": "From Granular Revision Operations to Meaningful Revision Units: Evaluating LLMs for Revision Boundary Detection",
+    "url": "https://arxiv.org/abs/2609.33720",
+    "institution": "",
+    "summary": "Revision traces provide valuable evidence about students' writing processes, but their usefulness for learning analytics depends on how individual revisions are represented. Automated draft-comparison methods often produce granular edit operations that can fragment a single purposeful revision into multiple analytic units. This study evaluates whether LLMs can identify meaningful revision unit boundaries in structured revision operation data and whether they provide value beyond simple non-LLM baselines. Using 113 matched draft--revision pairs from undergraduate writing, expert annotation yiel",
+    "authors": [
+      "Yu Tian",
+      "Andrew Potter",
+      "Katerina Christhilf",
+      "Motahareh Darvishpour Ahandani",
+      "Jessica Early",
+      "Steve Graham",
+      "Danielle S. McNamara"
+    ],
+    "published": "2026-09-27",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2609.33720",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2609.29874",
+    "title": "A Risk-Adaptive and Evidence-Constrained Framework for Generative AI Feedback in Programming Education",
+    "url": "https://arxiv.org/abs/2609.29874",
+    "institution": "",
+    "summary": "Generative artificial intelligence can turn learning analytics into personalized support, but feedback systems must decide when to intervene, which evidence to use, and how much assistance to provide. We developed a risk-adaptive, evidence-constrained framework for introductory programming using 2993 failed-submission states from 215 students. Student-disjoint models predicted persistent failure and related outcomes; four matched feedback conditions were generated for 136 cases; and calibrated risk informed capacity-limited intervention policies. The validation-selected logistic regression mod",
+    "authors": [
+      "Shihao Wang"
+    ],
+    "published": "2026-09-24",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2609.29874",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2608.29517",
+    "title": "LLM Judges as Raters: A Pre-Registered Audit of Severity, Halo, Reliability, and Version Instability in LLM Essay Scoring on Public Corpora",
+    "url": "https://arxiv.org/abs/2608.29517",
+    "institution": "",
+    "summary": "Large language models (LLMs) are increasingly used as essay graders in learning analytics, evaluated almost exclusively with agreement statistics. Educational measurement warns that raters also differ in severity, show halo, and drift as instruments. We treat LLM judges as raters and run a pre-registered rater-effects battery (many-facet Rasch severity, residual halo, generalizability/decision studies, cross-version shifts, differential functioning) on public corpora in two languages (ENEM/Essay-BR; ASAP): 2,377 essays, 12 judges, 4 providers, 5 version contrasts, replicated cells, released as",
+    "authors": [
+      "Veerendra Kumar Sunkavalli"
+    ],
+    "published": "2026-08-30",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2608.29517",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2608.21165",
+    "title": "Distilling Black-Box Machine Learning into a Small, Self-Explaining Language Model for Learning Analytics",
+    "url": "https://arxiv.org/abs/2608.21165",
+    "institution": "",
+    "summary": "Learning analytics increasingly relies on flexible machine learning (ML), but the model opacity and the burden of deployment prevent these tools from reaching educational practice. We propose a two-stage fine-tuning pipeline that distills a fitted black-box estimator and its post hoc interpretation (the mentor) into a small, open-weight large language model (LLM; the mentee) that returns an individual-level estimate and explains in natural language. The design is estimator-agnostic and paired with a faithfulness-first evaluation framework that audits every narration against the attribution it ",
+    "authors": [
+      "Chenguang Pan",
+      "Airui Meng",
+      "Youmi Suk"
+    ],
+    "published": "2026-08-21",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2608.21165",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2608.28619",
+    "title": "From GenAI Virtual Patient Dialogue Logs to Teacher-Interpretable Process Evidence: A Learning Analytics Study in Higher Education",
+    "url": "https://arxiv.org/abs/2608.28619",
+    "institution": "",
+    "summary": "Medical history taking is a dialogue-based clinical reasoning task in which learners must gather, organise, and integrate patient information while the consultation unfolds. Generative AI-powered virtual patients (GenAI VPs) make repeated history taking practice scalable and preserve full turn by turn dialogue. However, these logs are educationally difficult to use directly. Complete transcripts are too detailed for routine teacher review, whereas final scores obscure whether learners followed up patient cues, checked uncertainty, or used summaries to guide later questioning. This study examin",
+    "authors": [
+      "Xinyu Li",
+      "Zijian Li",
+      "Mengyu Xia",
+      "Luzhen Tang",
+      "Naping Chen",
+      "Changmin Lin",
+      "Danijela Gasevic",
+      "Dragan Gasevic",
+      "Yizhou Fan"
+    ],
+    "published": "2026-07-29",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2608.28619",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
+  },
+  {
+    "id": "https://arxiv.org/abs/2607.19291",
+    "title": "EmbeddedKittens: An Evaluation of Code Embeddings for Scratch",
+    "url": "https://arxiv.org/abs/2607.19291",
+    "institution": "",
+    "summary": "The trend of embedding source code for machine learning applications also enables new opportunities in learning analytics in programming education, but which code embedding approach is most suitable for learning analytics remains an open question. A common approach to embedding source code lies in treating the code as a token sequence similar to natural language when training large language models~(LLMs). However, in case of visual block-based programming languages like Scratch, this approach cannot be applied directly. While text-based representations of block-based code can be created to app",
+    "authors": [
+      "Benedikt Fein",
+      "Gordon Fraser"
+    ],
+    "published": "2026-07-21",
+    "tags": [
+      "arxiv-search",
+      "arXiv search: learning analytics AI"
+    ],
+    "source_id": "arxiv-search-learning-analytics-ai",
+    "year": "2026",
+    "key": "arxiv:2607.19291",
+    "record_type": "scholarly_paper",
+    "first_seen": "2026-11-23T01:12:21.252387+00:00",
+    "last_seen": "2026-11-23T01:12:21.252387+00:00"
   }
 ]

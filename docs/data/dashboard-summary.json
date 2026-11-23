@@ -1,37 +1,40 @@
 {
-  "generated_at": "2026-11-16T01:05:25.594538+00:00",
-  "last_updated": "2026-11-16T01:05:24.473640+00:00",
-  "latest_week_tag": "2026-W47",
-  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W47.md",
-  "github_report_path": "reports/weekly/2026-W47.md",
+  "generated_at": "2026-11-23T01:12:21.368662+00:00",
+  "last_updated": "2026-11-23T01:12:21.262814+00:00",
+  "latest_week_tag": "2026-W48",
+  "latest_report_url": "/ai-education-system-map/reports/weekly/2026-W48.md",
+  "github_report_path": "reports/weekly/2026-W48.md",
   "totals": {
-    "papers": 32,
+    "papers": 47,
     "references": 33,
     "systems": 10,
     "people": 16,
     "timeline_events": 11,
     "stable_sources": 52,
-    "active_sources": 38
+    "active_sources": 40
   },
   "this_week": {
-    "new_papers": 8,
+    "new_papers": 15,
     "new_references": 0,
-    "new_systems": 9,
+    "new_systems": 22,
     "new_people": 5,
     "fallback_status": {
       "ran": true,
       "queries": 12,
-      "hits": 5,
-      "errors": [
-        "MAI proactive agent Sanna Jarvela 2026: openalex_http_429",
-        "MAI proactive agent Sanna Jarvela 2026: no_enabled_secondary_search_provider"
-      ],
-      "attempted_queries": 2,
-      "skipped_queries": 10,
-      "circuit_open": true
+      "hits": 48,
+      "errors": [],
+      "attempted_queries": 12,
+      "skipped_queries": 0,
+      "circuit_open": false
     }
   },
   "weekly_archive": [
+    {
+      "week_tag": "2026-W48",
+      "report_path": "reports/weekly/2026-W48.md",
+      "new_papers": 15,
+      "generated_at": "2026-11-23T01:12:21.262511+00:00"
+    },
     {
       "week_tag": "2026-W47",
       "report_path": "reports/weekly/2026-W47.md",
@@ -136,31 +139,26 @@
     }
   ],
   "review_queue": {
-    "open": 30,
-    "total": 51
+    "open": 89,
+    "total": 110
   },
   "source_health": {
     "stable_sources": 52,
-    "active_sources": 38,
-    "source_errors_count": 5,
+    "active_sources": 40,
+    "source_errors_count": 3,
     "source_errors": {
-      "arxiv-search-ai-education-agent": "arxiv_api_http_429; fetch_TimeoutError",
-      "arxiv-search-collab-learning-agent": "arxiv_api_http_429; fetch_TimeoutError",
-      "arxiv-search-learning-analytics-ai": "arxiv_api_fetch_TimeoutError",
-      "arxiv-search-srl-ai": "arxiv_api_fetch_TimeoutError",
-      "oulu-hi": "fetch_TimeoutError"
+      "arxiv-search-multi-agent-edu": "arxiv_api_http_429; fetch_TimeoutError",
+      "arxiv-search-collab-learning-agent": "arxiv_api_fetch_TimeoutError",
+      "arxiv-search-srl-ai": "arxiv_api_fetch_TimeoutError"
     },
     "fallback_status": {
       "ran": true,
       "queries": 12,
-      "hits": 5,
-      "errors": [
-        "MAI proactive agent Sanna Jarvela 2026: openalex_http_429",
-        "MAI proactive agent Sanna Jarvela 2026: no_enabled_secondary_search_provider"
-      ],
-      "attempted_queries": 2,
-      "skipped_queries": 10,
-      "circuit_open": true
+      "hits": 48,
+      "errors": [],
+      "attempted_queries": 12,
+      "skipped_queries": 0,
+      "circuit_open": false
     },
     "candidates_by_source": {
       "arxiv-abs-2308.08155": [
@@ -175,34 +173,51 @@
       "arxiv-abs-2605.12923": [
         "https://arxiv.org/abs/2605.12923"
       ],
-      "arxiv-search-multi-agent-edu": [
-        "https://arxiv.org/abs/2611.16986",
+      "arxiv-search-ai-education-agent": [
+        "https://arxiv.org/abs/2611.23613",
+        "https://arxiv.org/abs/2611.23058",
+        "https://arxiv.org/abs/2611.21501",
+        "https://arxiv.org/abs/2611.19299",
+        "https://arxiv.org/abs/2611.15460",
+        "https://arxiv.org/abs/2611.15170",
+        "https://arxiv.org/abs/2611.13410",
+        "https://arxiv.org/abs/2611.13144",
+        "https://arxiv.org/abs/2611.12799",
         "https://arxiv.org/abs/2611.12222",
-        "https://arxiv.org/abs/2611.02758",
-        "https://arxiv.org/abs/2610.40492",
-        "https://arxiv.org/abs/2610.26943",
-        "https://arxiv.org/abs/2610.24498",
-        "https://arxiv.org/abs/2610.23234",
-        "https://arxiv.org/abs/2610.22701",
-        "https://arxiv.org/abs/2610.16543",
-        "https://arxiv.org/abs/2610.12176",
-        "https://arxiv.org/abs/2610.33011",
-        "https://arxiv.org/abs/2610.10087",
-        "https://arxiv.org/abs/2610.20628",
-        "https://arxiv.org/abs/2609.34234",
-        "https://arxiv.org/abs/2609.29804"
+        "https://arxiv.org/abs/2611.07558",
+        "https://arxiv.org/abs/2611.10014",
+        "https://arxiv.org/abs/2611.05709",
+        "https://arxiv.org/abs/2611.05636",
+        "https://arxiv.org/abs/2611.03882"
+      ],
+      "arxiv-search-collab-learning-agent": [
+        "https://arxiv.org/abs/2611.25868",
+        "https://arxiv.org/abs/2611.24466",
+        "https://arxiv.org/abs/2611.24367",
+        "https://arxiv.org/abs/2611.24362",
+        "https://arxiv.org/abs/2611.24221",
+        "https://arxiv.org/abs/2611.23747",
+        "https://arxiv.org/abs/2611.23362",
+        "https://arxiv.org/abs/2611.22439",
+        "https://arxiv.org/abs/2611.22310",
+        "https://arxiv.org/abs/2611.20100"
       ],
       "arxiv-search-learning-analytics-ai": [
-        "https://arxiv.org/abs/2611.16335",
-        "https://arxiv.org/abs/2611.16082",
-        "https://arxiv.org/abs/2611.14603",
-        "https://arxiv.org/abs/2611.13326",
-        "https://arxiv.org/abs/2611.09910",
-        "https://arxiv.org/abs/2611.09423",
-        "https://arxiv.org/abs/2611.07830",
-        "https://arxiv.org/abs/2611.06065",
-        "https://arxiv.org/abs/2611.04371",
-        "https://arxiv.org/abs/2611.02511"
+        "https://arxiv.org/abs/2610.41057",
+        "https://arxiv.org/abs/2610.08703",
+        "https://arxiv.org/abs/2610.06532",
+        "https://arxiv.org/abs/2610.06506",
+        "https://arxiv.org/abs/2609.38346",
+        "https://arxiv.org/abs/2609.33720",
+        "https://arxiv.org/abs/2609.29874",
+        "https://arxiv.org/abs/2608.29517",
+        "https://arxiv.org/abs/2608.21165",
+        "https://arxiv.org/abs/2608.28619",
+        "https://arxiv.org/abs/2607.19291",
+        "https://arxiv.org/abs/2607.15006",
+        "https://arxiv.org/abs/2608.13587",
+        "https://arxiv.org/abs/2606.29280",
+        "https://arxiv.org/abs/2606.14113"
       ],
       "arxiv-search-srl-ai": [
         "https://arxiv.org/abs/2610.38950",
@@ -215,6 +230,9 @@
         "https://arxiv.org/abs/2606.27398",
         "https://arxiv.org/abs/2606.24136",
         "https://arxiv.org/abs/2606.23991"
+      ],
+      "oulu-hi": [
+        "https://www.oulu.fi/en/hybrid-intelligence"
       ],
       "oulu-lead": [
         "https://www.oulu.fi/en/projects/learning-regulation-ai-promoting-adaptive-k-12-learners"
@@ -254,10 +272,15 @@
       ],
       "search_fallback": [
         "https://openalex.org/W7202007207",
-        "https://doi.org/10.3390/cmtr19040039",
         "https://doi.org/10.1108/ils-11-2024-0148",
+        "https://doi.org/10.3390/cmtr19040039",
         "https://doi.org/10.1111/bjet.70047",
-        "https://doi.org/10.11648/j.stpp.20261002.13"
+        "https://doi.org/10.3390/app16052202",
+        "https://doi.org/10.1145/3817001",
+        "https://doi.org/10.48550/arxiv.2607.11881",
+        "https://doi.org/10.48550/arxiv.2510.19252",
+        "https://doi.org/10.24197/h4q4ec21",
+        "https://doi.org/10.62381/h261619"
       ]
     },
     "source_counts": {
@@ -265,12 +288,12 @@
       "arxiv-abs-2502.02533": 1,
       "arxiv-abs-2512.08296": 1,
       "arxiv-abs-2605.12923": 1,
-      "arxiv-search-multi-agent-edu": 15,
-      "arxiv-search-ai-education-agent": 0,
-      "arxiv-search-collab-learning-agent": 0,
-      "arxiv-search-learning-analytics-ai": 10,
+      "arxiv-search-multi-agent-edu": 0,
+      "arxiv-search-ai-education-agent": 15,
+      "arxiv-search-collab-learning-agent": 10,
+      "arxiv-search-learning-analytics-ai": 15,
       "arxiv-search-srl-ai": 10,
-      "oulu-hi": 0,
+      "oulu-hi": 1,
       "oulu-lead": 1,
       "oulu-let": 1,
       "cocorobo-research": 1,
@@ -301,9 +324,9 @@
       "conf-edm": 1,
       "conf-cui": 1,
       "conf-bjet": 1,
-      "search_fallback": 5
+      "search_fallback": 48
     },
-    "last_run": "2026-11-16T01:05:24.474135+00:00",
+    "last_run": "2026-11-23T01:12:21.263258+00:00",
     "registry_version": "1.3.0"
   },
   "system_cards": [
@@ -560,6 +583,16 @@
           "arxiv",
           "MIRACLE"
         ]
+      },
+      {
+        "title": "Out of sync: Accommodation, evaluation, and emergence in five weeks with an agentic AI teammate",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2610.41057",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
       }
     ],
     "Theory papers": [
@@ -756,6 +789,96 @@
           "fallback-search",
           "openalex-search"
         ]
+      },
+      {
+        "title": "WIP: Exploring Student-Created AI Agents and Instructional Videos to Foster Engagement in Computing Education",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2611.23058",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "Is This Code Mine? Student Ownership When AI Agents Write the Spec and the Code",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2611.21501",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "An Experience Report on Teaching Students to Evaluate AI Agent Skills as Authorization Decisions",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2611.15170",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
+      },
+      {
+        "title": "AICoFe Demo: AI-based Collaborative Feedback System",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2610.06532",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "AISSA Demo: AI-based Student Slides Analysis Tool for Automated Grading and Feedback",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2610.06506",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "Examining Variation in How Guided AI Tutors Resolve Student Impasses",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2609.38346",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "LLM Judges as Raters: A Pre-Registered Audit of Severity, Halo, Reliability, and Version Instability in LLM Essay Scoring on Public Corpora",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2608.29517",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "Distilling Black-Box Machine Learning into a Small, Self-Explaining Language Model for Learning Analytics",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2608.21165",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "EmbeddedKittens: An Evaluation of Code Embeddings for Scratch",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2607.19291",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
       }
     ],
     "Agent infrastructure papers": [
@@ -809,6 +932,16 @@
           "arxiv-search",
           "arXiv search: multi-agent education"
         ]
+      },
+      {
+        "title": "ProofPaths: An AI Agent Framework for Assessing Student Reasoning",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2611.03882",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: AI education agent"
+        ]
       }
     ],
     "Evidence / policy papers": [
@@ -830,6 +963,46 @@
         "tags": [
           "fallback-search",
           "openalex-search"
+        ]
+      },
+      {
+        "title": "Agreement Is Not Validity: Cross-Model LLM Consensus in Diagnosing Student Failure Modes in K-12 Math Tutoring Dialogue",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2610.08703",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "From Granular Revision Operations to Meaningful Revision Units: Evaluating LLMs for Revision Boundary Detection",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2609.33720",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "A Risk-Adaptive and Evidence-Constrained Framework for Generative AI Feedback in Programming Education",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2609.29874",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
+        ]
+      },
+      {
+        "title": "From GenAI Virtual Patient Dialogue Logs to Teacher-Interpretable Process Evidence: A Learning Analytics Study in Higher Education",
+        "year": "2026",
+        "url": "https://arxiv.org/abs/2608.28619",
+        "related_system": "arxiv-search",
+        "tags": [
+          "arxiv-search",
+          "arXiv search: learning analytics AI"
         ]
       }
     ]

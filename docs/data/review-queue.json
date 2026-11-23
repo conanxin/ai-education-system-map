@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Search hits that failed the relevance gate. Not shown as papers; move an entry's `record` back into papers.json to restore it.",
-  "updated_at": "2026-11-16T01:05:24.423687+00:00",
+  "updated_at": "2026-11-23T01:12:21.261385+00:00",
   "items": [
     {
       "title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
@@ -838,6 +838,537 @@
       "status": "rejected_by_filter",
       "week_tag": "2026-W47",
       "queued_at": "2026-11-16T01:05:24.423680+00:00"
+    },
+    {
+      "title": "MANGO Arena: Same Seeds, Different Chains Evaluating LLM Agents in a Disrupted Supply Chain",
+      "url": "https://arxiv.org/abs/2611.23613",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261138+00:00"
+    },
+    {
+      "title": "Staged Semantic Distillation: Preserving Free-Form Semantics in a Low-Compute Non-LLM Surrogate of a Staged LLM Agent",
+      "url": "https://arxiv.org/abs/2611.19299",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261149+00:00"
+    },
+    {
+      "title": "Read and Ignore: What Self-Directed LLM Agents Do in Public Service Scenarios",
+      "url": "https://arxiv.org/abs/2611.15460",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261153+00:00"
+    },
+    {
+      "title": "SteerDistill: Quantizing LLM Agents via Closed-Loop Teacher Steering",
+      "url": "https://arxiv.org/abs/2611.13410",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261157+00:00"
+    },
+    {
+      "title": "Teaching the Harness: Student-Aware Skill Transfer for LLM Agents",
+      "url": "https://arxiv.org/abs/2611.13144",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261160+00:00"
+    },
+    {
+      "title": "Agentic-OPD: Recovering Forgotten Agent Capabilities via On-Policy Distillation for Agentic Tasks",
+      "url": "https://arxiv.org/abs/2611.12799",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261163+00:00"
+    },
+    {
+      "title": "SKIM: Pruning Large Language Model Agents via Selective Knowledge Informed Masking",
+      "url": "https://arxiv.org/abs/2611.07558",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261167+00:00"
+    },
+    {
+      "title": "Nanopath: Fast, Fair, Open Experimentation for Pathology Foundation Models",
+      "url": "https://arxiv.org/abs/2611.10014",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261170+00:00"
+    },
+    {
+      "title": "Agents, Think Only When it Helps",
+      "url": "https://arxiv.org/abs/2611.05709",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "ml_jargon_not_education",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261173+00:00"
+    },
+    {
+      "title": "Route to Remember: Adaptive Memory Selection for LLM Agents",
+      "url": "https://arxiv.org/abs/2611.05636",
+      "source_id": "arxiv-search-ai-education-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261176+00:00"
+    },
+    {
+      "title": "Generalist Meets Specialists: An Evolving Multimodal Agent with Persistent Tool Orchestration for Traffic Scenario Understanding",
+      "url": "https://arxiv.org/abs/2611.25868",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261178+00:00"
+    },
+    {
+      "title": "Cooperative UAV and Ground Station for Robust MEC of Dynamic Aquatic IoT: A Generative AI-Enhanced Approach",
+      "url": "https://arxiv.org/abs/2611.24466",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261182+00:00"
+    },
+    {
+      "title": "VAFL: A Vertical Analytic Federated Learning Mechanism for Efficient Crowdsourced Services via Closed-Form Solutions",
+      "url": "https://arxiv.org/abs/2611.24367",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261184+00:00"
+    },
+    {
+      "title": "PIPETTE: Prompt Injection Purple-Teaming for Robust LLM Agents",
+      "url": "https://arxiv.org/abs/2611.24362",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261187+00:00"
+    },
+    {
+      "title": "Learning to Coordinate: LLM-Guided Workflow Evolution for Token-Efficient Red Teaming",
+      "url": "https://arxiv.org/abs/2611.24221",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261190+00:00"
+    },
+    {
+      "title": "A Comparison of Heuristic, Human-Sensitive, and Self-Play DRL Policies in Human-Agent Teaming",
+      "url": "https://arxiv.org/abs/2611.23747",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "noise_pattern",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261193+00:00"
+    },
+    {
+      "title": "TRACE-MAS: Diagnosing and Repairing Collaboration Failures in Multi-Agent Systems",
+      "url": "https://arxiv.org/abs/2611.23362",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261196+00:00"
+    },
+    {
+      "title": "Where Demand Meets Supply: Spatial Elastic Consensus for Low-Bandwidth Collaborative Perception",
+      "url": "https://arxiv.org/abs/2611.22439",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261199+00:00"
+    },
+    {
+      "title": "EviDARL: Evidence-Centric Dual-Agent Reasoning via Alternating Reinforcement Learning for Multi-Table Question Answering",
+      "url": "https://arxiv.org/abs/2611.22310",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261202+00:00"
+    },
+    {
+      "title": "EgoSwarm: Learning Decentralized Robot Swarm Intelligence from Human Swarm Demonstrations",
+      "url": "https://arxiv.org/abs/2611.20100",
+      "source_id": "arxiv-search-collab-learning-agent",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261205+00:00"
+    },
+    {
+      "title": "When AI Blurs the Boundaries of Contribution: An Empirical Study of Authorship Calibration",
+      "url": "https://arxiv.org/abs/2607.15006",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261208+00:00"
+    },
+    {
+      "title": "The Applications and Trends of Artificial Intelligence in Human Movement Assessment",
+      "url": "https://doi.org/10.3390/app16052202",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261228+00:00"
+    },
+    {
+      "title": "Situated Practice Systems: A Computational System for Supporting the Coaching and Practice of Regulation Skills for Innovation Work",
+      "url": "https://doi.org/10.1145/3817001",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261232+00:00"
+    },
+    {
+      "title": "Metacognition in LLMs: Foundations, Progress, and Opportunities",
+      "url": "https://doi.org/10.48550/arxiv.2607.11881",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261235+00:00"
+    },
+    {
+      "title": "LLMartini: Seamless and Interactive Leveraging of Multiple LLMs through Comparison and Composition",
+      "url": "https://doi.org/10.48550/arxiv.2510.19252",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261239+00:00"
+    },
+    {
+      "title": "Full issue #47 (2026)",
+      "url": "https://doi.org/10.24197/h4q4ec21",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261243+00:00"
+    },
+    {
+      "title": "Classroom Exploration of General Education in Emerging Medical Sciences from a Positivist Perspective",
+      "url": "https://doi.org/10.62381/h261619",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_ai_agent_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261249+00:00"
+    },
+    {
+      "title": "Lessons From the Field on the Science of Reading: School and Classroom Stories Across Contexts",
+      "url": "https://doi.org/10.58295/2375-3668.1646",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_ai_agent_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261254+00:00"
+    },
+    {
+      "title": "Ecologically negotiated student motivation: a multi-perspective qualitative study through self-determination theory and ecological systems theory",
+      "url": "https://doi.org/10.1007/s11218-026-10204-2",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_ai_agent_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261258+00:00"
+    },
+    {
+      "title": "From feedback orientation to academic emotions: the indirect association through agentic engagement among secondary vocational students",
+      "url": "https://doi.org/10.3389/fpsyg.2026.1959575",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_ai_agent_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261261+00:00"
+    },
+    {
+      "title": "\"AI Risks, Opportunities and Threats to Medium Enterprises in the Generative AI Era (2026)\"",
+      "url": "https://doi.org/10.55041/ijsrem63180",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261265+00:00"
+    },
+    {
+      "title": "Global Index on Responsible AI 2026 : Conceptual Framework and Methodology",
+      "url": "https://doi.org/10.48550/arxiv.2608.18122",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261268+00:00"
+    },
+    {
+      "title": "BEYOND CONTENT: Cognitive Architecture as the Core Competency in the Age of Artificial Intelligence",
+      "url": "https://doi.org/10.2139/ssrn.6693658",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261272+00:00"
+    },
+    {
+      "title": "Deceptive Overgeneralization: When Adaptive Learning Enables Systematic Misapplication",
+      "url": "https://doi.org/10.1002/jcal.70311",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_ai_agent_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261275+00:00"
+    },
+    {
+      "title": "Predicting Student Academic Performance of learning in Educational Data Mining Paradigm using KNN-GA",
+      "url": "https://doi.org/10.55041/ijcope.v2i7.214",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_ai_agent_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261279+00:00"
+    },
+    {
+      "title": "Review of autonomous systems and collaborative AI agent frameworks",
+      "url": "https://doi.org/10.30574/ijsra.2025.14.2.0439",
+      "source_id": "search_fallback:openalex",
+      "reason": "noise_pattern",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261283+00:00"
+    },
+    {
+      "title": "Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG",
+      "url": "https://doi.org/10.48550/arxiv.2501.09136",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261286+00:00"
+    },
+    {
+      "title": "EREBOTS 4.0: A framework for conversational assistants with A2A agents and MCP tools",
+      "url": "https://doi.org/10.48550/arxiv.2610.36221",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261289+00:00"
+    },
+    {
+      "title": "Open Challenges in Multi-Agent Security: Towards Secure Systems of Interacting AI Agents",
+      "url": "https://doi.org/10.48550/arxiv.2505.02077",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261294+00:00"
+    },
+    {
+      "title": "New systems of learning for distance learning institutions? A six-study review of implementing AIDA",
+      "url": "https://doi.org/10.1016/j.caeai.2026.100607",
+      "source_id": "search_fallback:openalex",
+      "reason": "noise_pattern",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261301+00:00"
+    },
+    {
+      "title": "Collaborating in Multi-Armed Bandits with Strategic Agents",
+      "url": "https://doi.org/10.48550/arxiv.2605.13145",
+      "source_id": "search_fallback:openalex",
+      "reason": "no_education_context",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261307+00:00"
+    },
+    {
+      "title": "Review of Autonomous and Collaborative Agentic AI and Multi-Agent Systems for Enterprise Applications",
+      "url": "https://doi.org/10.55524/ijirem.2025.12.3.9",
+      "source_id": "search_fallback:openalex",
+      "reason": "noise_pattern",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261311+00:00"
+    },
+    {
+      "title": "Student-ChatGPT Interaction Visible: Designing a Teacher Dashboard for EFL Writing Education",
+      "url": "https://arxiv.org/abs/2608.13587",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261318+00:00"
+    },
+    {
+      "title": "Deterministic Decisions for High-Stakes AI. A Zero-Egress Pipeline with the Deployability of RAG and the Accuracy of Machine Learning",
+      "url": "https://arxiv.org/abs/2606.29280",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261321+00:00"
+    },
+    {
+      "title": "Simulating Students' Java Programming Errors with Large Language Models",
+      "url": "https://arxiv.org/abs/2606.14113",
+      "source_id": "arxiv-search-learning-analytics-ai",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261324+00:00"
+    },
+    {
+      "title": "Education in the Age of AI: Adaptive Systems, Assessment, and Responsible Governance",
+      "url": "https://doi.org/10.23947/2334-8496-2026-14-1-135-144",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261328+00:00"
+    },
+    {
+      "title": "From AI Literacy to AI Fluency: A Developmental Framework for Higher Education",
+      "url": "https://doi.org/10.2139/ssrn.7014818",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261332+00:00"
+    },
+    {
+      "title": "STRENGTHENING FINANCIAL WORKFORCE COMPETITIVENESS: A CURRICULAR FRAMEWORK FOR INTEGRATING AGENTIC AI INTO FINANCIAL PLANNING EDUCATION",
+      "url": "https://doi.org/10.26483/ijarcs.v17i1.7409",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261336+00:00"
+    },
+    {
+      "title": "AI ALGORITHMS FOR ADAPTIVE EDUCATIONAL CONTENT GENERATION",
+      "url": "https://doi.org/10.5281/zenodo.23357265",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261340+00:00"
+    },
+    {
+      "title": "Turning Errors into Successes: Designing LLM Tutoring Around Scaffolded Error Correction",
+      "url": "https://doi.org/10.48550/arxiv.2611.20061",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261343+00:00"
+    },
+    {
+      "title": "Building AI companions that prioritise learning over performance",
+      "url": "https://doi.org/10.1016/j.caeai.2026.100680",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261346+00:00"
+    },
+    {
+      "title": "AI-Driven Pedagogy for the Modern Classroom: Transforming Teaching and Learning Across Disciplines",
+      "url": "https://doi.org/10.70729/se26313190914",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261350+00:00"
+    },
+    {
+      "title": "Mastering the art of human-centred global collaboration: Designing AI bots as teammates in higher education",
+      "url": "https://doi.org/10.65106/apubs.2026.3355",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261354+00:00"
+    },
+    {
+      "title": "What Can Student-AI Dialogues Tell Us About Students' Self-Regulated Learning? An exploratory framework",
+      "url": "https://doi.org/10.48550/arxiv.2601.11576",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261357+00:00"
+    },
+    {
+      "title": "Can providing feedback on gaze and mental-effort synchrony improve pair programming performance?",
+      "url": "https://doi.org/10.48550/arxiv.2605.05836",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261360+00:00"
+    },
+    {
+      "title": "Student-facing conversational AI in primary classrooms: Should it be allowed?",
+      "url": "https://doi.org/10.1108/resep-03-2026-0007",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261364+00:00"
+    },
+    {
+      "title": "Generative ai as co-tutor: Enhancing teacher accompaniment strategies in efl online classrooms",
+      "url": "https://doi.org/10.5281/zenodo.18869213",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261367+00:00"
+    },
+    {
+      "title": "AI-assisted data literacy for inclusive learning and teaching",
+      "url": "https://openalex.org/W7172234032",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261374+00:00"
+    },
+    {
+      "title": "DIGITAL PLATFORMS AND THEIR ROLE IN IMPROVING ENGLISH COMMUNICATION SKILLS IN INDIAN CLASSROOMS",
+      "url": "https://doi.org/10.56975/ijcrt.v14i9.400173",
+      "source_id": "search_fallback:openalex",
+      "reason": "weekly_cap",
+      "status": "rejected_by_filter",
+      "week_tag": "2026-W48",
+      "queued_at": "2026-11-23T01:12:21.261381+00:00"
     }
   ]
 }
